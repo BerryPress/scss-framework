@@ -1,44 +1,44 @@
 @use "../../global" as *;
 
-.berrypress-form {
-
-}
+//.berrypress-form {
+//
+//}
 
 .berrypress-form-vertical {
 
-.berrypress-field-wrapper {
-  margin-bottom: 10px;
+  .berrypress-field-wrapper {
+    margin-bottom : 10px;
+    }
+
   }
 
-}
-
 .berrypress-inline-error {
-  background-color: #ffe6e6;
-  color: $accent-red;
-  padding: 8px 15px;
-  border-radius: 5px;
-  line-height: 1.4em;
+  background-color : #ffe6e6;
+  color            : $accent-red;
+  padding          : 8px 15px;
+  border-radius    : 5px;
+  line-height      : 1.4em;
 
   i {
-    margin-right: 5px;
-    line-height: 16px;
-    font-size: 16px;
-    vertical-align: middle;
+    margin-right   : 5px;
+    line-height    : 16px;
+    font-size      : 16px;
+    vertical-align : middle;
     }
   }
 
 .berrypress-inline-success {
-  background-color: #def2e6;
-  padding: 8px 15px;
-  border-radius: 5px;
-  color: #098f43;
-  line-height: 1.4em;
+  background-color : #def2e6;
+  padding          : 8px 15px;
+  border-radius    : 5px;
+  color            : #098f43;
+  line-height      : 1.4em;
 
   i {
-    margin-right: 5px;
-    line-height: 16px;
-    font-size: 16px;
-    vertical-align: middle;
+    margin-right   : 5px;
+    line-height    : 16px;
+    font-size      : 16px;
+    vertical-align : middle;
     }
 
   }

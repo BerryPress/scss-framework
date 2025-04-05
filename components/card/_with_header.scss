@@ -1,0 +1,23 @@
+@use "main.scss";
+@use "../../global" as *;
+
+.berrypress-card {
+  border        : 1px solid $gray-2;
+  border-radius : 5px;
+
+  .berrypress-card-header {
+    border-bottom: 1px solid $gray-2;
+    margin: -10px -20px;
+    padding: 12px 20px;
+    background: $gray-1;
+
+    h2 {
+      margin: 0;
+      }
+    }
+
+  .berrypress-card-content {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    }
+  }

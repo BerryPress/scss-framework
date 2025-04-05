@@ -1,0 +1,40 @@
+$card-widths: (
+        25: 25%,
+        33: 33.333%,
+        50: 50%,
+        66: 66.666%,
+        75: 75%,
+        100: 100%
+);
+
+$card-gap: 1rem;
+
+.berrypress-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -$card-gap / 2;
+  }
+
+.berrypress-card {
+  box-sizing: border-box;
+  margin: $card-gap / 2;
+  padding: 10px 20px;
+
+  @each $name, $width in $card-widths {
+    &-#{$name} {
+      width: calc(#{$width} - #{$card-gap});
+      }
+    }
+
+   p {
+     font-size: 14px;
+     }
+  }
+
+
+@media (max-width: 768px) {
+  .berrypress-card {
+    flex-basis : 100% !important;
+    max-width  : 100% !important;
+    }
+  }
