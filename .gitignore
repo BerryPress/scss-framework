@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# JetBrains IDEs (.idea folder)
+.idea/
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Sass/SCSS caches
+.sass-cache/
+*.css.map
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# VSCode (in case you or collaborators use it too)
+.vscode/

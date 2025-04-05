@@ -1,0 +1,233 @@
+@use "../../global" as *;
+
+/*!
+ * Adapted from WooCommerce's select2.scss
+ * Source: woocommerce/assets/css/select2.scss
+ * License: See license.txt in the plugin root directory.
+ */
+
+.berrypress-page {
+
+  .select2-container {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+    min-width: 240px;
+
+    .select2-selection--single {
+      min-width: 240px;
+      box-sizing: border-box;
+      cursor: pointer;
+      display: block;
+      user-select: none;
+      -webkit-user-select: none;
+      height: 30px;
+      padding: 0 30px 0 12px;
+      line-height: 28px;
+      border: 1px solid $gray-3;
+      border-radius: 5px;
+      font-size: 14px;
+      background          : #fff url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E) no-repeat right 5px top 55%;
+      background-size: 16px 16px;
+
+      &:focus {
+        border: 1px solid $gray-4;
+        box-shadow: none;
+        outline: none;
+        }
+
+      .select2-selection__rendered {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        }
+      }
+
+    .select2-selection__clear {
+      position: relative;
+      }
+
+    .select2-search--inline {
+      float: left;
+      padding: 0;
+
+      .select2-search__field {
+        box-sizing: border-box;
+        border: none;
+        font-size: 100%;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        outline: 0;
+        box-shadow: none;
+        -webkit-appearance: textfield;
+        }
+      }
+    }
+
+  .select2-dropdown {
+    background-color: #fff;
+    border: 1px solid $gray-3;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    left: -100000px;
+    width: 100%;
+    z-index: 1051;
+    top: -4px;
+    }
+
+  .select2-container--open {
+    .select2-dropdown {
+      left: 0;
+      }
+
+    .select2-dropdown--above {
+      border-bottom: none;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      }
+
+    .select2-dropdown--below {
+      border-top: none;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      }
+
+    &.select2-container--above .select2-selection--single {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      }
+
+    &.select2-container--below .select2-selection--single {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      }
+    }
+
+  .select2-results {
+    display: block;
+
+    &__options {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 240px;
+      overflow-y: auto;
+
+      .select2-results__option {
+        padding: 6px 6px 6px 10px;
+        user-select: none;
+        -webkit-user-select: none;
+        cursor: pointer;
+
+
+        &[data-selected="true"],
+        &[aria-selected="true"] {
+          background-color: $gray-2;
+          }
+
+        &[data-selected="true"] {
+          cursor: default;
+          }
+
+        &--highlighted[data-selected] {
+          background-color: $primary-color;
+          color: white;
+          }
+
+        &[role="group"] {
+          padding: 0;
+          }
+
+        .select2-results__option {
+          padding-left: 14px;
+          }
+        }
+
+      &__group {
+        cursor: default;
+        display: block;
+        padding: 6px;
+        }
+
+      &[aria-disabled="true"] {
+        color: $gray-5;
+        background-color: $gray-1;
+        }
+      }
+    }
+
+  .select2-search--dropdown {
+    display: block;
+    padding: 4px;
+
+    &.select2-search--hide {
+      display: none;
+      }
+
+    .select2-search__field {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 4px 18px 4px 4px;
+      border: 1px solid $gray-3;
+      background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23a1a7c4"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>') no-repeat right 8px center;
+      background-size: 16px 16px;
+      }
+    }
+
+  .select2-selection__arrow {
+    display: none;
+    }
+
+  .select2-hidden-accessible {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    }
+
+  .select2-container--default {
+    .select2-selection--single {
+      background-color: #fff;
+      border: 1px solid $gray-3;
+      border-radius: 5px;
+
+      .select2-selection__clear {
+        cursor: pointer;
+        float: right;
+        font-weight: bold;
+        }
+
+      .select2-selection__placeholder {
+        color: $gray-3;
+        }
+      }
+
+    .select2-search--inline .select2-search__field {
+      background: transparent;
+      border: none;
+      outline: 0;
+      box-shadow: none;
+      -webkit-appearance: textfield;
+      }
+
+    .select2-search--dropdown .select2-search__field {
+      border: 1px solid $gray-3;
+      padding-left: 4px;
+      padding-right: 18px;
+      }
+
+    &[dir="rtl"] .select2-selection--single .select2-selection__clear {
+      float: left;
+      }
+    }
+  }

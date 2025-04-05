@@ -1,0 +1,135 @@
+@use "../global" as *;
+
+.berrypress-page {
+
+  input[type="submit"].berrypress-btn,
+  .berrypress-btn {
+    cursor        : pointer;
+    padding       : 2px 24px;
+    border-radius : $border-radius;
+    font-size     : 14px;
+    font-weight   : 500;
+    line-height   : 24px;
+    border        : 1px solid $gray-3;
+    text-align: center;
+    }
+
+  input[type="submit"].berrypress-btn-primary,
+  .berrypress-btn-primary {
+    background-color : $primary-color;
+    color            : #fff;
+    border-color     : $primary-color;
+    white-space: nowrap;
+
+    &:hover {
+      box-shadow: inset 0 0 10px rgba(41, 47, 81, 0.4);
+      }
+
+    i {
+      font-size: 18px;
+      line-height: 18px;
+      vertical-align: middle;
+      position: relative;
+      left: -5px
+      }
+
+
+    }
+
+  input[type="submit"].berrypress-btn-secondary,
+  .berrypress-btn-secondary {
+    background-color : $gray-1;
+    color            : $text-primary;
+    border-color     : $gray-3;
+    white-space: nowrap;
+    box-shadow: $box-shadow-inner;
+
+    &:hover {
+      box-shadow: inset 0 0 12px rgba(41, 47, 81, 0.2);
+      }
+
+    i {
+      line-height: 18px;
+      font-size: 18px;
+      vertical-align: middle;
+      position: relative;
+      left: -4px
+      }
+
+    }
+
+  a.berrypress-btn {
+    display: inline-block;
+    }
+
+  .berrypress-btn.berrypress-btn-icon {
+    background-color : $gray-1;
+    box-shadow: $box-shadow-inner;
+
+    &:hover {
+      color: $text-primary;
+      box-shadow: inset 0 0 12px rgba(41, 47, 81, 0.2);
+      }
+
+    }
+
+  .berrypress-btn-icon {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    padding-top: 1px;
+    padding-left: 0;
+    padding-right : 0;
+    box-sizing: border-box;
+
+    &:hover {
+      color : $primary-color;
+      }
+
+    i {
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+
+
+      }
+    }
+
+  .berrypress-link {
+    padding: 0;
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: 500;
+    text-decoration: underline;
+    }
+
+  .berrypress-btn {
+    transition: background 0.3s ease, opacity 0.3s ease;
+
+    &.berrypress-btn-loading {
+      background-color: $gray-2;
+      cursor: not-allowed;
+
+      i {
+        animation: berrypress-spin 1.6s linear infinite;
+        }
+
+     i::before {
+        content: "loop";
+        }
+
+      }
+
+    &.berrypress-btn-success {
+      cursor: not-allowed;
+
+      i::before {
+        content: "check";
+        }
+
+      }
+    }
+
+
+
+  }

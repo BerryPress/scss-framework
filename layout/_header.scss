@@ -1,0 +1,144 @@
+@use "../global" as *;
+
+.berrypress-header {
+  display     : flex;
+  align-items : center;
+  gap         : 15px;
+  min-height  : 90px;
+  background  : #fafbfd;
+  padding     : 15px 20px;
+  width       : 100%;
+  z-index     : 1000;
+  font-size   : 14px;
+  flex-wrap   : wrap;
+  box-sizing  : border-box;
+  max-width   : 100%;
+
+  @media (max-width : 1200px) {
+    .berrypress-header-left {
+      justify-content : center;
+      }
+
+    .berrypress-nav a {
+      margin-bottom : 5px;
+      }
+
+    .berrypress-header-right {
+      margin-left : 0;
+      }
+    }
+  }
+
+.berrypress-page .berrypress-header-left {
+  display       : flex;
+  font-weight   : 500;
+  gap           : 8px;
+  align-items   : center;
+  width         : 240px;
+  padding-right : 20px;
+  }
+
+.berrypress-nav {
+  a {
+    gap             : 5px;
+    display         : inline-flex;
+    align-items     : center;
+    position        : relative;
+    padding         : 4px 6px 8px 4px;
+    margin-right    : 8px;
+    justify-content : center;
+
+    i::before {
+      vertical-align : middle;
+      }
+    }
+
+  a:hover, a:hover i {
+    color : $primary-color;
+    }
+
+  a.active::after {
+    height           : 2px;
+    width            : 100%;
+    background-color : $primary-color;
+    content          : "";
+    border-radius    : 8px;
+    position         : absolute;
+    display          : block;
+    bottom           : 0;
+    left             : 0;
+    }
+  }
+
+.berrypress-header-right {
+  margin-left : auto;
+
+  a {
+    display         : inline-flex;
+    gap             : 5px;
+    align-items     : center;
+    position        : relative;
+    padding         : 4px 6px;
+    margin-right    : 8px;
+    justify-content : center;
+    margin-bottom   : 5px;
+
+    i::before {
+      vertical-align : middle;
+      }
+
+    &:not(.last) {
+      margin-right : 8px;
+      }
+
+    }
+
+  a:hover, a:hover i {
+    color : $primary-color;
+    }
+
+  }
+
+#berrypress-toggle-menu-mobile {
+  display : none;
+  }
+
+.berrypress-page .berrypress-header {
+  @media (max-width : 700px) {
+    #berrypress-toggle-menu-mobile {
+      display      : inline-block;
+      margin-right : 5px;
+      }
+
+    .berrypress-header-left {
+      width : unset;
+      }
+
+    .berrypress-header-right,
+    .berrypress-nav {
+      display : none;
+      }
+    }
+  }
+
+@media (max-width : 480px) {
+  .berrypress-page .berrypress-header .berrypress-logo {
+    font-size : 12px;
+    }
+
+  .berrypress-page .berrypress-header .berrypress-header-left img {
+    display : none;
+    }
+  }
+
+
+@media (min-width: 701px) {
+  .berrypress-mobile-only {
+    display: none!important;
+    }
+  }
+@media (max-width: 700px) {
+  .berrypress-md-only {
+    display: none!important;
+    }
+  }

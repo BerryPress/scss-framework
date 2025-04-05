@@ -1,0 +1,91 @@
+@use "../global" as *;
+
+.berrypress-page {
+
+  .tablenav.top {
+    margin-top: 7px;
+
+    button {
+      margin-bottom: 4px;
+      }
+    }
+
+  .tablenav.bottom {
+
+    button {
+      margin-bottom: 4px;
+      }
+    }
+
+  table.berrypress-table{
+    width     : calc(100% - 20px);
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid $gray-2;
+    background: #fff;
+
+    thead {
+        background-color: $gray-1;
+
+      th {
+        font-size: 13px;
+        font-weight: 500;
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid $gray-3;
+        }
+      }
+
+    tbody {
+
+      tr {
+        background: transparent;
+        }
+
+
+      tr:nth-child(even) {
+        background: transparent;
+        }
+
+
+      td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid $gray-3;
+        vertical-align: middle;
+        }
+
+      h2 {
+         font-size: 14px;
+          margin: 0;
+        }
+      }
+
+    tfoot th, td {
+      border: unset;
+      }
+    }
+  }
+
+// Empty Table
+
+.berrypress-page table.berrypress-table tbody tr.no-items {
+  td {
+    text-align    : center;
+    padding       : 45px 10px;
+    border-bottom : 1px solid $gray-2;
+
+    &::before {
+      font-family   : "Material Symbols Rounded BerryPress", sans-serif;
+      content       : "error_outline";
+      display       : block;
+      font-size     : 24px;
+      margin-bottom : 10px;
+      color: $text-secondary;
+      }
+    }
+  }
+
+.berrypress-page table.berrypress-table #the-list tr.no-items td {
+  border-bottom : 1px solid $gray-2!important;
+  }

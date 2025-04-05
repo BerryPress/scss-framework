@@ -1,0 +1,33 @@
+@use "../global" as *;
+
+.berrypress-page {
+
+  // Reset WordPress button styles
+  button,
+  .button,
+  .wp-core-ui .button,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  a {
+    all         : unset;
+    appearance  : none;
+    border      : none;
+    background  : none;
+    padding     : 0;
+    font-family : inherit;
+    cursor: pointer;
+    }
+
+
+  button:disabled,
+  .button:disabled {
+    opacity: 1;
+    cursor: not-allowed;
+    }
+
+  .screen-reader-shortcut {
+    position : absolute;
+    top: -1000em;
+    }
+  }

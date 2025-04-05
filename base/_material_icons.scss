@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "Material Symbols Rounded BerryPress";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/MaterialSymbolsRounded.woff2") format("woff2");
+  font-display: block;
+ }
+
+// Icon list
+$icons :  "search",
+          "home",
+          "settings",
+          "check",
+          "radio_button_checked",
+          "radio_button_unchecked",
+          "expand_more",
+          "close",
+          "error_outline",
+          "first_page",
+          "menu",
+          "help",
+          "star",
+          "lock",
+          "warning",
+          "library_books",
+          "question_mark",
+          "key_vertical",
+          "check_circle",
+          "sync_alt",
+
+          // APC Plugin
+          "play_arrow",
+          "filter_alt",
+          "sync_alt",
+;
+
+// Generate Icons
+.berrypress-icon-filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24
+}
+
+[class^="berrypress-icon-"], [class*=" berrypress-icon-"] {
+  display    : inline-block;
+  font-style : unset !important;
+  visibility: hidden;
+  width: 1em;
+
+  &::before {
+    font-family : "Material Symbols Rounded BerryPress", sans-serif;
+    }
+  }
+.berrypress-font-loaded [class^="berrypress-icon-"], [class*=" berrypress-icon-"] {
+  visibility: visible;
+  width: auto;
+  }
+
+@each $icon in $icons {
+  i.berrypress-icon-#{$icon}::before {
+    content : $icon;
+    }
+  }

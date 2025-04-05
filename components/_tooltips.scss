@@ -1,0 +1,52 @@
+@use "../global" as *;
+// Specific CSS to APC? Consider change classes or move to plugin SCSS
+
+.berrypress-page {
+  a.php-apc-doc-note {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 8px!important;
+
+    i {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: $gray-6 ;
+      border: 1px solid $gray-6;
+      border-radius: 50%;
+      width: 14px;
+      height: 14px;
+      font-size: 10px;
+      margin-left: 3px;
+      }
+
+  // Tooltip Styling
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    text-align: left;
+    padding: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+    border-radius: 4px;
+    opacity: 0;
+    white-space: normal;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 9999;
+    }
+
+  &:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(5px);
+    }
+  }
+
+}

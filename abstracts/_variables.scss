@@ -1,0 +1,31 @@
+// Primary Colors (Main Actions)
+$primary-color  : #1658f8; // Primary button / action color
+$primary-light  : #1778f9;
+
+// Neutral Colors (Backgrounds, Borders)
+$background-color: #FEFEFE;
+$gray-1         : #f5f6fa; // Light
+$gray-2         : #e6e9f4;
+$gray-3         : #d7dbec;
+$gray-4         : #a1a7c4;
+$gray-5         : #7e84a3;
+$gray-6         : #5A607F; // Darker
+
+// Text Colors
+$text-primary   : #131523; // Main text
+$text-secondary : $gray-6; // Secondary text
+
+// Accent Colors (Bright UI Elements)
+$accent-red     : #f0142f;
+$accent-yellow  : #ffc700;
+$accent-orange  : #f99600;
+$accent-green   : #21d59b;
+$accent-gray    : #d5d7e3;
+// Additional Light Accent
+$accent-light   : #f4f7fc;
+$accent-blue    : #57b8ff;
+
+$font           : "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica", "Arial", sans-serif;
+$box-shadow     : 0 0 10px rgba(90, 96, 127, 0.53);
+$box-shadow-inner:   inset 0 0 5px rgba(90, 96, 127, 0.2);
+$border-radius  : 5px;

@@ -1,0 +1,324 @@
+@use "../../global" as *;
+
+.berrypress-page {
+
+  h3 {
+    margin      : 0;
+    color       : $gray-6;
+    font-size   : 12px;
+    font-weight : 500;
+    }
+
+  // Toggle Rows
+  table.php-apc-rules.berrypress-table {
+    margin-top : 15px;
+
+    .php-apc-template {
+      display : none;
+      }
+
+    .php-apc-rule-edit {
+      display : none;
+      }
+
+    .php-apc-rule-edit.php-apc-active {
+      display : table-row;
+      }
+
+    tr:not(.php-apc-rule-edit) {
+      cursor : pointer;
+      }
+
+    }
+
+  // Rule Edit
+
+  table.php-apc-rules.berrypress-table {
+
+    .php-apc-rule-edit-group {
+      display               : flex;
+      flex-wrap: wrap;
+      gap                   : 15px;
+      padding               : 5px;
+      margin-bottom         : 30px;
+
+      h3 {
+        flex: 0 0 100px;
+        }
+
+      @media (min-width: 500px) {
+
+        &.php-apc-rule-edit-group-status {
+          padding-left: 120px;
+          margin-bottom: 15px;
+          }
+        }
+
+      > .php-apc-rule-edit-settings {
+        flex: 1; /* Takes up remaining space, min 240px */
+        min-width: 240px;
+        max-width: 100%;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        border-radius : 8px;
+        position      : relative;
+
+        }
+
+      fieldset legend {
+        position         : absolute;
+        top              : -12px;
+        background-color : #fff;
+        padding          : 0 10px;
+        margin-left      : -10px;
+        }
+      }
+
+    .php-apc-rule-edit-group-label {
+
+      > .php-apc-rule-edit-settings {
+        border     : 1px solid $gray-2;
+        padding    : 15px 25px 15px;
+        min-height : 100px;
+
+        @media(min-width: 981px) {
+          padding-top: 25px;
+          }
+        }
+      }
+
+    .php-apc-rule-edit-group-status {
+      padding-top : 30px;
+      }
+
+    ul.php-apc-list-conditions > li > *,
+    ul.php-apc-list-actions > li > * {
+      margin-right   : 4px;
+      margin-bottom   : 4px;
+      vertical-align : middle;
+      }
+
+    ul.php-apc-list-actions > li  > .select2,
+    ul.php-apc-list-conditions > li > .select2 {
+      margin-bottom   : 0;
+
+
+      .select2-dropdown {
+        top: -2px;
+        }
+
+      }
+
+    ul.php-apc-list-actions > li  .select2-selection.select2-selection--single ,
+    ul.php-apc-list-conditions > li  .select2-selection.select2-selection--single {
+      margin-bottom   : 4px;
+      display: inline-block;
+      vertical-align : middle;
+      }
+
+    }
+
+  table.php-apc-rules.berrypress-table {
+
+    // Check Column
+    thead .check-column {
+      width         : 70px;
+      border-bottom : 1px solid $gray-3;
+
+      input {
+        margin-left : 8px;
+        }
+      }
+
+    tfoot .check-column {
+      width : 70px;
+
+      input {
+        margin-left : 8px;
+        }
+      }
+
+    tbody .check-column {
+      width          : unset;
+      text-align     : left;
+      vertical-align : middle;
+      padding        : 0 0 0 12px !important;
+      border-bottom  : 1px solid #d7dbec;
+
+      label {
+        position : initial;
+        width    : 20px;
+        height   : 20px;
+        display  : inline-block;
+        }
+
+      input {
+        margin : -5px 0 0;
+        }
+
+      button {
+        display    : inline-block;
+        text-align : center;
+        }
+      }
+
+    // Toggle Icon
+
+    th > button.php-apc-settings-toggle {
+      pointer-events : none;
+      }
+
+    tr.php-apc-active .php-apc-settings-toggle .berrypress-icon-expand_more {
+      transform : scale(-1); // Change icon when toggle opens
+      }
+
+    // Status Column
+    .column-status {
+
+      .php-apc-rule-status::before {
+        content       : "";
+        width         : 8px;
+        height        : 8px;
+        border-radius : 50%;
+        display       : inline-block;
+        margin-right  : 8px;
+        background-color : $accent-red;
+        }
+
+      .php-apc-rule-status-enabled::before {
+        background-color : $accent-green;
+        }
+      }
+
+    // Rule Name
+    .column-primary {
+      min-width: 100px;
+
+      input {
+      width: 100%;
+      min-width: 100%;
+      }
+      }
+
+    // Action Column
+    .column-action button {
+      margin-bottom: 5px;
+
+      }
+
+
+    }
+
+
+  @media (max-width: 620px) {
+    table.php-apc-rules.berrypress-table {
+      .php-apc-rule-edit-settings {
+
+        fieldset legend {
+          position: relative;
+
+          select,
+          input[type=text] {
+            width : 60px
+            }
+          }
+        select,
+        input[type=text] {
+          width : 100%;
+          }
+
+        }
+      }
+    }
+
+  // Tables < 800px
+  &:has(.berrypress-table-small) {
+
+    button.toggle-row {
+      display: none!important;
+      }
+
+    .tablenav.top .actions {
+      display: block!important;
+      }
+
+    table.php-apc-rules.berrypress-table.wp-list-table.berrypress-table-small {
+        display : block;
+
+      tfoot,
+      thead {
+        display : none; /* Hide table headers on mobile */
+        }
+
+      td:empty {
+        display: none!important;;
+        }
+
+      tr.php-apc-rule-edit.php-apc-active,
+       tbody,
+       tr {
+        display : block;
+        width   : 100% !important;
+        }
+
+
+      tbody tr th.check-column {
+        width   : 60px !important;
+        display: inline-block;
+        border-bottom   : 1px solid $gray-1;
+        padding: 15px 0 0 15px!important;
+        height: 45px;
+        }
+
+      tbody td.column-name {
+        min-width: 180px;
+        width   : calc(100% - 100px)!important;
+        display: inline-block;
+        height: 45px;
+        padding: 15px 5px 0 15px;
+
+        h2 {
+          line-height: 30px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
+          }
+        }
+
+      tr.php-apc-rule-edit,
+      tr.hidden,
+      tr.php-apc-template {
+        display: none;
+        }
+
+      tr.php-apc-rule-edit td {
+        flex-direction: column;
+        background-color: #fafbfda8;
+        fieldset legend { background-color: #fafbfda8; }
+        }
+
+      td {
+        display         : flex;
+        justify-content : flex-start;
+        flex-wrap: wrap;
+        padding         : 8px 15px;
+        border-bottom   : 1px solid $gray-1;
+        }
+
+      td.column-action {
+          border-color: $gray-2;
+
+          button {
+            margin-right: 4px;
+            }
+        }
+
+      td::before {
+        display: none;
+        }
+      }
+    }
+
+  }

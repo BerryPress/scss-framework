@@ -1,0 +1,60 @@
+@use "../global" as *;
+
+.berrypress-settings-container {
+  display: flex;
+  flex-direction: column;
+  font-family: $font;
+  background: $background-color;
+  }
+
+// Sidebar + Content
+.berrypress-main {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  }
+
+.berrypress-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
+  }
+
+.berrypress-page #wpbody-content {
+  padding-bottom: 0;
+  position: relative;
+  }
+
+.berrypress-page #wpcontent:has(.berrypress-main) {
+  padding-left: 0;
+  }
+
+.berrypress-page {
+  #screen-meta-links {
+    display: none;
+    }
+  }
+
+#screen-meta {
+  border:0;
+  }
+
+#screen-options-wrap   label input[type=checkbox] {
+    display : inline-block;
+
+    }
+
+
+.berrypress-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  }

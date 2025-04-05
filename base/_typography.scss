@@ -1,0 +1,38 @@
+@use "../global" as *;
+
+//@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
+
+.berrypress-page {
+
+  #wpcontent {
+    font-family: $font;
+    color                   : $text-primary;
+    -webkit-font-smoothing  : antialiased;
+    -moz-osx-font-smoothing : grayscale;
+    text-rendering          : optimizeLegibility;
+    }
+
+  // Font Sizes
+  .berrypress-fs-24 { font-size: 24px; }
+  .berrypress-fs-18 { font-size: 18px; }
+  .berrypress-fs-16 {font-size: 16px; }
+  .berrypress-fs-15 { font-size: 15px; }
+  .berrypress-fs-13{ font-size: 13px; }
+  .berrypress-fs-14 { font-size: 14px; }
+  .berrypress-fs-12 { font-size: 12px; }
+
+  // Font Weights
+  .berrypress-fw-regular { font-weight: 400 }
+  .berrypress-fw-medium { font-weight: 500 }
+  .berrypress-fw-regular { font-weight: 600 }
+
+  // Text Colors
+  .berrypress-text-primary {  color: $text-primary; }
+  .berrypress-text-secondary {  color: $text-secondary; }
+
+   // Alignment & Spacing
+  .berrypress-text-center { text-align: center }
+  .berrypress-text-left { text-align: left }
+  .berrypress-text-right {  text-align: right }
+
+  }
