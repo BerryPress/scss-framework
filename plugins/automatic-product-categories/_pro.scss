@@ -48,6 +48,14 @@ table.php-apc-rules .groups.column-groups {
     display   : block;
     }
 
+  .select2-container.select2-container--open.select2-container--below .select2-selection {
+    border-radius: 5px 5px 0 0;
+    }
+
+  .select2-container.select2-container--open.select2-container--above .select2-selection {
+    border-radius: 0 0 5px 5px;
+    }
+
   .select2-selection__rendered {
     margin     : 4px 0 0;
     height     : auto;
@@ -99,6 +107,16 @@ table.php-apc-rules .groups.column-groups {
   &.select2-dropdown--below {
     border-top: 1px solid $gray-2;
     padding-top: 5px;
+    margin-top: 3px;
+    border-radius: 0 0 5px 5px;
+    top: -5px;
+    }
+
+  &.select2-dropdown--above {
+    border-bottom: 1px solid $gray-2;
+    padding-bottom: 5px;
+    border-radius: 5px 5px 0 0;
+    top: 1px;
     }
 
   .select2-results__options {
