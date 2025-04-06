@@ -92,6 +92,15 @@
       padding-top : 30px;
       }
 
+    .php-apc-rule-edit-group-groups {
+      h3 {
+        padding-top: 5px;
+        }
+      .php-apc-group-description {
+        margin-bottom: 15px;
+        }
+      }
+
     ul.php-apc-list-conditions > li > *,
     ul.php-apc-list-actions > li > * {
       margin-right   : 4px;
