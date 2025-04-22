@@ -20,7 +20,6 @@
     .php-apc-rule-edit {
       display : none;
       }
-
     .php-apc-rule-edit.php-apc-active {
       display : table-row;
       }
@@ -130,6 +129,17 @@
 
   table.php-apc-rules.berrypress-table {
 
+    // Hide columns when needed
+
+    td.hidden,
+    th.hidden {
+      width: 0;
+      padding: 0;
+      overflow: hidden;
+      border: none;
+      font-size: 0;
+      }
+
     // Check Column
     thead .check-column {
       width         : 70px;
@@ -213,9 +223,7 @@
     // Action Column
     .column-action button {
       margin-bottom: 5px;
-
       }
-
 
     }
 
@@ -297,7 +305,6 @@
         }
 
       tr.php-apc-rule-edit,
-      tr.hidden,
       tr.php-apc-template {
         display: none;
         }
