@@ -1,13 +1,14 @@
+@use "sass:color";
 @use "../../global" as *;
+@use "../../components/pagination" as *;
 
 @mixin berrypress-btn-secondary {
   background-color : $gray-1;
   color            : $text-primary;
-  border-color     : $gray-3;
   white-space: nowrap;
 
   &:hover {
-    background-color : darken($gray-1, 2.5%);
+    background-color :  color.adjust($gray-1, $lightness: -2.5%);
     }
 
   i {

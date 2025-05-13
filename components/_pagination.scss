@@ -1,0 +1,19 @@
+@use "../global" as *;
+
+.berrypress-page {
+
+  .tablenav-pages {
+
+    input[type=text] { min-width : 50px;}
+
+    .displaying-num {
+      color: $gray-5;
+      }
+    }
+
+  .pagination-links {
+
+    color: $text-secondary;
+    }
+
+  }
