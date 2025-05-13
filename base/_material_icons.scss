@@ -32,9 +32,13 @@ $icons: (
         // APC Plugin
         play_arrow: "\E037",
         filter_alt: "\EF4F",
-        keyboard_double_arrow_left: "\EAC3",
-        keyboard_arrow_left: "\E5C4"
-);
+
+        // Pagination
+        keyboard_arrow_left: "\e314",
+        keyboard_double_arrow_left: "\eac3",
+        keyboard_arrow_right: "\e315",
+        keyboard_double_arrow_right: "\eac9",
+  );
 
 // Generate Icons
 .berrypress-icon-filled {

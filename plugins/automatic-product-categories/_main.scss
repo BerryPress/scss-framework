@@ -1,6 +1,8 @@
 @use "../../global" as *;
 @use "../../components/buttons/index" as buttons;
 
+@use "../../components/pagination" as *;
+
 .berrypress-page {
 
   h3 {
