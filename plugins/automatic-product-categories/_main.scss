@@ -1,4 +1,5 @@
 @use "../../global" as *;
+@use "../../components/buttons/index" as buttons;
 
 .berrypress-page {
 
@@ -337,4 +338,9 @@
       }
     }
 
+  }
+
+#screen-options-apply.button-primary {
+  @include buttons.berrypress-btn;
+  @include buttons.berrypress-btn-primary;
   }

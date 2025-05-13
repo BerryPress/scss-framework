@@ -21,8 +21,8 @@
 
   select,
   input[type="email"],
+  input[type="number"],
   input[type="text"] {
-    min-width: 100px;
     height: 30px;
     padding: 0 12px;
     line-height: 28px;
@@ -37,179 +37,14 @@
       }
     }
 
+  select,
+  input[type="email"],
+  input[type="text"]  {
+    min-width: 100px;
+    }
+
   select {
     padding-right: 30px;
-    }
-
-  input[type="checkbox"] {
-    appearance       : none;
-    width            : 18px;
-    height           : 18px;
-    background-color : $background-color;
-    border           : 1px solid $gray-4;
-    border-radius    : 4px;
-    display          : flex;
-    align-items      : center;
-    justify-content  : center;
-    cursor           : pointer;
-    transition       : all 0.2s ease;
-    position         : relative;
-    margin: 0;
-
-    &:checked {
-      background-color : $primary-color;
-      border-color     : $primary-color;
-
-      &::before {
-        content         : "check"; // Material Icon for checkbox
-        font-family     : "Material Symbols Rounded BerryPress";
-        font-size       : 18px;
-        color           : #fff;
-        display         : flex;
-        align-items     : center;
-        justify-content : center;
-        position        : absolute;
-        width           : 100%;
-        height          : 100%;
-        margin          : unset;
-        }
-      }
-
-    &:focus {
-      outline    : unset;
-      box-shadow : unset;
-      }
-
-    &:disabled:checked {
-      opacity: 0.4;
-      }
-
-    &:disabled:not(:checked) {
-      opacity: 0.4;
-      background-color: $gray-2;
-      border-color: $gray-4;
-      }
-
-    }
-
-  .berrypress-switch input[type="checkbox"] {
-    appearance: none;
-    width: 30px;
-    height: 17px;
-    background-color: transparent;
-    border-radius: 10px;
-    position: relative;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    border: 1px solid $gray-4;
-
-
-    &::after {
-      content: "";
-      width: 11px;
-      height: 11px;
-      background-color: $gray-4;
-      border-radius: 50%;
-      position: absolute;
-      left: 2px;
-      top: 2px;
-      transition: left 0.3s ease-in-out, background-color 0.3s ease-in-out;
-      }
-
-    &::before {
-      display: none;
-      }
-
-    &:checked {
-      background-color: $primary-color;
-      border: 1px solid $primary-color;
-
-      &::after {
-        left: 15px;
-        background-color: #fff;
-        }
-      }
-
-    &:disabled:checked {
-      opacity: 0.4;
-      }
-
-    &:disabled:not(:checked) {
-      background-color: $gray-2;
-      }
-
-    &:focus {
-      outline: none;
-      }
-    }
-
-  input[type="radio"] {
-    position  : absolute;
-    opacity   : 0;
-    left      : 0;
-    top       : 50%;
-    transform : translateY(-50%);
-
-    ~ label {
-      position    : relative;
-      display     : flex;
-      align-items : center;
-      gap         : 10px; // Ensures spacing between radio and text
-      cursor      : pointer;
-      }
-
-    ~ label:before {
-      content       : "";
-      background    : $background-color;
-      border-radius : 50%;
-      border        : 1px solid $gray-4;
-      display       : inline-block;
-      width         : 18px;
-      height        : 18px;
-      position      : relative;
-      text-align    : center;
-      transition    : all 250ms ease;
-      }
-    }
-
-  input[type="radio"]:checked + label::before {
-    background-color : $primary-color;
-    box-shadow       : inset 0 0 0 4px $background-color;
-    }
-
-  input[type="radio"]:focus + label::before {
-    outline      : none;
-    border-color : $primary-color;
-    }
-
-  input[type="radio"]:checked:disabled + label::before {
-    box-shadow       : inset 0 0 0 4px $gray-2;
-    background-color : $gray-4;
-    border-color: $gray-4;
-    opacity: 0.4;
-    }
-
-  input[type="radio"]:disabled + label::before {
-    background-color : $gray-2;
-    border-color: $gray-4;
-    opacity: 0.4;
-    }
-
-  .berrypress-file-upload {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-family: inherit;
-
-
-    input[type="file"] {
-      display: none;
-      }
-
-    .berrypress-file-name {
-      font-size: 14px;
-      color: $text-primary;
-      }
     }
 
   }
