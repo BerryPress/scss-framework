@@ -1,0 +1,18 @@
+@use "../../global" as *;
+
+.berrypress-page .berrypress-file-upload {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: inherit;
+
+
+  input[type="file"] {
+    display: none;
+    }
+
+  .berrypress-file-name {
+    font-size: 14px;
+    color: $text-primary;
+    }
+  }

@@ -1,0 +1,52 @@
+@use "../../global" as *;
+
+.berrypress-page .berrypress-switch input[type="checkbox"] {
+  appearance: none;
+  width: 30px;
+  height: 17px;
+  background-color: transparent;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  border: 1px solid $gray-4;
+
+
+  &::after {
+    content: "";
+    width: 11px;
+    height: 11px;
+    background-color: $gray-4;
+    border-radius: 50%;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    transition: left 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+
+  &::before {
+    display: none;
+    }
+
+  &:checked {
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+
+    &::after {
+      left: 15px;
+      background-color: #fff;
+      }
+    }
+
+  &:disabled:checked {
+    opacity: 0.4;
+    }
+
+  &:disabled:not(:checked) {
+    background-color: $gray-2;
+    }
+
+  &:focus {
+    outline: none;
+    }
+  }

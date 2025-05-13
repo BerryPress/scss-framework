@@ -1,0 +1,52 @@
+@use "../../global" as *;
+
+.berrypress-page input[type="checkbox"] {
+  appearance       : none;
+  width            : 18px;
+  height           : 18px;
+  background-color : $background-color;
+  border           : 1px solid $gray-4;
+  border-radius    : 4px;
+  display          : flex;
+  align-items      : center;
+  justify-content  : center;
+  cursor           : pointer;
+  transition       : all 0.2s ease;
+  position         : relative;
+  margin: 0;
+
+  &:checked {
+    background-color : $primary-color;
+    border-color     : $primary-color;
+
+    &::before {
+      content         : "check"; // Material Icon for checkbox
+      font-family     : "Material Symbols Rounded BerryPress";
+      font-size       : 18px;
+      color           : #fff;
+      display         : flex;
+      align-items     : center;
+      justify-content : center;
+      position        : absolute;
+      width           : 100%;
+      height          : 100%;
+      margin          : unset;
+      }
+    }
+
+  &:focus {
+    outline    : unset;
+    box-shadow : unset;
+    }
+
+  &:disabled:checked {
+    opacity: 0.4;
+    }
+
+  &:disabled:not(:checked) {
+    opacity: 0.4;
+    background-color: $gray-2;
+    border-color: $gray-4;
+    }
+
+  }
