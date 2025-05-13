@@ -20,7 +20,7 @@
     border-color     : $primary-color;
 
     &::before {
-      content         : "check"; // Material Icon for checkbox
+      content         : "\E5CA"; // Material Icon for checkbox
       font-family     : "Material Symbols Rounded BerryPress";
       font-size       : 18px;
       color           : #fff;

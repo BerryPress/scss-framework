@@ -7,34 +7,34 @@
  }
 
 // Icon list
-$icons :  "search",
-          "home",
-          "settings",
-          "check",
-          "radio_button_checked",
-          "radio_button_unchecked",
-          "expand_more",
-          "close",
-          "error_outline",
-          "first_page",
-          "menu",
-          "help",
-          "star",
-          "lock",
-          "warning",
-          "library_books",
-          "question_mark",
-          "key_vertical",
-          "check_circle",
-          "sync_alt",
+$icons: (
+        search: "\E8B6",
+        home: "\E88A",
+        settings: "\E8B8",
+        check: "\E5CA",
+        radio_button_checked: "\E837",
+        radio_button_unchecked: "\E836",
+        expand_more: "\E5CF",
+        close: "\E5CD",
+        error_outline: "\E001",
+        first_page: "\E5DC",
+        menu: "\E5D2",
+        help: "\E887",
+        star: "\E838",
+        lock: "\E897",
+        warning: "\E002",
+        library_books: "\E02F",
+        question_mark: "\E8AF",
+        key_vertical: "\E73C",
+        check_circle: "\E86C",
+        sync_alt: "\EA18",
 
-          // APC Plugin
-          "play_arrow",
-          "filter_alt",
-          "sync_alt",
-          "keyboard_double_arrow_left",
-          "keyboard_arrow_left",
-;
+        // APC Plugin
+        play_arrow: "\E037",
+        filter_alt: "\EF4F",
+        keyboard_double_arrow_left: "\EAC3",
+        keyboard_arrow_left: "\E5C4"
+);
 
 // Generate Icons
 .berrypress-icon-filled {
@@ -56,8 +56,8 @@ $icons :  "search",
   width: auto;
   }
 
-@each $icon in $icons {
+@each $icon, $unicode in $icons {
   i.berrypress-icon-#{$icon}::before {
-    content : $icon;
+    content: "#{$unicode}";
     }
   }
