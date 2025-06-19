@@ -146,3 +146,16 @@ table.php-apc-rules .groups.column-groups {
       }
     }
   }
+
+
+  .berrypress-apc-run-results{
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9999;
+    max-width: 400px;
+    padding: 16px;
+    background:#fff;
+    border:1px solid #ccd0d4;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+  }
