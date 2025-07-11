@@ -44,36 +44,37 @@ table.php-apc-rules .groups.column-groups {
 
   .select2-container {
     max-width : 400px;
-    width: auto;
+    width     : auto;
     display   : block;
     }
 
   .select2-container.select2-container--open.select2-container--below .select2-selection {
-    border-radius: 5px 5px 0 0;
+    border-radius : 5px 5px 0 0;
     }
 
   .select2-container.select2-container--open.select2-container--above .select2-selection {
-    border-radius: 0 0 5px 5px;
+    border-radius : 0 0 5px 5px;
     }
 
   .select2-selection__rendered {
-    margin     : 4px 0 0;
-    height     : auto;
-    position   : relative;
+    margin   : 4px 0 0;
+    height   : auto;
+    position : relative;
     }
 
   .select2-selection__clear {
-    margin-right: 6px;
-    font-size: 15px;
+    margin-right : 6px;
+    font-size    : 15px;
     }
 
   .select2-search.select2-search--inline {
     float   : unset;
     display : inline-block;
+
     input {
-      min-width : unset;
-      height: unset;
-      min-height: unset;
+      min-width  : unset;
+      height     : unset;
+      min-height : unset;
       }
     }
 
@@ -105,18 +106,18 @@ table.php-apc-rules .groups.column-groups {
 .berrypress-page .php-apc-select2-multiple-dropdown {
 
   &.select2-dropdown--below {
-    border-top: 1px solid $gray-2;
-    padding-top: 5px;
-    margin-top: 3px;
-    border-radius: 0 0 5px 5px;
-    top: -5px;
+    border-top    : 1px solid $gray-2;
+    padding-top   : 5px;
+    margin-top    : 3px;
+    border-radius : 0 0 5px 5px;
+    top           : -5px;
     }
 
   &.select2-dropdown--above {
-    border-bottom: 1px solid $gray-2;
-    padding-bottom: 5px;
-    border-radius: 5px 5px 0 0;
-    top: 1px;
+    border-bottom  : 1px solid $gray-2;
+    padding-bottom : 5px;
+    border-radius  : 5px 5px 0 0;
+    top            : 1px;
     }
 
   .select2-results__options {
@@ -147,15 +148,107 @@ table.php-apc-rules .groups.column-groups {
     }
   }
 
+.berrypress-apc-run-results {
+  position      : fixed;
+  right         : 24px;
+  bottom        : 24px;
+  z-index       : 9999;
+  max-width     : 400px;
+  min-width     : 250px;
+  padding       : 16px;
+  background    : #fff;
+  border        : 1px solid $gray-2;
+  border-radius : 8px;
+  overflow      : hidden;
 
-  .berrypress-apc-run-results{
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 9999;
-    max-width: 400px;
-    padding: 16px;
-    background:#fff;
-    border:1px solid #ccd0d4;
-    box-shadow:0 4px 12px rgba(0,0,0,.15);
+  h2 {
+    margin      : 0 0 12px;
+    font-size   : 16px;
+    font-weight : 600;
+    color       : $text-primary;
+    }
+
+  // Close button
+  .berrypress-apc-close {
+    position    : absolute;
+    top         : 8px;
+    right       : 8px;
+    width       : 24px;
+    height      : 24px;
+    border      : none;
+    background  : transparent;
+    color       : $text-secondary;
+    font-size   : 20px;
+    line-height : 1;
+    cursor      : pointer;
+
+    &:hover {
+      color : $text-primary;
+      }
+
+    &:focus {
+      outline        : 2px solid $primary-color;
+      outline-offset : 2px;
+      }
+
+    &::before {
+      content     : "\E5CD"; // Material symbol "close"
+      font-family : "Material Symbols Rounded BerryPress";
+      display     : block;
+      line-height : 1;
+      text-align  : center;
+      }
+    }
+  }
+
+.berrypress-apc-run-results-list {
+  dl {
+    margin                : 0;
+    max-height            : 260px;
+    overflow-y            : auto;
+    padding-right         : 4px;
+    display               : grid;
+    grid-template-columns : minmax(0, 160px) 1fr;
+    column-gap            : 8px;
+    row-gap               : 6px;
+    }
+
+  dt {
+    font-weight : 600;
+    margin      : 0;
+    // padding-top: 6px;
+    a {
+      color           : $primary-color;
+      text-decoration : none;
+      display         : inline-block;
+      max-width       : 100%;
+      white-space     : nowrap;
+      overflow        : hidden;
+      text-overflow   : ellipsis;
+
+      &:hover {
+        text-decoration : underline;
+        }
+      }
+    }
+
+  dd {
+    margin    : 0 0 6px 0;
+    font-size : 13px;
+    color     : $text-secondary;
+    }
+  }
+
+#php-apc-admin-page-body .tablenav > label {
+  vertical-align: middle;
+  line-height: 2;
+  font-size: 14px;
+  margin-left: 5px;
+
+  input {
+    display: inline-block;
+    margin-right: 2px;
+    }
+
+
   }

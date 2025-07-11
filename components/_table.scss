@@ -36,6 +36,18 @@
         }
       }
 
+    tfoot {
+        background-color: $gray-1;
+
+      th {
+        font-size: 13px;
+        font-weight: 500;
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid $gray-2;
+        }
+      }
+
     tbody {
 
       tr {
@@ -77,7 +89,7 @@
 
     &::before {
       font-family   : "Material Symbols Rounded BerryPress", sans-serif;
-      content       : "error_outline";
+      content       : "\E001";
       display       : block;
       font-size     : 24px;
       margin-bottom : 10px;
