@@ -1,0 +1,10 @@
+// APCP: assets/css/admin.css
+
+// Import global settings
+@use "../../global" as *;
+
+// Import specific styles for the admin area
+
+@use "pro";
+
+@use "../../components/form/form_field_file_upload";

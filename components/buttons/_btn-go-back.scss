@@ -1,0 +1,19 @@
+@use "sass:color";
+@use "../../global" as *;
+
+@mixin berrypress-btn-go-back {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+
+  &:hover {
+    color : $primary-color;
+    }
+
+  i {
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+  }

@@ -1,57 +1,289 @@
+@use "sass:color";
 @use "../../global" as *;
 @use "../../components/buttons/index" as buttons;
 
 .berrypress-header-left img {
-  max-width: 26px;
+  max-width : 26px;
   }
 
 .berrypress-page-content-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  display       : flex;
+  flex-wrap     : wrap;
+  align-items   : center;
+  margin-bottom : 1em;
+
+  h1 {
+    padding : 0;
+    }
 
   button {
-    margin-left: auto;
+    margin-left : auto;
+    }
+
+  .berrypress-btn-go-back {
+    @include buttons.berrypress-btn-go-back;
     }
   }
+
+.berrypress-page-content-header.berrypress-lc-page-content-header {
+  a {
+    margin-right : 1em;
+    }
+  }
+
 #phplugins-live-carts-details-card {
-  background-color: #fff;
-  padding: 0 1.5em;
-  margin-bottom: 1em;
-  border: 1px solid #ccc;
-  display: inline-block;
+  padding       : 1em .5em;
+  margin-top    : 1em;
+  margin-bottom : 1em;
+  border-top    : 1px solid $gray-2;
+  display       : inline-block;
+  min-width     : 60%;
+
+  .form-table table tr > * {
+    padding-left   : 0;
+    padding-top    : 0;
+    padding-bottom : 5px;
+    }
+
+  a {
+    text-decoration : underline;
+
+    &:hover {
+      color : $primary-color;
+      }
+    }
+
+  .form-table.phplugins-lc-table-2col {
+    display               : grid;
+    grid-template-columns : 1fr 1fr;
+    row-gap               : 1.6em;
+    width                 : 100%;
+
+    > tbody,
+    > tr {
+      display : contents;
+      }
+
+    tr {
+      display        : flex;
+      flex-direction : column;
+      gap            : .7em;
+      }
+
+    th {
+      width     : unset;
+      min-width : 100px;
+      }
+
+    th,
+    td {
+      padding : 0;
+      border  : 0;
+      }
+
+    th {
+      font-weight : 600;
+      text-align  : left;
+      }
+    }
+
+  .phplugins-lc-table-cart {
+    border        : 1px solid $gray-2;
+    border-radius : 8px;
+    margin        : 2em 0;
+    overflow      : hidden;
+
+    .form-table {
+      width      : 100%;
+      margin-top : 0;
+
+      th,
+      td {
+        //padding : 1em 1.5em;
+        }
+      .phplugins-lc-product-info {
+        display: flex;
+        gap: .8rem;
+        align-items: center;
+
+        img {
+          width: 50px;
+          height: auto;
+          }
+
+        }
+
+
+      // Total
+      tfoot {
+        border-top       : 1px solid $gray-1;
+        background-color : color.mix(white, $gray-1, 20%);
+        font-weight      : 500;
+
+        td {
+          padding   : 10px;
+          font-size : 13px;
+          }
+        }
+
+
+      .phplugins-lc-total {
+        font-weight : 500;
+        margin      : 0;
+        }
+      }
+    }
+
+  // END form table
   }
 
-#phplugins-live-carts-details > a {
-  display: block;
-  }
-
-#phplugins-live-carts-details .form-table table tr > * {
-  padding-left: 0;
-  padding-top: 0;
-  padding-bottom: 5px;
-  }
-
-.woocommerce_page_live-carts-for-woocommerce #the-list .column-status::before, .phplugins-live-carts-status::before {
-  display: inline-block;
-  content: '';
-  margin-right: 0.33em;
-  border-radius: 50%;
-  width: 0.67em;
-  height: 0.67em;
+.woocommerce_page_live-carts-for-woocommerce #the-list .column-status::before,
+.phplugins-live-carts-status::before {
+  content       : "";
+  width         : 8px;
+  height        : 8px;
+  border-radius : 50%;
+  display       : inline-block;
+  margin-right  : 8px;
   }
 
 .phplugins-live-carts-converted::before {
-  background: #01bb00;
-  }
-.phplugins-live-carts-active::before {
-  background: #bba500;
-  }
-.phplugins-live-carts-abandoned::before {
-  background: #bb2400;
+  background : $accent-green;
   }
 
-#screen-options-apply.button-primary {
+.phplugins-live-carts-active::before {
+  background : $accent-yellow;
+  }
+
+.phplugins-live-carts-abandoned::before {
+  background : $accent-red;
+  }
+.berrypress-seperator {
+  height: 1px;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+                  to right,
+                  $gray-2,
+                  $gray-2 6px,
+                  transparent 6px,
+                  transparent 10px
+  );;
+  margin: 2.4em 0;
+  display: block;
+  }
+.woocommerce_page_live-carts-for-woocommerce #screen-options-apply.button-primary {
   @include buttons.berrypress-btn;
   @include buttons.berrypress-btn-primary;
+  }
+
+/* placeholder */
+
+.phplugins-lc-edit-cart-wrapper {
+  overflow      : hidden;
+  border        : 1px solid $gray-2;
+  border-radius : 8px;
+  margin: 4em 0 1em;
+  }
+
+.phplugins-lc-edit-cart-table {
+  width           : 100%;
+  border-collapse : collapse;
+
+  /* column paddings & baseline font */
+  th,
+  td {
+    padding   : .65rem .6rem;
+    font-size : .9rem;
+    }
+
+  /* header */
+  thead {
+    background     : $gray-1;
+    text-transform : uppercase;
+    color          : $gray-4;
+
+    th {
+      font-weight : 500;
+      font-size   : 12px;
+      }
+    }
+
+  tfoot {
+    border-top : 1px solid $gray-2;
+    }
+
+  tbody tr + tr {
+    border-top : 1px solid $gray-2;
+    }
+
+  tbody tr:hover {
+    background : rgba(245, 246, 250, 0.2)
+    }
+
+  th {
+    text-align : left;
+    }
+
+  .phplugins-lc-qty {
+    text-align : center;
+    }
+
+  tfoot .total,
+  .phplugins-lc-total {
+    text-align : right;
+    }
+
+  .phplugins-lc-actions {
+    text-align : center;
+    width      : 42px;
+    }
+
+
+  a.phplugins-lc-product-info {
+    display: flex;
+    gap: .8rem;
+    align-items: center;
+    text-decoration: none!important;
+
+    h3 {
+      margin: 0 0 .2em;
+      font-size: 14px;
+      }
+
+    img {
+      width: 50px;
+      height: auto;
+      }
+
+    }
+
+  }
+
+.berrypress-btn-remove.berrypress-btn-icon {
+
+  &:hover {
+    color : $accent-red;
+    }
+
+  &:focus-visible {
+    outline        : 2px solid $accent-red;
+    outline-offset : 2px;
+    }
+  }
+
+
+
+.phplugins-lc-cart-actions {
+  display         : flex;
+  flex-wrap: wrap;
+  justify-content : flex-end;
+  gap             : .4rem;
+  margin-top      : 1rem;
+
+  .berrypress-btn-secondary {
+     i {
+       transform: rotate(45deg);
+       font-size: 12px;
+       }
+    }
   }

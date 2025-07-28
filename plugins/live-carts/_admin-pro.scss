@@ -1,0 +1,17 @@
+// LCP: assets/css/admin.css
+
+// Import global settings
+
+@use "../../global" as *;
+
+// Edit
+
+.bp-lc-edit-cart {
+  input[type=number] {
+    max-width: 80px;
+    }
+  }
+.bp-lc-add-item-container {
+
+
+  }
