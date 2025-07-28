@@ -6,12 +6,123 @@
 
 // Edit
 
+.berrypress-sm-note {
+  font-size: 12px;
+  color: $text-secondary;
+}
+
 .bp-lc-edit-cart {
   input[type=number] {
     max-width: 80px;
     }
-  }
-.bp-lc-add-item-container {
+}
 
+/* Edit  Cart */
+
+.phplugins-lc-edit-cart-wrapper {
+  overflow      : hidden;
+  border        : 1px solid $gray-2;
+  border-radius : 8px;
+  margin        : 4em 0 1em;
+
+  .phplugins-lc-edit-cart-table {
+    width           : 100%;
+    border-collapse : collapse;
+
+    /* column paddings & baseline font */
+    th,
+    td {
+      padding   : .65rem .6rem;
+      font-size : .9rem;
+      }
+
+    /* header */
+    thead {
+      background     : $gray-1;
+      text-transform : uppercase;
+      color          : $gray-4;
+
+      th {
+        font-weight : 500;
+        font-size   : 12px;
+        }
+      }
+
+    tfoot {
+      border-top : 1px solid $gray-2;
+
+      td:first-child {
+        text-transform : uppercase;
+        color          : $gray-4;
+        font-weight: 500;
+        font-size: 12px;
+        }
+
+      td.total {
+        font-weight: 600;
+        }
+      }
+
+    tbody tr + tr {
+      border-top : 1px solid $gray-2;
+      }
+
+    tbody tr:hover {
+      background : rgba(245, 246, 250, 0.2)
+      }
+
+    th {
+      text-align : left;
+      }
+
+    .phplugins-lc-qty {
+      text-align : center;
+      }
+
+    tfoot .total,
+    .phplugins-lc-total {
+      text-align : right;
+      }
+
+    a.phplugins-lc-product-info {
+      display         : flex;
+      gap             : .8rem;
+      align-items     : center;
+      text-decoration : none !important;
+
+      h3 {
+        margin    : 0 0 .2em;
+        font-size : 14px;
+        }
+
+      img {
+        width  : 50px;
+        height : auto;
+        }
+
+      }
+
+    }
+
+  .berrypress-btn-remove.berrypress-btn-icon {
+
+    &:hover {
+      color : $accent-red;
+      }
+
+    &:focus-visible {
+      outline        : 2px solid $accent-red;
+      outline-offset : 2px;
+      }
+    }
+
+
+  .phplugins-lc-cart-footer {
+    display         : flex;
+    flex-wrap       : wrap;
+    justify-content : space-between;
+    align-items: center;
+    gap             : .4rem;
+    }
 
   }
