@@ -250,5 +250,10 @@ table.php-apc-rules .groups.column-groups {
     margin-right: 2px;
     }
 
+  }
 
+// Hide Upgrade Box
+
+.berrypress_page_automatic-product-categories-for-woocommerce .berrypress-upgrade-box {
+  display: none;
   }
