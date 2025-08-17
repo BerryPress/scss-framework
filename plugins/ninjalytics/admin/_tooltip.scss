@@ -1,0 +1,143 @@
+/* Tooltip text */
+.ninjalytics-settings-tooltip {
+
+  .ninjalytics-settings-tooltiptext {
+    font-size   : 13px;
+    color       : $fontColor;
+    padding-top : 10px;
+
+    span {
+      display : none;
+      }
+    }
+
+  &.tooltip-visible {
+    .ninjalytics-settings-tooltiptext {
+      background-color    : $gray-1;
+      border              : 1px solid $gray-1;
+      border-radius       : 8px;
+      padding             : 15px 10px 15px 52px;
+      background-image    : url(../images/info.svg);
+      background-repeat   : no-repeat;
+      background-position : left 15px top 15px;
+      background-size     : 23px;
+      margin-top          : 10px;
+      }
+    }
+
+  @media (min-width : $breakSmall) {
+
+    &.bottom {
+      bottom : 0;
+      top    : unset;
+      }
+
+    &.tooltip-hover {
+      width               : 30px;
+      height              : 30px;
+      position            : absolute;
+      right               : 0;
+      top                 : 0;
+      text-align          : right;
+      background-image    : url("../images/tooltip.svg");
+      background-repeat   : no-repeat;
+      background-position : center right;
+      background-size     : 30px;
+      padding-left        : 6px;
+      opacity             : 0.8;
+
+      .ninjalytics-settings-tooltiptext {
+        visibility       : hidden;
+        width            : 300px;
+        background-color : #3a3a3a;
+        padding          : 20px 20px 30px;
+        text-align       : left;
+        font-style       : normal;
+        border-radius    : 8px;
+        color            : #fff;
+        line-height      : 1.81em;
+        font-size        : 11px;
+
+        a {
+          color : $primary;
+          }
+
+        span {
+          display       : block;
+          color         : #fff;
+          font-weight   : bold;
+          font-size     : 14px;
+          margin-bottom : 10px;
+          }
+
+        /* Position the tooltip text */
+        position         : absolute;
+        z-index          : 1;
+        top              : 50%;
+        transform        : translateY(-50%);
+        left             : 0;
+        margin-left      : -345px;
+
+        /* Fade in tooltip */
+        opacity          : 0;
+        transition       : opacity 0.5s;
+
+        &::after {
+          content      : "";
+          position     : absolute;
+          top          : 50%;
+          transform    : translateY(-50%);
+          left         : 100%;
+          border-width : 8px;
+          border-style : solid;
+          border-color : transparent transparent transparent #fff;
+          }
+        }
+
+      /* Show the tooltip text when you mouse over the tooltip container */
+      &:hover {
+        opacity : 1;
+
+        .ninjalytics-settings-tooltiptext {
+          visibility : visible;
+          opacity    : 1;
+          }
+        }
+      }
+
+    &.tooltip-visible {
+      //margin-left : 20%;
+      //margin-left : calc(20% + 20px);
+      }
+    }
+  }
+
+.ninjalytics-settings-tooltip.ags-psr-tooltip-modal {
+  margin-top    : 5px;
+  margin-bottom : 10px;
+
+  a {
+    text-decoration : underline;
+    color           : $primary;
+    font-weight     : 600;
+    margin-bottom: 10px;
+    display: inline-block;
+    font-size: 12px;
+
+    &:focus {
+      box-shadow : unset;
+      }
+
+    }
+  }
+
+.ninjalytics-settings-tooltiptext.ags-psr-modal {
+  width  : 550px;
+
+  &:has:not(h3) {
+    padding-top: 20px;
+    padding-right: 50px;
+    }
+  }
+
+

@@ -1,0 +1,42 @@
+/* Floating notifications */
+
+.ags-psr-notification {
+  margin-bottom : 15px;
+  @include notificationMixin();
+
+  p:last-of-type {
+    margin-bottom : 0;
+    }
+
+  &.ags-psr-notification-success {
+    @include notificationMixin("success");
+    }
+
+  &.ags-psr-notification-error {
+    @include notificationMixin("error");
+    }
+
+  &.ags-psr-notification-warning {
+    @include notificationMixin("warning");
+    }
+  }
+
+#ninjalytics-settings-tabs-content {
+
+  .hm-psr-validation-result.hm-psr-validation-error {
+    @include notificationMixin();
+    @include notificationMixin("error");
+    display    : block;
+    flex-basis : 100%;
+    margin-top : 13px;
+    }
+
+  .hm-psr-validation-result.hm-psr-validation-warning {
+    @include notificationMixin();
+    @include notificationMixin("warning");
+    display    : block;
+    flex-basis : 100%;
+    margin-top : 13px;
+    }
+
+  }

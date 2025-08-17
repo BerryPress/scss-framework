@@ -1,0 +1,69 @@
+// ------------------------------------------------------------------------------------------- //
+//                            GLOBAL VARIABLES NINJALYTICS
+// ------------------------------------------------------------------------------------------- //
+
+// Ninjalytics Colors
+
+$primary: #0070F0;
+$secondary: #0C2137;
+$gray: #e6e9f4;
+$gray1: #F3F5F9;
+
+// Font
+$fontSize          : 14px;
+$fontColor         : #131523; // general font color
+$baseHeaderColor   : #131523 ;// h1-h6 tags font color
+$baseFontWeight    : 400; // general font weight
+$baseHeadingWeight : 700; // h1-h6 tags font weight
+
+// Rounded corners
+$mainRadius        : 26px;
+$formRadius        : 7px;
+
+// ------------------------------------------------------------------------------------------- //
+//                            BERRYPRESS VARIABLES
+// ------------------------------------------------------------------------------------------- //
+
+// Primary Colors (Main Actions)
+$primary-color  : #0070F0; // Primary button / action color
+
+// Neutral Colors (Backgrounds, Borders)
+$background-color: #FEFEFE;
+$gray-1         : #F3F5F9; // Light
+$gray-2         : #e6e9f4;
+$gray-3         : #d7dbec;
+$gray-4         : #a1a7c4;
+$gray-5         : #7e84a3;
+$gray-6         : #5A607F; // Darker
+
+// ------------------------------------------------------------------------------------------- //
+//                            GLOBAL VARIABLES OLD
+// ------------------------------------------------------------------------------------------- //
+
+// notification colors
+$success           : #3EBB79; // notification color: success
+$warning           : #FC3; // notification color: warning / info
+$danger            : #CC4A49; // notification color:error
+
+$whiteColor        : #FFF;
+$blackColor        : #000;
+
+// border colors
+$lightBorderColor  : #e6e9f4; // color for light borders
+$middleBorderColor : #d7dbec; // color for dark borders
+$darkBorderColor   : #d7dbec; // color for dark borders
+
+// Font
+$headingLineHeight : 1.15;
+$baseLineHeight    : 1.7; // general line height
+
+
+$boxShadow         : 0 0 20px 0 rgba(0, 0, 0, 0.05);
+
+// Responsive breakpoints
+$breakSmall        : 782px;
+$breakSmallMin     : 783px;
+$breakLarge        : 960px;
+$breakLargeMin     : 961px;
+
+

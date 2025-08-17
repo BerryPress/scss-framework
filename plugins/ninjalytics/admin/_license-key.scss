@@ -1,0 +1,118 @@
+#ags-psr_license_key_form {
+  color                   : $fontColor;
+  line-height             : 1.7;
+  font-size               : $fontSize;
+  -webkit-font-smoothing  : antialiased;
+  -moz-osx-font-smoothing : grayscale;
+  border-radius: 18px;
+  overflow: hidden;
+  align-items: center;
+
+  max-width               : 900px;
+  margin                  : 20px auto 30px;
+  background              : #FFF;
+
+  @media (min-width : 740px) {
+    display : flex;
+
+    #ags-psr_license_key_form_logo_container {
+      flex  : initial;
+      width : 200px;
+      }
+    #ags-psr_license_key_form_body {
+      flex : 1;
+      }
+    }
+
+  @media (min-width : 900px) {
+    #ags-psr_license_key_form_logo_container {
+      width : 260px;
+      }
+    }
+
+  #ags-psr_license_key_form_logo_container {
+    display          : flex;
+    align-items      : center;
+    justify-content  : center;
+    padding          : 25px;
+
+    @media (min-width : 900px) {
+      span {
+        width: 100%;
+        border-right : 1px solid $gray;
+        min-height   : 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+      }
+
+    img {
+      height : 70px;
+      }
+    }
+
+  #ags-psr_license_key_form_body {
+    padding : 25px;
+
+    h3 {
+      margin-bottom: 25px;
+      }
+    #ags-psr_license_key_form_title {
+      @include responsiveFontSize(24px, 23px, 20px);
+      font-weight   : bold;
+      color         : $primary;
+      margin-bottom : 15px;
+      line-height   : $headingLineHeight;
+      }
+    }
+
+  button[type=submit] {
+    padding : 10px 30px;
+    @include formButtonMixin("primary");
+    }
+
+  input[type="text"] {
+    width : 100%;
+    max-width: 310px;
+    }
+
+  label {
+    span {
+      margin-bottom : 8px;
+      display       : block;
+      }
+    }
+
+  @media (min-width : 900px) {
+    label {
+      display : table;
+      width   : 100%;
+      padding-bottom: 8px;
+
+      & > * {
+        display : table-cell !important;
+        }
+
+      & > span {
+        width       : 100px;
+        text-align  : left;
+        padding-top : 7px;
+        margin      : 0;
+        }
+      }
+    }
+
+  p.submit {
+    margin-top  : 15px;
+    padding-top : 0;
+    }
+
+  a:focus {
+    box-shadow: none;
+    }
+  }
+
+#ags-psr_license_key_form_error {
+  @include notificationMixin("error");
+  }

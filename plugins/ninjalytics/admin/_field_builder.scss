@@ -1,0 +1,279 @@
+#hm_psr_fieldbuilder_field_template {
+  display : none;
+  }
+
+#hm-psr-fieldbuilder-function-buttons {
+  margin: 0 0 20px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+   > button {
+    position: relative;
+    box-shadow: none;
+    background-color: $gray-1;
+    font-size: 12px;
+    font-weight: 500;
+    color: $fontColor;
+    border: 1px solid $gray-1;
+    border-radius: 7px;
+    height: 30px;
+    padding: 0 20px;
+    width: auto;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      background-color: $gray-1;
+
+      > .hm-psr-tooltip-btn {
+        opacity: 1;
+        visibility: visible;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%) translateY(-40px);
+        }
+      }
+
+    &:active {
+      background-color: $gray-2;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+      }
+
+    &:focus {
+      outline: none;
+      }
+
+    .hm-psr-tooltip-btn {
+      position: absolute;
+      transform: translateX(-50%);
+      font-size: 12px;
+      font-weight: 400;
+      border-radius: 4px;
+      padding: 8px 10px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 200;
+      background-color: $fontColor;
+      color: #fff;
+      line-height: 20px;
+      display: flex;
+      max-width: 450px;
+      width: max-content;
+      text-align: center;
+      white-space: normal;
+      word-wrap: break-word;
+      align-items: center;
+      gap: 5px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: $fontColor transparent transparent transparent;
+        }
+      }
+    }
+  }
+
+#hm-psr-fieldbuilder-operators {
+  margin          : 0;
+  padding         : 0;
+  display         : flex;
+  flex-wrap       : wrap;
+  gap             : 6px;
+  list-style      : none;
+
+  li {
+    display : inline-flex;
+
+    button {
+      box-shadow       : none;
+      background-color : $gray-1;
+      font-size        : 12px;
+      font-weight      : 500;
+      color            : $fontColor;
+      border           : 1px solid $gray-1;
+      border-radius    : 7px;
+      height           : 30px;
+      width            : 30px;
+      line-height      : 30px;
+      text-align       : center;
+      cursor           : pointer;
+      transition       : background-color 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        background-color : $gray-2;
+        }
+
+      &:active {
+        background-color : #c4cdd4;
+        box-shadow       : inset 0 0 5px rgba(0, 0, 0, 0.05);
+        }
+      }
+    }
+  }
+
+#hm_psr_fieldbuilder_fields {
+
+  > div {
+    border        : 1px solid $gray-1;
+    border-radius : 8px;
+    margin-bottom : 10px;
+    padding       : 20px 20px;
+    max-width     : 1200px;
+
+    .ninjalytics-settings-box {
+      margin-bottom : 10px;
+      max-width     : 800px;
+
+      label > div,
+      > div > div {
+      flex: 1;
+      }
+
+      }
+
+    .ninjalytics-settings-box:has(input[type="text"]) {
+      span.label {
+        margin-top : 10px;
+        }
+      }
+
+    fieldset {
+      select {
+        max-width    : 150px;
+        margin-right : 5px;
+        }
+
+      small {
+        display : block;
+        }
+      }
+    }
+
+  .hm-psr-fieldbuilder-input-add {
+    @include formButtonMixin("secondary");
+    }
+
+  }
+
+#hm-psr-fieldbuilder-definition {
+  @include formInputMixin;
+  min-height    : 150px;
+  padding       : 5px 10px;
+  margin-bottom : 10px;
+  flex          : 1;
+  color         : #34a853;
+  font-family   : Consolas, Monaco, monospace;
+
+  &:focus {
+    color : #34a853;
+    }
+
+  /* Fields */
+
+  span[data-psr-field] {
+    color            : $fontColor;
+    background-color : $gray-1;
+    padding          : 2px 10px;
+    line-height      : 20px;
+    margin      : 0 8px 4px 0;
+    border-radius    : 8px;
+    display          : inline-block;
+    }
+
+  /* Functions */
+  span[data-psr-function] {
+    font-weight : bold;
+    margin      : 0 8px 4px 0;
+    font-style  : italic;
+    color       : #4285f4;
+    }
+
+  a.hm-psr-fieldbuilder-remove {
+    color: $fontColor;
+    font-size: 0;
+    display: inline-block;
+    vertical-align: middle;
+
+
+    &:before {
+      font-size: 15px;
+      font-family: dashicons;
+      vertical-align: middle;
+      }
+    }
+
+   .dashicons {
+    margin-left: 5px;
+    }
+
+  }
+
+#hm-psr-fieldbuilder-definition-error {
+  margin-bottom : 35px;
+
+  p {
+    color : $danger;
+    }
+
+  code {
+    background-color : $gray-1;
+    padding          : 5px 10px;
+    border-radius    : 8px;
+    font-size        : 12px;
+    }
+  }
+
+.hm-psr-fieldbuilder-field-remove {
+
+  @include formButtonMixin("delete");
+  background-color: transparent!important;
+  color: $fontColor!important;
+  height           : 30px;
+  width            : 30px;
+  padding          : 5px;
+  border-radius    : 8px;
+  border           : 0;
+  float            : right;
+  cursor           : pointer;
+
+  &:hover {
+    background-color: transparent!important;
+    color: $fontColor!important;
+    }
+
+
+  &::after {
+    clear : both;
+    }
+  }
+
+.hm-psr-fieldbuilder-select-container {
+  flex : 1;
+
+  select {
+    display       : block;
+    margin-bottom : 15px !important;
+    width         : 100%;
+    max-width     : unset;
+    }
+
+  }
+
+//#ags-psr-fieldbuilder-modal {
+//  //display: none;
+//  }
+
+//#ags-psr-fieldbuilder-modal.ags-psr-active {
+//  display: block;
+//  }

@@ -1,0 +1,143 @@
+.ags-psr-modal {
+  display          : block;
+  position         : fixed;
+  top              : 50%;
+  left             : 50%;
+  transform        : translate(-50%, -50%);
+  background-color : #fff;
+  border           : 1px solid $gray;
+  width            : 700px;
+  height           : max-content;
+  max-width        : 90%;
+  max-height       : 90%;
+  padding          : 36px 20px 20px;
+  overflow         : auto;
+  border-radius    : $formRadius;
+  box-sizing       : border-box;
+
+  opacity          : 0;
+  visibility       : hidden;
+  transition       : opacity 0.4s ease-in-out;
+  z-index          : 0;
+
+  .ags-psr-modal-close.ags-psr-modal-close-top {
+    background      : url("../images/x-black.svg") no-repeat center center;
+    background-size : contain;
+    width           : 16px;
+    height          : 16px;
+    border          : none;
+    cursor          : pointer;
+    position        : absolute;
+    right           : 15px;
+    top             : 15px;
+    padding         : 0;
+    transition      : opacity 0.3s ease;
+    font-size       : 0;
+    }
+
+  &.ags-psr-active {
+    z-index    : 9999;
+    opacity    : 1;
+    visibility : visible;
+    }
+  }
+
+// Has title
+
+.ags-psr-modal:has(h3) {
+  padding-top : 12px;
+
+  h3 {
+    border-bottom : 1px solid $gray;
+    margin        : 0 0 20px;
+    padding       : 10px 0 15px;
+    }
+
+  .ags-psr-modal-close.ags-psr-modal-close-top {
+    top : 22px;
+    right : 22px;
+    }
+
+  }
+
+.ags-psr-modal-buttons {
+  margin-top : 30px;
+  text-align : right;
+
+  > a, button {
+    min-width : 80px;
+    }
+  }
+
+body:has(.ags-psr-modal.ags-psr-active)::before {
+  content          : "";
+  position         : fixed;
+  top              : 0;
+  left             : 0;
+  width            : 100vw;
+  height           : 100vh;
+  background-color : rgba(0, 0, 0, 0.2);
+  z-index          : 1001;
+  }
+
+// transition didn't work
+#ags-psr-fieldbuilder-modal.ags-psr-modal {
+  display : block;
+  }
+
+// Template
+.ags-psr-modal.ags-psr-modal-templates {
+  padding-top    : 30px;
+  padding-bottom : 30px;
+  width          : 775px;
+
+  h2 {
+    margin    : 15px auto 40px;
+    max-width : 630px;
+    font-size : 15px;
+    }
+
+  #hm-psr-templates {
+    display               : grid;
+    grid-template-columns : repeat(auto-fill, minmax(120px, 200px));
+    grid-gap              : 15px;
+    margin                : 20px auto 40px;
+    max-width             : 630px;
+
+    img {
+      display : block;
+      margin  : 0 auto 10px;
+      }
+
+    li {
+      margin-bottom : 0;
+      }
+
+    > li a {
+      background-color : $gray-1;
+      border           : 2px solid $gray-1;
+      border-radius    : 15px;
+      padding          : 25px 10px;
+      width            : 100%;
+      display          : block;
+      box-sizing       : border-box;
+      text-align       : center;
+      color            : $blackColor;
+      text-decoration  : none;
+      }
+
+    > li:hover a  {
+      border : 2px solid $primary;
+      }
+
+    > li a:focus {
+      box-shadow : 0 0 0 1px $primary;
+      }
+
+    }
+
+  button.ags-psr-button-primary {
+    margin : 0 auto 20px;
+    display: block;
+    }
+  }

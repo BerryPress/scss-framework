@@ -1,0 +1,268 @@
+#hm_psr_output_container {
+  position   : relative;
+  min-height : 300px;
+  border: 1px solid $gray;
+  border-radius: 7px;
+  padding: 15px;
+
+  #hm_psr_chart {
+    margin-top : 30px;
+    max-height : 450px;
+    display    : none;
+    }
+
+  .dataTables_wrapper {
+    padding-top : 30px;
+    display : none;
+    }
+  }
+
+#hm_psr_output_container.hm-psr-output-table .dataTables_wrapper,
+#hm_psr_output_container.hm-psr-output-chart #hm_psr_chart {
+  display : block;
+  }
+
+#hm_psr_output_container.hm-psr-loading > .hm_psr_output_loading {
+  display : flex;
+  }
+
+// Table
+
+.dataTables_filter label,
+.dataTables_length label {
+  align-items: center;
+  gap: 5px;
+  }
+
+#hm_psr_output_container.hm-psr-output-table {
+
+  // Search wrapper
+  .dt-layout-row:first-child {
+    margin-top: 0;
+    }
+
+  .dt-length select {
+    line-height: 20px!important;
+    padding-left: 10px;
+    }
+
+  .dt-search input {
+    padding-left: 10px;
+    width: 100%;
+    max-width: 277px;
+    padding-right: 20px;
+    background-image: url("../images/search.svg");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 24px;
+    font-size: 14px;
+    }
+
+  .dt-length {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    }
+
+  // Number of entries
+  .dt-info {
+      font-weight: bold;
+    }
+
+  // Pagination
+  .dt-paging {
+
+    button {
+      border: 1px solid $gray;
+      border-radius: 6px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      padding: 0;
+      }
+
+    button:focus {
+      box-shadow : 0 0 0 1px $primary;
+      }
+
+    button.current {
+      background: $primary;
+      color: #fff!important;
+      }
+
+    button:hover {
+      background: unset!important;
+      color: $primary!important;
+      }
+
+    button.previous,
+    button.next {
+      border: 0;
+      }
+
+    button.disabled {
+      opacity: 0.4;
+      }
+
+    button.previous:hover,
+    button.previous {
+      background: url("../images/dropdown.svg") center center no-repeat!important;
+      transform: rotate(90deg);
+      color: transparent!important;
+      }
+
+    button.next:hover,
+    button.next {
+      background: url("../images/dropdown.svg") center center no-repeat!important;
+      transform: rotate(270deg);
+      color: transparent!important;
+      }
+
+    .dt-paging-button.last,
+    .dt-paging-button.first {
+      display: none;
+      }
+    }
+  }
+
+#hm_psr_output_container table {
+  padding-top : 20px;
+  max-width: 100%;
+  width: 100% !important;
+  border-color: $gray;
+
+  thead {
+    background-color: transparent;
+    text-align: left;
+    border-color: $gray;
+    }
+
+  &.dataTable tbody>tr:last-child>*,
+  &.dataTable>thead>tr>th,
+  &.dataTable>tfoot>tr>td {
+    border-color: $gray;
+    }
+
+  .dt-column-order::before {
+    content: url("../images/dropdown_arrow_dark.svg");
+    }
+  .dt-column-order::after {
+    content: url("../images/dropdown_arrow_down_dark.svg");
+    }
+
+  .dt-column-order::before,
+  .dt-column-order::after {
+    opacity: 1;
+    }
+
+  &.dataTable thead>tr>th.dt-ordering-asc span.dt-column-order:before,
+  &.dataTable thead>tr>td.dt-ordering-asc span.dt-column-order:before {
+    content: url("../images/dropdown_arrow_green.svg");
+    }
+  &.dataTable thead>tr>th.dt-ordering-desc span.dt-column-order:after,
+  &.dataTable thead>tr>td.dt-ordering-desc span.dt-column-order:after {
+    content: url("../images/dropdown_arrow_down_green.svg");
+    }
+
+  &.dataTable thead>tr>th.dt-orderable-asc:hover,
+  &.dataTable thead>tr>td.dt-orderable-asc:hover,
+  &.dataTable thead>tr>th.dt-orderable-desc:hover,
+  &.dataTable thead>tr>td.dt-orderable-desc:hover {
+    outline: none;
+    outline-offset: unset;
+    color: $primary;
+
+    span.dt-column-order:after {
+      content: url("../images/dropdown_arrow_down_green.svg");
+      }
+    span.dt-column-order:before {
+      content: url("../images/dropdown_arrow_green.svg");
+      }
+    }
+  }
+
+.hm_psr_output_loading {
+  display          : none;
+  justify-content  : center;
+  position         : absolute;
+  align-items      : center;
+  transform        : translateX(-50%);
+  left             : 50%;
+  width            : 100%;
+  height           : 100%;
+  background-color : $gray1;
+
+  > label {
+    display        : flex;
+    flex-direction : column;
+    text-align     : center;
+    font-weight    : 500;
+
+    //&::before {
+    //  content       : url("../images/loader_icon.png");
+    //  position      : relative;
+    //  display       : block;
+    //  width         : 48px;
+    //  height        : 48px;
+    //  animation     : hm-psr-rotation 2s infinite ease;
+    //  left          : 50%;
+    //  margin-left   : -24px;
+    //  margin-bottom : 20px;
+    //  }
+
+    progress {
+      width            : 100%;
+      min-width        : 300px;
+      height           : 10px;
+      background-color : $lightBorderColor;
+      border           : 1px solid $middleBorderColor;
+      border-radius    : 10px;
+      overflow         : hidden;
+      margin-top       : 20px;
+
+      // WebKit browsers
+      &::-webkit-progress-bar {
+        background-color : $lightBorderColor;
+        border-radius    : 10px;
+        }
+
+      &::-webkit-progress-value {
+        background-color : $primary;
+        border-radius    : 10px;
+        transition       : width 0.3s ease-in-out;
+        }
+
+      // Mozilla browsers
+      &::-moz-progress-bar {
+        background-color : $primary;
+        border-radius    : 10px;
+        transition       : width 0.3s ease-in-out;
+        }
+
+      // Fallback for other browsers
+      & {
+        color : $primary;
+        }
+      }
+    }
+  }
+
+@keyframes hm-psr-rotation {
+  0% {
+    transform : rotate(0deg);
+    }
+  100% {
+    transform : rotate(359deg);
+    }
+  }
+
+#hm-psr-chart-no-fields {
+  display    : block;
+  position   : absolute;
+  top        : 50%;
+  left       : 50%;
+  transform  : translateX(-50%) translateY(-50%);
+  text-align : center;
+  color      : $danger;
+  }

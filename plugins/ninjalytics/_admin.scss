@@ -1,0 +1,70 @@
+// NJ: assets/css/admin.css
+
+// Import global settings
+
+@use "../../global" as *;
+
+@import "material_icons";
+
+// Import specific styles for the admin area
+
+@import "admin/variables";
+@import "admin/mixins";
+@import "admin/forms";
+@import "admin/settings-tabs";
+@import "admin/notifications";
+@import "admin/settings-header";
+@import "admin/license-key";
+@import "admin/tooltip";
+@import "admin/settings-panel";
+@import "admin/report-fields";
+@import "admin/field_builder";
+@import "admin/chart";
+@import "admin/breadcrumbs";
+@import "admin/modal";
+
+
+.woocommerce_page_hm_sbp {
+  background-color : $gray1;
+
+  #wpcontent {
+    padding-left : 10px;
+    }
+  }
+
+.hm-psr-hidden,
+.hm-psr-date-dynamic-field.hidden {
+  display : none !important;
+  }
+
+.ags-psr-hpos-notice {
+  background    : #98a16f;
+  color         : #fff;
+  margin-bottom : 20px;
+  padding       : 10px;
+  }
+
+#ninjalytics-settings > div:not(:has(input.ags-psr-no-update:checked)) .ags-psr-advanced {
+  display : none;
+  }
+
+.ags-psr-flex-1 {
+  flex : 1;
+  }
+
+
+/* New */
+
+.nj-welcome {
+  border-radius: $border-radius;
+  padding: 2em;
+  border: 1px solid $gray-2;
+
+  h1 {
+    margin-bottom: 1em;
+    }
+
+  p {
+    margin-bottom: 2em;
+    }
+  }

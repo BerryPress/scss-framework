@@ -1,0 +1,374 @@
+#ninjalytics-form {
+
+  // Label
+  label, .ninjalytics-settings-label {
+    display : block;
+    cursor  : default;
+
+    input[type="checkbox"] {
+      margin-right : 10px;
+      }
+
+    span.label {
+      @include formLabelMixin();
+      box-sizing    : border-box;
+      cursor        : default;
+      display       : block;
+      margin-bottom : 10px;
+      }
+
+    @media (min-width : $breakSmall) {
+      display : flex;
+
+      span.label {
+        width        : 20%;
+        margin-right : 20px;
+        }
+
+      // Input forms
+      input[type=email], input[type=password], input[type=tel], input[type=text], input[type=number], input[type=date], select, textarea {
+        flex : 1;
+        }
+      }
+    }
+
+  .ninjalytics-settings-label.ninjalytics-settings-label-column {
+    display        : flex;
+    flex-direction : column;
+    }
+
+  label.ninjalytics-settings-label-column {
+    span.label {
+      font-size   : 14px;
+      font-weight : normal;
+      width       : unset;
+      //margin-top  : 2px;
+      }
+    }
+
+  .ninjalytics-settings-box:has(select),
+  .ninjalytics-settings-cb-list:has(select) {
+    span.label {
+      margin-top : 12px;
+      }
+    }
+
+  // Input forms
+  input[type=email], input[type=password], input[type=tel], input[type=text], input[type=number], input[type=date], select, input[type=time],input[type=search] {
+    @include formInputMixin();
+    font-size: 14px;
+    margin : 0;
+
+    &.hm-psr-input-fullwidth {
+      width : 100%;
+      }
+    }
+
+  select {
+    padding-right   : 30px !important;
+    background      : #fff url("../images/dropdown.svg") no-repeat right 10px center;
+    background-size : 16px;
+    }
+
+  input[type=number] {
+    padding : 0 0 0 10px !important;
+    }
+
+  // Textarea
+  textarea {
+    @include formTextareaMixin();
+    }
+
+
+  // Radio button
+  input[type="radio"] {
+    @include formRadioMixin();
+    flex-shrink: 0;
+    }
+
+  // Checkbox
+  input[type="checkbox"] {
+    @include formCheckboxMixin();
+    }
+
+  .ninjalytics-settings-description {
+    margin-top : 10px;
+    font-size  : 13px;
+
+    ul {
+      list-style-type : disc;
+      margin-left     : 20px;
+      }
+
+    @media (min-width : $breakSmall) {
+      padding-left : 20%;
+      margin-left  : 20px
+      }
+    }
+
+  .ninjalytics-settings-cb-list.ninjalytics-settings-cb-list-column {
+    flex-direction : column;
+
+    .ninjalytics-settings-title {
+      width         : 100%;
+      margin-bottom : 10px;
+      }
+    }
+
+  .ninjalytics-settings-fields {
+
+    input.hm_psr_field_name {
+      flex-basis : 500px;
+      }
+
+    .ninjalytics-settings-title span {
+      font-size   : 15px;
+      font-weight : bold;
+      }
+
+    .instructions {
+      margin-bottom : 35px;
+      }
+
+    }
+
+  /* Checkboxes list */
+  .ninjalytics-settings-cb-list {
+
+    &:not(:last-child) {
+      margin-bottom : 10px;
+      }
+
+    input[type=checkbox] {
+      margin-right : 10px;
+      }
+
+    label.ninjalytics-settings-title {
+      margin-bottom : 0;
+
+      span {
+        width : 100%;
+        }
+      }
+
+    label.ninjalytics-settings-cb-list-item {
+      align-items   : center;
+      margin-bottom : 15px;
+
+      span {
+        font-weight   : normal;
+        font-size     : 15px;
+        padding       : 0;
+        display       : inline-block;
+        margin-bottom : 0;
+        }
+      }
+
+    .ninjalytics-settings-cb-list-item-child {
+      margin-left : 30px;
+      }
+
+    .description {
+      margin-bottom : 15px;
+      }
+
+    @media (min-width : $breakSmall) {
+      display : flex;
+
+      label.ninjalytics-settings-title {
+        width         : 20%;
+        margin-right  : 20px;
+        margin-bottom : 0;
+        }
+
+      // Input forms
+      .ninjalytics-settings-content {
+        flex : 1;
+        }
+      }
+    }
+
+  // Row with multiple items in one line
+  .ninjalytics-settings-multirow {
+
+    &:not(:last-of-type) {
+      margin-bottom : 10px;
+      }
+
+    label.ninjalytics-settings-title {
+      margin-bottom : 0;
+
+      span {
+        width : 100%;
+        }
+      }
+
+    .ninjalytics-settings-content {
+      display     : flex;
+      flex-wrap   : wrap;
+      align-items : center;
+
+      a {
+        color : $fontColor;
+        }
+
+      & > input, & > select, & > a {
+        margin-right  : 10px;
+        margin-bottom : 8px;
+        }
+      }
+
+    &.has-checkbox {
+      .ninjalytics-settings-content {
+        padding-left : 35px;
+        position     : relative;
+        }
+
+      input[type="checkbox"] {
+        position : absolute;
+        left     : 0;
+        top      : 8px;
+        }
+      }
+
+    @media (min-width : $breakSmall) {
+      display : flex;
+
+      label.ninjalytics-settings-title {
+        width         : 20%;
+        margin-right  : 20px;
+        margin-bottom : 0;
+        }
+
+      // Input forms
+      .ninjalytics-settings-content {
+        flex : 1;
+        }
+      }
+    }
+
+  .ninjalytics-settings-multirow.ninjalytics-settings-multirow-column {
+    flex-direction : column;
+
+    .ninjalytics-settings-title {
+      width : 100%;
+      }
+    }
+
+  #ags-psr-date-range {
+    position : relative;
+    }
+
+  #ags-psr-date-range-dropdown {
+    border-radius    : 7px;
+    background-color : #fff;
+    border           : 1px solid $gray;
+    width            : 420px;
+    overflow         : hidden;
+    position         : absolute;
+    top              : 50px;
+    z-index : 997;
+
+    @media (min-width : 1200px) {
+      width : 475px;
+      }
+
+    .ags-psr-date-range-tabs {
+      display       : flex;
+      border-bottom : 1px solid $gray;
+      background    : transparent;
+
+      label::before,
+      input[type="radio"] {
+        display : none;
+        }
+
+      label {
+        display       : block;
+        flex          : 1;
+        text-align    : center;
+        padding       : 10px;
+        cursor        : pointer;
+        transition    : background 0.3s ease, color 0.3s ease;
+        border-bottom : 3px solid transparent;
+
+        &:hover {
+          color : $primary;
+          }
+        }
+
+      input[type="radio"]:checked + label {
+        background    : $gray-1;
+        color         : $primary;
+        border-bottom : 3px solid $primary;
+        font-weight: 500;
+        }
+      }
+
+    #ags-psr-date-range-dropdown-body {
+      max-height : 300px;
+      overflow   : auto;
+      padding    : 10px;
+
+      input[type=number] {
+        max-width: 60px;
+        }
+
+      select,
+      input {
+        min-width: unset;
+        }
+
+      .ags-psr-date-range-dropdown-tab-content {
+        display : none;
+        padding : 15px;
+
+        > * {
+          margin-bottom : 10px;
+
+          label.ags-psr-date-range-basic-from {
+            margin-bottom : 5px;
+            }
+
+          p {
+            margin-top : 5px;
+            color      : #aebbc1;
+            }
+
+          }
+        }
+      }
+
+    &:has(input#report_time_mode_basic:checked) #ags-psr-date-range-basic.ags-psr-date-range-dropdown-tab-content {
+      display : block;
+      }
+
+    &:has(input#report_time_mode_absolute:checked) #ags-psr-date-range-absolute.ags-psr-date-range-dropdown-tab-content {
+      display : block;
+      }
+
+    &:has(input#report_time_mode_dynamic:checked) #ags-psr-date-range-dynamic.ags-psr-date-range-dropdown-tab-content {
+      display : block;
+      }
+
+    }
+
+  .ags-psr-ml-10 {
+    margin-left : 10px;
+    }
+  .ags-psr-ml-30 {
+    margin-left : 30px;
+    }
+
+  .ags-psr-mt-30 {
+    margin-top : 30px;
+    }
+
+  .ags-psr-mt-20 {
+    margin-top : 20px;
+    }
+
+  .ags-psr-mt-10 {
+    margin-top : 10px;
+    }
+  }
