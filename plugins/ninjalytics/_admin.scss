@@ -24,6 +24,15 @@
 @import "admin/modal";
 
 
+.berrypress-card-nj-reports {
+  max-width: 1200px;
+  }
+
+/* Hide custom segments by default */
+.ninjalytics-settings-multirow.ninjalytics-custom-segment {
+  display: none;
+  }
+
 .woocommerce_page_hm_sbp {
   background-color : $gray1;
 
@@ -57,8 +66,9 @@
 
 .nj-welcome {
   border-radius: $border-radius;
-  padding: 2em;
   border: 1px solid $gray-2;
+  padding: 4em 3em;
+  max-width: 800px;
 
   h1 {
     margin-bottom: 1em;
@@ -67,4 +77,13 @@
   p {
     margin-bottom: 2em;
     }
+  }
+
+.berrypress-sidebar .berrypress-upgrade-box {
+  display: none;
+  }
+
+.berrypress-sidebar.collapsed > .berrypress-btn {
+  opacity: 0;
+  visibility: hidden;
   }

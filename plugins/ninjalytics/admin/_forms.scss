@@ -64,10 +64,22 @@
       }
     }
 
+  label:has(input[type="checkbox"]:disabled) span:not(.ninjalytics-pro-badge),
+  label:has(input[type="radio"]:disabled) {
+    color: $gray-3;
+    }
+
   select {
     padding-right   : 30px !important;
     background      : #fff url("../images/dropdown.svg") no-repeat right 10px center;
     background-size : 16px;
+
+    &:disabled {
+      color: $gray-4;
+      background-color : $gray-1 !important;
+      border-color: $gray-1;
+      cursor: not-allowed;
+      }
     }
 
   input[type=number] {
@@ -240,6 +252,10 @@
         margin-bottom : 0;
         }
 
+      label.ninjalytics-settings-title.berrypress-mb-2 {
+        margin-bottom: 8px;
+        }
+
       // Input forms
       .ninjalytics-settings-content {
         flex : 1;
@@ -351,6 +367,62 @@
       display : block;
       }
 
+    }
+
+  .ninjalytics-settings-multirow.ninjalytics-custom-segment:not(.ninjalytics-main-segment) {
+    display: none;
+    }
+
+  /* Additional custom segments section styling */
+  .ninjalytics-help-text {
+    font-size: 12px;
+    color: #6c757d;
+    margin: 8px 0 0 0;
+    font-style: italic;
+    line-height: 1.4;
+    }
+
+  /* Visual grouping for custom segments (but not main segment) */
+  .ninjalytics-settings-multirow.ninjalytics-custom-segment:not(.ninjalytics-main-segment) {
+    margin-left: 20px;
+    padding: 5px 5px 5px 15px;
+    border:  1px $gray-2 solid;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+
+    select {
+      display: inline-block;
+      }
+
+    label {
+      margin-top: 0;
+      display: inline-block;
+      width: unset;
+      }
+
+    span.label {
+      margin-right: 0;
+      }
+
+     .ninjalytics-segment-reset {
+      vertical-align: middle;
+      }
+    }
+
+  /* Show custom segments when enabled */
+  .ninjalytics-settings-multirow.ninjalytics-custom-segment:not([style*="display: none"]) {
+    animation: slideInFromLeft 0.3s ease;
+    }
+
+  @keyframes slideInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+      }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+      }
     }
 
   .ags-psr-ml-10 {

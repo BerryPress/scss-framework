@@ -386,10 +386,6 @@ body.toplevel_page_hm_sbp {
     }
   }
 
-#hm_psr-buttons-wrapper {
-  margin-top : 40px;
-  }
-
 // Order Filtering
 
 #hm_sbp_field_report_start,
@@ -563,7 +559,6 @@ body.toplevel_page_hm_sbp {
 
     label {
       display       : block !important;
-      margin-bottom : 15px;
 
       input[type=text] {
         max-width  : 225px;
