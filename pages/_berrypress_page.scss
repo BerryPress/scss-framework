@@ -1,0 +1,71 @@
+@use "../global" as *;
+
+.ninjalytics-about-page {
+  max-width: 1200px;
+  padding: 20px;
+  }
+.ninjalytics-about-page p, .ninjalytics-about-page ul, .ninjalytics-about-page li {
+  font-size: 15px;
+  }
+
+.ninjalytics-about-page h3 {
+  margin-top: 0;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid $primary-color;
+  }
+
+.about-section {
+  padding: 20px 0;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+  }
+
+/* List */
+.ninjalytics-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  }
+
+.ninjalytics-feature-list li {
+  padding: 8px 0 8px 25px;
+  border-bottom: 1px solid $gray-2;
+  position: relative;
+  }
+
+.ninjalytics-feature-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: $primary-color;
+  font-weight: bold;
+  }
+
+.ninjalytics-feature-list li:last-child {
+  border-bottom: none;
+  }
+
+.ninjalytics-support-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  }
+
+/* Box */
+
+.berrypress-box-cta {
+  text-align: center;
+  background: $gray-1;
+  padding: 30px;
+  border-radius: 8px;
+  margin-top: 30px;
+  }
+
+.berrypress-box-cta h3 {
+  margin: 0 0 15px 0;
+  }
+
+.berrypress-box-cta p {
+  color: $text-secondary;
+  font-size: 14px;
+  }

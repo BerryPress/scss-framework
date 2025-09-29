@@ -9,4 +9,6 @@
 
 @use "base/material_icons";
 @use "base/menu_item";
-@use "components/notices";
+@use "components/notices/base";
+@use "components/notices/error";
+@use "components/notices/info";

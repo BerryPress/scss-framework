@@ -59,6 +59,10 @@ body.toplevel_page_hm_sbp {
     font-size   : 14px;
     transition  : all ease-in .2s;
     }
+
+  .berrypress-btn-icon i {
+    transform: rotate(0deg);
+    }
   }
 
 /* Toggle body */
@@ -67,25 +71,15 @@ body.toplevel_page_hm_sbp {
   display : none;
   }
 
-#ninjalytics-settings > .ninjalytics-settings-toggle:not(.hm-psr-active) {
-  position: relative;
-
-  &:after {
-    content : "";
-    position: absolute;
-    top     : 0;
-    right   : 10px;
-    bottom  : 0;
-    width   : 16px;
-    background      :  url("../images/dropdown.svg") no-repeat center center;
-    background-size : 16px;
-    }
-}
 
 /* Toggle Opened */
 #ninjalytics-settings > .ninjalytics-settings-toggle.hm-psr-active {
   .ags-psr-section-body {
     display : block;
+    }
+
+  .ags-psr-section-title .berrypress-btn-icon i {
+    transform: rotate(180deg);
     }
 
   .ags-psr-section-title {

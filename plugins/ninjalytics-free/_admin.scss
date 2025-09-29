@@ -1,0 +1,82 @@
+// NJ: assets/css/admin.css
+
+// Import global settings
+
+@use "../../global" as *;
+@use "../../base/colors" as *;
+
+@use "../../pages/berrypress_page" as *;
+@use "../../pages/addons_page" as *;
+@use "../../pages/pro-page" as *;
+
+/* Pro Features */
+
+.berrypress-page {
+
+  .ninjalytics-pro-feature .ninjalytics-help-text {
+      color: $gray-3;
+      text-align: left;
+    }
+
+  button.ninjalytics-pro-feature,
+  .ninjalytics-pro-feature {
+    cursor : not-allowed;
+    position: relative;
+    color: $gray-3!important;
+    }
+
+  .berrypress-btn.berrypress-btn-secondary.ninjalytics-pro-feature,
+  .berrypress-btn.berrypress-btn-icon.ninjalytics-pro-feature {
+    background-color: $gray-1;
+    border-color: $gray-1;
+    color: $gray-3;
+      i {
+        color: $gray-3
+        }
+    }
+
+  #ninjalytics-form .ninjalytics-settings-cb-list label.ninjalytics-settings-cb-list-item span.ninjalytics-pro-badge,
+  span.ninjalytics-pro-badge {
+    background-color: $gray-2;
+    color: $gray-6;
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 10px;
+    line-height: 1em;
+    vertical-align: middle;
+    }
+
+  #ninjalytics-form .ninjalytics-settings-cb-list label.ninjalytics-settings-cb-list-item span.ninjalytics-pro-badge {
+    margin-left: 5px;
+    }
+
+  .ninjalytics-pro-feature.instructions,
+  .ninjalytics-settings-box.ninjalytics-pro-feature .label {
+    color: $gray-4!important;
+    }
+
+  button .ninjalytics-pro-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: inline-block;
+    }
+
+
+  .ags-psr-date-range-tabs .ninjalytics-pro-badge {
+    background-color: $primary-color;
+    color: #fff;
+    }
+
+  label[for="report_time_mode_dynamic"] {
+    color: $gray-4;
+    cursor : not-allowed!important;
+    }
+  label[for="report_time_mode_dynamic"]:hover {
+    color: $gray-5!important;
+    }
+  .ags-psr-date-range-tabs input[type=radio]:checked + label[for="report_time_mode_dynamic"] {
+    color: $gray-5!important;
+    border-bottom: 3px solid $gray-3!important;
+    }
+  }

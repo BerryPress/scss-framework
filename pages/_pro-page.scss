@@ -1,0 +1,14 @@
+@use "../global" as *;
+
+.ninjalytics-pro-page {
+  max-width: 1200px;
+  padding: 20px;
+  }
+
+.berrypress-coupon {
+    padding: 1rem;
+    border: 2px dashed $gray-3;
+    font-size: 16px;
+    display: inline-block;
+    border-radius: 8px;
+  }

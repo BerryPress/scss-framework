@@ -369,10 +369,6 @@
 
     }
 
-  .ninjalytics-settings-multirow.ninjalytics-custom-segment:not(.ninjalytics-main-segment) {
-    display: none;
-    }
-
   /* Additional custom segments section styling */
   .ninjalytics-help-text {
     font-size: 12px;
@@ -382,13 +378,20 @@
     line-height: 1.4;
     }
 
+
+  /* Hide custom segments by default */
+  #ninjalytics-form .ninjalytics-settings-multirow.ninjalytics-custom-segment {
+    display: none;
+    }
+
   /* Visual grouping for custom segments (but not main segment) */
-  .ninjalytics-settings-multirow.ninjalytics-custom-segment:not(.ninjalytics-main-segment) {
+  .ninjalytics-settings-multirow.ninjalytics-custom-segment  {
     margin-left: 20px;
     padding: 5px 5px 5px 15px;
     border:  1px $gray-2 solid;
     border-radius: 6px;
     transition: all 0.3s ease;
+    display: none;
 
     select {
       display: inline-block;
@@ -402,6 +405,7 @@
 
     span.label {
       margin-right: 0;
+      margin-bottom: 0;
       }
 
      .ninjalytics-segment-reset {

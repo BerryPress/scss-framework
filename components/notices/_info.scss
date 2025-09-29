@@ -1,0 +1,12 @@
+@use "../../global" as *;
+
+.berrypress-notice.berrypress-notice-info {
+  border-left   : 4px solid $primary-color;
+
+  a {
+    color           : $primary-color;
+    text-decoration : underline;
+    font-weight     : 600;
+    }
+
+  }

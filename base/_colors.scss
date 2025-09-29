@@ -1,5 +1,7 @@
+@use "../global" as *;
+
 .berrypress-page {
-  .primary-color {
+  .berrypress-primary-color {
     color : $primary-color !important;
     }
 
