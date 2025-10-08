@@ -53,6 +53,27 @@
       }
     }
 
+  .ninjalytics-settings-box,
+  .ninjalytics-settings-content {
+
+    label:not(:has(input[type="radio"])) {
+
+      a.berrypress-doc-note.ninjalytics-doc-note {
+        position: relative;
+        top: 3px;
+        }
+      }
+
+    }
+
+  .ninjalytics-settings-box,
+  .ninjalytics-settings-cb-list {
+    input[type="checkbox"] {
+      margin-top : 4px;
+      }
+
+    }
+
   // Input forms
   input[type=email], input[type=password], input[type=tel], input[type=text], input[type=number], input[type=date], select, input[type=time],input[type=search] {
     @include formInputMixin();
@@ -227,6 +248,10 @@
       & > input, & > select, & > a {
         margin-right  : 10px;
         margin-bottom : 8px;
+        }
+
+      input[type="checkbox"] {
+        top      : 4px;
         }
       }
 

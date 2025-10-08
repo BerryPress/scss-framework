@@ -1,0 +1,21 @@
+@use "../global" as *;
+
+.berrypress-page .berrypress-top-bar {
+    text-align: center;
+    background-color: $gray-2;
+
+    h2 {
+      font-size: 13px;
+      font-weight: 500;
+      }
+
+    a.berrypress-link {
+      font-size: 13px;
+      color: $primary-color;
+
+      i {
+        vertical-align: middle;
+        }
+      }
+
+  }

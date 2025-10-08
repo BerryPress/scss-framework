@@ -1,0 +1,32 @@
+@use "../global" as *;
+
+.berrypress-upgrade-box {
+
+  > div {
+    margin-top: 20px;
+    background: $gray-1;
+    padding: 0 15px 35px;
+    text-align: center;
+    border-radius: $border-radius;
+    }
+
+  h4 {
+    font-size: 16px;
+    }
+
+  ul {
+    margin-bottom: 25px;
+    }
+
+  .berrypress-icon-lock {
+    display: inline-block;
+    font-size: 24px;
+    color: #0058FF;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 50%;
+    position: relative;
+    margin-top: -24px;
+    border: 8px solid $gray-1
+    }
+  }

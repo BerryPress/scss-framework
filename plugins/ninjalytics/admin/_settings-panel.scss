@@ -29,7 +29,7 @@ body.toplevel_page_hm_sbp {
 /* Toggle section container */
 #ninjalytics-settings > div {
   margin-bottom : 10px;
-  overflow      : hidden;
+  //overflow      : hidden;
   border        : 1px solid #d8dde1;
   border-radius : 10px;
   }
@@ -458,8 +458,8 @@ body.toplevel_page_hm_sbp {
       box-sizing: border-box;
 
       span {
-        width  : 22px;
-        height: 22px;
+        width  : 24px;
+        height: 24px;
         }
 
       span:before {

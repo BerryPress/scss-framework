@@ -1,0 +1,13 @@
+@use "../../global" as *;
+
+  .berrypress-upgrade-box-list {
+    i {
+      vertical-align: middle;
+      margin-right: 5px;
+      color: $primary-color;
+      }
+    }
+
+  .berrypress-coupon {
+    padding: .5rem 1rem;
+    }

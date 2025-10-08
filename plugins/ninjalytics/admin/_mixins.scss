@@ -157,6 +157,20 @@ a.ags-psr-button-refresh {
   border: 1px solid $gray-2;
 }
 
+.berrypress-page a.berrypress-doc-note.ninjalytics-doc-note {
+
+  &:after {
+    max-width   : 160px;
+    text-align  : center;
+    line-height : 1.6;
+    }
+
+  i {
+    color: $gray-4
+    }
+}
+
+
 .ags-tooltip-parent,
 .ags-psr-button-icon {
 

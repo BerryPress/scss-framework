@@ -9,6 +9,10 @@
 @use "../../pages/addons_page" as *;
 @use "../../pages/pro-page" as *;
 
+
+@use "./upgrade-box-container" as *;
+@use "../../components/berrypress_top_bar" as *;
+
 /* Pro Features */
 
 .berrypress-page {
