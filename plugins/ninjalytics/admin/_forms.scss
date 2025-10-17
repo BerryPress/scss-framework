@@ -307,8 +307,9 @@
     width            : 420px;
     overflow         : hidden;
     position         : absolute;
-    top              : 50px;
+    top              : 31px;
     z-index : 997;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 
     @media (min-width : 1200px) {
       width : 475px;
