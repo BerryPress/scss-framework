@@ -110,6 +110,14 @@
           }
         }
 
+      .phplugins-lc-product-attributes {
+        margin-top: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem;
+        color: $text-secondary;
+        }
+
       // Total
       tfoot {
         border-top       : 1px solid $gray-1;

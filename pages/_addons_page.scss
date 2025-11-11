@@ -100,3 +100,23 @@
   background: #e6f0ff;
   color: #1658f8;
   }
+
+
+/* Box */
+
+.berrypress-box-cta {
+  text-align: center;
+  background: $gray-1;
+  padding: 30px;
+  border-radius: 8px;
+  margin-top: 30px;
+  }
+
+.berrypress-box-cta h3 {
+  margin: 0 0 15px 0;
+  }
+
+.berrypress-box-cta p {
+  color: $text-secondary;
+  font-size: 14px;
+  }

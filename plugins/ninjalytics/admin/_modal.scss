@@ -44,14 +44,8 @@
 
 // Has title
 
-.ags-psr-modal:has(h3) {
+.ags-psr-modal  {
   padding-top : 12px;
-
-  h3 {
-    border-bottom : 1px solid $gray;
-    margin        : 0 0 20px;
-    padding       : 10px 0 15px;
-    }
 
   .ags-psr-modal-close.ags-psr-modal-close-top {
     top : 22px;
@@ -87,14 +81,16 @@ body:has(.ags-psr-modal.ags-psr-active)::before {
 
 // Template
 .ags-psr-modal.ags-psr-modal-templates {
-  padding-top    : 30px;
-  padding-bottom : 30px;
-  width          : 775px;
+  padding-top    : 20px;
+  padding-bottom : 20px;
+  width          : 1200px;
+  max-width : 90%;
 
   h2 {
-    margin    : 15px auto 40px;
+    //margin    : 15px auto 40px;
     max-width : 630px;
-    font-size : 15px;
+    font-size : 20px;
+    margin-bottom: 15px;
     }
 
   #hm-psr-templates {

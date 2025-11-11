@@ -1,0 +1,23 @@
+@use "../global" as *;
+
+.berrypress-page .berrypress-top-bar.berrypress-top-bar-promo {
+  background-color: $text-primary;
+  background-image: url("../../includes/berrypress-admin-framework/assets/img/bf-promobar.png");
+  background-repeat: repeat-x;
+  background-position: center;
+  background-size: auto;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 20px $text-primary;
+    }
+
+  a {
+    margin-left: 5px;
+    i {
+      margin-left: 5px;
+      }
+    }
+  }

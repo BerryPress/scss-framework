@@ -11,8 +11,14 @@
 
 
 @use "./upgrade-box-container" as *;
-@use "../../components/berrypress_top_bar" as *;
+
 @use "../../layout/flex";
+
+@use "../../components/berrypress_top_bar" as *;
+@use "../../components/berrypress_bf-bar" as *;
+.berrypress-page .berrypress-top-bar.berrypress-top-bar-promo {
+  background-image: url("../includes/berrypress-admin-framework/assets/img/bf-promobar.png");
+}
 
 /* Pro Features */
 

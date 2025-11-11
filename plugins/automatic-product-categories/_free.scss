@@ -3,6 +3,9 @@
 
 @use "../../components/pagination" as *;
 
+@use "../../components/berrypress_bf-bar";
+@use "../../components/berrypress_top_bar";
+
 .berrypress-page {
 
   h3 {

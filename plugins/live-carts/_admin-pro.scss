@@ -3,6 +3,21 @@
 // Import global settings
 
 @use "../../global" as *;
+@use "../../layout/flex" as *;
+
+// Settings
+
+.berrypress-field input[type="number"]{
+    max-width: 65px;
+  }
+
+.berrypress-page input#phplugins_live_carts_pro_ip_header {
+  width: 100%; /* fallback */
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill-available;
+  max-width: 350px;
+  }
 
 // Edit
 

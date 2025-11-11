@@ -23,17 +23,30 @@
 @import "admin/breadcrumbs";
 @import "admin/modal";
 @import "../../layout/flex";
+@import "../../components/form/select_woo";
+@import "../../base/utilities";
+@import "woo_select";
 
 @import "../../pages/addons_page";
+@import "admin/pages/settings";
 
 .berrypress-card-nj-reports {
   max-width: 1200px;
+
+  .berrypress-card {
+    margin: 0;
+    }
+
+  .berrypress-card-100 {
+    width: 100%;
+    }
 
   #hm_psr-buttons-wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     overflow: hidden;
+    justify-content: flex-end;
 
     .berrypress-btn {
       white-space: normal;
