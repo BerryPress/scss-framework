@@ -1,0 +1,218 @@
+@use "../../../global" as *;
+
+.berrypress-modal.ninjalytics-modal-templates.berrypress-active {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  }
+
+.ninjalytics-modal-templates {
+
+  .ninjalytics-template-modal-card {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    padding : 5px 10px;
+    border  : none;
+    flex: 1 1 auto;
+    overflow: hidden;
+
+    .berrypress-card-content {
+      padding-top    : 0;
+      padding-bottom : 0;
+      display        : flex;
+      flex-direction : column;
+      overflow: hidden;
+      flex: 1 1 auto;
+      }
+
+    }
+
+  /* Heading */
+  h2 {
+    margin-top    : 0;
+    font-size     : 20px;
+    line-height   : 1.4em;
+    margin-bottom : 15px;
+    }
+
+  /* Subtitle */
+  .ninjalytics-template-modal-subtitle {
+    color  : $text-secondary;
+    margin : 0 0 24px;
+    }
+
+  /* Search */
+
+  #ninjalytics-template-search {
+    width           : 100%;
+    font-size       : 15px;
+    padding         : 18px 18px 18px 46px;
+    background      : #fff url(../images/search.svg) 16px center no-repeat;
+    background-size : 16px 16px;
+    border          : 1px solid $gray-2;
+    border-radius   : 8px;
+    margin   : 0 0 20px 0;
+    box-sizing: border-box;
+    }
+
+  // Tabs
+  .ninjalytics-template-modal-filters {
+    display       : flex;
+    flex-wrap     : wrap;
+    gap           : 10px;
+    margin-bottom : 15px;
+    }
+
+  // Reports grid
+
+  .ninjalytics-template-modal-grid {
+    display               : grid;
+    grid-template-columns : repeat(auto-fill, minmax(310px, 1fr));
+    gap                   : 8px;
+    overflow              : hidden;
+    margin: 0;
+
+    .ninjalytics-template-card {
+      padding        : 20px;
+      margin: 0;
+      }
+
+    .ninjalytics-template-card-disabled {
+      opacity : 0.55;
+      }
+
+    .ninjalytics-template-card-action-hidden {
+      display : none !important;
+      }
+
+    .ninjalytics-template-card-content {
+      display        : flex;
+      flex-direction : column;
+      gap            : 12px;
+      height         : 100%;
+      }
+
+    .ninjalytics-template-card-header {
+      display        : flex;
+      gap            : 12px;
+      align-items    : center;
+      padding-bottom : 8px;
+      margin-bottom  : 5px;
+      border-bottom  : 1px solid $gray-1;
+      }
+
+    .ninjalytics-template-icon-wrapper {
+      display          : inline-flex;
+      align-items      : center;
+      justify-content  : center;
+      width            : 32px;
+      height           : 32px;
+      border-radius    : 8px;
+      background-color : $gray-1;
+      flex-shrink      : 0;
+      }
+
+    .ninjalytics-template-icon {
+      width  : 24px;
+      height : 24px;
+      }
+
+    .ninjalytics-template-card-title {
+      margin      : 0;
+      font-size   : 15px;
+      font-weight : 600;
+      line-height : 1.3;
+      }
+
+    .ninjalytics-template-card-badge {
+      margin-left    : 6px;
+      padding        : 0 6px;
+      font-size      : 11px;
+      font-weight    : 600;
+      text-transform : uppercase;
+      color          : $gray-6;
+      }
+
+    .ninjalytics-template-card-description {
+      margin      : 0 0 8px;
+      color       : $gray-6;
+      font-size   : 13px;
+      line-height : 1.4;
+      }
+
+    .ninjalytics-template-card-integration-inactive {
+      color            : $gray-4;
+      background-color : $background-color;
+      }
+
+    .ninjalytics-template-card-actions {
+      margin-top : auto;
+      }
+
+    .ninjalytics-template-card-note {
+      display   : block;
+      font-size : 12px;
+      color     : $gray-6;
+      }
+
+    }
+
+  .ninjalytics-template-modal-footer {
+    padding-top : 20px;
+    text-align : center;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid $gray-1;
+    }
+
+  .ninjalytics-template-content-wrapper {
+    flex : 1 1 auto;
+    }
+  }
+
+@media (min-height: 701px) {
+  /* Wrapper scrolling */
+.ninjalytics-modal-templates .ninjalytics-template-modal-grid {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    }
+
+.ninjalytics-modal-templates .ninjalytics-template-content-wrapper {
+    flex : 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    }
+  }
+
+@media (max-height: 700px) {
+
+  /* Wrapper scrolling */
+.ninjalytics-modal-templates .ninjalytics-template-content-wrapper {
+    overflow-y: auto;
+    }
+
+  }
+
+@media (max-width: 700px) {
+  .berrypress-modal.ninjalytics-modal-templates .ninjalytics-template-modal-card {
+    padding: 0;
+    margin-right: 0;
+    }
+  .berrypress-modal.ninjalytics-modal-templates .ninjalytics-template-modal-card .ninjalytics-template-modal-grid {
+    grid-template-columns : repeat(auto-fill, minmax(180px, 1fr));
+    margin-right: 5px;
+    }
+
+  .berrypress-modal.ninjalytics-modal-templates .ninjalytics-template-modal-card .ninjalytics-template-modal-filters {
+    gap: 5px;
+    }
+
+  .berrypress-page .ninjalytics-template-modal-filters .berrypress-btn {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+  }

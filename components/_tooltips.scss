@@ -2,34 +2,22 @@
 
 .berrypress-page {
 
-  // Specific CSS to APC? Consider change classes or move to plugin SCSS
-  a.php-apc-doc-note {
-    i {
-      color: $gray-6 ;
-      border: 1px solid $gray-6;
-      width: 14px;
-      height: 14px;
-      font-size: 10px;
-      }
-    }
-
   a.berrypress-doc-note {
     i {
       font-size: 16px;
       }
     }
 
-  a.berrypress-doc-note,
-  a.php-apc-doc-note {
+  a.berrypress-doc-note {
     position: relative;
     cursor: pointer;
     display: inline-block;
     margin-right: 8px!important;
+
     i {
       display         : inline-flex;
       align-items     : center;
       justify-content : center;
-      border-radius: 50%;
       margin-left: 3px;
       color: $gray-6;
       }

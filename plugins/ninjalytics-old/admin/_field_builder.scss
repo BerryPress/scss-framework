@@ -47,40 +47,6 @@
       outline: none;
       }
 
-    .hm-psr-tooltip-btn {
-      position: absolute;
-      transform: translateX(-50%);
-      font-size: 12px;
-      font-weight: 400;
-      border-radius: 4px;
-      padding: 8px 10px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      z-index: 200;
-      background-color: $fontColor;
-      color: #fff;
-      line-height: 20px;
-      display: flex;
-      max-width: 450px;
-      width: max-content;
-      text-align: center;
-      white-space: normal;
-      word-wrap: break-word;
-      align-items: center;
-      gap: 5px;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        border-width: 5px;
-        border-style: solid;
-        border-color: $fontColor transparent transparent transparent;
-        }
-      }
     }
   }
 
@@ -258,7 +224,7 @@
     }
   }
 
-.hm-psr-fieldbuilder-select-container {
+.ninjalytics-fieldbuilder-select-container {
   flex : 1;
 
   select {

@@ -1,0 +1,227 @@
+@use "../../../global" as *;
+
+#ninjalytics-fieldbuilder-modal fieldset.berrypress-field legend {
+  display     : contents;
+  font-weight : 500;
+  }
+
+#ninjalytics-fieldbuilder-modal {
+
+  box-sizing: content-box;
+
+  h3 {
+    margin         : 0 0 1rem;
+    padding-bottom : 1rem;
+    border-bottom  : 1px solid $gray-1;
+    }
+
+  .ninjalytics-fieldbuilder-form {
+    display        : flex;
+    flex-direction : column;
+    gap            : .5rem;
+    }
+
+  .ninjalytics-fieldbuilder-form .berrypress-field {
+
+    grid-template-columns : 100px auto;
+
+    label {
+      font-weight : 500;
+      }
+    }
+
+  .berrypress-modal-buttons {
+    text-align  : right;
+    border-top  : 1px solid $gray-1;
+    padding-top : 1rem;
+    }
+
+  .ninjalytics-fieldbuilder-form {
+    box-sizing : border-box;
+    }
+
+  #hm-psr-fieldbuilder-function-buttons {
+    margin    : 0 0 20px;
+    padding   : 0;
+    display   : flex;
+    flex-wrap : wrap;
+    gap       : 6px;
+
+    > button {
+      position         : relative;
+      box-shadow       : none;
+      background-color : $gray-1;
+      font-size        : 12px;
+      font-weight      : 500;
+      color            : $text-primary;
+      border           : 1px solid $gray-1;
+      border-radius    : 7px;
+      height           : 30px;
+      padding          : 0 20px;
+      width            : auto;
+      line-height      : 30px;
+      text-align       : center;
+      cursor           : pointer;
+      transition       : background-color 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        background-color : $gray-1;
+        }
+
+      &:active {
+        background-color : $gray-2;
+        box-shadow       : inset 0 0 5px rgba(0, 0, 0, 0.05);
+        }
+
+      &:focus {
+        outline : none;
+        }
+      }
+    }
+
+  #hm-psr-fieldbuilder-operators {
+    margin     : 0;
+    padding    : 0;
+    display    : flex;
+    flex-wrap  : wrap;
+    gap        : 6px;
+    list-style : none;
+
+    li {
+      display : inline-flex;
+
+      button {
+        box-shadow       : none;
+        background-color : $gray-1;
+        font-size        : 12px;
+        font-weight      : 500;
+        color            : $text-primary;
+        border           : 1px solid $gray-1;
+        border-radius    : 7px;
+        height           : 30px;
+        width            : 30px;
+        line-height      : 30px;
+        text-align       : center;
+        cursor           : pointer;
+        transition       : background-color 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          background-color : $gray-2;
+          }
+
+        &:active {
+          background-color : #c4cdd4;
+          box-shadow       : inset 0 0 5px rgba(0, 0, 0, 0.05);
+          }
+        }
+      }
+    }
+
+  #hm-psr-fieldbuilder-definition {
+    border        : 1px solid #d7dbec;
+    border-radius : 5px;
+    font-size     : 14px;
+    min-height    : 150px;
+    padding       : 10px 15px;
+    color         : #34a853;
+    font-family   : Consolas, Monaco, monospace;
+
+    &:focus {
+      color : #34a853;
+      }
+
+    /* Fields */
+
+    span[data-psr-field] {
+      color            : $text-primary;
+      background-color : $gray-1;
+      padding          : 2px 10px;
+      line-height      : 20px;
+      margin           : 0 8px 4px 0;
+      border-radius    : 8px;
+      display          : inline-block;
+      }
+
+    /* Functions */
+    span[data-psr-function] {
+      font-weight : bold;
+      margin      : 0 8px 4px 0;
+      font-style  : italic;
+      color       : #4285f4;
+      }
+
+    a.hm-psr-fieldbuilder-remove {
+      color          : $text-primary;
+      font-size      : 0;
+      display        : inline-block;
+      vertical-align : middle;
+
+      &:before {
+        font-size      : 15px;
+        font-family    : dashicons;
+        vertical-align : middle;
+        }
+      }
+
+    .dashicons {
+      margin-left : 5px;
+      }
+
+    }
+
+  #hm-psr-fieldbuilder-definition-error {
+    grid-column   : 1 / -1;
+    min-height: 65px;
+
+    @media (min-width: 980px) {
+      margin-left: 110px;
+      }
+
+    p {
+      color : $accent-red;
+      }
+
+    code {
+      background-color : $gray-1;
+      padding          : 5px 10px;
+      border-radius    : 8px;
+      font-size        : 12px;
+      }
+    }
+
+  .hm-psr-fieldbuilder-field-remove {
+
+    //@include formButtonMixin("delete");
+    background-color : transparent !important;
+    color            : $text-primary !important;
+    height           : 30px;
+    width            : 30px;
+    padding          : 5px;
+    border-radius    : 8px;
+    border           : 0;
+    float            : right;
+    cursor           : pointer;
+
+    &:hover {
+      background-color : transparent !important;
+      color            : $text-primary !important;
+      }
+
+    &::after {
+      clear : both;
+      }
+    }
+
+  .ninjalytics-fieldbuilder-select-container {
+    flex : 1;
+
+    select {
+      display       : block;
+      margin-bottom : 15px !important;
+      width         : 100%;
+      max-width     : unset;
+      }
+
+    }
+
+  }

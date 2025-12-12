@@ -338,7 +338,7 @@
           color : $primary;
           }
         }
-
+      input[type="radio"]:checked + .label,
       input[type="radio"]:checked + label {
         background    : $gray-1;
         color         : $primary;

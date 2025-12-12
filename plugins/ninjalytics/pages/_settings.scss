@@ -1,0 +1,17 @@
+@use "../../../global" as *;
+
+#berrypress-content {
+   .wrap > h2 {
+     margin-bottom: 0;
+     }
+  }
+
+#ninjalytics-settings-page {
+
+  .ninjalytics-settings-header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid $gray-2;
+    font-size: 20px;
+    }
+  }

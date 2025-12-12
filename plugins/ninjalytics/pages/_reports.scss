@@ -1,0 +1,72 @@
+//admin.php?page=ninjalytics
+
+@use "../../../global" as *;
+
+// Main section with reports
+.ninjalytics-card-reports {
+  max-width : 1200px;
+  }
+
+.ninjalytics-card-reports .berrypress-card-100 {
+  width  : 100%;
+  margin : 0;
+  }
+
+// No Reports Message
+.ninjalytics-welcome {
+  padding : 1.5rem 0 1rem;
+  }
+
+// Table with reports
+
+#ninjalytics_presets_panel {
+  width        : 100%;
+  table-layout : fixed;
+  border-spacing: 0;
+
+  tr:hover {
+    background-color : $accent-light;
+    }
+
+  tr:not(:first-child) td {
+    border-top : 1px solid $gray-2;
+    }
+
+  td.ninjalytics-report-row-actions {
+    white-space: nowrap;
+    width: 110px;
+    text-align: right;
+    }
+
+  }
+
+// Table inner
+#ninjalytics_presets_panel {
+  width: calc(100% + 20px);
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-top: 5px;
+
+  // Left
+  .ninjalytics-report-name {
+    font-weight : 500;
+    font-size   : 14px;
+    transition  : all .2s ease-in-out;
+    }
+
+  .ninjalytics-report-name:hover {
+    color : $primary-color;
+    text-decoration : underline;
+    padding-left: .7rem;
+    }
+
+  a.ninjalytics-report-name {
+    width   : 100%;
+    display : inline-block;
+    padding : .9rem .5rem;
+    }
+
+
+  }
+
+

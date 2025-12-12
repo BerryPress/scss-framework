@@ -1,0 +1,24 @@
+// Icon list
+$icons: (
+        delete: "\e872",
+        edit: "\e3c9",
+        download: "\e2c4",
+        email: "\e0be",
+        reset: "\e5d5",
+        stacked: "\e8e9",
+        vertical: "\f847",
+        fullscreen: "\e5d0",
+        expand: "\f830",
+        table: "\f191",
+        chart: "\e6e1",
+        save: "\e161",
+        external-link: "\e89e",
+        calculate: "\ea5f",
+        drag-indicator: "\e945",
+  );
+
+@each $icon, $unicode in $icons {
+  i.berrypress-icon-#{$icon}::before {
+    content: "#{$unicode}";
+    }
+  }

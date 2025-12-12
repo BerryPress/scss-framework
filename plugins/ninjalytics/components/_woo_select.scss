@@ -1,0 +1,22 @@
+// Multiselect, overwrite framework styles - .berrypress-multiple-dropdown-container
+
+.berrypress-page #ninjalytics-form .berrypress-multiple-dropdown-container {
+
+  input.select2-search__field[type="text"] {
+    border : 0;
+    }
+
+  &.ninjalytics-product-select-container {
+
+    .ninjalytics-select2-multiple-container .select2-selection__choice {
+      border-radius : 3px;
+      line-height: 20px;
+      }
+
+    .select2-container {
+      max-width : 100%;
+      }
+
+    }
+
+  }

@@ -1,0 +1,602 @@
+///admin.php?page=ninjalytics&preset=X
+
+@use "../../../global" as *;
+
+// Toolbar
+
+#ninjalytics-display-toolbar {
+  display        : flex;
+  flex-direction : row;
+  align-items    : center;
+  gap            : .5rem;
+  margin-bottom  : 2rem;
+  flex-wrap      : wrap;
+  }
+
+#ninjalytyics-display-mode {
+  display        : flex;
+  flex-direction : row;
+  align-items    : center;
+  gap            : .4rem;
+  }
+
+.ninjalytics-display-options {
+  display        : flex;
+  flex-direction : row;
+  gap            : .2rem;
+  }
+
+.ninjalytics-toolbar-buttons {
+  display        : flex;
+  flex-direction : row;
+  gap            : .2rem;
+  flex-wrap      : wrap;
+  margin-left    : auto;
+
+  .berrypress-btn.berrypress-btn-secondary {
+    padding : 2px 16px;
+    }
+  }
+
+@media (max-width : 500px) {
+  .ninjalytics-toolbar-buttons {
+    //justify-content : center;
+    //margin-left     : unset;
+    //width           : 100%;
+    }
+  }
+
+@media (max-width : 720px) {
+  .ninjalytics-toolbar-buttons .berrypress-btn.berrypress-btn-secondary {
+    font-size : 0;
+    padding   : 2px 7px;
+
+    i {
+      left : 0;
+      }
+    }
+  }
+
+// Display button
+
+.berrypress-page .ninjalytics-buttons-switch {
+  background-color : #fff;
+  border           : 1px solid $gray-2;
+  border-radius    : 6px;
+  padding          : 2px;
+
+  button.berrypress-btn-icon {
+    border-color     : transparent;
+    height           : 26px;
+    background-color : #fff;
+    }
+
+  button.berrypress-btn-icon[aria-pressed="true"] {
+    background-color : $gray-1;
+    border           : 1px solid $gray-2;
+    }
+
+  button.berrypress-btn-icon[aria-pressed="true"]:hover {
+    background-color : $gray-1;
+    border           : 1px solid $gray-2;
+    }
+
+  }
+
+// Main Settings container
+
+// - Layout
+
+#ninjalytics-settings-settings {
+  display               : grid;
+  grid-template-columns : 2fr 1fr;
+  gap                   : 32px;
+  align-items           : start;
+
+  .ninjalytics-settings-panel {
+    width          : 100%;
+    max-width      : 480px;
+    min-width      : 320px;
+    justify-self   : end;
+    box-sizing     : border-box;
+    container-type : inline-size;
+    container-name : ninjalytics-settings-panel;
+    }
+
+  .ninjalytics-settings-data {
+    min-width  : 0;
+    box-sizing : border-box;
+    }
+
+  }
+
+@media (min-width : 1550px) {
+  #ninjalytics-settings-settings {
+    grid-template-columns : minmax(0, 1fr) auto;
+    }
+  }
+
+@media (max-width : 1100px) {
+  #ninjalytics-settings-settings {
+    grid-template-columns : 1fr;
+    }
+
+  #ags-psr-display-toolbar {
+    display        : flex;
+    flex-direction : column-reverse;
+    }
+  #ninjalytics-settings-settings > .ninjalytics-settings-panel {
+    justify-self : stretch;
+    max-width    : none;
+    min-width    : 0;
+    padding-top  : 20px;
+    }
+  }
+
+// - Chart/Table
+
+#ninjalytics_output_container {
+  position : relative;
+  min-height : 300px;
+  }
+
+// Table
+
+#ninjalytics_output_container.ninjalytics-output-chart {
+  .dt-container {
+    display : none;
+    }
+  }
+
+#ninjalytics_output_container {
+  input[type=search] {
+    height        : 30px;
+    padding       : 0 24px 0 12px;
+    line-height   : 28px;
+    border        : 1px solid $gray-3;
+    border-radius : 5px;
+    font-size     : 13px;
+    min-height    : 30px;
+    }
+
+  // Responsive
+
+  @media (max-width : 980px) {
+
+    .dt-layout-row:first-child {
+      display         : flex;
+      justify-content : space-between;
+      align-items     : center;
+      }
+    }
+
+  .dt-search {
+    position : relative;
+
+    &:after {
+      content     : "\E8B6";
+      font-family : "Material Symbols Rounded BerryPress", sans-serif;
+      position    : absolute;
+      right       : 7px;
+      top         : 50%;
+      transform   : translateY(-50%);
+      font-size   : 15px;
+      color       : $text-secondary;
+      }
+    }
+
+  .dt-length {
+    label {
+      font-size : 13px;
+      color     : $text-secondary;
+      }
+
+    select {
+      height             : 30px;
+      padding            : 0 12px;
+      line-height        : 28px;
+      border             : 1px solid #d7dbec;
+      border-radius      : 5px;
+      font-size          : 14px;
+      color              : #2c3338;
+      box-shadow         : none;
+      min-height         : 30px;
+      max-width          : 25rem;
+      -webkit-appearance : none;
+      background         : #fff url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E") no-repeat right 5px top 55%;
+      background-size    : 16px 16px;
+      cursor             : pointer;
+      vertical-align     : middle
+      }
+    }
+
+  // Pagination
+  .dt-paging {
+
+    button {
+      border        : 1px solid $gray-2;
+      border-radius : 6px;
+      width         : 30px;
+      height        : 30px;
+      text-align    : center;
+      padding       : 0;
+      }
+
+    button:focus {
+      box-shadow : 0 0 0 1px $primary-color;
+      }
+
+    button.current {
+      background : $primary-color;
+      color      : #fff !important;
+      }
+
+    button:hover {
+      background : unset !important;
+      color      : $primary-color !important;
+      }
+
+    button.previous,
+    button.next {
+      border : 0;
+      }
+
+    button.disabled {
+      opacity : 0.4;
+      }
+
+    button.previous:hover,
+    button.previous {
+      background      : url("../images/dropdown.svg") center center no-repeat !important;
+      transform       : rotate(90deg);
+      color           : transparent !important;
+      background-size : 13px !important;
+      }
+
+    button.next:hover,
+    button.next {
+      background      : url("../images/dropdown.svg") center center no-repeat !important;
+      transform       : rotate(270deg);
+      color           : transparent !important;
+      background-size : 13px !important;
+      }
+
+    .dt-paging-button.last,
+    .dt-paging-button.first {
+      display : none;
+      }
+    }
+  }
+
+
+// Chart
+#ninjalytics_output_container.ninjalytics-output-table {
+  canvas {
+    display : none !important;
+    }
+  }
+
+// Empty message
+.ninjalytics-chart-empty {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  }
+
+#ninjalytics-chart-no-fields {
+  color: $accent-red;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  }
+
+// Settings: Right
+
+// - Toggles
+#ninjalytics-settings {
+
+  font-size : 13px;
+
+  .ninjalytics-settings-toggle {
+    border        : 1px solid $gray-2;
+    margin-bottom : 10px;
+    border-radius : 10px;
+    }
+
+  .ninjalytics-section-title {
+    cursor          : pointer;
+    margin          : 0;
+    padding         : 0 10px 0 0;
+    display         : flex;
+    flex-wrap       : wrap;
+    justify-content : space-between;
+    align-items     : center;
+
+    h3 {
+      padding   : 15px;
+      margin    : 0;
+      font-size : 14px;
+      flex-grow : 1;
+      }
+
+    label {
+      visibility   : hidden;
+      opacity      : 0;
+      align-items  : center;
+      font-weight  : normal;
+      transition   : all ease-in 0.2s;
+      display      : flex;
+      gap          : .4rem;
+      font-size    : 13px;
+      margin-right : .2rem;
+      }
+    }
+
+  .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-body {
+    max-height : 75vh;
+    height: auto;
+    overflow   : auto;
+    overflow-x: hidden;
+    opacity    : 1;
+    padding    : 20px 10px 10px 15px;
+    border-top : 1px solid $gray-2;
+    box-sizing : border-box;
+    transition : padding 0.3s step-start,
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+    * {
+      box-sizing : border-box;
+      }
+    }
+
+  .ninjalytics-section-body {
+    max-height : 0;
+    overflow   : hidden;
+    box-sizing : border-box;
+    opacity    : 0;
+    padding    : 0;
+    transition : padding 0.3s step-end,
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+    }
+
+  .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title label {
+    visibility : visible;
+    opacity    : 1;
+    }
+
+  .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title .berrypress-icon-expand_more {
+    transform : rotate(180deg);
+    }
+  }
+
+// Inside toggles
+
+#ags-psr-report-meta {
+
+  margin-bottom : 1rem;
+
+  label {
+    display        : flex;
+    flex-direction : row;
+    gap            : .4rem;
+    flex-wrap      : wrap;
+    align-items    : center;
+    }
+
+  input {
+    flex-grow  : 1;
+    min-height : 30px;
+    }
+  }
+
+// Show setting when advanced is checked
+#ninjalytics-settings > .ninjalytics-settings-toggle:not(:has(input.ninjalytics-no-update:checked)) .ninjalytics-setting-advanced {
+  display : none;
+  }
+
+// Fields
+
+// Add new
+.berrypress-page .ninjalytics-add-report-field {
+  display       : flex;
+  align-items   : center;
+  gap           : .2rem;
+  margin-bottom : .3rem;
+
+  select {
+    padding   : 2px 12px;
+    height    : 34px;
+    flex-grow : 1;
+    max-width : unset;
+    }
+
+  }
+
+@container ninjalytics-settings-panel (max-width: 400px) {
+  .berrypress-page .ninjalytics-settings-panel .ninjalytics-add-report-field .child {
+    .berrypress-btn {
+      padding : 4px 15px;
+
+      i {
+        left : -2px;
+        }
+      }
+    }
+  }
+
+// Calculated field button
+.ninjalytics-add-field-group {
+
+  #ags-psr-button-add-fieldbuilder {
+    border-style : dashed;
+    width        : 100%;
+    box-sizing   : border-box;
+    }
+
+  }
+
+.ninjalytics-fields-refresh {
+  gap : .4rem;
+  }
+
+// Field - single field with actions
+
+#hm_psr_report_fields {
+
+  box-sizing    : border-box;
+  margin-bottom : 1rem;
+  border-radius : 4px;
+  overflow      : hidden;
+
+  .ui-sortable-handle {
+    cursor            : move;
+    display           : flex;
+    align-items       : center;
+    gap               : .5rem;
+    border            : 1px solid $gray-2;
+    border-left-width : 2px;
+    padding           : 10px 8px 10px 10px;
+    background-color  : #fff;
+
+    i.berrypress-icon-drag-indicator {
+      min-height  : 30px;
+      display     : flex;
+      align-items : center;
+
+      &:before {
+        margin-top  : 2px;
+        margin-left : 3px;
+        }
+      }
+
+    input.hm_psr_field_name {
+      flex-grow     : 1;
+      width         : 100%;
+      border-color  : transparent;
+      padding-left  : 0;
+      white-space   : nowrap;
+      overflow      : hidden;
+      text-overflow : ellipsis;
+      font-size     : 13px;
+      position: relative;
+
+      &:focus,
+      &:hover {
+        text-shadow : 0 0 0 rgba(0, 0, 0, 0.5);
+        }
+      }
+
+    .berrypress-btn {
+      flex-shrink : 0;
+      }
+
+    &:hover {
+      border-left-color : $primary-color;
+      background-color  : #fafbfd;
+
+      input.hm_psr_field_name {
+        background-color : #fafbfd;
+        }
+      }
+
+    // Chart, Round etc
+    // - Container
+    .ninjalytics-field-options {
+      display        : flex;
+      flex-direction : row;
+      gap            : .4rem;
+      }
+
+    .ninjalytics-field-options > label {
+      display        : flex;
+      flex-direction : column;
+      gap            : .25rem;
+      font-size      : 10px;
+      line-height: 10px;
+      color          : $text-secondary;
+      align-items    : center;
+      cursor : pointer;
+
+
+      input[type=checkbox] {
+        width  : 15px;
+        height : 15px;
+        min-width:  15px;
+        }
+
+      input[type=checkbox]:checked::before {
+        font-size : 15px;
+        top: 1px;
+        }
+
+
+      &.hm_psr_chart_field.no-chart,
+      &.hm_psr_total_field.no-total,
+      &.hm_psr_round_field.no-round {
+        display : none;
+        }
+
+      }
+
+    .ninjalytics-field-actions-wrapper {
+      display : flex;
+      gap     : .2rem;
+      }
+    }
+
+  .ui-sortable-handle:not(:last-child) {
+    border-bottom : 0;
+    }
+
+  }
+
+// Show edit button only when needed
+
+.berrypress-page .ui-sortable-handle .ninjalytics-field-actions-wrapper .ninjalytics-btn-field-edit {
+  display : none;
+  }
+
+.berrypress-page .ui-sortable-handle.ninjalytics-editable-field .ninjalytics-field-actions-wrapper .ninjalytics-btn-field-edit {
+  display : block;
+  }
+
+// - Segments
+
+.ninjalytics-custom-segment {
+  padding               : 8px 5px 12px 15px;
+  border                : 1px $gray-2 solid;
+  border-radius         : 4px;
+  transition            : all 0.3s ease;
+  display               : grid;
+  grid-template-columns : 1fr 30px;
+  margin-bottom         : .6rem;
+  max-width             : 500px;
+
+  select {
+    display   : inline-block;
+    max-width : unset;
+    }
+
+  label {
+    margin-top    : 0;
+    display       : inline-block;
+    width         : unset;
+    flex-basis    : 100%;
+    grid-column   : 1 / -1;
+    margin-bottom : .4rem;
+    }
+
+  span.label {
+    margin-right  : 0;
+    margin-bottom : 0;
+    }
+
+  .ninjalytics-segment-reset {
+    vertical-align : middle;
+    }
+  }

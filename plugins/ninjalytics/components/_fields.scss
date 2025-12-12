@@ -1,0 +1,160 @@
+@use "../../../global" as *;
+
+
+// Title
+.ninjalytics-group-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+
+  // Align tooltip
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+
+  }
+
+.berrypress-field.berrypress-field-flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  input[type="text"],
+  select {
+    flex-grow: 1;
+    }
+  }
+
+.berrypress-field .ninjalytics-select-fw {
+  grid-column: 1 / -1;
+  max-width: 25rem;
+  }
+
+.berrypress-field.berrypress-field-align-center {
+  align-items: center;
+  }
+
+.berrypress-field.berrypress-field-textarea {
+    #hm_psr_field_report_css {
+      font-family: monospace;
+      grid-column: 1 / -1;
+      font-size: 13px;
+      }
+  }
+
+// Setting under setting and also to display conditionally
+.ninjalytics-field-child {
+  margin-left: 30px;
+  margin-bottom: 1.2rem;
+}
+
+#ninjalytics-settings .berrypress-field {
+  select {
+    font-size: 13px;
+    }
+  }
+
+#ninjalytics-settings .berrypress-field .label,
+#ninjalytics-settings .berrypress-field label {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+// Conditional display
+.ninjalytics-field-switch-conditional > .ninjalytics-field-child {
+  display: none;
+  }
+
+.ninjalytics-field-conditional-logic {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+
+  a.ninjalytics-date-dynamic-toggle {
+    text-decoration: underline;
+    margin-left: .2rem;
+    }
+  }
+
+// Long list of checkbox - display as scrollable container
+.ninjalytics-checkboxes-container {
+  width         : 85%;
+  max-width     : 220px;
+  max-height    : 180px;
+  overflow-y    : auto;
+  margin-top    : 0;
+  border        : 1px solid $gray-2;
+  border-radius : 8px;
+  padding       : 10px;
+  }
+
+// Specific Fields
+
+// - Products
+
+#ninjalytics-form  .ninjalytics-terms-checklist {
+  width         : 85%;
+  max-width     : 220px;
+  max-height    : 180px;
+  overflow-y    : auto;
+  margin-top    : 0;
+  border        : 1px solid $gray-2;
+  border-radius : 8px;
+  padding       : 10px;
+
+  li {
+    margin-bottom: .6rem;
+    }
+
+  label {
+    display: flex;
+    gap: .5rem;
+    }
+
+  .children {
+    margin-top: .6rem;
+    margin-left: 1rem;
+    }
+  }
+
+#ninjalytics-form .ninjalytics-product-tag-filter {
+    display: flex;
+    flex-wrap: wrap;
+
+  input[type="text"] {
+    flex: 1;
+    }
+  }
+
+
+// Download Format -> format options when CSV
+
+
+.ninjalytics-field-formats {
+  .ninjalytics-format_options {
+    display: grid;
+    grid-template-columns: minmax(max-content, 200px) auto;
+    gap: 0.4rem;
+    align-items: center;
+
+    label {
+      display: contents;
+      }
+
+    input {
+      max-width : 50px;
+      min-width : 50px;
+      text-align: center;
+      }
+    }
+  }
+
+.ninjalytics-field-gap-sm {
+  gap: .2rem;
+  }
+
+// Don't cut Sort by: ascending/ desc
+
+.berrypress-field select[name="orderdir"] {
+  min-width: 110px;
+  max-width: 180px;
+  }

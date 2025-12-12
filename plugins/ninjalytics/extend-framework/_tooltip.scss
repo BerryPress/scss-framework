@@ -1,0 +1,50 @@
+@use "../../../global" as *;
+
+.berrypress-page {
+
+  .berrypress-field input[type=radio] ~ label > a.berrypress-doc-note.ninjalytics-doc-note {
+    left : -8px;
+    }
+
+  .berrypress-field:has(input[type="checkbox"]) > label > a.berrypress-doc-note.ninjalytics-doc-note {
+    position : relative;
+    top      : 2px;
+    }
+
+  .berrypress-field:has(input[type="text"]) a.berrypress-doc-note.ninjalytics-doc-note,
+  .berrypress-field:has(select) a.berrypress-doc-note.ninjalytics-doc-note {
+    position : relative;
+    left : -8px;
+    }
+
+  .bp-tooltip {
+    font-size : 11px !important;
+    }
+
+  a.berrypress-doc-note.ninjalytics-doc-note-text {
+    display: inline-flex;
+    gap: 2px;
+
+    span.ninjalytics-doc-note-text-link {
+      text-decoration: underline;
+      }
+    }
+
+  a.berrypress-doc-note.ninjalytics-doc-note {
+    line-height : 13px;
+    display     : inline-flex;
+
+    // Highlight important icon
+    //&.ninjalytics-docs-link-important i.berrypress-icon-external-link {
+    //  color: $primary-color;
+    //  }
+
+    &:hover i.berrypress-icon-external-link {
+      color : $text-primary;
+      }
+
+    i.berrypress-icon-external-link {
+      color : $gray-4;
+      }
+    }
+  }

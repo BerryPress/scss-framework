@@ -1,5 +1,17 @@
 @use "../../global" as *;
 
-//.berrypress-notice.berrypress-success {
-//
-//  }
+.berrypress-notice.berrypress-notice-success {
+  border-left   : 4px solid $accent-green;
+  background-color : #effaf2;
+
+  i {
+    color : #0C7F54;
+    font-size: 16px;
+    }
+
+  a {
+    color           : $text-primary;
+    text-decoration : underline;
+    font-weight     : 600;
+    }
+  }

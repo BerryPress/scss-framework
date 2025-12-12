@@ -20,13 +20,11 @@
 @use "components/form/form_field_checkbox";
 @use "components/form/form_field_switch";
 @use "components/form/form_field_radio";
-@use "components/form/select_woo";
 @use "components/modals";
 @use "components/table";
 @use "components/upgrade_box";
 
 //@use "components/notices"; // moved to global
-@use "components/tooltips";
 
 // Import layout styles
 @use "layout/header";

@@ -1,0 +1,44 @@
+.berrypress-sidebar.collapsed > .berrypress-btn {
+  opacity: 0;
+  visibility: hidden;
+  }
+
+/* Header Overwrite Global */
+.berrypress-page {
+
+  @media (min-width: 701px) and (max-width: 1160px) {
+    .berrypress-header-left {
+      width: 100%;
+      justify-content: center;
+      }
+
+    .berrypress-header {
+      justify-content: center;
+      }
+
+    .berrypress-nav {
+      justify-content: center;
+      }
+    }
+
+  }
+
+.berrypress-page .berrypress-sidebar {
+  top: 46px;
+  height: calc(100vh - 46px);
+  }
+
+.berrypress-page .berrypress-sidebar.collapsed {
+  width: 0;
+  border: 0;
+  padding: 0;
+
+  > * {
+    opacity: 0;
+    visibility: hidden;
+    }
+  }
+
+.berrypress-nav i {
+  display: none;
+  }

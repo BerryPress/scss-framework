@@ -1,0 +1,132 @@
+@use "../../../global" as *;
+
+.ninjalytics-date-field {
+ position: relative;
+
+  i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 15px;
+    margin-top: 1px;
+    color       : $text-secondary;
+    }
+  }
+
+#ninjalytics-dates-desc {
+  background-color: #fff;
+  font-size: 13px;
+  height: 30px;
+  padding: 0 12px 0 32px;
+  line-height: 30px;
+  border: 1px solid #d7dbec;
+  border-radius: 5px;
+  display: block;
+  cursor: pointer;
+  min-width: 100px;
+  }
+
+// - icon
+
+
+#ninjalytics-date-range {
+  position : relative;
+  }
+
+
+#ninjalytics-date-range-dropdown {
+  border-radius    : 7px;
+  background-color : #fff;
+  border           : 1px solid $gray-2;
+  width            : 428px;
+  overflow         : hidden;
+  position         : absolute;
+  top              : 35px;
+  z-index : 997;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+  @media (min-width : 1200px) {
+    width : 480px;
+    }
+
+  .ninjalytics-date-range-tabs {
+    display       : flex;
+    border-bottom : 1px solid $gray-2;
+    background    : transparent;
+
+    label::before,
+    input[type="radio"] {
+      display : none;
+      }
+
+    label {
+      display       : block;
+      flex          : 1;
+      text-align    : center;
+      padding       : 10px 10px 8px;
+      cursor        : pointer;
+      transition    : background 0.3s ease, color 0.3s ease;
+      border-bottom : 3px solid transparent;
+      max-width: 150px;
+
+      &:hover {
+        color : $primary-color;
+        }
+      }
+
+    input[type="radio"]:checked + label {
+      background    : $gray-1;
+      color         : $primary-color;
+      border-bottom : 3px solid $primary-color;
+      font-weight: 500;
+      }
+    }
+
+  #ninjalytics-date-range-dropdown-body {
+    max-height : 300px;
+    overflow   : auto;
+    padding    : 10px;
+
+    input[type=number] {
+      max-width: 60px;
+      }
+
+    select,
+    input {
+      min-width: unset;
+      }
+
+    .ninjalytics-date-range-dropdown-tab-content {
+      display : none;
+      padding : 15px;
+
+      > * {
+        margin-bottom : 10px;
+
+        label.ninjalytics-date-range-basic-from {
+          margin-bottom : 5px;
+          }
+
+        p {
+          margin-top : 5px;
+          color      : $text-secondary;
+          }
+
+        }
+      }
+    }
+
+  &:has(input#report_time_mode_basic:checked) #ninjalytics-date-range-basic.ninjalytics-date-range-dropdown-tab-content {
+    display : block;
+    }
+
+  &:has(input#report_time_mode_absolute:checked) #ninjalytics-date-range-absolute.ninjalytics-date-range-dropdown-tab-content {
+    display : block;
+    }
+
+  &:has(input#report_time_mode_dynamic:checked) #ninjalytics-date-range-dynamic.ninjalytics-date-range-dropdown-tab-content {
+    display : block;
+    }
+
+  }

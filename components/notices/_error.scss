@@ -1,6 +1,7 @@
 @use "../../global" as *;
 
-.berrypress-notice.berrypress-error {
+.berrypress-notice.berrypress-error, // old, remove in the future
+.berrypress-notice.berrypress-notice-error {
   border-right  : unset;
   border-top    : unset;
   border-bottom : unset;
@@ -8,11 +9,11 @@
   background-color : #ffe6e6;
 
   .berrypress-notice-icon {
-    background-color : #d32f2f;
+    background-color : transparent;
 
     i {
-      color : #fff;
-      font-size : 14px;
+      color : #d32f2f;
+      font-size : 18px;
       }
     }
 

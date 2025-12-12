@@ -1,0 +1,22 @@
+@use "../../global" as *;
+
+.berrypress-field {
+
+  //&.berrypress-field-textarea {
+  //  }
+
+  textarea {
+    padding: 10px 12px;
+    line-height: 1em;
+    border: 1px solid $gray-3;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+
+    &:focus {
+      border: 1px solid $gray-4;
+      box-shadow: unset;
+      outline: unset;
+      }
+    }
+  }

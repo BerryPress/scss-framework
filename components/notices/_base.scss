@@ -11,6 +11,7 @@
   background-color: #fff;
   color         : $text-primary;
   border: 1px solid $gray-1;
+  margin-left: 0;
 
   h3 {
     margin-top: 10px;
@@ -38,7 +39,8 @@
 // Dismissible
 .berrypress-page button.notice-dismiss {
   position: absolute;
-  top: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 1px;
   border: none;
   margin: 0;
@@ -47,6 +49,8 @@
   color: #787c82;
   cursor: pointer;
   }
+
+
 .berrypress-notice.is-dismissible .notice-dismiss {
   &::before {
     color: $gray-5;

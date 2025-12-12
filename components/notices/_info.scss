@@ -2,6 +2,12 @@
 
 .berrypress-notice.berrypress-notice-info {
   border-left   : 4px solid $primary-color;
+  background-color : #e3f2fd;
+
+  i {
+    color : $primary-color;
+    font-size: 16px;
+    }
 
   a {
     color           : $primary-color;
