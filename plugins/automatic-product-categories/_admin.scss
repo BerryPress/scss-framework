@@ -1,5 +1,8 @@
 // APC: assets/css/admin.css
 
+
+@use "./inc/license";
+
 // Import global settings
 @use "../../global" as *;
 
@@ -10,6 +13,7 @@
 @use "../../components/pagination" as *;
 //@use "../../components/berrypress_bf-bar";
 @use "../../components/berrypress_top_bar";
+@use "./inc/progress";
 
 .berrypress-page {
 
@@ -368,3 +372,19 @@
   @include buttons.berrypress-btn-primary;
   }
 
+
+// Pro badge
+
+.php-apc-pro-badge {
+  background-color: $gray-2;
+  color: $gray-6;
+  padding: 3px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  line-height: 1em;
+  vertical-align: middle;
+  }
+
+.berrypress-field input:disabled + label {
+  color: $gray-3
+  }

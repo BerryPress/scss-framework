@@ -91,16 +91,19 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: #f5f6fa;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.15rem 0.55rem;
   border-radius: 4px;
   text-transform: uppercase;
   background: #e6f0ff;
-  color: #1658f8;
+  color: $primary-color;
   }
 
+.berrypress-product-badge.berrypress-product-badge-highlight {
+  background: $primary-color;
+  color: #fff;
+  }
 
 /* Box */
 

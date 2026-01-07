@@ -2,6 +2,8 @@
 
 // Import global settings
 
+@use "pro/license" as *;
+
 @use "../../global" as *;
 
 @use "components/woo_select";
@@ -19,6 +21,7 @@
 @use "extend-framework/sidebar";
 @use "extend-framework/material_icons";
 @use "extend-framework/tooltip";
+@use "extend-framework/spacing";
 
 @use "pages/reports";
 @use "pages/report-settings";
@@ -26,6 +29,7 @@
 @use "pages/settings";
 
 @use "../../pages/addons_page";
+@use "pages/addons-page";
 
 // From framework
 @use "../../components/form/select_woo";
@@ -38,14 +42,9 @@
 
 @use "../../base/utilities" as *;
 
+// Pro only
+
+
 .berrypress-sidebar .berrypress-upgrade-box {
   display: none;
-  }
-
-.berrypress-ms-0 {
-  margin-left: 0;
-  }
-
-.berrypress-mt-2 {
-  margin-top: 10px;
   }

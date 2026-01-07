@@ -1,0 +1,74 @@
+@use "../../../global" as *;
+
+.berrypress-page {
+
+  // Badge Pro, for example, inside button
+  span.ninjalytics-pro-badge {
+    background-color: $gray-2;
+    color: $gray-6;
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 10px;
+    line-height: 1em;
+    vertical-align: middle;
+    }
+
+  // Button
+  button.ninjalytics-pro-feature {
+    cursor : not-allowed;
+    position: relative;
+    color: $gray-3!important;
+
+    .ninjalytics-pro-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      display: inline-block;
+      }
+    }
+
+  .berrypress-color-disabled {
+    color: $gray-4;
+    }
+
+  .ninjalytics-group-subtitle.ninjalytics-pro-feature,
+  .ninjalytics-group-title.ninjalytics-pro-feature {
+    color: $gray-4;
+    }
+
+  .berrypress-field.ninjalytics-pro-feature {
+    cursor : not-allowed;
+    position: relative;
+
+    .ninjalytics-doc-note i,
+    span.label,
+    label {
+      color: $gray-3!important;
+      }
+
+    label > .ninjalytics-pro-badge {
+      margin-left: 3px;
+      }
+    }
+
+  }
+
+// Form
+.berrypress-page {
+
+  .ninjalytics-date-dynamic-toggle.ninjalytics-pro-feature {
+    color            : $gray-4;
+    text-decoration  : underline;
+    }
+
+  textarea:disabled,
+  input[type="text"]:disabled,
+  select:disabled {
+    color            : $gray-4;
+    background-color : $gray-1 !important;
+    border-color     : $gray-1;
+    cursor           : not-allowed;
+    box-shadow       : none;
+    opacity: .7;
+    }
+  }

@@ -3,3 +3,12 @@
 #adminmenu li#toplevel_page_berrypress div.wp-menu-image {
   background-size: 16px auto;
   }
+
+#adminmenu li#toplevel_page_berrypress  .wp-submenu a[href="https://berrypress.com/docs"]::after{
+  content: "\f504";
+  font: normal 16px/1 dashicons;
+  display: inline-block;
+  vertical-align: text-bottom;
+  margin-left: 3px;
+  opacity: .75;
+  }

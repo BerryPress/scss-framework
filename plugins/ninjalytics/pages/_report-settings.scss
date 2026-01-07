@@ -276,6 +276,10 @@
     }
   }
 
+#ninjalytics_output_container #hm_psr_chart {
+  max-height: 80vh;
+  }
+
 // Empty message
 .ninjalytics-chart-empty {
   text-align: center;
@@ -453,8 +457,7 @@
   border-radius : 4px;
   overflow      : hidden;
 
-  .ui-sortable-handle {
-    cursor            : move;
+  .ninjalytics-report-field {
     display           : flex;
     align-items       : center;
     gap               : .5rem;
@@ -462,6 +465,10 @@
     border-left-width : 2px;
     padding           : 10px 8px 10px 10px;
     background-color  : #fff;
+
+    &.ui-sortable-handle {
+    cursor            : move;
+    }
 
     i.berrypress-icon-drag-indicator {
       min-height  : 30px;
@@ -484,6 +491,7 @@
       text-overflow : ellipsis;
       font-size     : 13px;
       position: relative;
+      min-width: 80px;
 
       &:focus,
       &:hover {
@@ -549,7 +557,7 @@
       }
     }
 
-  .ui-sortable-handle:not(:last-child) {
+  .ninjalytics-report-field:not(:last-child) {
     border-bottom : 0;
     }
 
@@ -557,11 +565,11 @@
 
 // Show edit button only when needed
 
-.berrypress-page .ui-sortable-handle .ninjalytics-field-actions-wrapper .ninjalytics-btn-field-edit {
+.berrypress-page .ninjalytics-report-field .ninjalytics-field-actions-wrapper .ninjalytics-btn-field-edit {
   display : none;
   }
 
-.berrypress-page .ui-sortable-handle.ninjalytics-editable-field .ninjalytics-field-actions-wrapper .ninjalytics-btn-field-edit {
+.berrypress-page .ninjalytics-report-field.ninjalytics-editable-field .ninjalytics-field-actions-wrapper .ninjalytics-btn-field-edit {
   display : block;
   }
 

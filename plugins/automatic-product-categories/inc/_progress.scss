@@ -1,0 +1,56 @@
+@use "../../../global" as *;
+
+.php-apc-progress-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border: 1px solid $gray-1;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  z-index: 999999;
+  width: 90%;
+  max-width : 300px;
+
+  .php-apc-progress-label {
+    font-weight: 500;
+    }
+
+  progress {
+    width            : 100%;
+    height           : 10px;
+    background-color : $gray-1;
+    border           : 1px solid $gray-2;
+    border-radius    : 10px;
+    overflow         : hidden;
+    margin-top       : 10px;
+    margin-bottom    : 5px;
+
+    // WebKit browsers
+    &::-webkit-progress-bar {
+      background-color : $gray-1;
+      border-radius    : 10px;
+      }
+
+    &::-webkit-progress-value {
+      background-color : $primary-color;
+      border-radius    : 10px;
+      transition       : width 0.3s ease-in-out;
+      }
+
+    // Mozilla browsers
+    &::-moz-progress-bar {
+      background-color : $primary-color;
+      border-radius    : 10px;
+      transition       : width 0.3s ease-in-out;
+      }
+
+    // Fallback for other browsers
+    & {
+      color : $primary-color;
+      }
+    }
+
+  }

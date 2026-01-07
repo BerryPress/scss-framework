@@ -1,4 +1,4 @@
-@use "../../global" as *;
+@use "../../../global" as *;
 
 .ninjalytics-nj-reports-container {
   display: flex;
@@ -15,10 +15,11 @@
     margin-top: -12px;
     flex: 0 1 500px;
     min-width: 0;
+    box-sizing : border-box;
     }
 
   @media(min-width: 1050px) {
-    .ninjalytics-col-2 { flex-basis: 30%; }
+    .ninjalytics-col-2 { flex-basis: 30%; padding-left: 20px; }
     .ninjalytics-col-1 { flex-basis: 70%; }
     }
 

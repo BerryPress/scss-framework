@@ -5,6 +5,10 @@
 // Main section with reports
 .ninjalytics-card-reports {
   max-width : 1200px;
+
+  .berrypress-card-content {
+    padding-bottom: 0;
+    }
   }
 
 .ninjalytics-card-reports .berrypress-card-100 {
@@ -15,6 +19,10 @@
 // No Reports Message
 .ninjalytics-welcome {
   padding : 1.5rem 0 1rem;
+  }
+
+.ninjalytics-about-app-notice {
+  margin-top: 1rem;
   }
 
 // Table with reports

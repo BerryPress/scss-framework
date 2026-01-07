@@ -5,6 +5,7 @@
 @use "../../global" as *;
 @use "../../layout/flex" as *;
 @use "../../components/form/select_woo";
+@use "../../base/utilities";
 
 // Settings
 
@@ -147,4 +148,97 @@
 
 .berrypress-sidebar .berrypress-upgrade-box {
   display: none;
+  }
+
+// Settings
+
+// Roles
+
+.berrypres-field-checkbox-group {
+
+  .berrypress-field-label {
+    font-size: 14px;
+    color: #131523;
+    margin-top: 5px;
+    }
+
+  ul {
+    margin-top : 0;
+    max-height: 200px;
+    max-width: 300px;
+    border: 1px solid $gray-2;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-y: auto;
+    }
+  }
+
+// Filters
+
+.berrypress-page #berrypress-lc-filters {
+  margin-top: 1.4rem;
+  display: flex;
+  gap: .4rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  .select2-container {
+    min-width: 240px;
+    }
+
+  .select2-container .select2-selection--multiple {
+    min-width: 240px;
+    font-size: 13px;
+    line-height: 1.5em;
+
+    .select2-selection__rendered {
+        padding-top: 1px;
+        margin-top: 0;
+
+      .select2-search.select2-search--inline {
+
+        font-size: 13px;
+        line-height: 1.3em;
+        margin-bottom: 1px;
+        }
+
+
+       .select2-selection__choice {
+         padding       : 0 7px 0 9px;
+         margin-right  : 5px;
+         border-radius : 6px;
+         margin-top: 1px;
+         margin-bottom: 2px;
+         max-width: 145px;
+         overflow: hidden;
+         white-space: nowrap;
+         text-overflow: ellipsis;
+         vertical-align: middle;
+         }
+      }
+    }
+
+  input[type="number"] {
+    max-width: 90px;
+    min-height: 32px;
+    }
+
+  > label {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    }
+
+  .berrypress-lc-filters-buttons {
+    min-height: 55px;
+    display: flex;
+    align-items: flex-end;
+    gap: .2rem;
+    }
+  }
+
+// Spacing
+
+.berrypress-page .berrypress-ms-1 {
+  margin-left: .5rem;
   }

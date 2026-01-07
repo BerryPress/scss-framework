@@ -141,7 +141,7 @@
   // END form table
   }
 
-.woocommerce_page_live-carts-for-woocommerce #the-list .column-status::before,
+.berrypress_page_live-carts-for-woocommerce #the-list .column-status::before,
 .phplugins-live-carts-status::before {
   content       : "";
   width         : 8px;
@@ -177,7 +177,41 @@
   display          : block;
   }
 
-.woocommerce_page_live-carts-for-woocommerce #screen-options-apply.button-primary {
+
+// Check Column
+table.berrypress_page_live-carts-for-woocommerce tfoot .check-column,
+table.berrypress_page_live-carts-for-woocommerce thead .check-column {
+  padding        : 0 0 0 10px !important;
+  }
+
+
+table.berrypress_page_live-carts-for-woocommerce tbody .check-column {
+  text-align     : left;
+  vertical-align : middle;
+  padding        : 0 0 0 10px !important;
+  border-bottom: 1px solid #e6e9f4;
+
+  label:hover {
+    background-color : transparent;
+    }
+  }
+
+// Revisions
+
+.phplugins-lc-revisions {
+  h3 {
+    font-size: 13px;
+    font-weight: 500;
+    }
+ }
+
+
+.berrypress_page_live-carts-for-woocommerce .tablenav .button {
+  @include buttons.berrypress-btn;
+  @include buttons.berrypress-btn-secondary;
+  }
+
+.berrypress_page_live-carts-for-woocommerce #screen-options-apply.button-primary {
   @include buttons.berrypress-btn;
   @include buttons.berrypress-btn-primary;
   }

@@ -1,3 +1,8 @@
+/*!
+This file includes a modified icon font originally licensed under the Apache License 2.0.
+Modified by BerryPress - unused icons removed.”
+*/
+
 @font-face {
   font-family: "Material Symbols Rounded BerryPress";
   font-style: normal;
@@ -36,18 +41,18 @@ $icons: (
         access_time: "\E192",
 
         // Live Carts
-        cart: '\f1cc',
-        bar-chart: '\e26b',
-        add: '\e145',
+        cart: "\f1cc",
+        bar-chart: "\e26b",
+        add: "\e145",
 
         // Ninjalytics
         //about
-        info: '\e88e',
+        info: "\e88e",
         //about pro
-        pro: '\e65f',
+        pro: "\e65f",
 
         //Addons tab
-        addons: '\f102',
+        addons: "\f102",
 
         // Pagination
         keyboard_arrow_left: "\e314",
@@ -58,7 +63,7 @@ $icons: (
 
 // Generate Icons
 .berrypress-icon-filled {
-  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24
 }
 
 [class^="berrypress-icon-"], [class*=" berrypress-icon-"] {
