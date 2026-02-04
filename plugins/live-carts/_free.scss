@@ -215,3 +215,28 @@ table.berrypress_page_live-carts-for-woocommerce tbody .check-column {
   @include buttons.berrypress-btn;
   @include buttons.berrypress-btn-primary;
   }
+
+// Analytics -> Ninjalytics
+
+#phplugins-live-carts-analytics-ninjalytics-promo {
+  border: 1px solid $gray-2;
+  padding: .75rem 1rem;
+  background-color: $background-color;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+
+
+  @media (max-width: 782px) {
+    justify-content: center;
+    gap: .75rem;
+    padding: 1.5rem 1rem;
+    }
+
+
+  svg {
+    color: $primary-color;
+    }
+
+  }
