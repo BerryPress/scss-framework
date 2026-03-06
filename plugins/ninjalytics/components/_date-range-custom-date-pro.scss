@@ -1,0 +1,62 @@
+@use "../../../global" as *;
+
+// Advanced: custom date select
+
+// Overwrite in Pro
+
+#ninjalytics-date-range-dropdown #ninjalytics-date-range-dropdown-body .ninjalytics-date-range-dropdown-tab-content {
+  padding-bottom : 0;
+  }
+
+.ninjalytics-date-range-dropdown-alt-dates-wrapper {
+  padding : 0 25px 10px;
+
+  // Toggle
+  .ninjalytics-date-range-dropdown-alt-dates-toggle {
+    border-top      : 1px solid $gray-1;
+    padding-top     : 10px;
+    display         : flex;
+    flex-wrap       : wrap;
+    justify-content : space-between;
+    align-items     : center;
+
+    .ninjalytics-alt-dates-label {
+      color : $text-secondary;
+      }
+
+    .berrypress-link {
+      font-size     : 13px;
+      padding-left  : 10px;
+      padding-right : 10px;
+      margin-right  : -10px; // Just so it is easier to click
+
+      &:hover {
+        color : $primary-color
+        }
+      }
+    }
+
+  // Real form
+  .ninjalytics-date-range-dropdown-alt-dates {
+    padding-top           : 10px;
+    padding-bottom        : 10px;
+    display               : grid;
+    grid-template-columns : max-content 1fr;
+    gap                   : 10px 16px;
+    align-items           : center;
+
+    .berrypress-field {
+      display : contents;
+
+      }
+
+    .berrypress-field label {
+      display   : contents;
+      font-size : 13px;
+      }
+    }
+
+  }
+
+
+

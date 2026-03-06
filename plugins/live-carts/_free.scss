@@ -54,11 +54,11 @@
     }
 
   .form-table.phplugins-lc-table-2col {
-    display               : grid;
-    row-gap               : 1.6em;
-    width                 : 100%;
+    display : grid;
+    row-gap : 1.6em;
+    width   : 100%;
 
-    @media (min-width: 981px) {
+    @media (min-width : 981px) {
       grid-template-columns : 1fr 1fr;
       }
 
@@ -93,7 +93,7 @@
   .phplugins-lc-table-cart {
     border        : 1px solid $gray-2;
     border-radius : 8px;
-    overflow: hidden;
+    overflow      : hidden;
 
     .form-table {
       width      : 100%;
@@ -111,11 +111,11 @@
         }
 
       .phplugins-lc-product-attributes {
-        margin-top: 8px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: .5rem;
-        color: $text-secondary;
+        margin-top : 8px;
+        display    : flex;
+        flex-wrap  : wrap;
+        gap        : .5rem;
+        color      : $text-secondary;
         }
 
       // Total
@@ -129,7 +129,6 @@
           font-size : 13px;
           }
         }
-
 
       .phplugins-lc-total {
         font-weight : 500;
@@ -177,34 +176,22 @@
   display          : block;
   }
 
-
 // Check Column
 table.berrypress_page_live-carts-for-woocommerce tfoot .check-column,
 table.berrypress_page_live-carts-for-woocommerce thead .check-column {
-  padding        : 0 0 0 10px !important;
+  padding : 0 0 0 10px !important;
   }
-
 
 table.berrypress_page_live-carts-for-woocommerce tbody .check-column {
   text-align     : left;
   vertical-align : middle;
   padding        : 0 0 0 10px !important;
-  border-bottom: 1px solid #e6e9f4;
+  border-bottom  : 1px solid #e6e9f4;
 
   label:hover {
     background-color : transparent;
     }
   }
-
-// Revisions
-
-.phplugins-lc-revisions {
-  h3 {
-    font-size: 13px;
-    font-weight: 500;
-    }
- }
-
 
 .berrypress_page_live-carts-for-woocommerce .tablenav .button {
   @include buttons.berrypress-btn;
@@ -219,24 +206,143 @@ table.berrypress_page_live-carts-for-woocommerce tbody .check-column {
 // Analytics -> Ninjalytics
 
 #phplugins-live-carts-analytics-ninjalytics-promo {
-  border: 1px solid $gray-2;
-  padding: .75rem 1rem;
-  background-color: $background-color;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: .75rem;
+  border           : 1px solid $gray-2;
+  padding          : .75rem 1rem;
+  background-color : $background-color;
+  display          : flex;
+  flex-wrap        : wrap;
+  align-items      : center;
+  gap              : .75rem;
 
-
-  @media (max-width: 782px) {
-    justify-content: center;
-    gap: .75rem;
-    padding: 1.5rem 1rem;
+  @media (max-width : 782px) {
+    justify-content : center;
+    gap             : .75rem;
+    padding         : 1.5rem 1rem;
     }
 
-
   svg {
-    color: $primary-color;
+    color : $primary-color;
+    }
+
+  }
+
+/* Revision history context */
+
+.phplugins-lc-revisions {
+
+  padding-bottom: 1rem;
+
+  h2 {
+    margin-bottom: 1.4em;
+    }
+
+   > div:not(:last-child) {
+    position: relative;
+    padding-left: 2rem;
+    padding-bottom: .5rem;
+    }
+
+   > div:last-child {
+    position: relative;
+    padding-left: 2rem;
+    }
+
+  /* Line */
+    > div:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 0.4rem;
+    top: 1em;
+    bottom: -2em;
+    width: 2px;
+    background-color: $gray-2;
+    }
+
+  /* Circle */
+    > div::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    background-color: $primary-color;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px $gray-2;
+    }
+
+  .phplugins-lc-revision-item h3 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $text-secondary;
+    margin-bottom: 0.3rem;
+    }
+
+  .phplugins-lc-diffs {
+    border: 1px solid $gray-2;
+    border-radius: 0.5rem;
+    padding: .85rem 0.5rem .5rem;
+    list-style: none;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      line-height: 1.4;
+      }
+
+    li:not(:last-child) {
+      margin-bottom: 0.375rem;
+      }
+
+
+    /* Icons */
+    .phplugins-lc-diff-add::before {
+      content: '+';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+      color: #16a34a;
+      font-weight: 600;
+      font-size: 1rem;
+      }
+
+    .phplugins-lc-diff-remove::before {
+      content: '×';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+      color: $accent-red;
+      font-weight: 600;
+      font-size: 1rem;
+      }
+
+    .phplugins-lc-diff-change-quantity::before {
+      content: '';
+      width: .4rem;
+      height: .4rem;
+      margin-top: 0.4rem;
+      margin-left: .25rem;
+      margin-right: .2rem;
+      background-color: $primary-color;
+      border-radius: 50%;
+      }
+
+
     }
 
   }

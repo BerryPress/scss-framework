@@ -100,6 +100,7 @@
     .ninjalytics-date-range-dropdown-tab-content {
       display : none;
       padding : 15px;
+      box-sizing: border-box;
 
       > * {
         margin-bottom : 10px;
@@ -114,7 +115,39 @@
           }
 
         }
+
+      &#ninjalytics-date-range-dynamic .ninjalytics-date-range-dropdown-inner {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+        gap: 10px;
+
+        input {
+          width: 100%;
+          }
+
+        > * {
+          }
       }
+
+      // Quick
+      &#ninjalytics-date-range-preset > div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+
+        select#ninjalytics-date-range-preset-select {
+          min-width: 160px;
+          }
+
+        }
+
+      }
+    }
+
+
+  &:has(input#report_time_mode_preset:checked) #ninjalytics-date-range-preset.ninjalytics-date-range-dropdown-tab-content {
+    display : block;
     }
 
   &:has(input#report_time_mode_basic:checked) #ninjalytics-date-range-basic.ninjalytics-date-range-dropdown-tab-content {
