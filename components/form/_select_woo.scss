@@ -342,6 +342,11 @@
         padding-left  : 25px;
         position      : relative;
         margin-bottom : 0;
+
+        &.loading-results,
+        &.select2-results__message {
+           padding-left: 12px;
+          }
         }
 
       li.select2-results__option[data-selected=true] {
