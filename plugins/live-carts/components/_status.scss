@@ -1,0 +1,36 @@
+@use "../../../global" as *;
+
+table.berrypress-table.phplugins-live-carts-table-status {
+  max-width: 620px;
+  text-align: left;
+  border-spacing: 0;
+
+  tbody tr:not(:last-child) th {
+    border-bottom: 1px solid $gray-1;
+    }
+  tbody th {
+    padding: 10px 15px;
+    }
+
+  tbody tr:last-of-type td {
+    border-bottom: 0;
+    }
+
+  tbody tr td {
+    border-color: $gray-1;
+    }
+
+  }
+
+// Debug log
+
+textarea.phplugins-lc-debug-log {
+  width: 100%;
+  background-color: $accent-light;
+  border-color: $gray-2;
+  padding: 10px;
+  font-family:monospace;
+  font-size:12px;
+  white-space:pre;
+  overflow:auto
+  }

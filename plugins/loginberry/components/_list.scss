@@ -1,0 +1,24 @@
+@use "../../../global" as *;
+
+.berrypress-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+
+  li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+
+    &:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: $primary-color;
+      font-weight: bold;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

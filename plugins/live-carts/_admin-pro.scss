@@ -151,6 +151,19 @@
     }
   }
 
+// Edit Cart: Woo Select
+
+@media (min-width: 1200px) {
+  .phplugins-lc-edit-cart-wrapper .select2-container .select2-selection--single.bp-lc-add-product-container {
+    min-width: 320px;
+    }
+
+  .bp-lc-add-product-dropdown {
+    min-width: 320px;
+    }
+  }
+
+
 .phplugins-lc-cart-footer {
   display         : flex;
   flex-wrap       : wrap;
@@ -322,8 +335,4 @@
     border-right: 1px solid $gray-2;
     padding-right: 0.5rem;
     }
-
-
-
-
   }

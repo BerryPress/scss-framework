@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "../../global" as *;
 @use "../../components/buttons/index" as buttons;
+@use "./components/status";
 
 .berrypress-header-left img {
   max-width : 26px;
@@ -150,14 +151,17 @@
   margin-right  : 8px;
   }
 
+.phplugins-live-carts-status-green::before,
 .phplugins-live-carts-converted::before {
   background : $accent-green;
   }
 
+.phplugins-live-carts-status-yellow::before,
 .phplugins-live-carts-active::before {
   background : $accent-yellow;
   }
 
+.phplugins-live-carts-status-red::before,
 .phplugins-live-carts-abandoned::before {
   background : $accent-red;
   }
