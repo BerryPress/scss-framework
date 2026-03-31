@@ -19,6 +19,12 @@
   margin: 30px 0;
   }
 
+@media (max-width: 780px) {
+  .berrypress-addons-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+
 .berrypress-addon-item {
   margin: 0;
   padding: 2rem 1rem;
@@ -31,6 +37,14 @@
   border-radius: 10px;
   border: 1px solid #e6e9f4;
   transition: transform 0.4s ease;
+  }
+
+.berrypress-addon-item .berrypress-addon-item-buttons {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   }
 
 .berrypress-addon-item:hover {

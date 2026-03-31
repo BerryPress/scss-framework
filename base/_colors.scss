@@ -1,6 +1,11 @@
 @use "../global" as *;
 
 .berrypress-page {
+
+  .berrypress-text-color {
+    color : $text-primary !important;
+    }
+
   .berrypress-primary-color {
     color : $primary-color !important;
     }

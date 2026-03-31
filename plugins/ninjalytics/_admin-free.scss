@@ -4,12 +4,14 @@
 @use "free/license" as *;
 
 @use "../../global" as *;
+@use "../../base/colors" as *;
 
 @use "components/woo_select";
 @use "components/breadcrumbs";
 @use "components/loading";
 @use "components/date-range";
 @use "components/fields";
+@use "components/date-range-custom-date-pro";
 
 // Modals
 

@@ -1,0 +1,9 @@
+// Icon list
+$icons: (
+  );
+
+@each $icon, $unicode in $icons {
+  i.berrypress-icon-#{$icon}::before {
+    content: "#{$unicode}";
+    }
+  }

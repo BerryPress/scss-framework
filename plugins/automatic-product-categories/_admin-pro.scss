@@ -8,8 +8,19 @@
 
 // Import specific styles for the admin area
 
+// Extend/ Overwrite framework
+@use "extend-framework/material_icons_pro";
+
 @use "../../components/form/form_field_file_upload";
 @use "components/form/select_woo";
+@use "components/form/select_woo_multiple_small";
+
+
+// Conditions
+
+.php-apc-rule-edit-group-condition .berrypress-multiple-dropdown-container {
+  display: inline-block
+  }
 
 // Import Export Page
 
@@ -51,97 +62,104 @@ table.php-apc-rules .groups.column-groups {
 
 // Run Results
 
-.berrypress-apc-run-results {
-  position      : fixed;
-  right         : 24px;
-  bottom        : 24px;
-  z-index       : 9999;
-  max-width     : 400px;
-  min-width     : 250px;
-  padding       : 16px;
-  background    : #fff;
-  border        : 1px solid $gray-2;
-  border-radius : 8px;
-  overflow      : hidden;
+.berrypress-page {
 
-  h2 {
-    margin      : 0 0 12px;
-    font-size   : 16px;
-    font-weight : 600;
-    color       : $text-primary;
-    }
+  .berrypress-apc-run-results {
+    position      : fixed;
+    right         : 24px;
+    bottom        : 24px;
+    z-index       : 9999;
+    max-width     : 400px;
+    min-width     : 250px;
+    padding       : 16px;
+    background    : #fff;
+    border        : 1px solid $gray-2;
+    border-radius : 8px;
+    overflow      : hidden;
 
-  // Close button
-  .berrypress-apc-close {
-    position    : absolute;
-    top         : 8px;
-    right       : 8px;
-    width       : 24px;
-    height      : 24px;
-    border      : none;
-    background  : transparent;
-    color       : $text-secondary;
-    font-size   : 20px;
-    line-height : 1;
-    cursor      : pointer;
-
-    &:hover {
-      color : $text-primary;
+    h2 {
+      margin      : 0 0 5px;
+      font-size   : 16px;
+      font-weight : 600;
+      color       : $text-primary;
       }
 
-    &:focus {
-      outline        : 2px solid $primary-color;
-      outline-offset : 2px;
+    h3.berrypress-apc-affected-count {
+      margin-bottom : 10px;
       }
 
-    &::before {
-      content     : "\E5CD"; // Material symbol "close"
-      font-family : "Material Symbols Rounded BerryPress";
-      display     : block;
+    // Close button
+    .berrypress-apc-close {
+      position    : absolute;
+      top         : 8px;
+      right       : 8px;
+      width       : 24px;
+      height      : 24px;
+      border      : none;
+      background  : transparent;
+      color       : $text-secondary;
+      font-size   : 20px;
       line-height : 1;
-      text-align  : center;
-      }
-    }
-  }
-
-.berrypress-apc-run-results-list {
-  dl {
-    margin                : 0;
-    max-height            : 260px;
-    overflow-y            : auto;
-    padding-right         : 4px;
-    display               : grid;
-    grid-template-columns : minmax(0, 160px) 1fr;
-    column-gap            : 8px;
-    row-gap               : 6px;
-    }
-
-  dt {
-    font-weight : 600;
-    margin      : 0;
-    // padding-top: 6px;
-    a {
-      color           : $primary-color;
-      text-decoration : none;
-      display         : inline-block;
-      max-width       : 100%;
-      white-space     : nowrap;
-      overflow        : hidden;
-      text-overflow   : ellipsis;
+      cursor      : pointer;
 
       &:hover {
-        text-decoration : underline;
+        color : $text-primary;
+        }
+
+      &:focus {
+        outline        : 2px solid $primary-color;
+        outline-offset : 2px;
+        }
+
+      &::before {
+        content     : "\E5CD"; // Material symbol "close"
+        font-family : "Material Symbols Rounded BerryPress";
+        display     : block;
+        line-height : 1;
+        text-align  : center;
         }
       }
     }
 
-  dd {
-    margin    : 0 0 6px 0;
-    font-size : 13px;
-    color     : $text-secondary;
-    }
-  }
+  .berrypress-apc-run-results-list {
+    dl {
+      margin                : 0;
+      max-height            : 260px;
+      overflow-y            : auto;
+      padding-right         : 4px;
+      display               : grid;
+      grid-template-columns : minmax(0, 160px) 1fr;
+      column-gap            : 8px;
+      row-gap               : 6px;
+      }
 
+    dt {
+      font-weight : 600;
+      margin      : 0;
+      // padding-top: 6px;
+      a {
+        color           : $primary-color;
+        text-decoration : none;
+        display         : inline-block;
+        max-width       : 100%;
+        white-space     : nowrap;
+        overflow        : hidden;
+        text-overflow   : ellipsis;
+
+        &:hover {
+          text-decoration : underline;
+          }
+        }
+      }
+
+    dd {
+      margin    : 0 0 6px 0;
+      font-size : 13px;
+      color     : $text-secondary;
+      }
+    }
+
+}
 #php-apc-admin-page-body .tablenav > label {
   vertical-align: middle;
   line-height: 2;
@@ -159,4 +177,12 @@ table.php-apc-rules .groups.column-groups {
 
 .berrypress_page_automatic-product-categories-for-woocommerce .berrypress-upgrade-box {
   display: none;
+  }
+
+// When clone is available, we need to adjust spacing
+
+.berrypress-page table.php-apc-rules.berrypress-table ul.php-apc-list-conditions>li>  {
+  button.berrypress-btn-icon{
+    margin-right: 0;
+    }
   }

@@ -412,6 +412,14 @@
   gap           : .2rem;
   margin-bottom : .3rem;
 
+  &:has(.hm-psr-select-other-selected) {
+      flex-wrap: wrap;
+    }
+
+  .hm-psr-select-other-field {
+    flex-grow: 1;
+    }
+
   select {
     padding   : 2px 12px;
     height    : 34px;

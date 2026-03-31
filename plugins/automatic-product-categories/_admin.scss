@@ -9,6 +9,9 @@
 // Import specific styles for the admin area
 @use "components/tooltips";
 
+// Extend/ Overwrite framework
+@use "extend-framework/material_icons_free";
+
 @use "../../components/buttons/index" as buttons;
 @use "../../components/pagination" as *;
 //@use "../../components/berrypress_bf-bar";
@@ -130,6 +133,35 @@
       margin-bottom   : 4px;
       vertical-align : top;
       }
+
+    // Drag handle for condition reordering
+    i.berrypress-icon-drag-indicator::before {
+      content: "\e945";
+      }
+
+    ul.php-apc-list-conditions > li > .php-apc-drag-handle {
+      cursor         : grab;
+      opacity        : 0.4;
+      vertical-align : middle;
+      margin-top: 5px;
+      color: $gray-6;
+
+      &:hover {
+        opacity : 0.8;
+        }
+      }
+
+    ul.php-apc-list-conditions > li.ui-sortable-helper {
+      background : $accent-light;
+      }
+
+    ul.php-apc-list-conditions > li.ui-sortable-placeholder {
+      visibility : visible !important;
+      border     : 1px dashed $gray-3;
+      background : transparent;
+      height     : 30px;
+      }
+
 
     ul.php-apc-list-actions > li  > .select2,
     ul.php-apc-list-conditions > li > .select2 {

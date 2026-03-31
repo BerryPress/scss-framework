@@ -1,0 +1,10 @@
+// Icon list
+$icons: (
+        clone: "\e2ec",
+  );
+
+@each $icon, $unicode in $icons {
+  i.berrypress-icon-#{$icon}::before {
+    content: "#{$unicode}";
+    }
+  }
