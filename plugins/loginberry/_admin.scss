@@ -140,3 +140,19 @@
   line-height: 1em;
   vertical-align: middle;
   }
+
+.berrypress-field > .description  {
+  grid-column: 1 / -1;
+  }
+
+.berrypress-field.berrypress-field-align-center {
+  align-items: center;
+  }
+
+.berrypress-field #berrypress_login_ip_header {
+  max-width: 320px;
+  }
+
+#berrypress_order_auto_activate_paid_field {
+  padding-left: 15px;
+  }
