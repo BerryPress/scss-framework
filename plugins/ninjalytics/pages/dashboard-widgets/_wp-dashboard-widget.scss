@@ -1,0 +1,212 @@
+@use "../../../../global" as *;
+@use "sass:color" as sass-color;
+
+// -----------------------------------------------------------------------------
+// Ninjalytics — WP Admin dashboard widgets (table/chart on the Dashboard screen)
+// Consumer entry: Ninjalytics `_dashboard-widgets.scss` → `ninjalytics-dashboard-widgets.css`
+// -----------------------------------------------------------------------------
+
+// --- Widget shell ---
+
+.ninjalytics-dashboard-widget {
+  background: $background-color;
+  border-radius: 4px;
+  min-height: 120px;
+}
+
+// --- Header (date, refresh) ---
+
+.ninjalytics-dashboard-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  min-height: 28px;
+}
+
+.ninjalytics-dw-date {
+  font-size: 12px;
+  color: $gray-5;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ninjalytics-dw-refresh {
+  padding: 2px 4px;
+  height: auto;
+  line-height: 1;
+  color: $text-secondary;
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+// --- Loading state ---
+
+.ninjalytics-dashboard-widget-loading {
+  padding: 8px 0;
+  color: $text-secondary;
+  font-size: 13px;
+
+  .spinner {
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+}
+
+.ninjalytics-dashboard-widget:not(:has(.ninjalytics-output-loading)) .ninjalytics-dashboard-widget-loading {
+  display: none;
+}
+
+.ninjalytics-dashboard-widget-content.ninjalytics-output-loading {
+  display: none;
+}
+
+// --- Body: report title, table, DataTables, notices ---
+
+.ninjalytics-dashboard-widget-content {
+  margin-top: 8px;
+
+  .ninjalytics-dw-report-title {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+
+    th,
+    td {
+      padding: 6px 10px;
+      text-align: left;
+      border-bottom: 1px solid $gray-3;
+    }
+
+    th {
+      background: $gray-1;
+      font-weight: 600;
+      color: $text-primary;
+    }
+
+    tfoot tr {
+      background: $gray-1;
+      font-weight: 600;
+    }
+  }
+
+  .dataTables_wrapper {
+    font-size: 12px;
+  }
+
+  .dataTables_length,
+  .dataTables_filter {
+    margin-bottom: 8px;
+  }
+
+  .dataTables_length select,
+  select.dt-input {
+    min-height: 28px;
+    padding: 6px 28px 6px 10px !important;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .dt-search input {
+    height: 28px;
+    padding: 0 24px 0 12px;
+    line-height: 28px;
+    border: 1px solid $gray-3;
+    border-radius: $border-radius;
+    font-size: 12px;
+    min-height: 28px;
+  }
+
+  .dataTables_filter input {
+    padding: 4px 8px;
+    border: 1px solid $gray-4;
+    border-radius: 3px;
+  }
+
+  .ninjalytics-dw-notice {
+    margin: 0;
+    padding: 0;
+    border-left: 4px solid $accent-red;
+    background: sass-color.mix($background-color, $accent-red, 92%);
+    box-shadow: 0 1px 2px sass-color.change($gray-6, $alpha: 0.08);
+
+    .ninjalytics-dw-error {
+      padding: 12px 16px;
+      margin: 0;
+      color: $text-primary;
+      font-size: 13px;
+    }
+
+    &.notice-error .ninjalytics-dw-error {
+      color: $accent-red;
+    }
+  }
+}
+
+// --- Chart ---
+
+.ninjalytics-dw-chart-wrap {
+  min-height: 220px;
+  width: 100%;
+  position: relative;
+
+  .ninjalytics-dashboard-widget-content & canvas {
+    display: block;
+    max-height: 280px;
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+// --- Footer links ---
+
+.ninjalytics-dashboard-widget-footer {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid $gray-3;
+  font-size: 12px;
+  color: $gray-5;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.ninjalytics-dw-footer-sep {
+  margin: 0 6px;
+  color: $gray-4;
+}
+
+// --- Empty / error text ---
+
+.ninjalytics-dw-no-data,
+.ninjalytics-dw-error {
+  margin: 0;
+  padding: 12px 0;
+  color: $text-secondary;
+  font-size: 13px;
+}
+
+.ninjalytics-dw-error {
+  color: $accent-red;
+}

@@ -64,6 +64,28 @@
     margin-bottom : 15px;
     }
 
+  // Tabs mobile
+
+  @media (max-width: 481px) {
+    .ninjalytics-template-modal-filters button {
+        background-color: unset!important;
+        color: $text-primary;
+        border-top: unset;
+        border-left: unset;
+        border-right: unset;
+        border-radius: 0;
+        border-bottom-width: 2px;
+        padding-left: 5px!important;
+        padding-right: 5px!important;
+        font-size: 13px;
+
+      &.berrypress-btn-primary {
+        color: $primary-color;
+        }
+      }
+    }
+
+
   // Reports grid
 
   .ninjalytics-template-modal-grid {
@@ -72,6 +94,42 @@
     gap                   : 8px;
     overflow              : hidden;
     margin: 0;
+
+    // Section header spans the full width of the grid and groups templates
+    // by reporter and by type (Reports vs Order Exports).
+    .ninjalytics-template-modal-section-header {
+      grid-column : 1 / -1;
+      margin-top: 1.7rem;
+
+
+      .ninjalytics-template-modal-section-title {
+        margin      : 0 0 4px;
+        font-size   : 16px;
+        font-weight : 600;
+        line-height : 1.3;
+        }
+
+      .ninjalytics-template-modal-section-description {
+        margin    : 0 0 4px;
+        color     : $text-secondary;
+        font-size : 13px;
+        }
+      }
+
+    // Hide the "<Reporter> — " prefix in section titles when it is not needed
+    // for disambiguation: either only one reporter has any visible section, or
+    // the active filter already names that reporter. Both states are set on
+    // the grid by JS (`is-single-reporter` class and `data-ninjalytics-active-filter`).
+    &.is-single-reporter .ninjalytics-template-modal-section-reporter {
+      display : none;
+      }
+
+    @each $reporter in (woocommerce, woocommerce-legacy, edd, livecarts) {
+      &[data-ninjalytics-active-filter="#{$reporter}"]
+        .ninjalytics-template-modal-section-reporter[data-ninjalytics-template-section-reporter="#{$reporter}"] {
+        display : none;
+        }
+      }
 
     .ninjalytics-template-card {
       padding        : 20px;

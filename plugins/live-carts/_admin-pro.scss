@@ -5,6 +5,7 @@
 @use "../../global" as *;
 @use "../../layout/flex" as *;
 @use "../../components/form/select_woo";
+@use "../../components/form/select_woo_multiple_small";
 @use "../../base/utilities";
 
 // Settings
@@ -335,4 +336,25 @@
     border-right: 1px solid $gray-2;
     padding-right: 0.5rem;
     }
+  }
+
+.berrypress-field > .description  {
+  grid-column: 1 / -1;
+  }
+
+.berrypress-field.berrypress-field-align-center {
+  align-items: center;
+  }
+
+.berrypress-d-block {
+  display: block;
+  }
+
+.berrypress-page .phplugins-lc-coupons-field .berrypress-multiple-dropdown-container .select2-container {
+  max-width: max-content;
+  width: 100%;
+  }
+
+.berrypress-page .phplugins-lc-coupons-field  .berrypress-multiple-dropdown-container.berrypress-multiple-dropdown-container-sm .select2-container .select2-selection--multiple .select2-selection__rendered .select2-search.select2-search--inline {
+  min-width: 2em;
   }

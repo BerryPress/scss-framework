@@ -12,6 +12,7 @@
   li {
     color: $text-primary;
     display: inline;
+    margin-bottom: 0;
 
     &:not(:last-child)::after {
       content: '/';

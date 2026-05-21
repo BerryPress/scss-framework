@@ -158,3 +158,7 @@
   min-width: 110px;
   max-width: 180px;
   }
+
+.berrypress-field.ninjalytics-product-exclude-free-field .ninjalytics-field-child {
+  grid-column: 1 / -1;
+}

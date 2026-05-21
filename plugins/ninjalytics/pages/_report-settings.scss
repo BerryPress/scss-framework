@@ -4,6 +4,20 @@
 
 // Toolbar
 
+#ninjalytics-display-primary-toolbar {
+
+  display        : flex;
+  flex-direction : row;
+  gap            : .2rem;
+  align-items: center;
+  padding: .6rem 0;
+
+  // Move later to both free and pro, for now we want only overwrite in pro
+  #ninjalytics-breadcrumbs {
+      padding: 5px 0;
+    }
+  }
+
 #ninjalytics-display-toolbar {
   display        : flex;
   flex-direction : row;
@@ -149,6 +163,120 @@
   }
 
 #ninjalytics_output_container {
+
+  .berrypress-link {
+    font-size: 13px;
+    }
+
+  img.ninjalytics-product-image-thumb {
+    display: inline-block;
+    vertical-align: middle;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    object-fit: cover;
+    }
+
+  // Status badges in preview table (WooCommerce-like styles)
+  .ninjalytics-fulfillment-status,
+  .ninjalytics-order-status {
+    display: inline-flex;
+    line-height: 2.5em;
+    color: #454545;
+    background: #e5e5e5;
+    border-radius: 4px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin: -0.25em 0;
+    cursor: inherit !important;
+    white-space: nowrap;
+    max-width: 100%;
+    padding: 0 0.85em;
+    font-size: 11px;
+    }
+
+  .ninjalytics-fulfillment-status.ninjalytics-status-completed,
+  .ninjalytics-order-status.ninjalytics-status-completed {
+    background: #c8d7e1;
+    color: #003d66;
+    }
+
+  .ninjalytics-fulfillment-status.ninjalytics-status-on-hold,
+  .ninjalytics-order-status.ninjalytics-status-on-hold {
+    background: #f8dda7;
+    color: #573b00;
+    }
+
+  .ninjalytics-fulfillment-status.ninjalytics-status-failed,
+  .ninjalytics-order-status.ninjalytics-status-failed {
+    background: #eba3a3;
+    color: #570000;
+    }
+
+  .ninjalytics-fulfillment-status.ninjalytics-status-processing,
+  .ninjalytics-order-status.ninjalytics-status-processing {
+    background: #c6e1c6;
+    color: #2c4700;
+    }
+
+  .ninjalytics-fulfillment-status.ninjalytics-status-trash,
+  .ninjalytics-order-status.ninjalytics-status-trash {
+    background: #eba3a3;
+    color: #550202;
+    }
+
+  // Field-based width control for preview table columns
+  th[data-ninjalytics-field="builtin::product_image"],
+  td[data-ninjalytics-field="builtin::product_image"] {
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+    text-align: center;
+    }
+
+  th[data-ninjalytics-field="builtin::product_image"] {
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  th[data-ninjalytics-field="builtin::product_image"] .dt-column-title {
+    display: none;
+  }
+
+  td[data-ninjalytics-field="builtin::product_image"] {
+    white-space: nowrap;
+  }
+
+  td[data-ninjalytics-field="builtin::product_image"] img {
+    display: inline-block;
+    vertical-align: middle;
+    }
+
+  // IDs are identifiers (often links), not numeric measures.
+  th[data-ninjalytics-field="builtin::product_id"],
+  td[data-ninjalytics-field="builtin::product_id"] {
+    text-align: left !important;
+    }
+
+  // Date-only fields should stay on one line.
+  td[data-ninjalytics-field="builtin::order_date_only"],
+  td[data-ninjalytics-field="builtin::order_paid_date_only"],
+  td[data-ninjalytics-field="builtin::order_completed_date_only"] {
+    white-space: nowrap;
+    }
+
+  // Optional: settings → highlight negatives in preview (JS adds class).
+  tbody td.ninjalytics-preview-negative-value,
+  tfoot td.ninjalytics-preview-negative-value {
+    color            : #b32d2e;
+    font-weight      : 500;
+    }
+
+  tbody td.ninjalytics-preview-negative-value .berrypress-link,
+  tfoot td.ninjalytics-preview-negative-value .berrypress-link {
+    color           : inherit;
+    text-decoration-thickness : 1px;
+    }
+
   input[type=search] {
     height        : 30px;
     padding       : 0 24px 0 12px;
@@ -275,6 +403,78 @@
     display : none !important;
     }
   }
+
+// When preview wrap is off: forbid line breaks everywhere WordPress/DataTables might re-enable wrapping.
+// Responsive "inline + collapsed" uses list rows (dtr-details); plain nowrap on td is not enough — use flex + scroll.
+#ninjalytics_output_container.ninjalytics-preview-nowrap {
+  // Omit tr.child cells here so Responsive detail rows can scroll (flex rows + overflow-x).
+  table.dataTable > thead > tr > th,
+  table.dataTable > tbody > tr:not(.child) > td,
+  table.dataTable > tfoot > tr > td {
+    white-space : nowrap !important;
+    word-break  : normal !important;
+    overflow-wrap : normal !important;
+  }
+
+  table.dataTable th[data-ninjalytics-field="builtin::product_image"] {
+    white-space : nowrap !important;
+  }
+
+  table.dataTable .dt-column-title,
+  table.dataTable tbody tr:not(.child) td .berrypress-link {
+    white-space : inherit !important;
+    word-break  : normal !important;
+    overflow-wrap : normal !important;
+  }
+
+  // Child/detail row — block list + nowrap value lines (avoid title/value stacking from inline-block).
+  table.dataTable > tbody > tr.child > td {
+    max-width     : 100%;
+    overflow-x    : auto;
+    box-sizing    : border-box;
+    vertical-align : top;
+    }
+
+  table.dataTable > tbody > tr.child ul.dtr-details {
+    display    : block !important;
+    width      : 100%;
+    max-width  : 100%;
+    box-sizing : border-box;
+    }
+
+  table.dataTable > tbody > tr.child ul.dtr-details > li {
+    display     : flex !important;
+    flex-wrap   : nowrap !important;
+    align-items : center;
+    gap         : .35em;
+    min-width   : 0;
+    overflow-x  : auto;
+    overflow-y  : hidden;
+    white-space : nowrap !important;
+    word-break  : normal !important;
+    }
+
+  table.dataTable > tbody > tr.child span.dtr-title {
+    flex-shrink : 0;
+    white-space : nowrap !important;
+    word-break  : normal !important;
+    }
+
+  table.dataTable > tbody > tr.child span.dtr-data {
+    flex-shrink : 0;
+    white-space : nowrap !important;
+    word-break  : normal !important;
+    max-width     : none;
+    }
+
+  // Rich cell content moved into detail row (listHiddenNodes): keep fragments on one baseline row.
+  table.dataTable > tbody > tr.child span.dtr-data .berrypress-link,
+  table.dataTable > tbody > tr.child span.dtr-data .order-status {
+    flex-shrink : 0;
+    white-space : nowrap !important;
+    word-break  : normal !important;
+    }
+}
 
 #ninjalytics_output_container #hm_psr_chart {
   max-height: 80vh;
@@ -423,6 +623,7 @@
   select {
     padding   : 2px 12px;
     height    : 34px;
+    min-height: 34px;
     flex-grow : 1;
     max-width : unset;
     }

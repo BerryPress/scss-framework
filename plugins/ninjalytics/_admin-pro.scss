@@ -31,10 +31,12 @@
 
 @use "../../pages/addons_page";
 @use "pages/addons-page";
+@use "pages/dashboard-widgets/admin-page";
 
 // From framework
 @use "../../components/form/select_woo";
 @use "../../components/form/form_field_textarea";
+@use "../../components/settings_subnav";
 @use "../../components/modal/main" as *;
 @use "../../components/js-tooltips" as *;
 

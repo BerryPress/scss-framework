@@ -1,0 +1,42 @@
+@use "../global" as *;
+
+.berrypress-page {
+  .berrypress-settings-subnav {
+    border-bottom: 1px solid $gray-3;
+    margin-bottom: 2rem;
+  }
+
+  .berrypress-settings-subnav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    font-size: 14px;
+    font-weight: 500;
+
+    li {
+      margin: 0;
+    }
+
+    a {
+      display: inline-block;
+      padding: 0.7rem 0.5rem .9rem;
+      text-decoration: none;
+      color: $text-primary;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+
+      &:hover {
+        color: $text-primary;
+      }
+
+      &.active {
+        color: $primary-color;
+        border-bottom-color: $primary-color;
+        font-weight: 600;
+      }
+    }
+  }
+}
