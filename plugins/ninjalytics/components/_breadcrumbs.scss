@@ -2,21 +2,26 @@
 
 #ninjalytics-breadcrumbs {
   list-style: none;
-  padding: 10px 15px 20px 0;
+  padding: 5px 0;
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
 
   li {
     color: $text-primary;
+
     display: inline;
     margin-bottom: 0;
 
+    &:last-child {
+      flex: 0 0 auto;
+      }
+
     &:not(:last-child)::after {
       content: '/';
-      margin-left: 3px;
+      margin-left: 5px;
       color: $text-secondary;
       }
     &:last-child a {
@@ -32,6 +37,42 @@
 
     &:focus {
       box-shadow: none;
+      }
+    }
+
+  .ninjalytics-breadcrumb-editable {
+    color: $primary-color;
+    font-weight: 600;
+    cursor: text;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    outline: none;
+    min-width: 80px;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    margin-left: -5px;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: rgba($primary-color, 0.08);
+      border-color: rgba($primary-color, 0.25);
+      }
+
+    &.is-editing,
+    &:focus {
+      background-color: #fff;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+      }
+
+    &:empty::before {
+      content: attr(data-placeholder);
+      color: $text-secondary;
+      font-weight: 400;
+      font-style: italic;
       }
     }
   }

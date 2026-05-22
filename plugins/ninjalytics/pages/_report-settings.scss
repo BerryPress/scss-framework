@@ -1,20 +1,32 @@
 ///admin.php?page=ninjalytics&preset=X
 
 @use "../../../global" as *;
+@use "report-breakpoints" as bp;
 
 // Toolbar
 
 #ninjalytics-display-primary-toolbar {
-
   display        : flex;
+  flex-wrap: wrap;
   flex-direction : row;
   gap            : .2rem;
   align-items: center;
-  padding: .6rem 0;
+  padding: 0 0 0.8rem;
+  flex-shrink: 0;
+  background: $background-color;
+  margin-bottom: 0;
 
-  // Move later to both free and pro, for now we want only overwrite in pro
   #ninjalytics-breadcrumbs {
-      padding: 5px 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    scrollbar-width: thin;
+    }
+
+  .ninjalytics-toolbar-buttons {
+    flex-shrink: 0;
     }
   }
 
@@ -25,7 +37,20 @@
   gap            : .5rem;
   margin-bottom  : 2rem;
   flex-wrap      : wrap;
+  padding-top: .8rem;
   }
+
+@media (min-width: bp.$nj-report-split-min) {
+  body.ninjalytics-report-view #ninjalytics-settings-settings .ninjalytics-settings-data #ninjalytics-display-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 15;
+    background-color: $background-color;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid $gray-2;
+  }
+}
 
 #ninjalytyics-display-mode {
   display        : flex;
@@ -102,19 +127,18 @@
 // - Layout
 
 #ninjalytics-settings-settings {
-  display               : grid;
-  grid-template-columns : 2fr 1fr;
-  gap                   : 32px;
-  align-items           : start;
+  border-top: 1px solid $gray-2!important;
+  width: calc(100% + 20px);
+  margin-right: -20px;
 
   .ninjalytics-settings-panel {
     width          : 100%;
-    max-width      : 480px;
-    min-width      : 320px;
-    justify-self   : end;
     box-sizing     : border-box;
     container-type : inline-size;
     container-name : ninjalytics-settings-panel;
+    display        : flex;
+    flex-direction : column;
+    align-self     : stretch;
     }
 
   .ninjalytics-settings-data {
@@ -124,26 +148,12 @@
 
   }
 
-@media (min-width : 1550px) {
-  #ninjalytics-settings-settings {
-    grid-template-columns : minmax(0, 1fr) auto;
-    }
-  }
-
+// Stacked layout on narrow viewports (see _settings-split.scss).
 @media (max-width : 1100px) {
-  #ninjalytics-settings-settings {
-    grid-template-columns : 1fr;
-    }
 
   #ags-psr-display-toolbar {
     display        : flex;
     flex-direction : column-reverse;
-    }
-  #ninjalytics-settings-settings > .ninjalytics-settings-panel {
-    justify-self : stretch;
-    max-width    : none;
-    min-width    : 0;
-    padding-top  : 20px;
     }
   }
 
@@ -152,6 +162,7 @@
 #ninjalytics_output_container {
   position : relative;
   min-height : 300px;
+  padding-right: 1rem;
   }
 
 // Table
@@ -402,6 +413,9 @@
   canvas {
     display : none !important;
     }
+  #ninjalytics-chart-duplicate-series {
+    display: none;
+    }
   }
 
 // When preview wrap is off: forbid line breaks everywhere WordPress/DataTables might re-enable wrapping.
@@ -498,64 +512,190 @@
   height: 100%;
   }
 
-// Settings: Right
+// Settings: Right (layout: _report-layout.scss)
 
-// - Toggles
-#ninjalytics-settings {
+#ninjalytics-report-sidebar-tabs {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  gap: 8px;
+  margin: 0;
+  padding: .4rem;
+  background-color: $gray-1;
+  border-left: 1px solid $gray-2;
+  box-sizing: border-box;
 
-  font-size : 13px;
+  .ninjalytics-tab-line {
+      width: 100%;
+      border-top: 1px solid $gray-2;
 
+    @media (min-height: 1000px) {
+      margin-top: 1vh;
+      margin-bottom: 1vh;
+      }
+    }
+
+  .ninjalytics-report-sidebar-tab {
+    flex: 0 0 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 5px 5px 7px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: $text-secondary;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+
+    i {
+      font-size: 18px;
+      font-weight: normal;
+      }
+    &:hover {
+      color: $primary-color;
+      background-color: rgba($primary-color, 0.06);
+      border: 1px solid $gray-2;
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px rgba($primary-color, 0.35);
+    }
+
+    &.ninjalytics-report-sidebar-tab-active,
+    &[aria-selected="true"] {
+      color: $primary-color;
+      border-bottom-color: $primary-color;
+      border: 1px solid $gray-2;
+      font-weight: 600;
+      background: #fff;
+    }
+  }
+}
+
+#ninjalytics-report-sidebar {
+  font-size: 13px;
+
+  .ninjalytics-sidebar-header {
+    grid-row: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 14px 12px;
+    border-bottom: 1px solid $gray-2;
+    background: $background-color;
+
+    &.ninjalytics-sidebar-header-no-border {
+      border-bottom: unset;
+      }
+    }
+
+  .ninjalytics-sidebar-title {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: $text-primary;
+    }
+
+  .ninjalytics-sidebar-subtitle {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: $text-secondary;
+    }
+
+  .ninjalytics-sidebar-body {
+    padding: 1rem;
+
+    }
   .ninjalytics-settings-toggle {
-    border        : 1px solid $gray-2;
-    margin-bottom : 10px;
-    border-radius : 10px;
+    //border        : 1px solid $gray-2;
+    //border-radius : 10px;
+    border-bottom : 1px solid $gray-2;
+    margin-left: 1rem;
+    margin-right: .7rem;
     }
 
   .ninjalytics-section-title {
     cursor          : pointer;
     margin          : 0;
-    padding         : 0 10px 0 0;
+    padding         : 0;
     display         : flex;
     flex-wrap       : wrap;
     justify-content : space-between;
     align-items     : center;
 
     h3 {
-      padding   : 15px;
+      padding   : 15px 5px 15px 0;
       margin    : 0;
       font-size : 14px;
       flex-grow : 1;
+      font-weight: bold;
+
+      i {
+        font-weight: normal;
+        font-size: 18px;
+        color: $gray-5;
+        margin-right: 5px;
+        vertical-align: middle;
+        }
       }
 
     label {
-      visibility   : hidden;
-      opacity      : 0;
-      align-items  : center;
-      font-weight  : normal;
-      transition   : all ease-in 0.2s;
-      display      : flex;
-      gap          : .4rem;
-      font-size    : 13px;
-      margin-right : .2rem;
+      visibility      : hidden;
+      opacity         : 0;
+      pointer-events  : none;
+      align-items     : center;
+      font-weight     : normal;
+      transition      : all ease-in 0.2s;
+      display         : flex;
+      gap             : .4rem;
+      font-size       : 11px;
+      margin-right    : .2rem;
       }
+
+    @media (max-width: 480px) {
+    label span {
+        // Show only Adv
+        max-width: 19px;
+        text-overflow: clip;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      }
+
+    .berrypress-btn-icon i,
+    .berrypress-icon-expand_more {
+      display: inline-flex;
+      transform: rotate(0deg);
+      transform-origin: center;
+      transition: transform 0.25s ease;
+    }
     }
 
   .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-body {
-    max-height : 75vh;
+    max-height: none;
     height: auto;
-    overflow   : auto;
+    overflow: visible;
     overflow-x: hidden;
-    opacity    : 1;
-    padding    : 20px 10px 10px 15px;
-    border-top : 1px solid $gray-2;
-    box-sizing : border-box;
-    transition : padding 0.3s step-start,
-    max-height 0.3s ease,
-    opacity 0.3s ease;
+    opacity: 1;
+    padding: 5px 5px 5px 2px;
+    box-sizing: border-box;
+    transition: padding 0.3s step-start, opacity 0.3s ease;
+
     * {
-      box-sizing : border-box;
-      }
+      box-sizing: border-box;
     }
+  }
 
   .ninjalytics-section-body {
     max-height : 0;
@@ -568,38 +708,29 @@
     opacity 0.3s ease;
     }
 
+  .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title h3 i,
+  .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title h3 {
+    color: $primary-color;
+    }
   .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title label {
-    visibility : visible;
-    opacity    : 1;
+    visibility       : visible;
+    opacity          : 1;
+    pointer-events   : auto;
     }
 
+  .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title .berrypress-btn-icon i,
   .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title .berrypress-icon-expand_more {
-    transform : rotate(180deg);
+    transform: rotate(180deg);
     }
   }
 
 // Inside toggles
 
-#ags-psr-report-meta {
-
-  margin-bottom : 1rem;
-
-  label {
-    display        : flex;
-    flex-direction : row;
-    gap            : .4rem;
-    flex-wrap      : wrap;
-    align-items    : center;
-    }
-
-  input {
-    flex-grow  : 1;
-    min-height : 30px;
-    }
-  }
+// #ags-psr-report-meta now only contains hidden form fields
+// (preset_name is edited via the breadcrumb).
 
 // Show setting when advanced is checked
-#ninjalytics-settings > .ninjalytics-settings-toggle:not(:has(input.ninjalytics-no-update:checked)) .ninjalytics-setting-advanced {
+#ninjalytics-report-sidebar > #ninjalytics-report-sidebar-settings > .ninjalytics-settings-toggle:not(:has(input.ninjalytics-no-update:checked)) .ninjalytics-setting-advanced {
   display : none;
   }
 
@@ -818,25 +949,3 @@
     }
   }
 
-// Debug
-
-.ninjalytics-debug-sql-box {
-  grid-template-columns: 1fr;
-  gap: 0;
-  margin-top: 1.5em;
-  }
-
-.ninjalytics-debug-sql-box .ninjalytics-debug-sql-content {
-  max-width: 95%;
-  padding: 10px 12px;
-  line-height: 1.3em;
-  border: 1px solid $gray-3;
-  border-radius: 5px;
-  font-size: 12px;
-  width: 100%;
-  max-height: 15em;
-  overflow: auto;
-  font-family: ui-monospace, monospace;
-  white-space: pre-wrap;
-  word-break: break-all;
-  }

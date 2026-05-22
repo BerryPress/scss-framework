@@ -15,6 +15,14 @@ $icons: (
         external-link: "\e89e",
         calculate: "\ea5f",
         drag-indicator: "\e945",
+        ai: "\e65f",
+        database-search: "\f38e",
+        package: "\f569",
+        layer: "\e53b",
+        database: "\f20e",
+        face: "\e87c",
+        debug: "\e868",
+        mobile: "\eb72",
   );
 
 @each $icon, $unicode in $icons {

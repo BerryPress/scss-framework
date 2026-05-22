@@ -1,0 +1,66 @@
+@use "../../../global" as *;
+@use "report-breakpoints" as bp;
+
+.ninjalytics-mobile-app {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: $background-color;
+
+  > .ninjalytics-sidebar-header {
+    flex-shrink: 0;
+  }
+}
+
+.ninjalytics-mobile-app-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  padding: 0 1rem 1rem;
+}
+
+.ninjalytics-mobile-app-video {
+  margin-top: 1rem;
+}
+
+.ninjalytics-mobile-app-video-label {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.ninjalytics-mobile-app-video-embed {
+  max-width: 280px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid $gray-2;
+  background: #000;
+
+  iframe {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+    height: auto !important;
+    aspect-ratio: 9 / 16;
+    min-height: 320px;
+    border: 0;
+  }
+}
+
+@media (max-width: bp.$nj-report-split-min - 1) {
+  #ninjalytics-report-sidebar-mobileapp:not([hidden]) .ninjalytics-mobile-app {
+    height: 100%;
+    max-height: min(75dvh, 640px);
+    min-height: 280px;
+  }
+}

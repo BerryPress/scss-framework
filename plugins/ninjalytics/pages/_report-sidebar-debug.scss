@@ -1,0 +1,98 @@
+@use "../../../global" as *;
+@use "report-breakpoints" as bp;
+
+.ninjalytics-debug {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: $background-color;
+
+  > .ninjalytics-sidebar-header {
+    flex-shrink: 0;
+  }
+}
+
+.ninjalytics-debug-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+.ninjalytics-debug-sql-box {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  flex-shrink: 0;
+}
+
+.ninjalytics-debug-sql-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.ninjalytics-debug-sql-count {
+  font-size: 11px;
+  font-weight: 500;
+  color: $text-secondary;
+}
+
+.ninjalytics-debug-sql-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ninjalytics-debug-sql-query {
+  border: 1px solid $gray-2;
+  border-radius: 6px;
+  background: $gray-1;
+  overflow: hidden;
+}
+
+.ninjalytics-debug-sql-query-label {
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: $text-secondary;
+  background: rgba($primary-color, 0.06);
+  border-bottom: 1px solid $gray-2;
+}
+
+.ninjalytics-debug-sql-query-code {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 11px;
+  line-height: 1.45;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: $text-primary;
+  background: $background-color;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+  tab-size: 2;
+}
+
+@media (max-width: bp.$nj-report-split-min - 1) {
+  #ninjalytics-report-sidebar-debug:not([hidden]) .ninjalytics-debug {
+    height: 100%;
+    max-height: min(75dvh, 640px);
+    min-height: 280px;
+  }
+}

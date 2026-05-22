@@ -1,0 +1,242 @@
+@use "../../../global" as *;
+@use "report-breakpoints" as bp;
+
+// Report editor layout (admin.php?page=ninjalytics&preset=… → body.ninjalytics-report-view).
+// Visual styles: _report-settings.scss, _report-sidebar-ai.scss
+// Split.js widths/gutter: _settings-split.scss
+
+// -----------------------------------------------------------------------------
+// Form
+// -----------------------------------------------------------------------------
+
+.berrypress-page #ninjalytics-form {
+  --ninjalytics-wp-admin-bar-height: 0px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.admin-bar .berrypress-page #ninjalytics-form {
+  --ninjalytics-wp-admin-bar-height: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  .admin-bar .berrypress-page #ninjalytics-form {
+    --ninjalytics-wp-admin-bar-height: 46px;
+  }
+}
+
+// Pages without locked document scroll (no body.ninjalytics-report-view).
+.berrypress-page:not(.ninjalytics-report-view) #ninjalytics-form {
+  --ninjalytics-report-chrome-offset: 7.5rem;
+  --ninjalytics-report-viewport-offset: calc(
+    var(--ninjalytics-report-chrome-offset) + var(--ninjalytics-wp-admin-bar-height)
+  );
+  min-height: calc(100dvh - var(--ninjalytics-report-viewport-offset));
+  max-height: calc(100dvh - var(--ninjalytics-report-viewport-offset));
+}
+
+// -----------------------------------------------------------------------------
+// Settings area + split host (column heights; split flex/gutter in _settings-split.scss)
+// -----------------------------------------------------------------------------
+
+#ninjalytics-settings-settings {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-top: 0;
+}
+
+#ninjalytics-settings-settings .ninjalytics-settings-split {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+@media (min-width: bp.$nj-report-split-min) {
+  #ninjalytics-settings-settings .ninjalytics-settings-split {
+    height: 100%;
+    max-height: 100%;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Right sidebar: tab rail (outside Split) + scrollable tab panels
+// -----------------------------------------------------------------------------
+
+.ninjalytics-settings-sidebar {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#ninjalytics-report-sidebar {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  > [role="tabpanel"] {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #ninjalytics-report-sidebar-settings,
+  #ninjalytics-report-sidebar-email:not([hidden]) {
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  // Debug / Mobile App: single scroll on tab body (avoid nested scrollport).
+  #ninjalytics-report-sidebar-debug:not([hidden]),
+  #ninjalytics-report-sidebar-mobileapp:not([hidden]) {
+    overflow: hidden;
+  }
+}
+@media (max-width: 1100px) {
+
+  .ninjalytics-settings-sidebar {
+    border: 1px solid $gray-2;
+    border-radius: 5px;
+    }
+  }
+// -----------------------------------------------------------------------------
+// Desktop report editor: document scroll off, flex chain fills viewport
+// -----------------------------------------------------------------------------
+
+@media (min-width: bp.$nj-report-split-min) {
+  // Do not set height on html — it breaks WP html.wp-toolbar padding-top (header goes under #wpadminbar).
+  html:has(body.ninjalytics-report-view) {
+    overflow: hidden;
+    box-sizing: border-box;
+    height: 100vh;
+  }
+
+  .admin-bar html:has(body.ninjalytics-report-view) {
+    padding-top: 32px;
+  }
+
+  @media screen and (max-width: 782px) {
+    .admin-bar html:has(body.ninjalytics-report-view) {
+      padding-top: 46px;
+    }
+  }
+
+  body.ninjalytics-report-view.berrypress-page {
+    overflow: hidden;
+    box-sizing: border-box;
+    height: 100%;
+    max-height: 100%;
+
+    #wpwrap,
+    #wpcontent,
+    #wpbody,
+    #wpbody-content {
+      height: 100%;
+      min-height: 0;
+      max-height: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    #wpbody-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .berrypress-settings-container {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .berrypress-header {
+      flex-shrink: 0;
+      position: relative;
+      z-index: 100;
+    }
+
+    .berrypress-main {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+    }
+
+    #berrypress-content {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 12px 20px 0;
+      box-sizing: border-box;
+    }
+
+    #berrypress-content > .wrap {
+      display: none;
+    }
+
+    #ninjalytics-form {
+      flex: 1 1 auto;
+      min-height: 0;
+      max-height: none;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Narrow: stacked layout, page scroll allowed
+// -----------------------------------------------------------------------------
+
+@media (max-width: bp.$nj-report-split-min - 1) {
+  .berrypress-page #ninjalytics-form {
+    min-height: 0;
+    max-height: none;
+  }
+
+  #ninjalytics-settings-settings {
+    overflow: visible;
+  }
+
+  .ninjalytics-settings-sidebar {
+    min-height: 0;
+  }
+
+  #ninjalytics-report-sidebar {
+    overflow: visible;
+    min-height: 0;
+
+    // Settings: long form scrolls with the page.
+    > #ninjalytics-report-sidebar-settings {
+      overflow: visible;
+    }
+
+    // AI / Schedule: bounded panel + inner scroll (grid needs a height on mobile).
+    > #ninjalytics-report-sidebar-ai:not([hidden]),
+    > #ninjalytics-report-sidebar-email:not([hidden]),
+    > #ninjalytics-report-sidebar-debug:not([hidden]),
+    > #ninjalytics-report-sidebar-mobileapp:not([hidden]) {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-height: 280px;
+      max-height: min(75dvh, 640px);
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}

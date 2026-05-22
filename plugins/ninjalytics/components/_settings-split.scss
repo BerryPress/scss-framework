@@ -1,0 +1,168 @@
+@use "../../../global" as *;
+@use "../pages/report-breakpoints" as bp;
+
+// Resizable split: data table vs settings panel (Split.js, >= 1101px).
+// Column heights: _report-layout.scss
+
+#ninjalytics-settings-settings .ninjalytics-settings-split {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+@media (max-width: bp.$nj-report-split-min - 1) {
+  #ninjalytics-settings-settings .ninjalytics-settings-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+}
+
+@media (min-width: bp.$nj-report-split-min) {
+  #ninjalytics-settings-settings .ninjalytics-settings-split {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+    min-height: 0;
+    height: 100%;
+    max-height: 100%;
+  }
+
+  #ninjalytics-settings-settings .ninjalytics-settings-split > .ninjalytics-settings-data,
+  #ninjalytics-settings-settings .ninjalytics-settings-split > .ninjalytics-settings-sidebar {
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: none;
+    align-self: stretch;
+    min-height: 0;
+    max-height: 100%;
+  }
+
+  #ninjalytics-settings-settings .ninjalytics-settings-split > .ninjalytics-settings-data {
+    overflow: auto;
+  }
+
+  #ninjalytics-settings-settings .ninjalytics-settings-split > .ninjalytics-settings-sidebar {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    min-height: 0;
+  }
+
+  #ninjalytics-settings-settings .ninjalytics-settings-split .ninjalytics-settings-panel {
+    border-left: 1px solid $gray-2;
+  }
+
+  #ninjalytics-settings-settings .ninjalytics-settings-split .ninjalytics-settings-panel {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  body.ninjalytics-report-view #ninjalytics-settings-settings .ninjalytics-settings-split > .ninjalytics-settings-sidebar {
+    height: 100%;
+  }
+
+  #ninjalytics-settings-settings .ninjalytics-settings-split > .gutter.gutter-horizontal {
+    align-self: stretch;
+    height: auto !important;
+    min-height: 0;
+  }
+
+  #ninjalytics-settings-settings:not(.ninjalytics-layout-enabled) .ninjalytics-settings-split {
+    > .ninjalytics-settings-data {
+      flex: 1 1 0;
+    }
+
+    > .ninjalytics-settings-sidebar {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    .ninjalytics-settings-panel {
+      flex: 0 0 380px;
+      width: 380px;
+      min-width: 320px;
+      max-width: 480px;
+    }
+  }
+
+  #ninjalytics-settings-settings.ninjalytics-layout-enabled .ninjalytics-settings-split {
+    > .ninjalytics-settings-data,
+    > .ninjalytics-settings-sidebar {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+
+  // Tab rail stays visible; content panel hidden (Split.js destroyed).
+  #ninjalytics-settings-settings.ninjalytics-sidebar-collapsed .ninjalytics-settings-split {
+    > .ninjalytics-settings-data {
+      flex: 1 1 auto !important;
+      width: auto !important;
+    }
+
+    > .ninjalytics-settings-sidebar {
+      flex: 0 0 auto !important;
+      width: auto !important;
+      min-width: 0 !important;
+      max-width: none !important;
+    }
+  }
+
+  #ninjalytics-settings-settings.ninjalytics-layout-enabled .gutter {
+    background: transparent;
+    position: relative;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+    touch-action: none;
+
+    &::before {
+      content: "";
+      border-radius: 999px;
+      background: rgba(196, 204, 217, 0.7);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    &.gutter-horizontal {
+      cursor: col-resize;
+      width: 8px !important;
+    }
+
+    &.gutter-horizontal::before {
+      width: 2px;
+      height: 48px;
+      align-self: center;
+    }
+
+    &.gutter-vertical {
+      cursor: row-resize;
+      height: 12px !important;
+      width: 100%;
+    }
+
+    &.gutter-vertical::before {
+      width: 40px;
+      height: 2px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: rgba($primary-color, 0.1);
+    }
+
+    &:hover::before,
+    &:focus-visible::before {
+      background: $primary-color;
+      transform: scale(1.2);
+    }
+  }
+}

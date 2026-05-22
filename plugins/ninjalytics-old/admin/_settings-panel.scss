@@ -50,7 +50,7 @@ body.toplevel_page_hm_sbp {
   }
 
 /* Toggle section container */
-#ninjalytics-settings > div {
+#ninjalytics-report-sidebar > div {
   margin-bottom : 10px;
   //overflow      : hidden;
   border        : 1px solid #d8dde1;
@@ -58,7 +58,7 @@ body.toplevel_page_hm_sbp {
   }
 
 /* Toggle title (h3) */
-#ninjalytics-settings .ags-psr-section-title {
+#ninjalytics-report-sidebar .ags-psr-section-title {
   cursor          : pointer;
   margin          : 0;
   padding         : 0 10px 0 0;
@@ -89,14 +89,14 @@ body.toplevel_page_hm_sbp {
   }
 
 /* Toggle body */
-#ninjalytics-settings .ags-psr-section-body {
+#ninjalytics-report-sidebar .ags-psr-section-body {
   padding : 20px 10px 10px 15px;
   display : none;
   }
 
 
 /* Toggle Opened */
-#ninjalytics-settings > .ninjalytics-settings-toggle.hm-psr-active {
+#ninjalytics-report-sidebar > .ninjalytics-settings-toggle.hm-psr-active {
   .ags-psr-section-body {
     display : block;
     }
@@ -511,7 +511,7 @@ body.toplevel_page_hm_sbp {
     }
   }
 
-#ninjalytics-settings label {
+#ninjalytics-report-sidebar label {
 
   &.hm_psr_chart_field,
   &.hm_psr_total_field,
@@ -586,7 +586,7 @@ body.toplevel_page_hm_sbp {
     }
   }
 
-#ninjalytics-settings {
+#ninjalytics-report-sidebar {
 
   select, input[type=text], input[type=number] {
     vertical-align : middle;

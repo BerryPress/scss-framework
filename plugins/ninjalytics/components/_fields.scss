@@ -3,9 +3,12 @@
 
 // Title
 .ninjalytics-group-title {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
-  margin-bottom: 1rem;
+  margin-bottom: .7rem;
+  letter-spacing: .2px;
+  color: $text-secondary;
+  text-transform: uppercase;
 
   // Align tooltip
   display: flex;
@@ -47,14 +50,14 @@
   margin-bottom: 1.2rem;
 }
 
-#ninjalytics-settings .berrypress-field {
+#ninjalytics-report-sidebar .berrypress-field {
   select {
     font-size: 13px;
     }
   }
 
-#ninjalytics-settings .berrypress-field .label,
-#ninjalytics-settings .berrypress-field label {
+#ninjalytics-report-sidebar .berrypress-field .label,
+#ninjalytics-report-sidebar .berrypress-field label {
   font-size: 13px;
   line-height: 18px;
 }
