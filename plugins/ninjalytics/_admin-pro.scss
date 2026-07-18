@@ -28,7 +28,7 @@
 @use "pages/report-settings";   // Report UI (toolbar, sidebar tabs, toggles)
 @use "pages/report-layout";     // Report editor layout (flex chain, scroll)
 @use "components/settings-split"; // Split.js row + gutter (>= 1101px)
-@use "pages/report-sidebar-ai"; // AI tab content
+//@use "pages/report-sidebar-ai"; // AI tab content
 @use "pages/report-sidebar-schedule"; // Schedule tab (SER upsell)
 @use "pages/report-sidebar-debug"; // Debug tab
 @use "pages/report-sidebar-mobile-app"; // Mobile App tab
