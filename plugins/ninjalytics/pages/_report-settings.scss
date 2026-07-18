@@ -570,8 +570,8 @@
     &.ninjalytics-report-sidebar-tab-active,
     &[aria-selected="true"] {
       color: $primary-color;
-      border-bottom-color: $primary-color;
       border: 1px solid $gray-2;
+      border-bottom-color: $primary-color;
       font-weight: 600;
       background: #fff;
     }
@@ -622,6 +622,18 @@
     border-bottom : 1px solid $gray-2;
     margin-left: 1rem;
     margin-right: .7rem;
+
+    // Grid steruje wysokością body: wiersz 1 = tytuł (auto),
+    // wiersz 2 = body (0fr zwinięte -> 1fr rozwinięte). Animacja
+    // grid-template-rows daje płynne przejście do realnej wysokości,
+    // bez magicznego max-height.
+    display: grid;
+    grid-template-rows: min-content 0fr;
+    transition: grid-template-rows 0.3s ease;
+
+    &.ninjalytics-active {
+      grid-template-rows: min-content 1fr;
+    }
     }
 
   .ninjalytics-section-title {
@@ -682,31 +694,29 @@
     }
     }
 
+  // Body to drugi wiersz grida (patrz .ninjalytics-settings-toggle).
+  // min-height:0 pozwala wierszowi 0fr zwinąć się do zera, overflow:hidden
+  // przycina zawartość. Padding pionowy zerujemy w stanie zwiniętym, żeby
+  // nie zostawała resztkowa wysokość; animujemy go płynnie (ease).
+  .ninjalytics-section-body {
+    overflow   : hidden;
+    min-height : 0;
+    box-sizing : border-box;
+    opacity    : 0;
+    padding    : 0 5px 0 2px;
+    transition : padding 0.3s ease,
+    opacity 0.3s ease;
+    }
+
   .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-body {
-    max-height: none;
-    height: auto;
-    overflow: visible;
     overflow-x: hidden;
     opacity: 1;
     padding: 5px 5px 5px 2px;
-    box-sizing: border-box;
-    transition: padding 0.3s step-start, opacity 0.3s ease;
 
     * {
       box-sizing: border-box;
     }
   }
-
-  .ninjalytics-section-body {
-    max-height : 0;
-    overflow   : hidden;
-    box-sizing : border-box;
-    opacity    : 0;
-    padding    : 0;
-    transition : padding 0.3s step-end,
-    max-height 0.3s ease,
-    opacity 0.3s ease;
-    }
 
   .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title h3 i,
   .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title h3 {

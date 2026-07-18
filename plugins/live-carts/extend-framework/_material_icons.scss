@@ -1,0 +1,10 @@
+// Icon list
+$icons: (
+        delete: "\E872",
+  );
+
+@each $icon, $unicode in $icons {
+  i.berrypress-icon-#{$icon}::before {
+    content: "#{$unicode}";
+    }
+  }

@@ -41,7 +41,11 @@
   overflow      : hidden;
   border        : 1px solid $gray-2;
   border-radius : 8px;
-  margin        : 4em 0 1em;
+  margin        : 1.5em 0 1em;
+
+  .phplugins-lc-detail-layout & {
+    margin-top : 0;
+    }
 
   .phplugins-lc-edit-cart-table {
     width           : 100%;
@@ -152,6 +156,10 @@
     }
   }
 
+.phplugins-lc-detail-layout .phplugins-lc-table-1col {
+  margin-top : 0;
+  }
+
 // Edit Cart: Woo Select
 
 @media (min-width: 1200px) {
@@ -243,6 +251,10 @@
       }
     }
 
+  #berrypress-lc-filter-ip {
+    min-height: 32px;
+    }
+
   input[type="number"] {
     max-width: 90px;
     min-height: 32px;
@@ -259,6 +271,10 @@
     display: flex;
     align-items: flex-end;
     gap: .2rem;
+
+    .berrypress-btn {
+      min-height: 26px;
+      }
     }
   }
 

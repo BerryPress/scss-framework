@@ -84,7 +84,8 @@
   color: $text-primary;
   background: $background-color;
   white-space: pre-wrap;
-  word-break: break-word;
+  word-break: normal;
+  overflow-wrap: anywhere;
   overflow-x: auto;
   tab-size: 2;
 }

@@ -46,10 +46,13 @@
 @use "../../components/modal/main" as *;
 @use "../../components/js-tooltips" as *;
 
-@use "components/notices/success";
-@use "components/notices/info";
+@use "../../components/notices/success";
+@use "../../components/notices/info";
 
 @use "../../base/utilities" as *;
+
+// Notes styles
+@use "notes" as *;
 
 // Pro only
 

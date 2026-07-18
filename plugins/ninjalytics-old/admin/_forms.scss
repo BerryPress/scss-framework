@@ -75,7 +75,7 @@
     }
 
   // Input forms
-  input[type=email], input[type=password], input[type=tel], input[type=text], input[type=number], input[type=date], select, input[type=time],input[type=search] {
+  input[type=email], input[type=password], input[type=tel], input[type=text], input[type=number], input[type=date], select, input[type=time],input[type=search]{
     @include formInputMixin();
     font-size: 14px;
     margin : 0;

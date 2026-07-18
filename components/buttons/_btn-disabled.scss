@@ -1,0 +1,19 @@
+@use "../../global" as *;
+
+.berrypress-page {
+
+  .berrypress-btn.berrypress-btn-icon.disabled,
+  .berrypress-btn.berrypress-btn-secondary.disabled {
+      color: $gray-4;
+      border-color: $gray-2;
+      cursor: not-allowed;
+
+    &:hover {
+
+      color: $gray-4;
+      border-color: $gray-2;
+      cursor: not-allowed;
+      }
+    }
+
+  }

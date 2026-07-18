@@ -14,6 +14,8 @@
   input[type=text] {
     min-width  : 50px;
     min-height : 26px;
+    height: unset;
+    line-height: 24px;
     }
 
   .displaying-num {
@@ -23,6 +25,9 @@
   .paging-input {
     padding-left  : 5px;
     padding-right : 5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
     }
 
   .pagination-links {
@@ -30,6 +35,7 @@
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
+    gap: 2px;
 
 
     // Shared style for all arrow icons: hide original glyph, inject Material Symbol
@@ -70,11 +76,12 @@
       padding: 0;
       align-items: center;
       justify-content: center;
+      min-width: 26px;
+      min-height: 26px;
 
       &:disabled {
         border        : 1px solid transparent;
         }
-
 
       &:hover {
         background-color : $gray-1

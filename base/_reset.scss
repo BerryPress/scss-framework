@@ -5,7 +5,7 @@
   // Reset WordPress button styles
   button,
   .button,
-  .wp-core-ui .button,
+  &.wp-core-ui .button,
   input[type="submit"],
   input[type="button"],
   input[type="reset"],
@@ -19,6 +19,10 @@
     cursor: pointer;
     }
 
+  p.search-box input[type=search],
+  &.wp-core-ui .tablenav select {
+    min-height: unset;
+    }
 
   button:disabled,
   .button:disabled {

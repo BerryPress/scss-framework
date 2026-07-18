@@ -78,6 +78,14 @@
   }
 }
 
+.ninjalytics-schedule-upsell-offer-discount {
+  font-size: 22px;
+  font-weight: 700;
+  color: $primary-color;
+  margin: 0;
+  text-align: center;
+}
+
 .ninjalytics-schedule-upsell-tagline {
   margin: 0 0 14px;
   font-size: 12px;
@@ -115,12 +123,5 @@
   width: 100%;
   text-align: center;
   box-sizing: border-box;
-}
-
-.ninjalytics-schedule-upsell-footnote {
-  margin: 12px 0 0;
-  font-size: 11px;
-  line-height: 1.4;
-  color: $text-secondary;
-  text-align: center;
+  margin-bottom: 10px;
 }
