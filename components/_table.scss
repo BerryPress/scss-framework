@@ -3,78 +3,105 @@
 .berrypress-page {
 
   .tablenav.top {
-    margin-top: 7px;
+    margin-top : 7px;
 
     button {
-      margin-bottom: 4px;
+      margin-bottom : 4px;
       }
     }
 
   .tablenav.bottom {
 
     button {
-      margin-bottom: 4px;
+      margin-bottom : 4px;
       }
     }
 
-  table.berrypress-table{
-    width     : calc(100% - 20px);
-    border-radius: 5px;
-    overflow: hidden;
-    border: 1px solid $gray-2;
-    background: #fff;
+  .berrypress-table-wrapper {
+    border-radius : 5px;
+    overflow      : hidden;
+    border        : 1px solid $gray-2;
+
+    table.berrypress-table {
+      width         : 100%;
+      margin-top    : 0;
+      border        : 0;
+      border-radius : 0;
+      }
+    }
+
+  .berrypress-table-scroll {
+    overflow-x : auto;
+    }
+
+  @media screen and (max-width : 782px) {
+    .berrypress-table-wrapper .form-table td,
+    .berrypress-table-wrapper .form-table th,
+    .berrypress-table-wrapper .label-responsive {
+      display : table-cell;
+      }
+    }
+
+  table.berrypress-table {
+    width         : calc(100% - 20px);
+    border-radius : 5px;
+    overflow      : hidden;
+    border        : 1px solid $gray-2;
+    background    : #fff;
 
     thead {
-        background-color: $gray-1;
+      background-color : $gray-1;
 
       th {
-        font-size: 13px;
-        font-weight: 500;
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid $gray-2;
+        font-size     : 13px;
+        font-weight   : 500;
+        padding       : 8px;
+        text-align    : left;
+        border-bottom : 1px solid $gray-2;
         }
       }
 
     tfoot {
-        background-color: $gray-1;
+      background-color : $gray-1;
 
       th {
-        font-size: 13px;
-        font-weight: 500;
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid $gray-2;
+        font-size     : 13px;
+        font-weight   : 500;
+        padding       : 8px;
+        text-align    : left;
+        border-bottom : 1px solid $gray-2;
         }
       }
 
     tbody {
 
       tr {
-        background: transparent;
+        background : transparent;
         }
-
 
       tr:nth-child(even) {
-        background: transparent;
+        background : transparent;
         }
 
-
       td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid $gray-2;
-        vertical-align: middle;
+        padding        : 10px;
+        text-align     : left;
+        border-bottom  : 1px solid $gray-2;
+        vertical-align : middle;
+        }
+
+      tr:last-of-type td {
+        border-bottom : unset;
         }
 
       h2 {
-         font-size: 14px;
-          margin: 0;
+        font-size : 14px;
+        margin    : 0;
         }
       }
 
     tfoot th, td {
-      border: unset;
+      border : unset;
       }
     }
   }
@@ -93,11 +120,11 @@
       display       : block;
       font-size     : 24px;
       margin-bottom : 10px;
-      color: $text-secondary;
+      color         : $text-secondary;
       }
     }
   }
 
 .berrypress-page table.berrypress-table #the-list tr.no-items td {
-  border-bottom : 1px solid $gray-2!important;
+  border-bottom : 1px solid $gray-2 !important;
   }

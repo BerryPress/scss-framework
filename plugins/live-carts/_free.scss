@@ -42,10 +42,10 @@
   }
 
 .phplugins-lc-detail-header-actions {
-  display       : flex;
-  flex-wrap     : wrap;
-  align-items   : center;
-  margin-left   : auto;
+  display     : flex;
+  flex-wrap   : wrap;
+  align-items : center;
+  margin-left : auto;
 
   .phplugins-lc-trash-cart,
   .phplugins-lc-restore-cart,
@@ -65,13 +65,13 @@
   gap         : .35em;
 
   .berrypress-btn.berrypress-btn-icon {
-    padding-top: 2px;
+    padding-top : 2px;
     }
   }
 
 #phplugins-live-carts-details-card {
-  display       : inline-block;
-  min-width     : 60%;
+  display   : inline-block;
+  min-width : 60%;
   max-width : 980px;
 
   .form-table table tr > * {
@@ -126,9 +126,6 @@
     }
 
   .phplugins-lc-table-cart {
-    border        : 1px solid $gray-2;
-    border-radius : 8px;
-    overflow      : hidden;
 
     .form-table {
       width      : 100%;
@@ -172,10 +169,17 @@
       }
     }
 
+  .phplugins-lc-orders-empty {
+    margin  : 0;
+    padding : 12px 16px;
+    color   : $text-secondary;
+    }
+
   // END form table
   }
 
 .berrypress_page_live-carts-for-woocommerce #the-list .column-status::before,
+.phplugins-lc-order-status::before,
 .phplugins-live-carts-status::before {
   content       : "";
   width         : 8px;
@@ -183,6 +187,15 @@
   border-radius : 50%;
   display       : inline-block;
   margin-right  : 8px;
+  }
+
+// Order status badge in the recent activity table.
+.phplugins-lc-order-status {
+  white-space : nowrap;
+
+  &:before {
+    background : $gray-6;
+    }
   }
 
 .phplugins-live-carts-status-green::before,
@@ -206,12 +219,12 @@
 
 // Cart detail: two-column layout — main details + history sidebar on desktop
 .phplugins-lc-detail-layout {
-  display     : flex;
-  flex-wrap   : wrap;
-  gap         : 2.5em;
-  align-items : flex-start;
+  display       : flex;
+  flex-wrap     : wrap;
+  gap           : 2.5em;
+  align-items   : flex-start;
   border-top    : 1px solid $gray-2;
-  border-bottom    : 1px solid $gray-2;
+  border-bottom : 1px solid $gray-2;
   padding       : 1em .5em;
   margin-top    : 1em;
   margin-bottom : 1.5em;
@@ -223,121 +236,21 @@
     }
 
   // Sidebar column: cart revision history.
-  .phplugins-lc-history-sidebar,
-  .phplugins-lc-orders-sidebar {
+  .phplugins-lc-sidebar {
     flex      : 1 1 340px;
     min-width : 0;
     }
-
-  .phplugins-lc-orders-sidebar {
-    .phplugins-lc-table-cart {
-      border        : 1px solid $gray-2;
-      border-radius : 8px;
-      overflow      : hidden;
-
-      .form-table {
-        width      : 100%;
-        margin-top : 0;
-        }
-
-      .phplugins-lc-orders-empty {
-        margin  : 0;
-        padding : 12px 16px;
-        color   : $text-secondary;
-        }
-      }
-
-    a {
-      text-decoration : underline;
-
-      &:hover {
-        color : $primary-color;
-        }
-      }
-    }
-
-  // Stack the sidebar under the details on tablets / phones.
-  @media (max-width : 1024px) {
-    gap : 1.5em;
-
-    .phplugins-lc-history-sidebar,
-    .phplugins-lc-orders-sidebar {
-      flex-basis : 100%;
-      }
-    }
   }
 
-// Recent orders block in the main details column.
-.phplugins-lc-recent-orders {
-  h2 {
-    margin-bottom : 1em;
-    }
-
-  .phplugins-lc-table-cart {
-    border        : 1px solid $gray-2;
-    border-radius : 8px;
-    overflow      : hidden;
-
-    .form-table {
-      width      : 100%;
-      margin-top : 0;
-      }
-
-    .phplugins-lc-orders-empty {
-      margin  : 0;
-      padding : 12px 16px;
-      color   : $text-secondary;
-      }
+.berrypress-page table.phplugins-lc-orders-table {
+  td, th {
+    font-size   : 13px;
+    line-height : 1.6em;
     }
 
   a {
-    text-decoration : underline;
-
-    &:hover {
-      color : $primary-color;
-      }
+    font-weight : 500;
     }
-  }
-
-.phplugins-lc-orders-table tbody tr {
-  font-size: 13px;
-
-  }
-// Order status badge (colored dot + label) in the recent-orders sidebar.
-.phplugins-lc-order-status {
-  display     : inline-flex;
-  align-items : center;
-  gap         : 5px;
-  flex-shrink : 0;
-  font-size   : 12px;
-  font-weight : 500;
-  color       : $text-secondary;
-  white-space : nowrap;
-
-  &::before {
-    content       : "";
-    width         : 8px;
-    height        : 8px;
-    flex-shrink   : 0;
-    border-radius : 50%;
-    background    : $gray-6;
-    }
-  }
-
-.phplugins-live-carts-order-completed::before {
-  background : $accent-green;
-  }
-
-.phplugins-live-carts-order-processing::before,
-.phplugins-live-carts-order-on-hold::before,
-.phplugins-live-carts-order-pending::before {
-  background : $accent-yellow;
-  }
-
-.phplugins-live-carts-order-cancelled::before,
-.phplugins-live-carts-order-failed::before,
-.phplugins-live-carts-order-refunded::before {
-  background : $accent-red;
   }
 
 .phplugins-lc-detail-footer {
@@ -348,7 +261,7 @@
   gap             : 1em;
 
   .berrypress-btn-secondary i {
-    margin-top: 0;
+    margin-top : 0;
     }
   }
 
@@ -359,9 +272,9 @@
   gap         : .5em;
   margin-left : auto;
 
-   .berrypress-btn:last-child i {
-      margin-right: unset;
-      margin-left: 4px;
+  .berrypress-btn:last-child i {
+    margin-right : unset;
+    margin-left  : 4px;
     }
 
   }
@@ -370,39 +283,62 @@
   height           : 1px;
   width            : 100%;
   background-image : repeating-linear-gradient(
-                  to right,
-                  $gray-2,
-                  $gray-2 6px,
-                  transparent 6px,
-                  transparent 10px
+          to right,
+          $gray-2,
+          $gray-2 6px,
+          transparent 6px,
+          transparent 10px
   );
   margin           : 2.4em 0;
   display          : block;
   }
 
+// Main table: link
+
+table.berrypress_page_live-carts-for-woocommerce .column-cart_id a {
+  font-weight     : 500;
+  text-decoration : underline;
+
+  &:hover {
+    color : $primary-color;
+    }
+  }
+
+table.berrypress_page_live-carts-for-woocommerce .column-last_seen a {
+  text-decoration : underline;
+
+  &:hover {
+    color : $primary-color;
+    }
+  }
+
 // Check Column
-table.berrypress_page_live-carts-for-woocommerce tfoot .check-column,
-table.berrypress_page_live-carts-for-woocommerce thead .check-column {
-  padding : 0 0 0 10px !important;
-  }
+table.berrypress_page_live-carts-for-woocommerce {
 
-table.berrypress_page_live-carts-for-woocommerce tbody .check-column {
-  text-align     : left;
-  vertical-align : middle;
-  padding        : 0 0 0 10px !important;
-  border-bottom  : 1px solid #e6e9f4;
+  tfoot .check-column,
+  thead .check-column {
+    padding : 0 0 0 10px !important;
+    }
 
-  label:hover {
-    background-color : transparent;
+  tbody .check-column {
+    text-align     : left;
+    vertical-align : middle;
+    padding        : 0 0 0 10px !important;
+    border-bottom  : 1px solid #e6e9f4;
+
+    label:hover {
+      background-color : transparent;
+      }
     }
   }
 
-.berrypress_page_live-carts-for-woocommerce .tablenav  {
+.berrypress_page_live-carts-for-woocommerce .tablenav {
   &.top {
-    margin-bottom: 6px;
+    margin-bottom : 8px;
     }
+
   &.bottom {
-    margin-top: 12px;
+    margin-top : 16px;
     }
 
   .button {
@@ -410,8 +346,7 @@ table.berrypress_page_live-carts-for-woocommerce tbody .check-column {
     @include buttons.berrypress-btn-secondary;
     }
 
-}
-
+  }
 
 .berrypress_page_live-carts-for-woocommerce #screen-options-apply.button-primary {
   @include buttons.berrypress-btn;
@@ -526,7 +461,7 @@ table.berrypress_page_live-carts-for-woocommerce tbody .check-column {
   .phplugins-lc-diffs {
     border        : 1px solid $gray-2;
     border-radius : 0.5rem;
-    padding       : .85rem 0.5rem .5rem;
+    padding       : .85rem 0.7rem .5rem .5rem;
     list-style    : none;
     margin        : 0;
     font-size     : 13px;
