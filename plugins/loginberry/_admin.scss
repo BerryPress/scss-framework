@@ -156,3 +156,12 @@
 #berrypress_order_auto_activate_paid_field {
   padding-left: 15px;
   }
+
+// Passwordless login role permissions
+.berrypress-page #berrypress_passwordless_options .berrypress-table .berrypress-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 18px;
+  vertical-align: middle;
+  }
