@@ -1,0 +1,95 @@
+@use "../../../global" as *;
+
+.berrypress-page {
+
+  span.phplugins-lc-pro-badge {
+    background-color: $gray-2;
+    color: $gray-6;
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 10px;
+    line-height: 1em;
+    vertical-align: middle;
+    margin-left: 3px;
+  }
+
+  .berrypress-field.phplugins-lc-pro-feature {
+    cursor: not-allowed;
+
+    .label,
+    label {
+      color: $gray-3 !important;
+    }
+
+    input:disabled {
+      cursor: not-allowed;
+      opacity: .7;
+    }
+  }
+
+}
+
+.phplugins-lc-conversion-statuses {
+  margin-bottom: 1.25rem;
+
+  > .label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: .35rem;
+  }
+
+  > .description {
+    margin-top: 0;
+    margin-bottom: .75rem;
+  }
+
+  .phplugins-lc-conversion-status-mode {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    margin-bottom: .85rem;
+
+    .berrypress-field {
+      margin-bottom: 0;
+      align-items: center;
+    }
+  }
+
+  .phplugins-lc-conversion-status-list {
+    margin: 0;
+    padding: .85rem 1rem;
+    border: 1px solid $gray-1;
+    border-radius: 5px;
+    background-color: $accent-light;
+    max-width: 520px;
+    min-inline-size: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .35rem;
+
+    @media (min-width: 782px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .berrypress-field {
+      margin-bottom: 0;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .label {
+      font-size: 13px;
+      line-height: 1.35;
+    }
+  }
+
+  .phplugins-lc-conversion-status-list.is-disabled {
+    opacity: .72;
+  }
+
+  > .description:last-child {
+    margin-top: .75rem;
+    margin-bottom: 0;
+    max-width: 640px;
+  }
+}

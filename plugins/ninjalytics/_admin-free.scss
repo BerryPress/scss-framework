@@ -1,8 +1,6 @@
 
 // Import global settings
 
-@use "free/license" as *;
-
 @use "../../global" as *;
 @use "../../base/colors" as *;
 
@@ -12,11 +10,13 @@
 @use "components/date-range";
 @use "components/fields";
 @use "components/date-range-custom-date-pro";
+@use "components/kebab-menu";
 
 // Modals
 
 @use "modals/report-templates";
 @use "modals/field-builder";
+@use "modals/import-export";
 
 // Extend/ Overwrite framework
 @use "extend-framework/sidebar";
@@ -25,7 +25,12 @@
 @use "extend-framework/spacing";
 
 @use "pages/reports";
-@use "pages/report-settings";
+@use "pages/report-settings";   // Report UI (toolbar, sidebar tabs, toggles)
+@use "pages/report-layout";     // Report editor layout (flex chain, scroll)
+@use "components/settings-split"; // Split.js row + gutter (>= 1101px)
+@use "pages/report-sidebar-schedule"; // Schedule tab (SER upsell)
+@use "pages/report-sidebar-debug"; // Debug tab
+@use "pages/report-sidebar-mobile-app"; // Mobile App tab
 @use "pages/new-report";
 @use "pages/settings";
 
@@ -37,6 +42,8 @@
 // From framework
 @use "../../components/form/select_woo";
 @use "../../components/form/form_field_textarea";
+@use "../../components/form/form_field_file_upload";
+@use "../../components/dropdown";
 @use "../../components/modal/main" as *;
 @use "../../components/js-tooltips" as *;
 
@@ -50,6 +57,7 @@
 @use "free/license" as *;
 @use "free/upgrade-box-container" as *;
 @use "free/pro-features" as *;
+@use "free/date-range" as *;
 
 @use "../../components/berrypress_top_bar" as *;
 

@@ -42,14 +42,16 @@ $nj-disabled-text: #7A8099;
   &-subtitle {
     margin: 0 auto 24px;
     color: $text-secondary;
+    max-width : 620px;
   }
 
   &-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+
+    .ninjalytics-import-wrapper {
+      display: block;
+      padding-top: 8px;
+      color: $text-secondary;
+      }
   }
 
   &-section {

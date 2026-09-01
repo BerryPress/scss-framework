@@ -1,0 +1,30 @@
+@use "../../../global" as *;
+
+.ninjalytics-modal-import,
+.ninjalytics-modal-export {
+  width : 480px;
+
+  .berrypress-card-content {
+    padding-bottom: 0;
+    }
+
+  h2 {
+    margin-top    : 0;
+    font-size     : 18px;
+    margin-bottom : 8px;
+    }
+
+  > .berrypress-card {
+    border : none;
+    padding: 0;
+    }
+  }
+
+.ninjalytics-modal-footer {
+  display         : flex;
+  justify-content : flex-end;
+  gap             : 8px;
+  margin-top      : 20px;
+  padding-top     : 16px;
+  border-top      : 1px solid $gray-1;
+  }

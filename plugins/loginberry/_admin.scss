@@ -5,6 +5,7 @@
 
 // Components
 @use "components/list";
+@use "../../components/pagination" as *;
 
 // Framework pages used by loginberry
 @use "../../pages/berrypress_page";

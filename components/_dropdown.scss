@@ -1,0 +1,58 @@
+@use "../global" as *;
+
+// Generic "trigger button + floating menu" dropdown, e.g. a kebab menu.
+// Toggling is handled in JS by adding/removing .berrypress-hidden on the menu.
+
+.berrypress-page {
+  .berrypress-dropdown {
+    position    : relative;
+    display     : inline-flex;
+    align-items : center;
+    }
+
+  .berrypress-dropdown-menu {
+    position         : absolute;
+    top              : 100%;
+    right            : 0;
+    margin-top       : 5px;
+    min-width        : 200px;
+    background-color : $background-color;
+    border           : 1px solid $gray-2;
+    border-radius    : 7px;
+    box-shadow       : 0 0 10px rgba(0, 0, 0, 0.05);
+    overflow         : hidden;
+    z-index          : 997;
+    padding          : 6px;
+    box-sizing       : border-box;
+    }
+
+  .berrypress-dropdown-item {
+    display       : block;
+    width         : 100%;
+    text-align    : left;
+    padding       : 8px 10px;
+    border        : none;
+    background    : transparent;
+    color         : inherit;
+    border-radius : 5px;
+    font-size     : 13px;
+    cursor        : pointer;
+    transition    : background 0.2s ease;
+
+    &:hover,
+    &:focus {
+      background-color : $gray-1;
+      }
+
+    &[aria-disabled="true"] {
+      color  : $text-secondary;
+      cursor : not-allowed;
+
+      &:hover,
+      &:focus {
+        background-color : transparent;
+        }
+      }
+    }
+
+  }

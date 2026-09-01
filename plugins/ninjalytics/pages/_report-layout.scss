@@ -1,7 +1,7 @@
 @use "../../../global" as *;
 @use "report-breakpoints" as bp;
 
-// Report editor layout (admin.php?page=ninjalytics&preset=… → body.ninjalytics-report-view).
+// Report editor layout (admin.php?page=ninjalytics[-free]&preset=… → body.ninjalytics-report-view).
 // Visual styles: _report-settings.scss, _report-sidebar-ai.scss
 // Split.js widths/gutter: _settings-split.scss
 
@@ -153,6 +153,16 @@
     #wpbody-content {
       display: flex;
       flex-direction: column;
+
+      // Admin notices (ours and other plugins') render as direct children
+      // of #wpbody-content before our own markup. Without this, the flex
+      // column's default shrink behavior can compress/clip them under the
+      // fixed-height, overflow:hidden layout above.
+      > .notice,
+      > .updated,
+      > .error {
+        flex-shrink: 0;
+      }
     }
 
     .berrypress-settings-container {

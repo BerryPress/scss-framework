@@ -1,0 +1,16 @@
+@use "../../../global" as *;
+
+// Three-dot "more options" icon used as a .berrypress-dropdown-trigger icon.
+// The dropdown container/menu/items themselves are the generic
+// .berrypress-dropdown component (components/_dropdown.scss).
+
+.ninjalytics-kebab-icon {
+  position       : relative;
+  display        : inline-block;
+  vertical-align : middle;
+  width          : 3px;
+  height         : 3px;
+  border-radius  : 50%;
+  background     : currentColor;
+  box-shadow     : -5px 0 0 currentColor, 5px 0 0 currentColor;
+  }

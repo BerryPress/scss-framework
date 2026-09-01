@@ -140,6 +140,22 @@
       opacity : 0.55;
       }
 
+    .ninjalytics-template-card-pro {
+      opacity : 0.65;
+      filter  : grayscale(40%);
+      }
+
+    .ninjalytics-template-card-blank {
+      background    : $gray-1;
+      border        : 1px dashed $gray-3;
+
+
+      .ninjalytics-template-icon-wrapper {
+        background-color: #fff;
+        }
+
+      }
+
     .ninjalytics-template-card-action-hidden {
       display : none !important;
       }
@@ -229,6 +245,7 @@
     flex : 1 1 auto;
     }
   }
+
 
 @media (min-height: 701px) {
   /* Wrapper scrolling */
