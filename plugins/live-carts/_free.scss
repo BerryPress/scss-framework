@@ -394,6 +394,48 @@ table.berrypress_page_live-carts-for-woocommerce {
 
 // Settings
 
+.phplugins-cart-shortcode-field[hidden],
+#phplugins-carts-manual-conversion-statuses[hidden] {
+  display: none !important;
+}
+
+.berrypres-field-checkbox-group {
+  .berrypress-field-label {
+    font-size: 14px;
+    color: $text-primary;
+    margin-top: 5px;
+  }
+
+  ul {
+    margin-top: 0;
+    max-height: 200px;
+    max-width: 300px;
+    border: 1px solid $gray-2;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-y: auto;
+  }
+}
+
+.phplugins-lc-conversion-statuses {
+  margin-bottom: 1.25rem;
+
+  > .description {
+    margin-top: 0;
+    margin-bottom: .75rem;
+  }
+
+  .phplugins-lc-conversion-status-mode {
+    margin-bottom: .85rem;
+    align-items: center;
+  }
+
+  .phplugins-lc-conversion-status-warning {
+    margin-top: .75rem;
+    max-width: 640px;
+  }
+}
+
 .phplugins-cart-shortcode {
   padding: 1rem;
   border: 1px solid $gray-1;
@@ -404,10 +446,6 @@ table.berrypress_page_live-carts-for-woocommerce {
 
   label {
     font-weight: 500;
-  }
-
-  .berrypress-link {
-    font-size: 13px;
   }
 
   #phplugins-cart-id-shortcode {
