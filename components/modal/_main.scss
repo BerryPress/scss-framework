@@ -112,6 +112,24 @@ body:has(.berrypress-modal.berrypress-active)::before {
     }
   }
 
+// Explicit, reliable focus indicator for everything inside a modal.
+// Focus here is moved programmatically (openModalA11y in ninjalytics.js),
+// and browsers' :focus-visible heuristic often suppresses the default ring
+// for script-driven focus that follows a mouse click — so we style plain
+// :focus rather than relying on :focus-visible.
+.berrypress-modal {
+
+  a:focus,
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus,
+  [tabindex]:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px $primary-color;
+    }
+  }
+
 @media (max-width: 481px) {
   .berrypress-modal-xl {
     max-width: 98%;

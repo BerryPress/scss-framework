@@ -597,6 +597,31 @@
       }
     }
 
+  .ninjalytics-sidebar-close {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    color: $text-secondary;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    i {
+      font-size: 16px;
+      }
+
+    &:hover {
+      background-color: $gray-1;
+      color: $text-primary;
+      }
+    }
+
   .ninjalytics-sidebar-title {
     margin: 0 0 4px;
     font-size: 14px;
@@ -672,6 +697,10 @@
       gap             : .4rem;
       font-size       : 11px;
       margin-right    : .2rem;
+
+      span {
+        padding-top: 4px;
+        }
       }
 
     @media (max-width: 480px) {
@@ -687,7 +716,6 @@
 
     .berrypress-btn-icon i,
     .berrypress-icon-expand_more {
-      display: inline-flex;
       transform: rotate(0deg);
       transform-origin: center;
       transition: transform 0.25s ease;
@@ -704,14 +732,22 @@
     box-sizing : border-box;
     opacity    : 0;
     padding    : 0 5px 0 2px;
+    // visibility (not just opacity/overflow) is what takes collapsed fields
+    // out of the Tab order — without it, keyboard focus can still land on
+    // inputs the user can't see. Delay the switch to hidden until after the
+    // collapse animation finishes so the fade-out isn't cut short.
+    visibility : hidden;
     transition : padding 0.3s ease,
-    opacity 0.3s ease;
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
     }
 
   .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-body {
     overflow-x: hidden;
     opacity: 1;
     padding: 5px 5px 5px 2px;
+    visibility: visible;
+    transition-delay: 0s;
 
     * {
       box-sizing: border-box;
