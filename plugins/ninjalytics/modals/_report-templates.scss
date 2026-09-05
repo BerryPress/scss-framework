@@ -44,6 +44,10 @@
 
   /* Search */
 
+  .ninjalytics-template-modal-search {
+    padding: 0 2px;
+    }
+
   #ninjalytics-template-search {
     width           : 100%;
     font-size       : 15px;
@@ -243,6 +247,7 @@
 
   .ninjalytics-template-content-wrapper {
     flex : 1 1 auto;
+    padding: 2px;
     }
   }
 

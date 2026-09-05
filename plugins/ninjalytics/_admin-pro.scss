@@ -6,6 +6,8 @@
 
 @use "../../global" as *;
 
+@use "../../base/focus";
+
 @use "components/woo_select";
 @use "components/breadcrumbs";
 @use "components/loading";
@@ -17,6 +19,7 @@
 
 @use "modals/report-templates";
 @use "modals/field-builder";
+@use "modals/import-export";
 
 // Extend/ Overwrite framework
 @use "extend-framework/sidebar";
@@ -42,6 +45,9 @@
 // From framework
 @use "../../components/form/select_woo";
 @use "../../components/form/form_field_textarea";
+@use "../../components/form/form_field_file_upload";
+@use "../../components/dropdown";
+@use "components/kebab-menu";
 @use "../../components/settings_subnav";
 @use "../../components/modal/main" as *;
 @use "../../components/js-tooltips" as *;

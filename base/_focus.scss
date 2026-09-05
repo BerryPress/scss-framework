@@ -20,7 +20,12 @@
   // around a whole region reads as broken rather than "this is focused".
   [tabindex]:not([role="tabpanel"]):focus-visible {
     outline: none;
-    box-shadow: inset 0 0 0 2px $primary-color;
+    box-shadow: 0 0 0 2px $primary-color;
+    }
+
+  a.berrypress-btn-primary:focus-visible,
+  button.berrypress-btn-primary:focus-visible {
+    box-shadow: 0 0 0 2px $text-primary;
     }
 
   }

@@ -44,9 +44,10 @@
 
 // Overlay
 
-body:has(.berrypress-modal.berrypress-active) {
-  overflow: hidden;
-  }
+// disable for now, jumping width issue
+//body:has(.berrypress-modal.berrypress-active) {
+// overflow: hidden;
+//}
 
 body:has(.berrypress-modal.berrypress-active)::before {
   content: "";
