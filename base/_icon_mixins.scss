@@ -1,0 +1,14 @@
+// Mixin-only partial (no CSS of its own) so it can be @use'd from a plugin's own admin.scss
+// without pulling in _material_icons.scss's @font-face/base rules a second time.
+
+// Emits one `i.berrypress-icon-<name>::before { content: "<codepoint>" }` rule per map entry.
+// Call this with a plugin's own icon map for icons that aren't shared across plugins (see
+// plugins/<name>/_admin.scss), instead of hand-writing the ::before rules - one map to edit,
+// not one rule per icon.
+@mixin render-icons($icon-map) {
+  @each $icon, $unicode in $icon-map {
+    i.berrypress-icon-#{$icon}::before {
+      content: "#{$unicode}";
+      }
+    }
+  }

@@ -1,0 +1,209 @@
+// Image Upload for bbPress Pro: css/admin.css
+
+@use "../../global" as *;
+@use "../../base/icon_mixins";
+// Only this plugin and Ninjalytics use sub-tabs/tooltips, so @use here instead of global-admin-page.css.
+@use "../../components/settings_subnav";
+@use "../../components/js-tooltips";
+// Only this plugin's translation table needs styled textareas outside a normal .berrypress-field row.
+@use "../../components/form/form_field_textarea";
+
+// Image Storage sidebar tab icons. Shared icons live in the framework's $icons map instead.
+$bbpuip-icons: (
+        folder: "\e2c7",
+        image: "\e251",
+        photo_library: "\e413",
+        cleaning_services: "\f0ff",
+        language: "\e894",
+);
+
+@include icon_mixins.render-icons($bbpuip-icons);
+
+.berrypress_page_hm_bbpuip.berrypress-page {
+
+  .berrypress-header-left img {
+    max-width: 36px;
+  }
+
+  // Image Storage tab: flat sections instead of berrypress-card, like .berrypress-about-section
+  // (pages/_berrypress_page.scss) but with a border between sections and an accented h2.
+  .bbpuip-flat-section {
+    max-width: 640px;
+    padding: 20px 0;
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+    border-bottom: 1px solid $gray-2;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    h2 {
+      // Overrides WP core's h2,h3{margin:1em 0}
+      margin: 0 0 4px;
+      font-size: 16px;
+      font-weight: 600;
+      color: $text-primary;
+    }
+
+    // Checkbox + title + tooltip inline in the heading; section body hidden until checked (admin/limits.php).
+    h2.bbpuip-section-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      label {
+        cursor: pointer;
+      }
+
+      .berrypress-doc-note {
+        font-weight: 400;
+      }
+    }
+
+    // Fixed-width label column so "Label: input" rows line up. :first-child only, so checkbox rows
+    // (whose label is the full option text, after the checkbox) aren't capped and wrapped.
+    .berrypress-field-flex > label:first-child {
+      flex: 0 0 180px;
+      max-width: 180px;
+    }
+  }
+
+  .bbpuip-flat-section.bbpuip-flat-section-translation {
+
+    max-width: 1200px;
+    }
+
+  // Indents a checkbox row under the option it only applies to when enabled.
+  .bbpuip-field-child {
+    padding-left: 28px;
+  }
+
+  // Infinite Uploads partner note (Filesystem engine panel): plain bordered aside, not a
+  // berrypress-notice or berrypress-card.
+  .bbpuip-partner-note {
+    border: 1px solid $gray-2;
+    border-radius: $border-radius;
+    padding: 5px 16px;
+
+    p {
+      margin: 0 0 10px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .bbpuip-section-sub {
+    font-size: 12.5px;
+    color: $text-secondary;
+    margin: 0 0 16px;
+
+    // One PHP ini setting per line (Limits > Upload File Size Limits).
+    code {
+      display: inline-block;
+      margin-top: 4px;
+      background: $gray-1;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+  }
+
+  // Matches the free plugin's .berrypress-coupon (plugins/image-upload-for-bbpress/_admin.scss).
+  .berrypress-coupon {
+    padding: .7rem 1.2rem;
+    border: 1px dashed $gray-3;
+    display: inline-block;
+    border-radius: 8px;
+    margin-bottom: 5px;
+  }
+
+  #bbpuip-storage-engines-admin > div {
+    display: none;
+
+    &.panel-active {
+      display: block;
+    }
+  }
+
+  // Fixed 50/50 split instead of the framework's auto layout, which let long default strings in the
+  // first column crowd out the textarea in the second.
+  #bbpuip-translation-table {
+    table-layout: fixed;
+
+    th,
+    td {
+      width: 50%;
+    }
+
+    td:first-child {
+      word-wrap: break-word;
+      vertical-align: top;
+    }
+
+    // .berrypress-field (on a div wrapping the textarea, not the td itself - setting display:block
+    // directly on a td would pull it out of the table's cell layout and break the fixed column
+    // widths above) borrows the framework's textarea styling (form_field_textarea), but that class
+    // also carries a label+input grid layout from form_fields.scss (global bundle) that doesn't
+    // apply to a lone textarea here - neutralize it back to a plain block.
+    .berrypress-field {
+      display: block;
+      margin-bottom: 0;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 2.5em;
+    }
+  }
+
+  // Indented under the "Enable" checkbox it's conditional on (Limits > Limit Users).
+  #bbpuip-user-limit-roles {
+    padding-left: 24px;
+  }
+
+  // Wraps extra controls for rows needing more than one (.berrypress-field is a strict 2-column
+  // grid). No flex-grow: keeps the following tooltip button right after the field instead of
+  // pushed to the row's far right.
+  .bbpuip-inline-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    // WP core's .small-text (50px) truncates 4-digit pixel values like 1920 (Limit Image Size,
+    // Create Thumbnails); widen it enough for that plus the number spinner arrows.
+    input.small-text {
+      width: 80px;
+    }
+  }
+
+  // Statistics
+
+  .hm_bbpuip-table-statistics  {
+    max-width: 420px;
+
+    .berrypress-table {
+      text-align: left;
+      border-spacing: 0;
+      }
+    
+    th {
+      padding: 10px 15px;
+      }
+    tbody tr:not(:last-child) th {
+      border-bottom: 1px solid $gray-1;
+      }
+    }
+
+  // Extend framework
+  .berrypress-mt-2 {
+    margin-top: 10px;
+    }
+
+  .berrypress-mt-3 {
+    margin-top: 15px;
+    }
+
+}

@@ -6,7 +6,6 @@
 @use "../../layout/flex" as *;
 @use "../../components/form/select_woo";
 @use "../../components/form/select_woo_multiple_small";
-@use "../../components/review-notice-stars";
 @use "../../base/utilities";
 
 // Settings
@@ -184,29 +183,6 @@
 
 .berrypress-sidebar .berrypress-upgrade-box {
   display: none;
-  }
-
-// Settings
-
-// Roles
-
-.berrypres-field-checkbox-group {
-
-  .berrypress-field-label {
-    font-size: 14px;
-    color: #131523;
-    margin-top: 5px;
-    }
-
-  ul {
-    margin-top : 0;
-    max-height: 200px;
-    max-width: 300px;
-    border: 1px solid $gray-2;
-    border-radius: 5px;
-    padding: 10px;
-    overflow-y: auto;
-    }
   }
 
 // Filters

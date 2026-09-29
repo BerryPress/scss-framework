@@ -3,6 +3,8 @@ This file includes a modified icon font originally licensed under the Apache Lic
 Modified by BerryPress - unused icons removed.”
 */
 
+@use "icon_mixins";
+
 @font-face {
   font-family: "Material Symbols Rounded BerryPress";
   font-style: normal;
@@ -34,6 +36,8 @@ $icons: (
         key_vertical: "\E73C",
         check_circle: "\E86C",
         sync_alt: "\EA18",
+        external-link: "\E89E",
+        info: "\E88E",
 
         // APC Plugin
         play_arrow: "\E037",
@@ -46,8 +50,6 @@ $icons: (
         add: "\e145",
 
         // Ninjalytics
-        //about
-        info: "\e88e",
         //about pro
         pro: "\e65f",
 
@@ -81,8 +83,4 @@ $icons: (
   width: auto;
   }
 
-@each $icon, $unicode in $icons {
-  i.berrypress-icon-#{$icon}::before {
-    content: "#{$unicode}";
-    }
-  }
+@include icon_mixins.render-icons($icons);

@@ -2,7 +2,7 @@
 @use "../../global" as *;
 @use "../../components/buttons/index" as buttons;
 @use "./components/status";
-@use "./components/pro-features";
+@use "../../components/review-notice-stars";
 @use "../../components/buttons/btn-disabled";
 
 // Extend/ Overwrite framework
@@ -334,6 +334,10 @@
 
 // Main table: link
 
+table.berrypress_page_live-carts-for-woocommerce .column-cart_id {
+  vertical-align: middle;
+  border-bottom: 1px solid #e6e9f4;
+  }
 table.berrypress_page_live-carts-for-woocommerce .column-cart_id a {
   font-weight: 500;
   text-decoration: underline;
@@ -399,7 +403,7 @@ table.berrypress_page_live-carts-for-woocommerce {
   display: none !important;
 }
 
-.berrypres-field-checkbox-group {
+.berrypress-field-checkbox-group {
   .berrypress-field-label {
     font-size: 14px;
     color: $text-primary;
