@@ -24,6 +24,7 @@
     }
 
   .berrypress-upgrade-box-list {
+    text-align: left;
     i {
       vertical-align: middle;
       margin-right: 5px;
@@ -32,7 +33,10 @@
     }
 
   .berrypress-coupon {
-    padding: .5rem 1rem;
+    padding: .7rem 1.2rem;
+    border: 1px dashed $gray-3;
+    display: inline-block;
+    border-radius: 8px;
     }
 
   }

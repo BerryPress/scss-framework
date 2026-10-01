@@ -1,6 +1,6 @@
 /*!
  * BerryPress SCSS Framework
- * Copyright (c) 2025 BerryPress
+ * Copyright (c) 2026 BerryPress
  * Source code: https://github.com/BerryPress/scss-framework
  * License: https://github.com/BerryPress/scss-framework/blob/main/LICENSE
  */
@@ -9,6 +9,10 @@
 
 @use "base/material_icons";
 @use "base/menu_item";
+// Only base/error/info here: these can render on any admin_notices hook, on any wp-admin screen
+// (e.g. Updater.php's "not activated" notice). Success/warning are only ever echoed inside a
+// plugin's own settings page body, so they belong in global-admin-page.scss instead - no need to
+// ship them to every admin page on every screen.
 @use "components/notices/base";
 @use "components/notices/error";
 @use "components/notices/info";

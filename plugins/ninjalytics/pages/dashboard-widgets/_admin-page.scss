@@ -1,0 +1,362 @@
+@use "../../../../global" as *;
+
+// -----------------------------------------------------------------------------
+// Local tokens & shared placeholder (this page only)
+// -----------------------------------------------------------------------------
+
+$list-row-gap: 0.75rem;
+$list-scroll-min: 450px;
+
+$mq-toolbar: 782px;
+$mq-narrow: 600px;
+
+%dw-single-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// -----------------------------------------------------------------------------
+// Ninjalytics — Settings › Dashboard widgets (`#ninjalytics-dashboard-widgets-page`)
+// -----------------------------------------------------------------------------
+
+#ninjalytics-dashboard-widgets-page {
+
+  // --- Form width ---
+
+  #ninjalytics-dashboard-widgets-form {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 960px;
+    min-width: 0;
+  }
+
+  // --- Configured widgets list (horizontal scroll + sheet) ---
+
+  // `.ninjalytics-dw-list-sheet` owns min width so header + list stay aligned; scroll clips on `.ninjalytics-dw-list-scroll`.
+  .ninjalytics-dw-list-scroll {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid $gray-2;
+    border-radius: 4px;
+    background: $background-color;
+  }
+
+  .ninjalytics-dw-list-sheet {
+    box-sizing: border-box;
+    width: max(100%, #{$list-scroll-min});
+    min-width: $list-scroll-min;
+  }
+
+  .ninjalytics-dw-list-sheet > #ninjalytics-dashboard-widgets-list {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    list-style: none;
+    border: none;
+    background: transparent;
+  }
+
+  .ninjalytics-dw-list-header {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: $list-row-gap;
+    padding: 0.6rem 0.75rem;
+    border: none;
+    border-bottom: 1px solid $gray-2;
+    border-radius: 0;
+    background: $gray-1;
+    font-size: 11px;
+    font-weight: 600;
+    color: $text-secondary;
+    text-transform: uppercase;
+  }
+
+  .ninjalytics-dw-col-title,
+  .ninjalytics-dw-row-title {
+    flex: 1 1 22%;
+    min-width: 0;
+  }
+
+  .ninjalytics-dw-row-title {
+    @extend %dw-single-line;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .ninjalytics-dw-col-report,
+  .ninjalytics-dw-row-report {
+    @extend %dw-single-line;
+    flex: 1 1 32%;
+    min-width: 0;
+  }
+
+  .ninjalytics-dw-col-display,
+  .ninjalytics-dw-row-display {
+    @extend %dw-single-line;
+    flex: 0 0 3.75rem;
+    min-width: 0;
+  }
+
+  .ninjalytics-dw-row-report,
+  .ninjalytics-dw-row-display {
+    font-size: 14px;
+    color: $text-secondary;
+  }
+
+  .ninjalytics-dw-col-actions,
+  .ninjalytics-dw-row-actions {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    min-width: 4.5rem;
+    text-align: right;
+  }
+
+  // List row: `li` is block-level; `.ninjalytics-dw-row-main` is flex (edit form appended as sibling = next row without flex hacks)
+  .ninjalytics-dw-widget-item {
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid $gray-2;
+    background: #fff;
+    // WP admin list margins on `li`; reset so row spacing comes from padding/borders only
+    margin-bottom: 0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.ninjalytics-dw-editing {
+      padding: 0.75rem;
+
+      .ninjalytics-dw-row-report,
+      .ninjalytics-dw-row-display,
+      .ninjalytics-dw-edit {
+        display: none;
+      }
+
+      .ninjalytics-dw-row-title {
+        flex: 1 1 auto;
+      }
+
+      .ninjalytics-dw-row-actions {
+        margin-left: auto;
+      }
+    }
+  }
+
+  .ninjalytics-dw-row-main {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: $list-row-gap;
+    min-width: 0;
+  }
+
+  .ninjalytics-dw-edit,
+  .ninjalytics-dw-remove {
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  // --- Add / inline-edit field grid (label | control) ---
+
+  // Label | control columns — shared by “Add widget” + inline edit (intrinsic width, not stretched)
+  .ninjalytics-dw-form-grid {
+    display: grid;
+    align-items: center;
+    box-sizing: border-box;
+    width: fit-content;
+    max-width: 100%;
+    min-width: 0;
+    gap: 10px;
+    grid-template-columns: max-content minmax(0, 20rem);
+
+    > .berrypress-field,
+    > .ninjalytics-dw-edit-row {
+      display: contents;
+    }
+
+    > .berrypress-field label,
+    > .ninjalytics-dw-edit-row label {
+      display: block;
+      grid-column: 1;
+      font-size: 13px;
+    }
+
+    > .berrypress-field select,
+    > .berrypress-field input[type="text"],
+    > .ninjalytics-dw-edit-row select,
+    > .ninjalytics-dw-edit-row input[type="text"] {
+      grid-column: 2;
+      max-width: 100%;
+    }
+
+    .ninjalytics-field-optional {
+      font-weight: normal;
+      color: $text-secondary;
+    }
+
+    // Full-width row below label|field pairs (both grid tracks)
+
+    > .ninjalytics-dw-actions,
+    > .ninjalytics-dw-edit-actions {
+      grid-column: 1 / -1;
+      grid-row: auto;
+      display: flex;
+      width: 100%;
+      min-width: 0;
+      gap: 0.5rem;
+      padding-top: 0.9rem;
+      justify-content: flex-end;
+    }
+
+    > .ninjalytics-dw-edit-actions {
+      margin-top: 1rem;
+      border-top: 1px solid $gray-1;
+    }
+  }
+
+  // “Add widget” — block wrapper keeps `.ninjalytics-dw-form-grid` on its own row (avoids WP / flex quirks)
+  .ninjalytics-dw-add-form-fields {
+    display: block;
+    width: 100%;
+
+    > .ninjalytics-dw-form-grid {
+      width: fit-content;
+      max-width: 100%;
+    }
+  }
+
+  // Inline-edit panel only (border + spacing; `.ninjalytics-dw-form-grid` on same element from JS)
+  .ninjalytics-dw-edit-form {
+    margin-top: .8rem;
+    padding: 1rem;
+    border: 1px solid $gray-2;
+    border-radius: 5px;
+  }
+
+  .ninjalytics-dw-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    box-sizing: border-box;
+    gap: 0.5rem 1rem;
+    width: 100%;
+    min-width: 0;
+
+    .berrypress-btn {
+      box-sizing: border-box;
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    .berrypress-btn-primary {
+      flex-shrink: 1;
+      margin-left: auto;
+    }
+  }
+
+  // --- Narrow viewports: toolbar + form grid ---
+
+  @media (max-width: $mq-toolbar) {
+    .ninjalytics-dw-actions {
+      flex-direction: column;
+
+      .berrypress-btn {
+        flex-shrink: 0;
+        width: 100%;
+        margin-left: 0 !important;
+      }
+    }
+  }
+
+  @media (max-width: $mq-narrow) {
+    .ninjalytics-dw-form-grid {
+      width: 100%;
+      grid-template-columns: 1fr;
+
+      > .berrypress-field label,
+      > .ninjalytics-dw-edit-row label,
+      > .berrypress-field select,
+      > .berrypress-field input[type="text"],
+      > .ninjalytics-dw-edit-row select,
+      > .ninjalytics-dw-edit-row input[type="text"] {
+        grid-column: 1;
+      }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// “Add widget” accordion — `#ninjalytics-dw-add-form-wrap` (inside settings page in DOM; root-level rules here)
+// -----------------------------------------------------------------------------
+
+#ninjalytics-dw-add-form-wrap {
+  &:not(.berrypress-active) #ninjalytics-dw-add-form-fields {
+    display: none;
+  }
+
+  &.berrypress-active #ninjalytics-dw-add-form-fields {
+    display: block;
+  }
+
+  &:not(.berrypress-active) {
+    padding: 0.5rem;
+    border-radius: 5px;
+    background:
+      repeating-linear-gradient(to right, $gray-2 0 6px, transparent 6px 10px) top / 100% 1px no-repeat,
+      repeating-linear-gradient(to right, $gray-2 0 6px, transparent 6px 10px) bottom / 100% 1px no-repeat,
+      repeating-linear-gradient(to bottom, $gray-2 0 6px, transparent 6px 10px) left / 1px 100% no-repeat,
+      repeating-linear-gradient(to bottom, $gray-2 0 6px, transparent 6px 10px) right / 1px 100% no-repeat;
+
+    #ninjalytics-dw-add-form-heading {
+      justify-content: center;
+    }
+
+    i.berrypress-icon-close {
+      display: none;
+    }
+  }
+
+  &.berrypress-active {
+    max-width: 480px;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid $gray-2;
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 0;
+    margin-bottom: 0;
+    cursor: pointer;
+    user-select: none;
+
+    i.berrypress-icon-add {
+      color: $primary-color;
+    }
+
+    i.berrypress-icon-close {
+      margin-left: auto;
+      color: $text-secondary;
+      font-size: 16px;
+    }
+
+    i {
+      margin-top: 2px;
+    }
+  }
+}

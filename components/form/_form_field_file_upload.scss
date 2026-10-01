@@ -1,18 +1,24 @@
 @use "../../global" as *;
+@use "../buttons/index" as buttons;
 
-.berrypress-page .berrypress-file-upload {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.berrypress-page input[type=file].berrypress-file-upload-input {
+  font-size: 14px;
+  color: $text-primary;
   font-family: inherit;
+  border-radius: 3px;
+  padding: 2px;
 
 
-  input[type="file"] {
-    display: none;
+  &::file-selector-button {
+    color: #131523;
+    @include buttons.berrypress-btn;
+    @include buttons.berrypress-btn-secondary;
+    margin-right: 1rem;
+    font-family: inherit;
     }
 
-  .berrypress-file-name {
-    font-size: 14px;
-    color: $text-primary;
+  &:focus-visible {
+    box-shadow: 0 0 0 2px $primary-color;
     }
+
   }

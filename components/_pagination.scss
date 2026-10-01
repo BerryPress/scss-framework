@@ -14,15 +14,24 @@
   input[type=text] {
     min-width  : 50px;
     min-height : 26px;
+    height: unset;
+    line-height: 24px;
     }
 
   .displaying-num {
     color : $gray-5;
     }
 
+  .one-page .paging-input {
+    display: none;
+  }
+
   .paging-input {
     padding-left  : 5px;
     padding-right : 5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
     }
 
   .pagination-links {
@@ -30,6 +39,7 @@
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
+    gap: 2px;
 
 
     // Shared style for all arrow icons: hide original glyph, inject Material Symbol
@@ -70,11 +80,12 @@
       padding: 0;
       align-items: center;
       justify-content: center;
+      min-width: 26px;
+      min-height: 26px;
 
       &:disabled {
         border        : 1px solid transparent;
         }
-
 
       &:hover {
         background-color : $gray-1
@@ -115,3 +126,25 @@
     }
 
   }
+
+@media screen and (max-width: 782px) {
+  .berrypress-page .tablenav .tablenav-pages {
+    margin-right: 0;
+    display: block;
+
+    .pagination-links {
+      font-size: 14px;
+    }
+
+    .pagination-links .button {
+      min-width: 30px;
+      min-height: 30px;
+    }
+
+    .tablenav-paging-text {
+        padding-top: 0;
+    }
+
+  }
+
+}

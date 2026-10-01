@@ -17,9 +17,30 @@
     }
   }
 
+// Row layout modifiers for .berrypress-field, for plugins that need more than the plain
+// label/control grid (e.g. a label followed by several inline controls).
+.berrypress-field.berrypress-field-flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  input[type="text"],
+  select {
+    flex-grow: 1;
+    }
+  }
+
+.berrypress-field.berrypress-field-align-center {
+  align-items: center;
+  }
+
+.berrypress-field.berrypress-field-textarea textarea {
+  grid-column: 1 / -1;
+  }
+
 .berrypress-page {
 
   select,
+  p.search-box input[type=search],
   input[type="search"],
   input[type="email"],
   input[type="number"],
@@ -27,6 +48,7 @@
   input[type="time"],
   input[type="text"] {
     height: 30px;
+    min-height: unset;
     padding: 0 12px;
     line-height: 28px;
     border: 1px solid $gray-3;

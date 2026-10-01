@@ -1,0 +1,16 @@
+@use "../../../global" as *;
+
+#ninjalytics-date-range-dropdown .ninjalytics-date-range-tabs label[for="report_time_mode_dynamic"] {
+  background-color: $gray-1;
+  opacity: .7;
+  cursor: not-allowed;
+
+  .ninjalytics-pro-badge {
+    margin-left: 3px;
+    }
+  
+  &:hover {
+    background-color: $gray-1;
+    color: $gray-6;
+    }
+  }

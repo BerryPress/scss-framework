@@ -21,6 +21,10 @@
     font-size : 11px !important;
     }
 
+  .berrypress-field label:has(.ninjalytics-doc-note) {
+    text-wrap: pretty;
+    }
+
   a.berrypress-doc-note.ninjalytics-doc-note-text {
     display: inline-flex;
     gap: 2px;

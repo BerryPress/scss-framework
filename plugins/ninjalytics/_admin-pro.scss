@@ -6,6 +6,8 @@
 
 @use "../../global" as *;
 
+@use "../../base/focus";
+
 @use "components/woo_select";
 @use "components/breadcrumbs";
 @use "components/loading";
@@ -17,6 +19,7 @@
 
 @use "modals/report-templates";
 @use "modals/field-builder";
+@use "modals/import-export";
 
 // Extend/ Overwrite framework
 @use "extend-framework/sidebar";
@@ -25,23 +28,37 @@
 @use "extend-framework/spacing";
 
 @use "pages/reports";
-@use "pages/report-settings";
+@use "pages/report-settings";   // Report UI (toolbar, sidebar tabs, toggles)
+@use "pages/report-layout";     // Report editor layout (flex chain, scroll)
+@use "components/settings-split"; // Split.js row + gutter (>= 1101px)
+//@use "pages/report-sidebar-ai"; // AI tab content
+@use "pages/report-sidebar-schedule"; // Schedule tab (SER upsell)
+@use "pages/report-sidebar-debug"; // Debug tab
+@use "pages/report-sidebar-mobile-app"; // Mobile App tab
 @use "pages/new-report";
 @use "pages/settings";
 
 @use "../../pages/addons_page";
 @use "pages/addons-page";
+@use "pages/dashboard-widgets/admin-page";
 
 // From framework
 @use "../../components/form/select_woo";
 @use "../../components/form/form_field_textarea";
+@use "../../components/form/form_field_file_upload";
+@use "../../components/dropdown";
+@use "components/kebab-menu";
+@use "../../components/settings_subnav";
 @use "../../components/modal/main" as *;
 @use "../../components/js-tooltips" as *;
 
-@use "components/notices/success";
-@use "components/notices/info";
+@use "../../components/notices/success";
+@use "../../components/notices/info";
 
 @use "../../base/utilities" as *;
+
+// Notes styles
+@use "notes" as *;
 
 // Pro only
 

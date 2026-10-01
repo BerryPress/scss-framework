@@ -5,6 +5,7 @@
 @use "../../global" as *;
 @use "../../layout/flex" as *;
 @use "../../components/form/select_woo";
+@use "../../components/form/select_woo_multiple_small";
 @use "../../base/utilities";
 
 // Settings
@@ -40,7 +41,11 @@
   overflow      : hidden;
   border        : 1px solid $gray-2;
   border-radius : 8px;
-  margin        : 4em 0 1em;
+  margin        : 1.5em 0 1em;
+
+  .phplugins-lc-detail-layout & {
+    margin-top : 0;
+    }
 
   .phplugins-lc-edit-cart-table {
     width           : 100%;
@@ -151,6 +156,10 @@
     }
   }
 
+.phplugins-lc-detail-layout .phplugins-lc-table-1col {
+  margin-top : 0;
+  }
+
 // Edit Cart: Woo Select
 
 @media (min-width: 1200px) {
@@ -242,6 +251,10 @@
       }
     }
 
+  #berrypress-lc-filter-ip {
+    min-height: 32px;
+    }
+
   input[type="number"] {
     max-width: 90px;
     min-height: 32px;
@@ -258,6 +271,10 @@
     display: flex;
     align-items: flex-end;
     gap: .2rem;
+
+    .berrypress-btn {
+      min-height: 26px;
+      }
     }
   }
 
@@ -335,4 +352,25 @@
     border-right: 1px solid $gray-2;
     padding-right: 0.5rem;
     }
+  }
+
+.berrypress-field > .description  {
+  grid-column: 1 / -1;
+  }
+
+.berrypress-field.berrypress-field-align-center {
+  align-items: center;
+  }
+
+.berrypress-d-block {
+  display: block;
+  }
+
+.berrypress-page .phplugins-lc-coupons-field .berrypress-multiple-dropdown-container .select2-container {
+  max-width: max-content;
+  width: 100%;
+  }
+
+.berrypress-page .phplugins-lc-coupons-field  .berrypress-multiple-dropdown-container.berrypress-multiple-dropdown-container-sm .select2-container .select2-selection--multiple .select2-selection__rendered .select2-search.select2-search--inline {
+  min-width: 2em;
   }

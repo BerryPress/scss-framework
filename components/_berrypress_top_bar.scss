@@ -3,6 +3,7 @@
 .berrypress-page .berrypress-top-bar {
     text-align: center;
     background-color: $gray-2;
+    padding: 0 .5rem;
 
     h2 {
       font-size: 13px;
@@ -18,4 +19,34 @@
         }
       }
 
+  }
+
+.berrypress-page .berrypress-settings-container .berrypress-top-bar {
+  position: relative;
+  box-sizing: border-box;
+  padding-right: 40px;
+  padding-left: 40px;
+  }
+
+.berrypress-page .berrypress-top-bar-dismiss {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  padding: 6px;
+  color: $gray-6;
+  line-height: 1;
+  transform: translateY(-50%);
+
+  &:hover,
+  &:focus {
+    color: $text-primary;
+    }
+
+  i {
+    font-size: 18px;
+    }
+  }
+
+.berrypress-page .berrypress-top-bar-dismissed .berrypress-top-bar {
+  display: none;
   }

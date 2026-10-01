@@ -1,8 +1,34 @@
 ///admin.php?page=ninjalytics&preset=X
 
 @use "../../../global" as *;
+@use "report-breakpoints" as bp;
 
 // Toolbar
+
+#ninjalytics-display-primary-toolbar {
+  display        : flex;
+  flex-wrap: wrap;
+  flex-direction : row;
+  gap            : .2rem;
+  align-items: center;
+  padding: 0 0 0.8rem;
+  flex-shrink: 0;
+  background: $background-color;
+  margin-bottom: 0;
+
+  #ninjalytics-breadcrumbs {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    scrollbar-width: thin;
+    }
+
+  .ninjalytics-toolbar-buttons {
+    flex-shrink: 0;
+    }
+  }
 
 #ninjalytics-display-toolbar {
   display        : flex;
@@ -11,7 +37,20 @@
   gap            : .5rem;
   margin-bottom  : 2rem;
   flex-wrap      : wrap;
+  padding-top: .8rem;
   }
+
+@media (min-width: bp.$nj-report-split-min) {
+  body.ninjalytics-report-view #ninjalytics-settings-settings .ninjalytics-settings-data #ninjalytics-display-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 15;
+    background-color: $background-color;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid $gray-2;
+  }
+}
 
 #ninjalytyics-display-mode {
   display        : flex;
@@ -88,19 +127,18 @@
 // - Layout
 
 #ninjalytics-settings-settings {
-  display               : grid;
-  grid-template-columns : 2fr 1fr;
-  gap                   : 32px;
-  align-items           : start;
+  border-top: 1px solid $gray-2!important;
+  width: calc(100% + 20px);
+  margin-right: -20px;
 
   .ninjalytics-settings-panel {
     width          : 100%;
-    max-width      : 480px;
-    min-width      : 320px;
-    justify-self   : end;
     box-sizing     : border-box;
     container-type : inline-size;
     container-name : ninjalytics-settings-panel;
+    display        : flex;
+    flex-direction : column;
+    align-self     : stretch;
     }
 
   .ninjalytics-settings-data {
@@ -110,26 +148,12 @@
 
   }
 
-@media (min-width : 1550px) {
-  #ninjalytics-settings-settings {
-    grid-template-columns : minmax(0, 1fr) auto;
-    }
-  }
-
+// Stacked layout on narrow viewports (see _settings-split.scss).
 @media (max-width : 1100px) {
-  #ninjalytics-settings-settings {
-    grid-template-columns : 1fr;
-    }
 
   #ags-psr-display-toolbar {
     display        : flex;
     flex-direction : column-reverse;
-    }
-  #ninjalytics-settings-settings > .ninjalytics-settings-panel {
-    justify-self : stretch;
-    max-width    : none;
-    min-width    : 0;
-    padding-top  : 20px;
     }
   }
 
@@ -138,6 +162,7 @@
 #ninjalytics_output_container {
   position : relative;
   min-height : 300px;
+  padding-right: 1rem;
   }
 
 // Table
@@ -149,6 +174,120 @@
   }
 
 #ninjalytics_output_container {
+
+  .berrypress-link {
+    font-size: 13px;
+    }
+
+  img.ninjalytics-product-image-thumb {
+    display: inline-block;
+    vertical-align: middle;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    object-fit: cover;
+    }
+
+  // Status badges in preview table (WooCommerce-like styles)
+  .ninjalytics-fulfillment-status,
+  .ninjalytics-order-status {
+    display: inline-flex;
+    line-height: 2.5em;
+    color: #454545;
+    background: #e5e5e5;
+    border-radius: 4px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin: -0.25em 0;
+    cursor: inherit !important;
+    white-space: nowrap;
+    max-width: 100%;
+    padding: 0 0.85em;
+    font-size: 11px;
+    }
+
+  .ninjalytics-fulfillment-status.ninjalytics-status-completed,
+  .ninjalytics-order-status.ninjalytics-status-completed {
+    background: #c8d7e1;
+    color: #003d66;
+    }
+
+  .ninjalytics-fulfillment-status.ninjalytics-status-on-hold,
+  .ninjalytics-order-status.ninjalytics-status-on-hold {
+    background: #f8dda7;
+    color: #573b00;
+    }
+
+  .ninjalytics-fulfillment-status.ninjalytics-status-failed,
+  .ninjalytics-order-status.ninjalytics-status-failed {
+    background: #eba3a3;
+    color: #570000;
+    }
+
+  .ninjalytics-fulfillment-status.ninjalytics-status-processing,
+  .ninjalytics-order-status.ninjalytics-status-processing {
+    background: #c6e1c6;
+    color: #2c4700;
+    }
+
+  .ninjalytics-fulfillment-status.ninjalytics-status-trash,
+  .ninjalytics-order-status.ninjalytics-status-trash {
+    background: #eba3a3;
+    color: #550202;
+    }
+
+  // Field-based width control for preview table columns
+  th[data-ninjalytics-field="builtin::product_image"],
+  td[data-ninjalytics-field="builtin::product_image"] {
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+    text-align: center;
+    }
+
+  th[data-ninjalytics-field="builtin::product_image"] {
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  th[data-ninjalytics-field="builtin::product_image"] .dt-column-title {
+    display: none;
+  }
+
+  td[data-ninjalytics-field="builtin::product_image"] {
+    white-space: nowrap;
+  }
+
+  td[data-ninjalytics-field="builtin::product_image"] img {
+    display: inline-block;
+    vertical-align: middle;
+    }
+
+  // IDs are identifiers (often links), not numeric measures.
+  th[data-ninjalytics-field="builtin::product_id"],
+  td[data-ninjalytics-field="builtin::product_id"] {
+    text-align: left !important;
+    }
+
+  // Date-only fields should stay on one line.
+  td[data-ninjalytics-field="builtin::order_date_only"],
+  td[data-ninjalytics-field="builtin::order_paid_date_only"],
+  td[data-ninjalytics-field="builtin::order_completed_date_only"] {
+    white-space: nowrap;
+    }
+
+  // Optional: settings → highlight negatives in preview (JS adds class).
+  tbody td.ninjalytics-preview-negative-value,
+  tfoot td.ninjalytics-preview-negative-value {
+    color            : #b32d2e;
+    font-weight      : 500;
+    }
+
+  tbody td.ninjalytics-preview-negative-value .berrypress-link,
+  tfoot td.ninjalytics-preview-negative-value .berrypress-link {
+    color           : inherit;
+    text-decoration-thickness : 1px;
+    }
+
   input[type=search] {
     height        : 30px;
     padding       : 0 24px 0 12px;
@@ -274,7 +413,82 @@
   canvas {
     display : none !important;
     }
+  #ninjalytics-chart-duplicate-series {
+    display: none;
+    }
   }
+
+// When preview wrap is off: forbid line breaks everywhere WordPress/DataTables might re-enable wrapping.
+// Responsive "inline + collapsed" uses list rows (dtr-details); plain nowrap on td is not enough — use flex + scroll.
+#ninjalytics_output_container.ninjalytics-preview-nowrap {
+  // Omit tr.child cells here so Responsive detail rows can scroll (flex rows + overflow-x).
+  table.dataTable > thead > tr > th,
+  table.dataTable > tbody > tr:not(.child) > td,
+  table.dataTable > tfoot > tr > td {
+    white-space : nowrap !important;
+    word-break  : normal !important;
+    overflow-wrap : normal !important;
+  }
+
+  table.dataTable th[data-ninjalytics-field="builtin::product_image"] {
+    white-space : nowrap !important;
+  }
+
+  table.dataTable .dt-column-title,
+  table.dataTable tbody tr:not(.child) td .berrypress-link {
+    white-space : inherit !important;
+    word-break  : normal !important;
+    overflow-wrap : normal !important;
+  }
+
+  // Child/detail row — block list + nowrap value lines (avoid title/value stacking from inline-block).
+  table.dataTable > tbody > tr.child > td {
+    max-width     : 100%;
+    overflow-x    : auto;
+    box-sizing    : border-box;
+    vertical-align : top;
+    }
+
+  table.dataTable > tbody > tr.child ul.dtr-details {
+    display    : block !important;
+    width      : 100%;
+    max-width  : 100%;
+    box-sizing : border-box;
+    }
+
+  table.dataTable > tbody > tr.child ul.dtr-details > li {
+    display     : flex !important;
+    flex-wrap   : nowrap !important;
+    align-items : center;
+    gap         : .35em;
+    min-width   : 0;
+    overflow-x  : auto;
+    overflow-y  : hidden;
+    white-space : nowrap !important;
+    word-break  : normal !important;
+    }
+
+  table.dataTable > tbody > tr.child span.dtr-title {
+    flex-shrink : 0;
+    white-space : nowrap !important;
+    word-break  : normal !important;
+    }
+
+  table.dataTable > tbody > tr.child span.dtr-data {
+    flex-shrink : 0;
+    white-space : nowrap !important;
+    word-break  : normal !important;
+    max-width     : none;
+    }
+
+  // Rich cell content moved into detail row (listHiddenNodes): keep fragments on one baseline row.
+  table.dataTable > tbody > tr.child span.dtr-data .berrypress-link,
+  table.dataTable > tbody > tr.child span.dtr-data .order-status {
+    flex-shrink : 0;
+    white-space : nowrap !important;
+    word-break  : normal !important;
+    }
+}
 
 #ninjalytics_output_container #hm_psr_chart {
   max-height: 80vh;
@@ -298,108 +512,271 @@
   height: 100%;
   }
 
-// Settings: Right
+// Settings: Right (layout: _report-layout.scss)
 
-// - Toggles
-#ninjalytics-settings {
+#ninjalytics-report-sidebar-tabs {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  gap: 8px;
+  margin: 0;
+  padding: .4rem;
+  background-color: $gray-1;
+  border-left: 1px solid $gray-2;
+  box-sizing: border-box;
 
-  font-size : 13px;
+  .ninjalytics-tab-line {
+      width: 100%;
+      border-top: 1px solid $gray-2;
 
+    @media (min-height: 1000px) {
+      margin-top: 1vh;
+      margin-bottom: 1vh;
+      }
+    }
+
+  .ninjalytics-report-sidebar-tab {
+    flex: 0 0 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 5px 5px 7px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: $text-secondary;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+
+    i {
+      font-size: 18px;
+      font-weight: normal;
+      }
+    &:hover {
+      color: $primary-color;
+      background-color: rgba($primary-color, 0.06);
+      border: 1px solid $gray-2;
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px rgba($primary-color, 0.35);
+    }
+
+    &.ninjalytics-report-sidebar-tab-active,
+    &[aria-selected="true"] {
+      color: $primary-color;
+      border: 1px solid $gray-2;
+      border-bottom-color: $primary-color;
+      font-weight: 600;
+      background: #fff;
+    }
+  }
+}
+
+#ninjalytics-report-sidebar {
+  font-size: 13px;
+
+  .ninjalytics-sidebar-header {
+    grid-row: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 14px 12px;
+    border-bottom: 1px solid $gray-2;
+    background: $background-color;
+
+    &.ninjalytics-sidebar-header-no-border {
+      border-bottom: unset;
+      }
+    }
+
+  .ninjalytics-sidebar-close {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    color: $text-secondary;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    i {
+      font-size: 16px;
+      }
+
+    &:hover {
+      background-color: $gray-1;
+      color: $text-primary;
+      }
+    }
+
+  .ninjalytics-sidebar-title {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: $text-primary;
+    }
+
+  .ninjalytics-sidebar-subtitle {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: $text-secondary;
+    }
+
+  .ninjalytics-sidebar-body {
+    padding: 1rem;
+
+    }
   .ninjalytics-settings-toggle {
-    border        : 1px solid $gray-2;
-    margin-bottom : 10px;
-    border-radius : 10px;
+    //border        : 1px solid $gray-2;
+    //border-radius : 10px;
+    border-bottom : 1px solid $gray-2;
+    margin-left: 1rem;
+    margin-right: .7rem;
+
+    // Grid steruje wysokością body: wiersz 1 = tytuł (auto),
+    // wiersz 2 = body (0fr zwinięte -> 1fr rozwinięte). Animacja
+    // grid-template-rows daje płynne przejście do realnej wysokości,
+    // bez magicznego max-height.
+    display: grid;
+    grid-template-rows: min-content 0fr;
+    transition: grid-template-rows 0.3s ease;
+
+    &.ninjalytics-active {
+      grid-template-rows: min-content 1fr;
+    }
     }
 
   .ninjalytics-section-title {
     cursor          : pointer;
     margin          : 0;
-    padding         : 0 10px 0 0;
+    padding         : 0;
     display         : flex;
     flex-wrap       : wrap;
     justify-content : space-between;
     align-items     : center;
 
     h3 {
-      padding   : 15px;
+      padding   : 15px 5px 15px 0;
       margin    : 0;
       font-size : 14px;
       flex-grow : 1;
+      font-weight: bold;
+
+      i {
+        font-weight: normal;
+        font-size: 18px;
+        color: $gray-5;
+        margin-right: 5px;
+        vertical-align: middle;
+        }
       }
 
     label {
-      visibility   : hidden;
-      opacity      : 0;
-      align-items  : center;
-      font-weight  : normal;
-      transition   : all ease-in 0.2s;
-      display      : flex;
-      gap          : .4rem;
-      font-size    : 13px;
-      margin-right : .2rem;
+      visibility      : hidden;
+      opacity         : 0;
+      pointer-events  : none;
+      align-items     : center;
+      font-weight     : normal;
+      transition      : all ease-in 0.2s;
+      display         : flex;
+      gap             : .4rem;
+      font-size       : 11px;
+      margin-right    : .2rem;
+
+      span {
+        padding-top: 4px;
+        }
       }
+
+    @media (max-width: 480px) {
+    label span {
+        // Show only Adv
+        max-width: 19px;
+        text-overflow: clip;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      }
+
+    .berrypress-btn-icon i,
+    .berrypress-icon-expand_more {
+      transform: rotate(0deg);
+      transform-origin: center;
+      transition: transform 0.25s ease;
+    }
+    }
+
+  // Body to drugi wiersz grida (patrz .ninjalytics-settings-toggle).
+  // min-height:0 pozwala wierszowi 0fr zwinąć się do zera, overflow:hidden
+  // przycina zawartość. Padding pionowy zerujemy w stanie zwiniętym, żeby
+  // nie zostawała resztkowa wysokość; animujemy go płynnie (ease).
+  .ninjalytics-section-body {
+    overflow   : hidden;
+    min-height : 0;
+    box-sizing : border-box;
+    opacity    : 0;
+    padding    : 0 5px 0 2px;
+    // visibility (not just opacity/overflow) is what takes collapsed fields
+    // out of the Tab order — without it, keyboard focus can still land on
+    // inputs the user can't see. Delay the switch to hidden until after the
+    // collapse animation finishes so the fade-out isn't cut short.
+    visibility : hidden;
+    transition : padding 0.3s ease,
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
     }
 
   .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-body {
-    max-height : 75vh;
-    height: auto;
-    overflow   : auto;
     overflow-x: hidden;
-    opacity    : 1;
-    padding    : 20px 10px 10px 15px;
-    border-top : 1px solid $gray-2;
-    box-sizing : border-box;
-    transition : padding 0.3s step-start,
-    max-height 0.3s ease,
-    opacity 0.3s ease;
+    opacity: 1;
+    padding: 5px 5px 5px 2px;
+    visibility: visible;
+    transition-delay: 0s;
+
     * {
-      box-sizing : border-box;
-      }
+      box-sizing: border-box;
     }
+  }
 
-  .ninjalytics-section-body {
-    max-height : 0;
-    overflow   : hidden;
-    box-sizing : border-box;
-    opacity    : 0;
-    padding    : 0;
-    transition : padding 0.3s step-end,
-    max-height 0.3s ease,
-    opacity 0.3s ease;
+  .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title h3 i,
+  .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title h3 {
+    color: $primary-color;
     }
-
   .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title label {
-    visibility : visible;
-    opacity    : 1;
+    visibility       : visible;
+    opacity          : 1;
+    pointer-events   : auto;
     }
 
+  .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title .berrypress-btn-icon i,
   .ninjalytics-settings-toggle.ninjalytics-active .ninjalytics-section-title .berrypress-icon-expand_more {
-    transform : rotate(180deg);
+    transform: rotate(180deg);
     }
   }
 
 // Inside toggles
 
-#ags-psr-report-meta {
-
-  margin-bottom : 1rem;
-
-  label {
-    display        : flex;
-    flex-direction : row;
-    gap            : .4rem;
-    flex-wrap      : wrap;
-    align-items    : center;
-    }
-
-  input {
-    flex-grow  : 1;
-    min-height : 30px;
-    }
-  }
+// #ags-psr-report-meta now only contains hidden form fields
+// (preset_name is edited via the breadcrumb).
 
 // Show setting when advanced is checked
-#ninjalytics-settings > .ninjalytics-settings-toggle:not(:has(input.ninjalytics-no-update:checked)) .ninjalytics-setting-advanced {
+#ninjalytics-report-sidebar > #ninjalytics-report-sidebar-settings > .ninjalytics-settings-toggle:not(:has(input.ninjalytics-no-update:checked)) .ninjalytics-setting-advanced {
   display : none;
   }
 
@@ -423,6 +800,7 @@
   select {
     padding   : 2px 12px;
     height    : 34px;
+    min-height: 34px;
     flex-grow : 1;
     max-width : unset;
     }
@@ -617,25 +995,3 @@
     }
   }
 
-// Debug
-
-.ninjalytics-debug-sql-box {
-  grid-template-columns: 1fr;
-  gap: 0;
-  margin-top: 1.5em;
-  }
-
-.ninjalytics-debug-sql-box .ninjalytics-debug-sql-content {
-  max-width: 95%;
-  padding: 10px 12px;
-  line-height: 1.3em;
-  border: 1px solid $gray-3;
-  border-radius: 5px;
-  font-size: 12px;
-  width: 100%;
-  max-height: 15em;
-  overflow: auto;
-  font-family: ui-monospace, monospace;
-  white-space: pre-wrap;
-  word-break: break-all;
-  }

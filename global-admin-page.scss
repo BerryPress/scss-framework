@@ -23,8 +23,12 @@
 @use "components/modals";
 @use "components/table";
 @use "components/upgrade_box";
-
-//@use "components/notices"; // moved to global
+@use "components/berrypress_top_bar";
+// Only rendered inside a settings page body (save confirmations, destructive-action warnings),
+// never from an admin_notices hook - base/error/info (which can appear on any admin screen) stay
+// in global-admin.scss instead.
+@use "components/notices/success";
+@use "components/notices/warning";
 
 // Import layout styles
 @use "layout/header";
