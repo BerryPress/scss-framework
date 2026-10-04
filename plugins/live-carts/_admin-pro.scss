@@ -192,7 +192,8 @@
   display: flex;
   gap: .4rem;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: stretch;
+  margin-bottom: 25px;
 
   .select2-container {
     min-width: 240px;
@@ -244,13 +245,14 @@
     }
 
   .berrypress-lc-filters-buttons {
-    min-height: 55px;
+    max-height: 55px;
     display: flex;
     align-items: flex-end;
     gap: .2rem;
 
     .berrypress-btn {
       min-height: 26px;
+      margin-bottom: 0;
       }
     }
   }
@@ -350,4 +352,20 @@
 
 .berrypress-page .phplugins-lc-coupons-field  .berrypress-multiple-dropdown-container.berrypress-multiple-dropdown-container-sm .select2-container .select2-selection--multiple .select2-selection__rendered .select2-search.select2-search--inline {
   min-width: 2em;
+  }
+
+// Tracking > Cart exclusions: roles grid
+
+#phplugins_live_carts_pro_exclude_roles_label {
+    text-transform: uppercase;
+    color: $text-secondary;
+    font-weight: 500;
+    letter-spacing: .3px;
+    font-size: 12px;
+    margin: 2rem 0 1rem;
+  }
+
+.phplugins-lc-roles-grid {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.3rem 1.5rem;
   }

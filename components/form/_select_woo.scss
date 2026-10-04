@@ -6,7 +6,7 @@
  * License: See license.txt in the plugin root directory.
  */
 
-.berrypress-page {
+.wp-core-ui.berrypress-page {
 
   .select2-container {
     box-sizing     : border-box;
@@ -357,7 +357,7 @@
 
         &::before {
           content     : "\E5CA";
-          font-family : "Material Symbols Rounded BerryPress";
+          font-family : $bp-icon-font-family;
           position    : absolute;
           left        : 6px;
           top         : 50%;

@@ -27,6 +27,11 @@ $accent-light   : #fafbfd;
 $accent-blue    : #57b8ff;
 
 $font           : "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica", "Arial", sans-serif;
+// Icon font family — configured per-plugin at the compilation entry point to avoid @font-face
+// conflicts when multiple BerryPress plugins are active on the same page. Each plugin's
+// global-admin.scss and global-admin-page.scss entry sets this via:
+//   @use "../../abstracts/variables" with ($bp-icon-font-family: "Material Symbols Rounded BerryPress <SUFFIX>");
+$bp-icon-font-family: "Material Symbols Rounded BerryPress" !default;
 $box-shadow     : 0 0 10px rgba(90, 96, 127, 0.53);
 $box-shadow-inner:   inset 0 0 5px rgba(90, 96, 127, 0.2);
 $border-radius  : 5px;

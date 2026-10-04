@@ -1,12 +1,13 @@
 /*!
 This file includes a modified icon font originally licensed under the Apache License 2.0.
-Modified by BerryPress - unused icons removed.”
+Modified by BerryPress - unused icons removed."
 */
 
 @use "icon_mixins";
+@use "../abstracts/variables" as vars;
 
 @font-face {
-  font-family: "Material Symbols Rounded BerryPress";
+  font-family: vars.$bp-icon-font-family;
   font-style: normal;
   font-weight: 400;
   src: url("../font/MaterialSymbolsRounded.woff2") format("woff2");
@@ -15,16 +16,11 @@ Modified by BerryPress - unused icons removed.”
 
 // Icon list
 $icons: (
-        search: "\E8B6",
         home: "\E88A",
         settings: "\E8B8",
         check: "\E5CA",
-        radio_button_checked: "\E837",
-        radio_button_unchecked: "\E836",
         expand_more: "\E5CF",
         close: "\E5CD",
-        remove: "\E5CD",
-        error_outline: "\E001",
         first_page: "\E5DC",
         menu: "\E5D2",
         help: "\E887",
@@ -32,34 +28,9 @@ $icons: (
         lock: "\E897",
         warning: "\E002",
         library_books: "\E02F",
-        question_mark: "\E8AF",
-        key_vertical: "\E73C",
         check_circle: "\E86C",
-        sync_alt: "\EA18",
         external-link: "\E89E",
         info: "\E88E",
-
-        // APC Plugin
-        play_arrow: "\E037",
-        filter_alt: "\EF4F",
-        access_time: "\E192",
-
-        // Live Carts
-        cart: "\f1cc",
-        bar-chart: "\e26b",
-        add: "\e145",
-
-        // Ninjalytics
-        //about pro
-        pro: "\e65f",
-
-        //Addons tab
-        addons: "\f102",
-
-        // Pagination
-        keyboard_arrow_left: "\e314",
-        keyboard_double_arrow_left: "\eac3",
-        keyboard_arrow_right: "\e315",
         keyboard_double_arrow_right: "\eac9",
   );
 
@@ -75,7 +46,7 @@ $icons: (
   width: 1em;
 
   &::before {
-    font-family : "Material Symbols Rounded BerryPress", sans-serif;
+    font-family : vars.$bp-icon-font-family, sans-serif;
     }
   }
 .berrypress-font-loaded [class^="berrypress-icon-"], [class*=" berrypress-icon-"] {

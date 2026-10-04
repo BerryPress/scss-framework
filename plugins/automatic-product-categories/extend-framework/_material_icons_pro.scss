@@ -1,6 +1,7 @@
 // Icon list
 $icons: (
         clone: "\e2ec",
+        sync_alt: "\EA18",
   );
 
 @each $icon, $unicode in $icons {

@@ -15,6 +15,7 @@ $bbpuip-icons: (
         photo_library: "\e413",
         cleaning_services: "\f0ff",
         language: "\e894",
+        bar-chart: "\e26b",
 );
 
 @include icon_mixins.render-icons($bbpuip-icons);
