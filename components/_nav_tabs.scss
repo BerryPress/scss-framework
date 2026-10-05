@@ -1,0 +1,61 @@
+@use "../global" as *;
+
+.berrypress-nav-tab-wrapper {
+  border: none;
+
+  .nav-tab {
+    color: $text-secondary;
+    font-weight: 500;
+    background: $gray-1;
+    border-color: transparent;
+    border-bottom: none;
+    margin-bottom: -1px;
+    padding: 6px 18px;
+    border-radius: 0;
+    transition: color 0.15s ease, background 0.15s ease;
+    margin-left: 0;
+
+    &:first-child {
+      border-radius: $border-radius 0 0 0;
+      }
+
+    &:last-child{
+      border-radius: 0 $border-radius 0 0;
+      }
+
+    &:hover {
+      color: $primary-color;
+      background: $gray-1;
+      border-color: $gray-2 $gray-2 transparent;
+    }
+
+    &.nav-tab-active {
+      color: $text-primary;
+      font-weight: 600;
+      background: $background-color;
+      border-color: $gray-2 $gray-2 transparent;
+
+      &:hover {
+        border-bottom: 0;
+        }
+    }
+
+    &:focus {
+      box-shadow: none;
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba($primary-color, 0.4);
+      outline-offset: -2px;
+    }
+  }
+}
+
+// Content
+
+.berrypress-nav-tab-content {
+  padding: 1.5rem 1rem 1.5rem;
+  border: 1px solid $gray-2;
+  border-radius: 0 0 $border-radius $border-radius;
+  }

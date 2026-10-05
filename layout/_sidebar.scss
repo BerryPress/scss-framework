@@ -50,6 +50,17 @@
       &:hover {
         color: $primary-color;
         }
+
+      &:focus {
+        box-shadow: none;
+        outline: none;
+        border-radius: 0;
+        }
+
+      &:focus-visible {
+        background: rgba($primary-color, 0.08);
+        border-radius: 4px;
+        }
       }
 
     .active a {

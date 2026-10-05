@@ -14,7 +14,7 @@
 
 @use "../../components/buttons/index" as buttons;
 @use "../../components/pagination" as *;
-//@use "../../components/berrypress_bf-bar";
+@use "../../components/berrypress_bf-bar";
 @use "../../components/berrypress_top_bar";
 @use "./inc/progress";
 

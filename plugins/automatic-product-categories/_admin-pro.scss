@@ -113,7 +113,7 @@ table.php-apc-rules .groups.column-groups {
 
       &::before {
         content     : "\E5CD"; // Material symbol "close"
-        font-family : "Material Symbols Rounded BerryPress";
+        font-family : $bp-icon-font-family;
         display     : block;
         line-height : 1;
         text-align  : center;

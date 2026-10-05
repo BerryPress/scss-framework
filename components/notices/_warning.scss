@@ -1,0 +1,18 @@
+@use "../../global" as *;
+
+.berrypress-notice.berrypress-notice-warning {
+  border-left   : 4px solid $accent-orange;
+  background-color : #fff6df;
+  color: #6b5300;
+
+  i {
+    color : $accent-orange;
+    font-size: 16px;
+    }
+
+  a {
+    color           : $text-primary;
+    text-decoration : underline;
+    font-weight     : 600;
+    }
+  }

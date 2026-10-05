@@ -10,7 +10,7 @@
 
 @use "../../components/pagination" as *;
 @use "../../components/form/search_box";
-//@use "../../components/berrypress_bf-bar";
+@use "../../components/berrypress_bf-bar";
 
 @use "../../components/berrypress_top_bar" as *;
 @use "./components/upgrade-box-container" as *;

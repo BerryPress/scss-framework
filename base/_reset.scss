@@ -3,13 +3,9 @@
 .berrypress-page {
 
   // Reset WordPress button styles
-  button,
-  .button,
-  &.wp-core-ui .button,
-  input[type="submit"],
-  input[type="button"],
-  input[type="reset"],
-  a {
+  .berrypress-btn-reset,
+  .berrypress-btn-icon,
+  .berrypress-btn {
     all         : unset;
     appearance  : none;
     border      : none;

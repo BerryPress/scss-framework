@@ -314,7 +314,7 @@
 
     &:after {
       content     : "\E8B6";
-      font-family : "Material Symbols Rounded BerryPress", sans-serif;
+      font-family : $bp-icon-font-family, sans-serif;
       position    : absolute;
       right       : 7px;
       top         : 50%;

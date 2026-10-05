@@ -21,7 +21,7 @@
 
     &::before {
       content         : "\E5CA"; // Material Icon for checkbox
-      font-family     : "Material Symbols Rounded BerryPress";
+      font-family     : $bp-icon-font-family;
       font-size       : 18px;
       color           : #fff;
       display         : flex;

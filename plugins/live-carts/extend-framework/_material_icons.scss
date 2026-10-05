@@ -2,6 +2,14 @@
 $icons: (
         delete: "\E872",
         email: "\e0be",
+        error_outline: "\E001",
+        cart: "\f1cc",
+        bar-chart: "\e26b",
+        add: "\e145",
+        addons: "\f102",
+        filter_alt: "\EF4F",
+        keyboard_arrow_left: "\e314",
+        keyboard_arrow_right: "\e315",
   );
 
 @each $icon, $unicode in $icons {

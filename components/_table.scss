@@ -1,4 +1,5 @@
 @use "../global" as *;
+@use "../components/buttons/index" as buttons;
 
 .berrypress-page {
 
@@ -11,9 +12,28 @@
     }
 
   .tablenav.bottom {
+    margin-top: 16px;
 
     button {
       margin-bottom : 4px;
+      }
+    }
+
+  .tablenav .button {
+    @include buttons.berrypress-btn;
+    @include buttons.berrypress-btn-secondary;
+    }
+
+  // Tabs
+  .subsubsub {
+    margin-bottom: 18px;
+
+    a {
+      color: $text-secondary;
+      }
+
+    a.current {
+      color: $primary-color;
       }
     }
 
@@ -43,12 +63,11 @@
     }
 
   table.berrypress-table {
-    //width         : calc(100% - 20px);
-    width: 100%;
-    border-radius : 5px;
-    overflow      : hidden;
-    border        : 1px solid $gray-2;
-    background    : #fff;
+    width          : 100%;
+    border-radius  : 5px;
+    border-spacing : 0;
+    border         : 1px solid $gray-2;
+    background     : #fff;
 
     thead {
       background-color : $gray-1;
@@ -86,6 +105,7 @@
 
       td {
         padding        : 10px;
+        font-size: 13px;
         text-align     : left;
         border-bottom  : 1px solid $gray-2;
         vertical-align : middle;
@@ -104,6 +124,15 @@
     tfoot th, td {
       border : unset;
       }
+
+    a:not(.berrypress-btn) {
+      color: inherit;
+      text-decoration: underline;
+
+      &:hover {
+        color: $primary-color;
+        }
+      }
     }
   }
 
@@ -116,7 +145,7 @@
     border-bottom : 1px solid $gray-2;
 
     &::before {
-      font-family   : "Material Symbols Rounded BerryPress", sans-serif;
+      font-family   : $bp-icon-font-family, sans-serif;
       content       : "\E001";
       display       : block;
       font-size     : 24px;

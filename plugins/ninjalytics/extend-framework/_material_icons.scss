@@ -13,10 +13,10 @@ $icons: (
         table: "\f191",
         chart: "\e6e1",
         save: "\e161",
-        external-link: "\e89e",
         calculate: "\ea5f",
         drag-indicator: "\e945",
         ai: "\e65f",
+        pro: "\e65f",
         database-search: "\f38e",
         package: "\f569",
         layer: "\e53b",
@@ -24,6 +24,11 @@ $icons: (
         face: "\e87c",
         debug: "\e868",
         mobile: "\eb72",
+        cart: "\f1cc",
+        bar-chart: "\e26b",
+        add: "\e145",
+        addons: "\f102",
+        access_time: "\e192",
   );
 
 @each $icon, $unicode in $icons {

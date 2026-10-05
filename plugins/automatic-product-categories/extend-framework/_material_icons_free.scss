@@ -1,5 +1,7 @@
 // Icon list
 $icons: (
+        play_arrow: "\E037",
+        filter_alt: "\EF4F",
   );
 
 @each $icon, $unicode in $icons {
