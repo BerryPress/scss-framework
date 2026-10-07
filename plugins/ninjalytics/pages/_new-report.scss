@@ -51,6 +51,11 @@ $nj-disabled-text: #7A8099;
       display: block;
       padding-top: 8px;
       color: $text-secondary;
+
+      a {
+        color: inherit;
+        font-size: inherit;
+        }
       }
   }
 

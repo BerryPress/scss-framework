@@ -162,6 +162,11 @@
   max-width: 180px;
   }
 
+// Filter by author (Products -> Advanced)
+.ninjalytics-field-author-filter select {
+  margin-bottom: 5px;
+
+  }
 .berrypress-field.ninjalytics-product-exclude-free-field .ninjalytics-field-child {
   grid-column: 1 / -1;
 }

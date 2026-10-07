@@ -177,6 +177,7 @@
 
   .berrypress-link {
     font-size: 13px;
+    color: inherit;
     }
 
   img.ninjalytics-product-image-thumb {
@@ -640,6 +641,9 @@
   .ninjalytics-sidebar-body {
     padding: 1rem;
 
+    a {
+      font-size: inherit;
+      }
     }
   .ninjalytics-settings-toggle {
     //border        : 1px solid $gray-2;
