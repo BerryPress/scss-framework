@@ -1,0 +1,11 @@
+// Row layout modifier for .berrypress-field — used only by plugins that need
+// a label followed by several inline controls (ninjalytics, image-upload-for-bbpress).
+.berrypress-field.berrypress-field-flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  input[type="text"],
+  select {
+    flex-grow: 1;
+    }
+  }

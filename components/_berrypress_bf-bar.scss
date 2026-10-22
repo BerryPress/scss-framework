@@ -1,8 +1,11 @@
 @use "../global" as *;
 
+// Relative to the compiled CSS file; override per plugin via @use ... with ($promobar-path: "...")
+$promobar-path: "../../includes/berrypress-admin-framework/assets/img/bf-promobar.png" !default;
+
 .berrypress-page .berrypress-top-bar.berrypress-top-bar-promo {
   background-color: $text-primary;
-  background-image: url("../../includes/berrypress-admin-framework/assets/img/bf-promobar.png");
+  background-image: url($promobar-path);
   background-repeat: repeat-x;
   background-position: center;
   background-size: auto;

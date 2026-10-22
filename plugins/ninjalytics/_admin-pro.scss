@@ -43,6 +43,7 @@
 @use "pages/dashboard-widgets/admin-page";
 
 // From framework
+@use "../../components/form/field_flex";
 @use "../../components/form/select_woo";
 @use "../../components/form/form_field_textarea";
 @use "../../components/form/form_field_file_upload";

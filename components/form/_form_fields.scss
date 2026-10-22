@@ -17,18 +17,6 @@
     }
   }
 
-// Row layout modifiers for .berrypress-field, for plugins that need more than the plain
-// label/control grid (e.g. a label followed by several inline controls).
-.berrypress-field.berrypress-field-flex {
-  display: flex;
-  flex-wrap: wrap;
-
-  input[type="text"],
-  select {
-    flex-grow: 1;
-    }
-  }
-
 .berrypress-field.berrypress-field-align-center {
   align-items: center;
   }
