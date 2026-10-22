@@ -2,6 +2,7 @@
 
 @use "../../global" as *;
 @use "../../base/icon_mixins";
+@use "../../components/form/field_flex";
 // Only this plugin and Ninjalytics use sub-tabs/tooltips, so @use here instead of global-admin-page.css.
 @use "../../components/settings_subnav";
 @use "../../components/js-tooltips";

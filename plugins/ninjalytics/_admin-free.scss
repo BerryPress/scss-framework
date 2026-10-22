@@ -40,6 +40,8 @@
 @use "pages/addons-page";
 
 // From framework
+@use "../../components/berrypress_bf-bar" with ($promobar-path: "../includes/berrypress-admin-framework/assets/img/bf-promobar.png");
+@use "../../components/form/field_flex";
 @use "../../components/form/select_woo";
 @use "../../components/form/form_field_textarea";
 @use "../../components/form/form_field_file_upload";

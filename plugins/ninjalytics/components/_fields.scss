@@ -17,16 +17,6 @@
 
   }
 
-.berrypress-field.berrypress-field-flex {
-  display: flex;
-  flex-wrap: wrap;
-
-  input[type="text"],
-  select {
-    flex-grow: 1;
-    }
-  }
-
 .berrypress-field .ninjalytics-select-fw {
   grid-column: 1 / -1;
   max-width: 25rem;
