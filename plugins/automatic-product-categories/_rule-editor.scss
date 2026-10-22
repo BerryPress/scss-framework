@@ -1,0 +1,857 @@
+// APC: assets/css/rule-editor.css
+// Rule editor (beta) - rules list and canvas editor. Only loaded on these views, on top of admin.css.
+
+@use "./inc/license";
+
+@use "../../global" as *;
+@use "../../components/split-panel";
+@use "../../components/form/select_woo";
+@use "../../components/form/select_woo_multiple_small";
+@use "../../base/utilities";
+@use "../../components/dropdown";
+@use "../../components/js-tooltips";
+@use "./inc/workflow-editor";
+
+$rule-editor-breakpoint : 961px;
+$node-width             : 260px;
+
+.php-apc-beta-badge {
+  display        : inline-block;
+  padding        : 2px 6px;
+  border-radius  : 3px;
+  background     : rgba($primary-color, 0.1);
+  color          : $primary-color;
+  font-size      : 10px;
+  font-weight    : 600;
+  line-height    : 1.4;
+  letter-spacing : 0.04em;
+  text-transform : uppercase;
+  vertical-align : middle;
+  }
+
+// Rules list
+
+.berrypress-page .php-apc-rules-beta {
+
+  .php-apc-rules-beta-header {
+    display         : flex;
+    flex-wrap       : wrap;
+    align-items     : center;
+    justify-content : space-between;
+    gap             : 12px;
+    margin          : 10px 0 0;
+    padding-bottom  : 16px;
+
+    .berrypress-btn i {
+      margin-right : 4px;
+      }
+    }
+
+  .php-apc-rules-beta-title {
+    display     : flex;
+    flex-wrap   : wrap;
+    align-items : center;
+    gap         : 10px;
+
+    h2 {
+      margin    : 0;
+      font-size : 18px;
+      }
+    }
+
+  table.php-apc-rules-beta-table {
+    margin-top : 15px;
+
+    tbody tr:hover {
+      background-color : $accent-light;
+      }
+
+    tbody th.column-primary {
+      padding        : 10px;
+      font-size      : 13px;
+      font-weight    : 400;
+      text-align     : left;
+      border-bottom  : 1px solid $gray-2;
+      vertical-align : middle;
+      }
+
+    thead .check-column,
+    tfoot .check-column,
+    tbody .check-column {
+      width          : 40px;
+      padding        : 0 0 0 12px !important;
+      text-align     : left;
+      vertical-align : middle;
+
+      input {
+        margin : 0;
+        }
+      }
+
+    tbody .check-column {
+      border-bottom : 1px solid $gray-2;
+      }
+
+    .php-apc-rules-beta-name {
+      color           : $text-primary;
+      font-size       : 14px;
+      font-weight     : 600;
+      text-decoration : none;
+
+      &:hover,
+      &:focus {
+        color : $primary-color;
+        }
+      }
+
+    .column-status .berrypress-field {
+      align-items : center;
+      margin      : 0;
+      }
+
+    .column-action .berrypress-btn {
+      margin : 0 4px 5px 0;
+      }
+    }
+  }
+
+// Editor frame
+
+.berrypress-page .php-apc-rule-editor {
+  display        : flex;
+  flex-direction : column;
+  min-height     : 560px;
+  margin-top     : 10px;
+  overflow       : hidden;
+  background     : #fff;
+  border         : 1px solid $gray-2;
+  border-radius  : 8px;
+  box-sizing     : border-box;
+  }
+
+.php-apc-rule-editor-toolbar {
+  display       : flex;
+  flex-wrap     : wrap;
+  align-items   : center;
+  gap           : 12px;
+  padding       : 10px 14px;
+  background    : $background-color;
+  border-bottom : 1px solid $gray-2;
+
+  .berrypress-btn i {
+    margin-right : 4px;
+    }
+  }
+
+.php-apc-rule-editor-title {
+  display     : flex;
+  flex        : 1 1 240px;
+  align-items : center;
+  gap         : 8px;
+  min-width   : 0;
+
+  input.php-apc-rule-editor-name {
+    flex          : 1 1 auto;
+    min-width     : 0;
+    max-width     : 480px;
+    padding       : 4px 8px;
+    background    : transparent;
+    border        : 1px solid transparent;
+    border-radius : 5px;
+    color         : $text-primary;
+    font-size     : 16px;
+    font-weight   : 600;
+
+    &:hover {
+      border-color : $gray-3;
+      }
+
+    &:focus {
+      background   : #fff;
+      border-color : $primary-color;
+      box-shadow   : none;
+      }
+    }
+  }
+
+.php-apc-rule-editor-toolbar-actions {
+  display     : flex;
+  flex-wrap   : wrap;
+  align-items : center;
+  gap         : 10px;
+
+  .berrypress-field {
+    align-items : center;
+    margin      : 0;
+    }
+
+  .php-apc-rule-editor-save-dirty::after {
+    content       : "";
+    display       : inline-block;
+    width         : 6px;
+    height        : 6px;
+    margin-left   : 6px;
+    border-radius : 50%;
+    background    : currentColor;
+    vertical-align: middle;
+    }
+  }
+
+// Canvas
+
+.php-apc-rule-editor-split {
+  flex       : 1 1 auto;
+  min-height : 0;
+  }
+
+.php-apc-rule-editor-canvas-pane {
+  position  : relative;
+  flex      : 1 1 auto;
+  min-width : 0;
+  overflow  : hidden;
+  }
+
+.php-apc-rule-editor-canvas {
+  position         : absolute;
+  inset            : 0;
+  overflow         : hidden;
+  background-color : $gray-1;
+  background-image : radial-gradient($gray-3 1px, transparent 1px);
+  background-size  : 20px 20px;
+  cursor           : grab;
+  touch-action     : none;
+  user-select      : none;
+
+  &:focus {
+    outline : none;
+    }
+
+  &.is-panning,
+  &.is-dragging-node {
+    cursor : grabbing;
+    }
+  }
+
+.php-apc-rule-editor-viewport {
+  position         : absolute;
+  top              : 0;
+  left             : 0;
+  width            : 0;
+  height           : 0;
+  transform-origin : 0 0;
+  }
+
+.php-apc-rule-editor-edges {
+  position       : absolute;
+  top            : 0;
+  left           : 0;
+  width          : 1px;
+  height         : 1px;
+  overflow       : visible;
+  pointer-events : none;
+
+  .php-apc-rule-editor-edge {
+    fill         : none;
+    stroke       : $gray-4;
+    stroke-width : 2;
+    }
+
+  marker path {
+    fill : $gray-4;
+    }
+  }
+
+.php-apc-rule-editor-node {
+  position      : absolute;
+  width         : $node-width;
+  box-sizing    : border-box;
+  background    : #fff;
+  border        : 1px solid $gray-3;
+  border-radius : 10px;
+  box-shadow    : 0 1px 3px rgba($text-primary, 0.08);
+  cursor        : pointer;
+  transition    : border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    border-color : $gray-4;
+    box-shadow   : 0 4px 12px rgba($text-primary, 0.1);
+    }
+
+  &:focus-visible {
+    outline    : none;
+    box-shadow : 0 0 0 3px rgba($primary-color, 0.35);
+    }
+
+  &.is-selected {
+    border-color : $primary-color;
+    box-shadow   : 0 0 0 3px rgba($primary-color, 0.15);
+    }
+
+  &.is-inactive {
+    border-style : dashed;
+
+    .php-apc-rule-editor-node-header,
+    .php-apc-rule-editor-node-body {
+      opacity : 0.65;
+      }
+    }
+
+  .is-dragging-node & {
+    cursor : grabbing;
+    }
+  }
+
+.php-apc-rule-editor-node-header {
+  display     : flex;
+  align-items : center;
+  gap         : 10px;
+  padding     : 12px 14px 8px;
+  }
+
+.php-apc-rule-editor-node-icon {
+  display         : inline-flex;
+  flex            : 0 0 auto;
+  align-items     : center;
+  justify-content : center;
+  width           : 32px;
+  height          : 32px;
+  border-radius   : 8px;
+  background      : rgba($primary-color, 0.1);
+  color           : $primary-color;
+
+  i {
+    font-size : 20px;
+    }
+
+  .php-apc-rule-editor-node-trigger & {
+    background : rgba($accent-orange, 0.12);
+    color      : $accent-orange;
+    }
+
+  .php-apc-rule-editor-node-actions &,
+  .php-apc-rule-editor-node-actions_false & {
+    background : rgba($accent-green-dark, 0.1);
+    color      : $accent-green-dark;
+    }
+  }
+
+.php-apc-rule-editor-node-title {
+  color       : $text-primary;
+  font-size   : 14px;
+  font-weight : 600;
+  }
+
+.php-apc-rule-editor-node-body {
+  padding   : 0 14px 12px;
+  color     : $text-secondary;
+  font-size : 12px;
+
+  ul {
+    margin     : 0;
+    padding    : 0;
+    list-style : none;
+    }
+
+  li {
+    display            : -webkit-box;
+    margin             : 0 0 4px;
+    overflow           : hidden;
+    -webkit-line-clamp : 2;
+    -webkit-box-orient : vertical;
+    }
+
+  .php-apc-rule-editor-node-heading {
+    margin      : 0 0 6px;
+    color       : $text-primary;
+    font-weight : 500;
+    }
+
+  .php-apc-rule-editor-node-empty {
+    font-style : italic;
+    }
+  }
+
+.php-apc-rule-editor-port {
+  position      : absolute;
+  width         : 12px;
+  height        : 12px;
+  box-sizing    : border-box;
+  background    : #fff;
+  border        : 2px solid $gray-4;
+  border-radius : 50%;
+  }
+
+.php-apc-rule-editor-port-in {
+  top  : 22px;
+  left : -7px;
+  }
+
+.php-apc-rule-editor-node-outputs {
+  padding    : 6px 0;
+  border-top : 1px solid $gray-2;
+
+  &:has(> .php-apc-rule-editor-node-output-main) {
+    padding    : 0;
+    border-top : 0;
+    }
+  }
+
+.php-apc-rule-editor-node-output {
+  position        : relative;
+  display         : flex;
+  align-items     : center;
+  justify-content : flex-end;
+  padding         : 4px 18px 4px 14px;
+  color           : $text-secondary;
+  font-size       : 11px;
+  font-weight     : 600;
+  letter-spacing  : 0.03em;
+  text-transform  : uppercase;
+
+  .php-apc-rule-editor-port-out {
+    top        : 50%;
+    right      : -7px;
+    margin-top : -6px;
+    }
+
+  &.php-apc-rule-editor-node-output-main {
+    position : absolute;
+    top      : 22px;
+    right    : 0;
+    height   : 12px;
+    padding  : 0;
+
+    .php-apc-rule-editor-port-out {
+      top        : 0;
+      margin-top : 0;
+      }
+    }
+
+  &.php-apc-rule-editor-node-output-true {
+    color : $accent-green-dark;
+
+    .php-apc-rule-editor-port-out {
+      border-color : $accent-green-dark;
+      }
+    }
+
+  &.php-apc-rule-editor-node-output-false {
+    color : $accent-red;
+
+    .php-apc-rule-editor-port-out {
+      border-color : $accent-red;
+      }
+    }
+  }
+
+.php-apc-rule-editor-canvas-controls {
+  position      : absolute;
+  bottom        : 14px;
+  left          : 14px;
+  z-index       : 2;
+  display       : flex;
+  gap           : 2px;
+  padding       : 4px;
+  background    : #fff;
+  border        : 1px solid $gray-2;
+  border-radius : 8px;
+  box-shadow    : 0 1px 3px rgba($text-primary, 0.08);
+
+  .berrypress-btn-icon {
+    display         : inline-flex;
+    align-items     : center;
+    justify-content : center;
+    width           : 32px;
+    height          : 32px;
+    padding         : 0;
+
+    i {
+      font-size : 20px;
+      }
+    }
+  }
+
+// Sidebar (layout and tabs as in Ninjalytics)
+
+.php-apc-rule-editor-sidebar {
+  display     : flex;
+  flex        : 0 0 auto;
+  flex-direction : row;
+  width       : 420px;
+  min-height  : 0;
+  overflow    : hidden;
+  background  : #fff;
+  border-left : 1px solid $gray-2;
+  }
+
+.php-apc-rule-editor-panel {
+  display        : flex;
+  flex           : 1 1 auto;
+  flex-direction : column;
+  min-width      : 0;
+  min-height     : 0;
+  }
+
+.php-apc-rule-editor-panel-header {
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  gap             : 12px;
+  padding         : 12px 14px 12px 16px;
+  border-bottom   : 1px solid $gray-2;
+
+  h2 {
+    margin      : 0;
+    font-size   : 15px;
+    font-weight : 600;
+    }
+  }
+
+// Close button as in Ninjalytics (.ninjalytics-sidebar-close)
+.php-apc-rule-editor-panel-close {
+  display         : flex;
+  flex            : 0 0 auto;
+  align-items     : center;
+  justify-content : center;
+  width           : 26px;
+  height          : 26px;
+  padding         : 0;
+  background      : transparent;
+  border          : none;
+  border-radius   : 5px;
+  color           : $text-secondary;
+  cursor          : pointer;
+  transition      : background-color 0.2s ease, color 0.2s ease;
+
+  i {
+    font-size : 20px;
+    }
+
+  &:hover {
+    background-color : $gray-1;
+    color            : $text-primary;
+    }
+
+  &:focus-visible {
+    outline    : none;
+    box-shadow : 0 0 0 2px rgba($primary-color, 0.35);
+    }
+  }
+
+.php-apc-rule-editor.is-sidebar-collapsed {
+
+  .php-apc-rule-editor-canvas-pane {
+    flex  : 1 1 auto !important;
+    width : auto !important;
+    }
+
+  .php-apc-rule-editor-sidebar {
+    flex      : 0 0 auto !important;
+    width     : auto !important;
+    min-width : 0 !important;
+    }
+
+  .php-apc-rule-editor-panel {
+    display : none;
+    }
+  }
+
+.php-apc-rule-editor-tabs {
+  display          : flex;
+  flex             : 0 0 auto;
+  flex-direction   : column;
+  gap              : 8px;
+  margin           : 0;
+  padding          : 0.4rem;
+  background-color : $gray-1;
+  border-left      : 1px solid $gray-2;
+  box-sizing       : border-box;
+  }
+
+.php-apc-rule-editor-tab {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  gap            : 2px;
+  margin         : 0;
+  padding        : 5px 5px 7px;
+  background     : transparent;
+  border         : 1px solid transparent;
+  border-radius  : 5px;
+  color          : $text-secondary;
+  font-size      : 12px;
+  font-weight    : 500;
+  line-height    : 1.2;
+  text-align     : center;
+  cursor         : pointer;
+  transition     : color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+
+  i {
+    font-size   : 18px;
+    font-weight : normal;
+    }
+
+  &:hover {
+    color            : $primary-color;
+    background-color : rgba($primary-color, 0.06);
+    border           : 1px solid $gray-2;
+    }
+
+  &:focus-visible {
+    outline    : none;
+    box-shadow : inset 0 0 0 2px rgba($primary-color, 0.35);
+    }
+
+  &.is-active {
+    color               : $primary-color;
+    background          : #fff;
+    border              : 1px solid $gray-2;
+    border-bottom-color : $primary-color;
+    font-weight         : 600;
+    }
+  }
+
+// Sidebar panel content
+
+.php-apc-rule-editor-panel-body {
+  position   : relative;
+  flex       : 1 1 auto;
+  min-height : 0;
+  padding    : 16px;
+  overflow-y : auto;
+  font-size  : 13px;
+
+  > .berrypress-field {
+    margin-bottom : 16px;
+    }
+
+  .php-apc-rule-editor-section {
+    margin-top : 20px;
+
+    h3 {
+      margin         : 0 0 10px;
+      color          : $gray-6;
+      font-size      : 12px;
+      font-weight    : 600;
+      letter-spacing : 0.04em;
+      text-transform : uppercase;
+      }
+    }
+
+  .php-apc-rule-editor-field {
+    margin-bottom : 12px;
+
+    > label {
+      display       : block;
+      margin-bottom : 4px;
+      color         : $text-primary;
+      font-size     : 12px;
+      font-weight   : 500;
+      }
+
+    select,
+    input[type="text"] {
+      width      : 100%;
+      max-width  : 100%;
+      box-sizing : border-box;
+      }
+
+    .select2-container {
+      width     : 100% !important;
+      min-width : 0 !important;
+      }
+
+    .select2-selection {
+      min-width : 0 !important;
+      }
+
+    .berrypress-multiple-dropdown-container {
+      width     : 100%;
+      max-width : 100%;
+
+      .select2-container {
+        max-width : 100% !important;
+        width     : 100% !important;
+        }
+      }
+    }
+
+  .php-apc-rule-editor-checklist,
+  .php-apc-rule-editor-schedules {
+    margin     : 0;
+    padding    : 0;
+    list-style : none;
+
+    li {
+      margin : 0 0 12px;
+      }
+    }
+
+  .php-apc-rule-editor-schedules {
+    margin-top : 10px;
+
+    li {
+      margin-bottom : 6px;
+      }
+    }
+
+  .php-apc-rule-editor-match-mode {
+    display     : flex;
+    flex-wrap   : wrap;
+    align-items : center;
+    gap         : 6px;
+    margin      : 16px 0 12px;
+    }
+
+  .php-apc-rule-editor-cards,
+  .php-apc-rule-editor-actions {
+    margin     : 0 0 10px;
+    padding    : 0;
+    list-style : none;
+    }
+
+  .php-apc-rule-editor-card {
+    margin-bottom : 10px;
+    background    : #fff;
+    border        : 1px solid $gray-2;
+    border-radius : 8px;
+    }
+
+  .php-apc-rule-editor-card-header {
+    display       : flex;
+    align-items   : center;
+    gap           : 4px;
+    padding       : 6px 6px 6px 8px;
+    background    : $accent-light;
+    border-bottom : 1px solid $gray-2;
+    border-radius : 8px 8px 0 0;
+    }
+
+  .php-apc-rule-editor-card-title {
+    flex        : 1 1 auto;
+    font-weight : 600;
+    }
+
+  .php-apc-rule-editor-drag-handle {
+    color  : $gray-5;
+    cursor : grab;
+    }
+
+  .php-apc-rule-editor-card-body {
+    padding : 12px 12px 2px;
+    }
+
+  .php-apc-rule-editor-sortable-placeholder {
+    margin-bottom : 10px;
+    border        : 1px dashed $gray-3;
+    border-radius : 8px;
+    visibility    : visible !important;
+    }
+
+  .php-apc-rule-editor-actions {
+    margin-top : 10px;
+    }
+
+  .php-apc-rule-editor-action {
+    display     : flex;
+    flex-wrap   : wrap;
+    align-items : center;
+    gap         : 6px;
+    margin-bottom : 8px;
+
+    > select {
+      flex      : 1 1 140px;
+      min-width : 0;
+      }
+
+    .php-apc-rule-editor-action-item {
+      flex      : 1 1 180px;
+      min-width : 0;
+
+      select {
+        width : 100%;
+        }
+
+      .select2-container {
+        width     : 100% !important;
+        min-width : 0 !important;
+        }
+      }
+    }
+
+  .php-apc-rule-editor-add {
+    display         : inline-flex;
+    align-items     : center;
+    gap             : 4px;
+    font-weight     : 500;
+    text-decoration : none;
+
+    &:hover,
+    &:focus {
+      text-decoration : none;
+      }
+
+    i {
+      font-size       : 18px;
+      text-decoration : none;
+      }
+    }
+
+  .php-apc-rule-editor-note {
+    color      : $text-secondary;
+    font-style : italic;
+    }
+
+  .php-apc-rule-editor-help {
+    margin : 0 0 12px;
+
+    summary {
+      color     : $primary-color;
+      font-size : 12px;
+      cursor    : pointer;
+      }
+
+    p {
+      color       : $text-secondary;
+      font-size   : 12px;
+      white-space : pre-line;
+      }
+    }
+  }
+
+// Narrow screens: canvas above the sidebar, no resizing
+
+@media (max-width: $rule-editor-breakpoint - 1) {
+  .php-apc-rule-editor-split {
+    flex-direction : column;
+    }
+
+  .php-apc-rule-editor-canvas-pane {
+    flex   : 0 0 auto;
+    height : 420px;
+    }
+
+  .php-apc-rule-editor-sidebar {
+    width       : 100%;
+    border-top  : 1px solid $gray-2;
+    border-left : 0;
+    }
+
+  .php-apc-rule-editor-panel-body {
+    overflow-y : visible;
+    }
+
+  .php-apc-rule-editor.is-sidebar-collapsed {
+
+    .php-apc-rule-editor-sidebar {
+      width : 100% !important;
+      }
+
+    .php-apc-rule-editor-tabs {
+      flex           : 1 1 auto;
+      flex-direction : row;
+      justify-content: center;
+      border-left    : 0;
+      }
+    }
+  }

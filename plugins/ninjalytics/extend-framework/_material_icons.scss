@@ -29,6 +29,8 @@ $icons: (
         add: "\e145",
         addons: "\f102",
         access_time: "\e192",
+        search: "\e8b6",
+        error_outline: "\e001",
   );
 
 @each $icon, $unicode in $icons {

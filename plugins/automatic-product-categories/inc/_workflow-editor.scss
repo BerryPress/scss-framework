@@ -1,0 +1,680 @@
+// APC: workflows (beta) - list and canvas editor, on top of the rule editor styles in rule-editor.css
+
+@use "sass:color";
+@use "../../../global" as *;
+
+$node-width : 260px;
+
+// Workflows list
+
+.berrypress-page .php-apc-workflows {
+
+  .php-apc-workflows-bulk-actions {
+    display : none !important;
+
+    .berrypress-btn i {
+      margin-right : 4px;
+      }
+    }
+
+  &:has(.php-apc-workflows-select:checked) .php-apc-workflows-bulk-actions {
+    display     : flex !important;
+    flex-wrap   : wrap;
+    align-items : center;
+    gap         : 8px;
+    }
+
+  .column-name {
+    .php-apc-rules-beta-name {
+      margin-right : 8px;
+      }
+    }
+
+  .php-apc-workflow-paused {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 3px;
+    padding       : 1px 6px;
+    border-radius : 3px;
+    background    : rgba($accent-orange, 0.12);
+    color         : #b86e00;
+    font-size     : 11px;
+    font-weight   : 600;
+    vertical-align: middle;
+    cursor        : help;
+
+    i {
+      font-size : 14px;
+      }
+    }
+
+  .column-priority {
+    width : 80px;
+    }
+
+  .column-modified_at {
+    width : 140px;
+    }
+
+  .column-actions {
+    width      : 120px;
+    text-align : right;
+    }
+
+  // Compact row actions, as in Live Carts: Run, Edit and a "More actions" dropdown
+  .php-apc-workflow-row-actions {
+    display         : inline-flex;
+    align-items     : center;
+    justify-content : flex-end;
+    gap             : 2px;
+
+    .berrypress-btn-icon {
+      margin : 0;
+      }
+
+    a.berrypress-btn-icon {
+      color           : inherit;
+      text-decoration : none;
+      }
+
+    [aria-disabled="true"]:not(.berrypress-dropdown-item) {
+      opacity : 0.4;
+      cursor  : not-allowed;
+      }
+    }
+  }
+
+.berrypress-page table .berrypress-dropdown-menu {
+
+  a.berrypress-dropdown-item,
+  button.berrypress-dropdown-item {
+    box-sizing      : border-box;
+    font-family     : inherit;
+    font-size       : 13px;
+    font-weight     : 400;
+    line-height     : 1.5;
+    text-decoration : none;
+    color           : $text-primary;
+    }
+
+  a.berrypress-dropdown-item:hover,
+  a.berrypress-dropdown-item:focus,
+  button.berrypress-dropdown-item:hover,
+  button.berrypress-dropdown-item:focus {
+    color           : $text-primary;
+    text-decoration : none;
+    }
+
+  // Separates Delete from the other actions
+  .berrypress-dropdown-separator {
+    height     : 1px;
+    margin     : 4px 6px;
+    background : $gray-2;
+    }
+
+  .berrypress-dropdown-item[aria-disabled="true"],
+  .berrypress-dropdown-item[aria-disabled="true"]:hover,
+  .berrypress-dropdown-item[aria-disabled="true"]:focus {
+    color : $text-secondary;
+    }
+  }
+
+.berrypress-page .php-apc-menu-danger,
+.berrypress-page table .berrypress-dropdown-menu button.php-apc-menu-danger,
+.berrypress-page table .berrypress-dropdown-menu button.php-apc-menu-danger:hover,
+.berrypress-page table .berrypress-dropdown-menu button.php-apc-menu-danger:focus {
+  color : $accent-red;
+  }
+
+// Run results
+
+.php-apc-workflow-results {
+  width         : min(720px, calc(100vw - 40px));
+  max-height    : calc(100vh - 80px);
+  padding       : 0;
+  border        : 0;
+  border-radius : 10px;
+  box-shadow    : 0 10px 40px rgba($text-primary, 0.2);
+
+  &::backdrop {
+    background : rgba($text-primary, 0.4);
+    }
+
+  .php-apc-workflow-results-header {
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    padding         : 14px 20px;
+    border-bottom   : 1px solid $gray-2;
+
+    h2 {
+      margin    : 0;
+      font-size : 16px;
+      }
+    }
+
+  .php-apc-workflow-results-body {
+    padding    : 16px 20px 20px;
+    overflow-y : auto;
+    max-height : calc(100vh - 160px);
+
+    table {
+      border-collapse : collapse;
+      }
+    }
+
+  .php-apc-workflow-results-add {
+    color : $accent-green-dark;
+    }
+
+  .php-apc-workflow-results-remove {
+    color : $accent-red;
+    }
+  }
+
+// Editor
+
+.php-apc-workflow-editor {
+
+  .php-apc-rule-editor-toolbar-actions .berrypress-field {
+    margin : 0;
+    }
+
+  .php-apc-rule-editor-canvas.is-connecting {
+    cursor : crosshair;
+    }
+  }
+
+.php-apc-workflow-editor-empty {
+  position       : absolute;
+  top            : 50%;
+  left           : 50%;
+  max-width      : 280px;
+  transform      : translate(-50%, -50%);
+  color          : $text-secondary;
+  text-align     : center;
+  pointer-events : none;
+
+  i {
+    font-size : 36px;
+    color     : $gray-4;
+    }
+
+  p {
+    margin : 8px 0 0;
+    }
+  }
+
+.php-apc-workflow-editor-issues {
+  position       : absolute;
+  bottom         : 10px;
+  left           : 50%;
+  z-index        : 3;
+  max-width      : calc(100% - 140px);
+  transform      : translateX(-50%);
+  pointer-events : auto;
+
+  p {
+    display       : flex;
+    align-items   : center;
+    gap           : 6px;
+    margin        : 6px 0 0;
+    padding       : 8px 12px;
+    border        : 1px solid rgba($accent-orange, 0.4);
+    border-radius : 8px;
+    background    : #fff8eb;
+    color         : $text-primary;
+    font-size     : 13px;
+    box-shadow    : 0 2px 8px rgba($text-primary, 0.08);
+
+    i {
+      color     : $accent-orange;
+      font-size : 18px;
+      }
+    }
+  }
+
+// Edges can be selected; the wide transparent path is the click target
+
+.php-apc-workflow-editor .php-apc-rule-editor-edges {
+  pointer-events : none;
+
+  .php-apc-rule-editor-edge {
+    &.is-selected {
+      stroke : $primary-color;
+      stroke-width : 3;
+      }
+
+    &.is-pending {
+      stroke           : $primary-color;
+      stroke-dasharray : 6 4;
+      }
+    }
+
+  .php-apc-workflow-edge-hit {
+    fill           : none;
+    stroke         : transparent;
+    stroke-width   : 14;
+    pointer-events : stroke;
+    cursor         : pointer;
+    }
+  }
+
+.php-apc-workflow-edge-delete {
+  position        : absolute;
+  z-index         : 2;
+  display         : inline-flex;
+  align-items     : center;
+  justify-content : center;
+  width           : 26px;
+  height          : 26px;
+  margin          : -13px 0 0 -13px;
+  padding         : 0;
+  border          : 1px solid $gray-3;
+  border-radius   : 50%;
+  background      : #fff;
+  color           : $accent-red;
+  cursor          : pointer;
+  box-shadow      : 0 2px 6px rgba($text-primary, 0.15);
+
+  i {
+    font-size : 16px;
+    }
+  }
+
+// Nodes
+
+.php-apc-workflow-node {
+
+  .php-apc-rule-editor-node-header {
+    padding-right : 12px;
+
+    .php-apc-pro-badge,
+    .php-apc-workflow-node-warning {
+      margin-left : auto;
+      }
+
+    .php-apc-workflow-node-warning {
+      color     : $accent-orange;
+      font-size : 18px;
+      }
+    }
+
+  .php-apc-rule-editor-node-title {
+    overflow      : hidden;
+    min-width     : 0;
+    text-overflow : ellipsis;
+    white-space   : nowrap;
+    }
+
+  &.php-apc-workflow-node-trigger .php-apc-rule-editor-node-icon {
+    background : rgba($accent-orange, 0.12);
+    color      : $accent-orange;
+    }
+
+  &.php-apc-workflow-node-action .php-apc-rule-editor-node-icon {
+    background : rgba($accent-green-dark, 0.1);
+    color      : $accent-green-dark;
+    }
+
+  &.is-unavailable {
+    border-style : dashed;
+    border-color : $accent-orange;
+
+    .php-apc-rule-editor-node-icon {
+      background : rgba($accent-orange, 0.12);
+      color      : $accent-orange;
+      }
+    }
+
+  &.is-error {
+    border-color : $accent-red;
+    box-shadow   : 0 0 0 3px rgba($accent-red, 0.15);
+    }
+
+  &.is-drop-target {
+    border-color : $primary-color;
+    box-shadow   : 0 0 0 4px rgba($primary-color, 0.25);
+    }
+
+  .php-apc-rule-editor-port-out {
+    cursor : crosshair;
+
+    &:hover {
+      border-color : $primary-color;
+      background   : rgba($primary-color, 0.15);
+      }
+    }
+
+  // Switch outputs and other named outputs
+  .php-apc-rule-editor-node-output {
+    min-height : 18px;
+    }
+  }
+
+// Block toolbar above the block and "Run" left of triggers, shown on hover as in n8n.
+// .berrypress-page resets the position of .berrypress-btn, so these need the same prefix.
+.berrypress-page .php-apc-rule-editor-node {
+
+  > .php-apc-workflow-node-toolbar,
+  > .php-apc-workflow-node-run {
+    position       : absolute;
+    opacity        : 0;
+    pointer-events : none;
+    transition     : opacity 0.12s ease;
+    }
+
+  &:hover,
+  &:focus-within {
+    > .php-apc-workflow-node-toolbar,
+    > .php-apc-workflow-node-run {
+      opacity        : 1;
+      pointer-events : auto;
+      }
+    }
+  }
+
+.berrypress-page .php-apc-rule-editor-canvas.is-dragging-node,
+.berrypress-page .php-apc-rule-editor-canvas.is-panning,
+.berrypress-page .php-apc-rule-editor-canvas.is-connecting {
+  .php-apc-rule-editor-node > .php-apc-workflow-node-toolbar,
+  .php-apc-rule-editor-node > .php-apc-workflow-node-run {
+    opacity        : 0;
+    pointer-events : none;
+    }
+  }
+
+.php-apc-workflow-node-toolbar {
+  bottom        : 100%;
+  left          : 50%;
+  display       : flex;
+  gap           : 2px;
+  // Transparent padding keeps the block hovered on the way to the buttons
+  padding       : 0 0 6px;
+  transform     : translateX(-50%);
+  }
+
+.php-apc-workflow-node-tool {
+  display         : inline-flex;
+  align-items     : center;
+  justify-content : center;
+  width           : 26px;
+  height          : 26px;
+  padding         : 0;
+  border          : 0;
+  border-radius   : 5px;
+  background      : transparent;
+  color           : $text-secondary;
+  cursor          : pointer;
+
+  i {
+    font-size : 18px;
+    }
+
+  &:hover,
+  &:focus-visible {
+    background : rgba($gray-6, 0.08);
+    color      : $text-primary;
+    }
+
+  &[data-node-action="run"]:hover {
+    color : $accent-orange;
+    }
+
+  &[data-node-action="delete"]:hover {
+    color : $accent-red;
+    }
+  }
+
+.php-apc-rule-editor-node .php-apc-workflow-node-run {
+  top           : 50%;
+  right         : calc(100% + 16px);
+  display       : inline-flex;
+  align-items   : center;
+  gap           : 4px;
+  border-color  : $accent-orange;
+  background    : $accent-orange;
+  color         : #fff;
+  white-space   : nowrap;
+  transform     : translateY(-50%);
+
+  i {
+    font-size : 18px;
+    }
+
+  &:hover,
+  &:focus-visible {
+    border-color : color.adjust($accent-orange, $lightness: -8%);
+    background   : color.adjust($accent-orange, $lightness: -8%);
+    color        : #fff;
+    }
+
+  // Bridges the gap to the block, so it stays hovered
+  &::after {
+    content  : "";
+    position : absolute;
+    top      : 0;
+    bottom   : 0;
+    left     : 100%;
+    width    : 16px;
+    }
+  }
+
+// "+" next to a free output adds a block connected to it
+.php-apc-workflow-port-add {
+  position        : absolute;
+  top             : 50%;
+  right           : -36px;
+  display         : inline-flex;
+  align-items     : center;
+  justify-content : center;
+  width           : 20px;
+  height          : 20px;
+  margin-top      : -10px;
+  padding         : 0;
+  border          : 1px solid $gray-3;
+  border-radius   : 5px;
+  background      : #fff;
+  color           : $text-secondary;
+  cursor          : pointer;
+  opacity         : 0.7;
+  transition      : opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+  i {
+    font-size : 16px;
+    }
+
+  &:hover,
+  &:focus-visible {
+    border-color : $primary-color;
+    color        : $primary-color;
+    opacity      : 1;
+    }
+
+  .php-apc-rule-editor-node-output-main & {
+    top : 6px;
+    }
+  }
+
+// Quick add menu
+
+.php-apc-workflow-quick-add {
+  position      : absolute;
+  z-index       : 5;
+  display       : flex;
+  flex-direction: column;
+  width         : 300px;
+  max-height    : 380px;
+  border        : 1px solid $gray-2;
+  border-radius : 10px;
+  background    : #fff;
+  box-shadow    : 0 10px 30px rgba($text-primary, 0.15);
+  cursor        : default;
+
+  input[type="search"] {
+    margin        : 10px;
+    width         : calc(100% - 20px);
+    box-sizing    : border-box;
+    }
+
+  .php-apc-workflow-quick-add-list {
+    overflow-y : auto;
+    padding    : 0 6px 8px;
+    }
+
+  .php-apc-workflow-quick-add-group {
+    margin         : 8px 8px 4px;
+    color          : $text-secondary;
+    font-size      : 11px;
+    font-weight    : 600;
+    letter-spacing : 0.04em;
+    text-transform : uppercase;
+    }
+  }
+
+// Palette
+
+.php-apc-workflow-palette {
+  display        : flex;
+  flex-direction : column;
+  gap            : 6px;
+  margin-top     : 10px;
+  }
+
+.php-apc-workflow-palette-item {
+  display       : flex;
+  align-items   : center;
+  gap           : 10px;
+  padding       : 8px 10px;
+  border        : 1px solid $gray-2;
+  border-radius : 8px;
+  background    : #fff;
+  cursor        : grab;
+  transition    : border-color 0.15s ease, background 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color : $primary-color;
+    outline      : none;
+    }
+
+  .php-apc-workflow-quick-add & {
+    border : 0;
+    cursor : pointer;
+
+    &:hover,
+    &:focus-visible {
+      background : $gray-1;
+      }
+    }
+
+  &.php-apc-workflow-palette-item-trigger .php-apc-rule-editor-node-icon {
+    background : rgba($accent-orange, 0.12);
+    color      : $accent-orange;
+    }
+
+  &.php-apc-workflow-palette-item-action .php-apc-rule-editor-node-icon {
+    background : rgba($accent-green-dark, 0.1);
+    color      : $accent-green-dark;
+    }
+
+  &.is-locked {
+    cursor : pointer;
+
+    .php-apc-rule-editor-node-icon,
+    .php-apc-workflow-palette-item-text {
+      opacity : 0.55;
+      }
+    }
+
+  .php-apc-pro-badge {
+    margin-left : auto;
+    }
+  }
+
+.php-apc-workflow-palette-item-text {
+  display        : flex;
+  flex-direction : column;
+  min-width      : 0;
+
+  strong {
+    color       : $text-primary;
+    font-size   : 13px;
+    font-weight : 600;
+    }
+
+  span {
+    color     : $text-secondary;
+    font-size : 12px;
+    }
+  }
+
+// Panels
+
+.php-apc-workflow-panel-type {
+  display       : flex;
+  align-items   : flex-start;
+  gap           : 10px;
+  margin-bottom : 14px;
+
+  strong {
+    font-size : 14px;
+    }
+
+  p {
+    margin : 2px 0 0;
+    }
+  }
+
+.php-apc-workflow-panel-notice {
+  margin-bottom : 14px;
+  }
+
+.php-apc-workflow-panel-buttons {
+  display    : flex;
+  flex-wrap  : wrap;
+  gap        : 8px;
+  margin-top : 18px;
+  padding-top: 14px;
+  border-top : 1px solid $gray-2;
+
+  .berrypress-btn i {
+    margin-right : 4px;
+    }
+  }
+
+.php-apc-workflow-switch-rules > li > .php-apc-rule-editor-card-body > .php-apc-rule-editor-cards {
+  margin-top : 8px;
+  }
+
+.php-apc-rule-editor-card.is-unavailable {
+  border-color : $accent-orange;
+  border-style : dashed;
+  }
+
+.php-apc-workflow-warnings,
+.php-apc-workflow-shortcuts {
+  margin  : 0;
+  padding : 0;
+  list-style : none;
+
+  li {
+    display     : flex;
+    align-items : flex-start;
+    gap         : 6px;
+    margin      : 0 0 6px;
+    font-size   : 13px;
+    }
+
+  i {
+    color     : $accent-orange;
+    font-size : 16px;
+    }
+
+  kbd {
+    padding       : 1px 5px;
+    border-radius : 3px;
+    background    : $gray-1;
+    font-size     : 11px;
+    }
+  }

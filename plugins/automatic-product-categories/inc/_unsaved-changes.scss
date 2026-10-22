@@ -1,0 +1,12 @@
+// APC: "Changes not saved" notice above the rules list and the editors, with "Discard changes"
+
+.berrypress-page .php-apc-unsaved-changes {
+
+  .php-apc-unsaved-changes-text {
+    flex : 1;
+    }
+
+  .php-apc-discard-changes {
+    flex-shrink : 0;
+    }
+  }

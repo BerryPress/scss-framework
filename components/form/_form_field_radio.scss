@@ -25,6 +25,7 @@
       border-radius : 50%;
       border        : 1px solid $gray-4;
       display       : inline-block;
+      flex-shrink   : 0; // Keep the circle round when the label text wraps
       width         : 18px;
       height        : 18px;
       position      : relative;

@@ -1,0 +1,31 @@
+// APC Pro: assets/css/rule-editor.css
+// Pro additions to the rule editor (beta), loaded after the free plugin's rule-editor.css.
+
+@use "./inc/license-pro";
+
+@use "../../global" as *;
+
+.php-apc-rule-editor-toolbar .php-apc-dry-run-cb-label {
+  display     : inline-flex;
+  align-items : center;
+  gap         : 6px;
+  color       : $text-primary;
+  font-size   : 13px;
+  white-space : nowrap;
+
+  input {
+    margin : 0;
+    }
+  }
+
+.php-apc-rule-editor-panel-body .php-apc-rule-editor-clone i {
+  margin-right : 4px;
+  }
+
+.php-apc-rules-beta .php-apc-dry-run-cb-label {
+  display        : inline-flex;
+  align-items    : center;
+  gap            : 6px;
+  margin-right   : 10px;
+  vertical-align : middle;
+  }

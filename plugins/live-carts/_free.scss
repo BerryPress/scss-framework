@@ -6,6 +6,8 @@
 @use "../../components/nav_tabs";
 @use "../../components/buttons/btn-disabled";
 @use "../../components/js-tooltips";
+@use "../../components/dropdown";
+//@use "../../components/modal/main";
 
 // Extend/ Overwrite framework
 @use "extend-framework/material_icons";
@@ -733,6 +735,7 @@ table.berrypress_page_live-carts-for-woocommerce {
       color            : $gray-6;
       text-decoration  : none;
       text-transform   : none;
+      margin-top: 0;
 
       i {
         font-size : 14px;
@@ -771,5 +774,355 @@ table.berrypress_page_live-carts-for-woocommerce {
 
   > .description {
     margin-top : 1rem;
+  }
+}
+
+// Integrations tab
+
+.phplugins-lc-settings-tab-integrations {
+   padding-top: 15px;
+
+  .description {
+    margin-bottom: 1.5em;
+    }
+
+  .phplugins-lc-integration-grid {
+    display               : grid;
+    grid-template-columns : repeat(auto-fill, minmax(420px, 1fr));
+    gap                   : 20px;
+    margin-bottom         : 20px;
+    }
+
+  @media (max-width : 720px) {
+    .phplugins-lc-integration-grid {
+      grid-template-columns : repeat(auto-fill, minmax(320px, 1fr));
+      }
+    }
+
+  .phplugins-lc-integration-card {
+    display        : flex;
+    flex-direction : column;
+    padding        : 20px;
+    background     : #fff;
+    border         : 1px solid $gray-2;
+    border-radius  : 10px;
+    transition     : border-color .15s ease, box-shadow .15s ease;
+
+    &:hover,
+    &:focus-within {
+      border-color : $gray-3;
+      box-shadow   : 0 2px 8px rgba(0, 0, 0, .05);
+      }
+
+    .phplugins-lc-integration-logo {
+      width         : 56px;
+      height        : 56px;
+      padding       : 6px;
+      margin-bottom : 14px;
+      background    : $gray-1;
+      border-radius : 12px;
+      object-fit    : contain;
+      }
+
+    .phplugins-lc-integration-body {
+      display        : flex;
+      flex-direction : column;
+      flex           : 1;
+      }
+
+    .phplugins-lc-integration-title {
+      display     : flex;
+      align-items : center;
+      gap         : 8px;
+      margin      : 0 0 6px;
+      padding     : 0;
+      font-size   : 16px;
+      line-height : 1.3;
+      }
+
+    .description {
+      flex      : 1;
+      margin    : 0 0 16px;
+      font-size : 13px;
+      color     : $text-secondary;
+      }
+
+    .phplugins-lc-integration-toggle {
+      margin      : 0;
+      padding-top : 14px;
+      border-top  : 1px solid $gray-2;
+      }
+    }
+  }
+// API tab
+.phplugins-lc-settings-tab-api {
+  .form-table p.description {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 13px;
+    }
+
+  .form-table p.phplugins-lc-webhook-secret {
+    margin-top: 10px;
+    font-size: 13px;
+    }
+
+  // Inline code (event keys, URL, secret) in the API tab
+  code {
+    background-color : $gray-1;
+    padding          : 2px 8px;
+    border-radius    : 5px;
+    font-size        : 12px;
+
+    &.phplugins-lc-webhook-secret-value {
+      display : inline-block;
+      padding : 4px 10px;
+      margin-top: 5px;
+      font-size : 13px;
+      }
+    }
+
+  }
+
+// Webhooks: add form revealed after clicking "Add Webhook"
+.berrypress-page .phplugins-lc-webhook-add {
+
+  > summary {
+    display       : inline-block;
+    margin-bottom : 10px;
+    list-style    : none;
+    cursor        : pointer;
+
+    &::-webkit-details-marker {
+      display : none;
+    }
+  }
+
+  &[open] > summary {
+    display : none;
+  }
+}
+
+.phplugins-lc-webhook-add-form input[type="url"] {
+  width     : 100%;
+  max-width : 480px;
+}
+
+// Three-dot icon for .berrypress-dropdown-trigger
+.phplugins-lc-kebab-icon {
+  position       : relative;
+  display        : inline-block;
+  vertical-align : middle;
+  width          : 3px;
+  height         : 3px;
+  border-radius  : 50%;
+  background     : currentColor;
+  box-shadow     : -5px 0 0 currentColor, 5px 0 0 currentColor;
+}
+
+// Small tag, e.g. subscribed events in the webhooks table
+.phplugins-lc-tags {
+  display   : flex;
+  flex-wrap : wrap;
+  gap       : 4px;
+}
+
+.phplugins-lc-tag {
+  display       : inline-block;
+  padding       : 2px 8px;
+  font-size     : 12px;
+  line-height   : 1.5;
+  white-space   : nowrap;
+  color         : $text-secondary;
+  background    : $gray-1;
+  border        : 1px solid $gray-2;
+  border-radius : 10px;
+}
+
+// Webhook events: framework checkbox group is 300px wide, event labels also show the key
+.phplugins-lc-webhook-add-form .berrypress-field-checkbox-group ul {
+  max-width : 480px;
+}
+
+// Webhooks table: cells can be multi-line (secret under URL, wrapping tags), so align to top
+.berrypress-page table.berrypress-table.phplugins-lc-webhooks-table tbody td {
+  vertical-align : text-top;
+}
+
+// Send recovery email modal (framework .berrypress-modal)
+.phplugins-lc-recovery-modal {
+  width: 520px;
+
+  h3 {
+    margin-top: 0;
+    padding-right: 40px;
+  }
+
+  .phplugins-lc-recovery-recipient {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  select {
+    max-width: 100%;
+  }
+
+  // "Send a test copy to me": a text link above the buttons (a submit button, so it posts the form).
+  .phplugins-lc-recovery-test {
+    margin: 0;
+  }
+
+  .phplugins-lc-link-button {
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 13px;
+    color: $primary-color;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: $text-primary;
+    }
+  }
+
+  .berrypress-modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+}
+
+// Envelope button (opens the send recovery email modal)
+// Cart details header: same spacing as the nav buttons next to the trash button.
+.phplugins-lc-detail-header-actions .phplugins-lc-send-recovery {
+  margin-right: .35em;
+}
+
+// Cart list: columns sized by their content (WordPress' fixed layout gave every column the same width), and a
+// horizontal scroll instead of squeezing when there isn't room (no pinned columns).
+.phplugins-lc-table-scroll {
+  // clear: overflow makes this its own block formatting context, which would otherwise sit beside the floated
+  // pagination/bulk actions above the table when they wrap on a narrow screen.
+  clear: both;
+  overflow-x: auto;
+}
+
+// A flex item can't shrink below its content's minimum width unless told it may; without this the whole page
+// widens to the table instead of the table scrolling inside its wrapper.
+.berrypress_page_live-carts-for-woocommerce .berrypress-content {
+  min-width: 0;
+}
+
+table.berrypress_page_live-carts-for-woocommerce {
+  table-layout: auto;
+
+  th,
+  td {
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  // These can wrap: names, coupon codes and the date/time of the date columns.
+  .column-user,
+  .column-coupon,
+  .column-date_created,
+  .column-last_seen .phplugins-lc-last-seen-date {
+    white-space: normal;
+  }
+
+  .column-cart_id { min-width: 90px; }
+  .column-date_created { min-width: 88px; }
+  .column-status,
+  .column-list_type { min-width: 100px; }
+  .column-user { min-width: 100px; }
+  .column-ip_address { min-width: 105px; }
+  .column-last_seen { min-width: 150px; }
+  .column-recovery_email { min-width: 115px; }
+  .column-coupon { min-width: 90px; }
+  .column-value { min-width: 85px; }
+
+  // Actions: a "⋯" dropdown.
+  .column-actions {
+    width: 56px;
+    min-width: 56px;
+    text-align: center;
+
+    .berrypress-btn-icon {
+      margin: 0;
+    }
+  }
+
+  .phplugins-lc-last-seen-date {
+    display: block;
+  }
+
+  // The URL: one line with an ellipsis (full URL in the tooltip and the link).
+  .phplugins-lc-last-seen-url {
+    display: block;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  // Checkbox column: just wide enough for the checkbox.
+  .check-column {
+    width: 36px;
+    min-width: 36px;
+    max-width: 36px;
+  }
+}
+
+// Dropdown items in the cart list: links (View cart) and buttons (Send recovery email) look the same. The table styles
+// every link (underlined, primary colour on hover), so those rules are overridden here.
+.berrypress-page table .berrypress-dropdown-menu {
+  a.berrypress-dropdown-item,
+  button.berrypress-dropdown-item {
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-decoration: none;
+    color: $text-primary;
+  }
+
+  a.berrypress-dropdown-item:hover,
+  a.berrypress-dropdown-item:focus,
+  button.berrypress-dropdown-item:hover,
+  button.berrypress-dropdown-item:focus {
+    color: $text-primary;
+    text-decoration: none;
+  }
+
+  // Separates the Trash group from the rest.
+  .berrypress-dropdown-separator {
+    height: 1px;
+    margin: 4px 6px;
+    background: $gray-2;
+  }
+
+  // Destructive item (Delete permanently).
+  a.phplugins-lc-menu-danger,
+  a.phplugins-lc-menu-danger:hover,
+  a.phplugins-lc-menu-danger:focus,
+  button.phplugins-lc-menu-danger,
+  button.phplugins-lc-menu-danger:hover,
+  button.phplugins-lc-menu-danger:focus {
+    color: $accent-red;
+  }
+
+  // Unavailable (e.g. no email address): greyed out, no hover highlight.
+  .berrypress-dropdown-item[aria-disabled="true"],
+  .berrypress-dropdown-item[aria-disabled="true"]:hover,
+  .berrypress-dropdown-item[aria-disabled="true"]:focus {
+    color: $text-secondary;
+    background: transparent;
+    cursor: not-allowed;
+    opacity: .6;
   }
 }

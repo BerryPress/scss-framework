@@ -1,0 +1,64 @@
+// APC: migration of v1 rules to workflows (notices above the rules and workflows lists)
+@use "../../../global" as *;
+
+.berrypress-page {
+
+  .php-apc-migration-notice {
+    align-items : flex-start;
+    flex-wrap   : wrap;
+
+    p {
+      flex : 1 1 280px;
+      }
+
+    .php-apc-migration-notice-actions {
+      display     : flex;
+      flex-wrap   : wrap;
+      align-items : center;
+      gap         : 8px;
+      flex-shrink : 0;
+      }
+
+    // Notices color their links, which must not apply to the buttons
+    .berrypress-btn {
+      flex-shrink     : 0;
+      text-decoration : none;
+      }
+
+    .berrypress-btn-primary {
+      color : #fff;
+      }
+
+    .berrypress-btn-secondary {
+      color : $text-primary;
+      }
+    }
+
+  .php-apc-migration-card {
+    display       : flex;
+    align-items   : center;
+    flex-wrap     : wrap;
+    gap           : 16px;
+    padding       : 16px 20px;
+    margin-bottom : 16px;
+
+    .php-apc-migration-card-text {
+      flex : 1 1 360px;
+
+      h3 {
+        margin      : 0 0 4px;
+        color       : $text-primary;
+        font-size   : 14px;
+        font-weight : 600;
+        }
+
+      p {
+        margin : 0;
+        }
+      }
+
+    .berrypress-btn {
+      flex-shrink : 0;
+      }
+    }
+  }

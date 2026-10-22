@@ -14,10 +14,15 @@
     text-shadow: 0 0 20px $text-primary;
     }
 
-  a {
+  a.berrypress-btn {
     margin-left: 5px;
+
     i {
       margin-left: 5px;
       }
+    }
+
+  .berrypress-top-bar-dismiss i {
+    color: #fff;
     }
   }

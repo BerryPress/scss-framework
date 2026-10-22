@@ -4,7 +4,7 @@
   background-size: 16px auto;
   }
 
-#adminmenu li#toplevel_page_berrypress  .wp-submenu a[href="https://berrypress.com/docs"]::after{
+#adminmenu li#toplevel_page_berrypress  .wp-submenu a[href^="https://berrypress.com/docs"]::after{
   content: "\f504";
   font: normal 16px/1 dashicons;
   display: inline-block;

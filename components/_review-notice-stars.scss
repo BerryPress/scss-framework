@@ -17,7 +17,7 @@
 .berrypress-notice.berrypress-notice-info.berrypress-review-notice {
 	position: relative;
 	align-items: flex-start;
-	padding-right: 20px;
+	padding-right: 40px; // leave room for the absolutely positioned WordPress dismiss (x) button
 
 	.berrypress-review-notice__body {
 		flex: 1;

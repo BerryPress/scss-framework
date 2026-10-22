@@ -26,6 +26,15 @@
 .berrypress-content .wrap {
   margin: 0 0.5rem;
   }
+
+// WordPress moves admin notices to just after the first h1/h2 inside a .wrap; the empty h2 is only that marker
+.berrypress-content .berrypress-page-notices > h2 {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  line-height: 0;
+  }
 .berrypress-page #wpbody-content {
   padding-bottom: 0;
   position: relative;

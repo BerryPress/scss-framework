@@ -1,0 +1,57 @@
+@use "../global" as *;
+
+// Resizable two-pane layout (content + sidebar) using Split.js, which adds a .gutter element between the panes.
+// Generic version of plugins/ninjalytics/components/_settings-split.scss.
+
+.berrypress-split {
+  display    : flex;
+  flex-direction: row;
+  align-items: stretch;
+  width      : 100%;
+  min-height : 0;
+  box-sizing : border-box;
+
+  > * {
+    box-sizing : border-box;
+    min-width  : 0;
+    min-height : 0;
+    }
+
+  > .gutter {
+    position        : relative;
+    flex            : 0 0 auto;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    background      : transparent;
+    touch-action    : none;
+    transition      : background 0.2s ease;
+
+    &::before {
+      content       : "";
+      border-radius : 999px;
+      background    : rgba(196, 204, 217, 0.7);
+      transition    : background 0.2s ease, transform 0.2s ease;
+      }
+
+    &:hover,
+    &:focus-visible {
+      background : rgba($primary-color, 0.1);
+      }
+
+    &:hover::before,
+    &:focus-visible::before {
+      background : $primary-color;
+      }
+    }
+
+  > .gutter.gutter-horizontal {
+    width  : 8px !important;
+    cursor : col-resize;
+
+    &::before {
+      width  : 2px;
+      height : 48px;
+      }
+    }
+  }

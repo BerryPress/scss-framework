@@ -31,6 +31,9 @@ $icons: (
         check_circle: "\E86C",
         external-link: "\E89E",
         info: "\E88E",
+        keyboard_arrow_left: "\E314",
+        keyboard_arrow_right: "\E315",
+        keyboard_double_arrow_left: "\EAC3",
         keyboard_double_arrow_right: "\eac9",
   );
 
@@ -49,7 +52,7 @@ $icons: (
     font-family : vars.$bp-icon-font-family, sans-serif;
     }
   }
-.berrypress-font-loaded [class^="berrypress-icon-"], [class*=" berrypress-icon-"] {
+.berrypress-font-loaded [class^="berrypress-icon-"], .berrypress-font-loaded [class*=" berrypress-icon-"] {
   visibility: visible;
   width: auto;
   }

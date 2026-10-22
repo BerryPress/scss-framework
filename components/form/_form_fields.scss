@@ -29,6 +29,12 @@
     }
   }
 
+// Fixed-width label column, so labels of stacked fields line up. Override the width per
+// field/form with --berrypress-field-label-width, e.g. style="--berrypress-field-label-width: 160px".
+.berrypress-field.berrypress-field-label-fixed {
+  grid-template-columns: var(--berrypress-field-label-width, 120px) 1fr;
+  }
+
 .berrypress-field.berrypress-field-align-center {
   align-items: center;
   }
@@ -43,6 +49,7 @@
   p.search-box input[type=search],
   input[type="search"],
   input[type="email"],
+  input[type="url"],
   input[type="number"],
   input[type="date"],
   input[type="time"],
@@ -64,6 +71,7 @@
 
   select,
   input[type="email"],
+  input[type="url"],
   input[type="text"]  {
     min-width: 100px;
     }

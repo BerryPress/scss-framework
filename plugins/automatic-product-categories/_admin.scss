@@ -16,9 +16,29 @@
 @use "../../components/pagination" as *;
 @use "../../components/berrypress_bf-bar";
 @use "../../components/berrypress_top_bar";
+@use "../../components/review-notice-stars";
+@use "../../base/utilities";
+@use "../../components/dropdown";
+@use "../../components/js-tooltips";
 @use "./inc/progress";
+@use "./inc/migration";
+@use "./inc/unsaved-changes";
 
 .berrypress-page {
+
+  .berrypress-nav-label {
+    display        : inline-block;
+    font-size      : 10px;
+    font-weight    : 600;
+    line-height    : 1;
+    padding        : 2px 5px;
+    border-radius  : 3px;
+    background     : $gray-2;
+    color          : $text-secondary;
+    margin-left    : 5px;
+    text-transform : uppercase;
+    letter-spacing : 0.3px;
+    }
 
   h3 {
     margin      : 0;
@@ -54,6 +74,16 @@
 
     tr:not(.php-apc-rule-edit) {
       cursor : pointer;
+      }
+
+    // The primary column (created date) is a <th>, so give it the same look as the <td> cells
+    tbody th.column-primary {
+      padding        : 10px;
+      font-size      : 13px;
+      font-weight    : 400;
+      text-align     : left;
+      border-bottom  : 1px solid $gray-2;
+      vertical-align : middle;
       }
 
     }
@@ -268,6 +298,48 @@
       .php-apc-rule-status-enabled::before {
         background-color : $accent-green;
         }
+
+      .php-apc-rule-archived-badge {
+        display          : inline-block;
+        margin-left      : 8px;
+        padding          : 1px 8px;
+        border-radius    : 999px;
+        font-size        : 11px;
+        line-height      : 16px;
+        font-weight      : 600;
+        color            : $text-secondary;
+        background-color : $gray-3;
+        }
+      }
+
+    tr.php-apc-rule-is-archived {
+      background-color : $gray-1;
+
+      .column-created_at,
+      .column-name h2,
+      .php-apc-rule-status,
+      .php-apc-run-rule,
+      .column-cb .php-apc-settings-toggle,
+      .php-apc-rule-row-actions .php-apc-settings-toggle {
+        opacity : 0.4;
+        }
+
+      .php-apc-rule-status::before,
+      .php-apc-rule-status-enabled::before {
+        background-color : $gray-4;
+        }
+
+      &.php-apc-rule-edit .php-apc-rule-edit-group {
+        opacity : 0.45;
+        }
+      }
+
+    tr:not(.php-apc-rule-edit).php-apc-rule-is-archived:hover {
+      background-color : $gray-2;
+      }
+
+    .php-apc-rule-archived-note {
+      margin-bottom : 12px;
       }
 
     // Rule Name
@@ -280,9 +352,31 @@
         }
       }
 
-    // Action Column
-    .column-action button {
-      margin-bottom: 5px;
+    // Action Column — compact Run / Edit / More, as on Workflows
+    .column-action {
+      width      : 120px;
+      text-align : right;
+
+      button {
+        margin-bottom: 5px;
+        }
+      }
+
+    .php-apc-rule-row-actions {
+      display         : inline-flex;
+      align-items     : center;
+      justify-content : flex-end;
+      gap             : 2px;
+
+      .berrypress-btn-icon {
+        margin        : 0;
+        margin-bottom : 0;
+        }
+
+      a.berrypress-btn-icon {
+        color           : inherit;
+        text-decoration : none;
+        }
       }
 
     }
@@ -293,7 +387,7 @@
       .php-apc-rule-edit-settings {
 
         fieldset legend {
-          position: relative;
+          //position: relative;
 
           select,
           input[type=text] {
@@ -302,8 +396,10 @@
           }
         select,
         input[type=text] {
-          width : 100%;
+          width      : 100%;
+          box-sizing : border-box;
           }
+
 
         }
       }
@@ -340,33 +436,124 @@
         }
 
 
-      tbody tr th.check-column {
-        width   : 60px !important;
-        display: inline-block;
-        border-bottom   : 1px solid $gray-2;
-        padding: 15px 0 0 15px!important;
-        height: 45px;
+      // Main row: checkbox + rule name on the first line, the remaining cells below
+      tbody tr:not(.php-apc-rule-edit):not(.php-apc-template) {
+        display   : flex;
+        flex-wrap : wrap;
+
+        > * {
+          flex  : 0 0 100%;
+          order : 3;
+          }
+
+        > .check-column {
+          flex-basis : 70px;
+          order      : 1;
+          }
+
+        // WP renders the primary column as <th> or <td> depending on the version
+        > .column-name {
+          flex       : 1 1 0;
+          min-width  : 0;
+          order      : 2;
+          }
         }
 
-      tbody td.column-name {
-        min-width: 180px;
-        width   : calc(100% - 100px)!important;
-        display: inline-block;
-        height: 45px;
-        padding: 15px 5px 0 15px;
+      tbody tr .check-column {
+        display        : flex;
+        flex-wrap      : nowrap;
+        align-items    : center;
+        gap            : 4px;
+        height         : 45px;
+        padding        : 0 0 0 15px !important;
+        border-bottom  : 1px solid $gray-2;
+        box-sizing     : border-box;
+
+        label {
+          display     : flex;
+          align-items : center;
+          width       : 20px;
+          height      : 20px;
+          }
+
+        input {
+          margin : 0;
+          }
+
+        button {
+          flex       : 0 0 auto;
+          width      : 24px;
+          min-height : 0;
+          height     : 24px;
+          padding    : 0;
+          }
+        }
+
+      tbody tr .column-name {
+        display     : flex;
+        align-items : center;
+        height      : 45px;
+        padding     : 0 15px 0 5px !important;
+        box-sizing  : border-box;
 
         h2 {
-          line-height: 30px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 100%;
+          line-height   : 30px;
+          white-space   : nowrap;
+          overflow      : hidden;
+          text-overflow : ellipsis;
+          max-width     : 100%;
+          }
+
+        input.php-apc-field-rule-name {
+          width     : 100%;
+          min-width : 0;
           }
         }
 
       tr.php-apc-rule-edit,
       tr.php-apc-template {
         display: none;
+        }
+
+      // Narrow tables: stack the label above its settings instead of wrapping a 100px label column
+      tr.php-apc-rule-edit .php-apc-rule-edit-group {
+        flex-direction : column;
+        flex-wrap      : nowrap;
+        gap            : 8px;
+        margin-bottom  : 20px;
+
+        &.php-apc-rule-edit-group-status {
+          padding-left : 5px;
+          }
+
+        h3 {
+          flex : none; // in a column the 100px basis would become a 100px height
+          }
+
+        > .php-apc-rule-edit-settings {
+          flex      : none;
+          width     : 100%;
+          min-width : 0;
+          }
+        }
+
+      // Keep edit controls inside the cell: select2 sets width/min-width itself and fieldsets default to min-content
+      tr.php-apc-rule-edit .php-apc-rule-edit-settings {
+        .select2-container,
+        .berrypress-multiple-dropdown-container {
+          width     : 100% !important;
+          min-width : 0 !important; // global select2 styles set min-width: 240px
+          max-width : 100%;
+          box-sizing: border-box;
+          }
+
+        .select2-container .select2-selection {
+          min-width : 0 !important;
+          }
+
+        fieldset {
+          min-width : 0; // fieldsets default to min-content and push the row wider than the table
+          }
         }
 
       tr.php-apc-rule-edit td {
@@ -376,6 +563,7 @@
         }
 
       td {
+        box-sizing      : border-box; // WP cells are content-box, so flex-basis 100% + padding would overflow the row
         display         : flex;
         justify-content : flex-start;
         flex-wrap: wrap;
@@ -386,7 +574,7 @@
       td.column-action {
         border-color: $gray-2;
 
-        button {
+        button:not(.berrypress-btn-icon) {
           margin-right: 4px;
           }
         }
@@ -399,11 +587,48 @@
 
   }
 
+.berrypress-page table .berrypress-dropdown-menu {
+
+  a.berrypress-dropdown-item,
+  button.berrypress-dropdown-item {
+    box-sizing      : border-box;
+    font-family     : inherit;
+    font-size       : 13px;
+    font-weight     : 400;
+    line-height     : 1.5;
+    text-decoration : none;
+    color           : $text-primary;
+    }
+
+  a.berrypress-dropdown-item:hover,
+  a.berrypress-dropdown-item:focus,
+  button.berrypress-dropdown-item:hover,
+  button.berrypress-dropdown-item:focus {
+    color           : $text-primary;
+    text-decoration : none;
+    }
+
+  .berrypress-dropdown-separator {
+    height     : 1px;
+    margin     : 4px 6px;
+    background : $gray-2;
+    }
+  }
+
+.berrypress-page .php-apc-menu-danger,
+.berrypress-page table .berrypress-dropdown-menu a.php-apc-menu-danger,
+.berrypress-page table .berrypress-dropdown-menu button.php-apc-menu-danger,
+.berrypress-page table .berrypress-dropdown-menu a.php-apc-menu-danger:hover,
+.berrypress-page table .berrypress-dropdown-menu a.php-apc-menu-danger:focus,
+.berrypress-page table .berrypress-dropdown-menu button.php-apc-menu-danger:hover,
+.berrypress-page table .berrypress-dropdown-menu button.php-apc-menu-danger:focus {
+  color : $accent-red;
+  }
+
 #screen-options-apply.button-primary {
   @include buttons.berrypress-btn;
   @include buttons.berrypress-btn-primary;
-  }
-
+}
 
 // Pro badge
 
@@ -419,4 +644,55 @@
 
 .berrypress-field input:disabled + label {
   color: $gray-3
+ }
+
+// Debug log table
+
+.berrypress-page table.php-apc-log {
+  margin-top : 16px;
+
+  .column-time {
+    width : 130px;
+    }
+
+  .column-source {
+    width : 170px;
+    }
+
+  .column-product {
+    width : 22%;
+    }
+
+  .column-changes {
+    width : 38%;
+    }
+
+  // The primary column (time) is rendered as a <th> by WP_List_Table, so give it the same look as the <td> cells
+  tbody th.column-primary {
+    padding        : 10px;
+    font-size      : 13px;
+    font-weight    : 400;
+    text-align     : left;
+    border-bottom  : 1px solid $gray-2;
+    vertical-align : middle;
+    }
+
+  tbody tr:last-of-type th.column-primary {
+    border-bottom : unset;
+    }
+
+  td small {
+    color : $text-secondary;
+    }
+
+  .php-apc-log-change + .php-apc-log-change {
+    margin-top : 4px;
+    }
+  }
+
+
+// Rules Table Column - rule name field
+
+table.php-apc-rules input.php-apc-field-rule-name {
+  width: 100%;
   }

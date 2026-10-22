@@ -2,6 +2,31 @@
 $icons: (
         play_arrow: "\E037",
         filter_alt: "\EF4F",
+        drag-indicator: "\E945",
+        // Rule editor (beta)
+        bolt: "\EA0B",
+        call_split: "\E0B6",
+        sell: "\F05B",
+        add: "\E145",
+        arrow_back: "\E5C4",
+        zoom_in: "\E8FF",
+        zoom_out: "\E900",
+        fit_screen: "\EA10",
+        account_tree: "\E97A",
+        // Workflows (beta)
+        edit: "\E3C9",
+        more_horiz: "\E5D3",
+        content_copy: "\E14D",
+        delete: "\E872",
+        add_box: "\E146",
+        schedule: "\E8B5",
+        category: "\E574",
+        alt_route: "\F184",
+        label: "\E892",
+        label_off: "\E9B6",
+        casino: "\EB40",
+        format_list_numbered: "\E242",
+        error: "\E000",
   );
 
 @each $icon, $unicode in $icons {

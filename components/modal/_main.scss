@@ -23,7 +23,8 @@
 
 .berrypress-modal.berrypress-active {
   display: block;
-  z-index: 99999;
+  // Above the mobile BerryPress sidebar drawer (999999), below WordPress' wp-auth-check (1000010).
+  z-index: 1000001;
   opacity: 1;
   visibility: visible;
   }
@@ -57,7 +58,7 @@ body:has(.berrypress-modal.berrypress-active)::before {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 9998;
+  z-index: 1000000;
   }
 
 // Loading state
