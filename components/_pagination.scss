@@ -93,10 +93,8 @@
 
       &:focus {
         outline    : none;
-        color      : $primary-color;
-        box-shadow : unset;
-
-        border     : 1px solid #d7dbec;
+        box-shadow : 0 0 0 2px $primary-color;
+        border     : 1px solid $primary-color;
         }
       }
 
