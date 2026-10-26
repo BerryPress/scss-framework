@@ -5,6 +5,7 @@
 
 // Components
 @use "components/list";
+@use "components/berrysecure-promo";
 @use "../../components/pagination" as *;
 
 // Framework pages used by loginberry
@@ -166,3 +167,9 @@
   line-height: 18px;
   vertical-align: middle;
   }
+
+// Header logo
+.berrypress-page .berrypress-header-left img {
+  width: auto;
+  height: 32px;
+}

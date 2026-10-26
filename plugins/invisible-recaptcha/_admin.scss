@@ -1,0 +1,199 @@
+// Invisible reCAPTCHA: assets/admin/styles/invisible-recaptcha.css
+
+@use "../../global" as *;
+@use "../../components/nav_tabs";
+@use "../../components/js-tooltips";
+@use "../../components/notices/info";
+@use "../../components/berrypress_bf-bar" with ($promobar-path: "../../../includes/berrypress-admin-framework/assets/img/bf-promobar.png");
+@use "../../pages/addons_page";
+
+// Legacy module settings forms (MchBaseAdminPage)
+form.mch-module-settings-form {
+  &.ic-settings input[type="text"] {
+    width: 390px;
+  }
+
+  // Wider label column on desktop for modules with long labels
+  &.ic-contactforms-settings {
+    @media (min-width: 783px) {
+      --ic-th-width: 230px;
+    }
+  }
+
+  // Text under the settings table (e.g. link to the protected plugin)
+  .berrypress-section-footer {
+    margin-top: 1rem;
+  }
+
+  .berrypress-notice p + p {
+    margin-top: 6px;
+  }
+
+  p.submit {
+    text-align: left;
+    max-width: 100%;
+    margin-top: 20px;
+    padding-bottom: 0;
+  }
+
+  .form-table {
+    th {
+      padding-top: 15px;
+      width: var(--ic-th-width, 170px);
+      font-weight: 500;
+      color: $text-secondary;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: .3px;
+
+      .berrypress-doc-note {
+        vertical-align: middle;
+      }
+    }
+
+    // Same row dividers as the Live Carts settings tabs
+    tr + tr td,
+    tr + tr th {
+      border-top: 1px solid $gray-2;
+      padding-top: 20px;
+    }
+
+    tr:last-child td,
+    tr:last-child th {
+      border-bottom: 1px solid $gray-2;
+      padding-bottom: 20px;
+    }
+
+    .description {
+      color: $text-secondary;
+      font-size: 12px;
+      font-style: normal;
+      margin-top: 0.5rem;
+    }
+
+    // WordPress stacks th above td under 783px
+    @media (max-width: 782px) {
+      th {
+        width: auto;
+        padding-bottom: 0;
+      }
+
+      tr + tr th {
+        border-top: 1px solid $gray-2;
+      }
+
+      tr:last-child th {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      tr + tr td {
+        border-top: 0;
+        padding-top: 8px;
+      }
+    }
+
+    td {
+      position: relative !important;
+    }
+
+    p.description a {
+      display: inline-block;
+      line-height: 1em;
+
+      img {
+        border: 1px solid #e1e1e1;
+        padding: 1px;
+      }
+
+      &:hover img {
+        border-color: #0073aa;
+      }
+    }
+  }
+}
+
+// Header logo
+.invisible-recaptcha-page .berrypress-header-left img {
+  width: 26px;
+  height: auto;
+}
+
+.invisible-recaptcha-loginberry-page .berrypress-header-left img {
+  width: auto;
+  height: 32px;
+}
+
+.wrap h1.invisible-recaptcha-settings-h1 {
+  margin-bottom: 10px;
+}
+
+// Checkbox rows: several fields grouped under one row title (as in Live Carts settings)
+form.mch-module-settings-form .form-table td .berrypress-field {
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+}
+
+// LoginBerry promo page: feature cards (addons grid) with left-aligned content
+.berrypress-loginberry-promo {
+  .berrypress-addon-item {
+    align-items: stretch;
+    text-align: left;
+    padding: 1.5rem;
+
+    border-top: 3px solid $primary-color;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  // Same look as the Ninjalytics "Create Report" hero
+  .berrypress-loginberry-hero {
+    margin: 20px 0 10px;
+    border-color: rgba($primary-color, 0.3);
+    background-color: #eff5fe;
+
+    .berrypress-card-content {
+      text-align: center;
+      padding: 16px 32px 32px;
+    }
+
+    &-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 18px;
+
+      img {
+        display: inline-block;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    &-title {
+      margin: 0 0 20px;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    &-subtitle {
+      margin: 0 auto 24px;
+      color: $text-secondary;
+      max-width: 780px;
+    }
+
+    &-note {
+      max-width: 720px;
+      margin: 16px auto 0;
+      color: $text-secondary;
+      font-size: 13px;
+    }
+  }
+}

@@ -8,6 +8,8 @@
 @use "../../components/js-tooltips";
 @use "../../components/settings_subnav";
 
+@use "../../components/berrypress_bf-bar" with ($promobar-path: "../includes/berrypress-admin-framework/assets/img/bf-promobar.png");
+
 .berrypress_page_hm_bbpui.berrypress-page  {
    .berrypress-header-left img {
     max-width: 36px;

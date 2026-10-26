@@ -9,6 +9,8 @@
 // Only this plugin's translation table needs styled textareas outside a normal .berrypress-field row.
 @use "../../components/form/form_field_textarea";
 
+@use "../../components/berrypress_bf-bar" with ($promobar-path: "../includes/berrypress-admin-framework/assets/img/bf-promobar.png");
+
 // Image Storage sidebar tab icons. Shared icons live in the framework's $icons map instead.
 $bbpuip-icons: (
         folder: "\e2c7",

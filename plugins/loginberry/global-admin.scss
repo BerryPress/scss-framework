@@ -1,5 +1,6 @@
 @use "../../abstracts/variables" with ($bp-icon-font-family: "Material Symbols Rounded BerryPress LB");
 @use "../../global-admin";
+@use "../../base/menu_item_berrysecure";
 @use "../../global" as *;
 
 .berrypress-ua-green-dark { color: $accent-green-dark ; }
