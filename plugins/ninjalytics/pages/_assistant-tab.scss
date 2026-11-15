@@ -1,0 +1,324 @@
+@use "../../../global" as *;
+
+// Assistant tab (body.ninjalytics-assistant-view): the report page laid out around the Ninjalytics Assistant.
+// The panel itself (and how it looks in the report sidebar) is in _report-sidebar-ai.scss; this file only adapts it.
+//
+// One state class on the body (set by PHP, then by ninjalytics-ai.js, updateAssistantState):
+//   .ninjalytics-assistant-wizard  no messages yet, report hidden: a centered first prompt
+//   .ninjalytics-assistant-thread  messages, report hidden: the conversation in a white box
+//   .ninjalytics-assistant-report  report shown: the usual report + sidebar layout
+//
+// Contents:
+//   1. All states
+//   2. Report shown
+//   3. Report hidden (wizard and thread): full width panel
+//   4. Wizard
+//   5. Thread
+
+// Width of the centered conversation column.
+$nj-assistant-column-width: 720px;
+// Width of the white conversation box once a chat exists.
+$nj-assistant-box-width: 900px;
+// Space between the edge of the conversation box and its content (header, messages, composer).
+$nj-assistant-box-padding: 32px;
+// Light blue behind information to notice (same as the consent box in the welcome dialog).
+$nj-assistant-info-background: #eff5fe;
+
+
+// 1. All states
+
+body.ninjalytics-assistant-view {
+  #ninjalytics-display-primary-toolbar,
+  #ninjalytics-report-sidebar-tabs {
+    display: none;
+  }
+
+  // Overrides the !important border in _report-settings.scss
+  #ninjalytics-settings-settings {
+    border-top: 0 !important;
+  }
+}
+
+
+// 2. Report shown
+// The report's Settings tab is hidden next to the conversation, so say how to get to the settings.
+
+body.ninjalytics-assistant-report #ninjalytics-report-sidebar .ninjalytics-ai-save-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-radius: $border-radius;
+  background: $nj-assistant-info-background;
+  font-size: 12px;
+  line-height: 1.4;
+  color: $text-primary;
+
+  i {
+    flex-shrink: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: $primary-color;
+  }
+}
+
+
+// 3. Report hidden (wizard and thread): a full width conversation, kept in a centered column
+
+body.ninjalytics-assistant-wizard,
+body.ninjalytics-assistant-thread {
+
+  // The sidebar takes over the whole split row
+  #ninjalytics-settings-settings .ninjalytics-settings-split {
+    > .ninjalytics-settings-data,
+    > .gutter {
+      display: none !important;
+    }
+
+    > .ninjalytics-settings-sidebar {
+      flex: 1 1 auto !important;
+      width: auto !important;
+    }
+
+    .ninjalytics-settings-panel {
+      flex: 1 1 auto;
+      width: auto;
+      max-width: none;
+      border-left: 0;
+    }
+  }
+
+  #ninjalytics-report-sidebar {
+    .ninjalytics-ai {
+      --ninjalytics-ai-column-gutter: max(0px, calc((100% - #{$nj-assistant-column-width}) / 2));
+    }
+
+    .ninjalytics-ai-scroll {
+      padding-right: var(--ninjalytics-ai-column-gutter);
+      padding-left: var(--ninjalytics-ai-column-gutter);
+    }
+
+    // Roomier type and layout: this view is a full page, not a narrow sidebar.
+    .ninjalytics-ai .ninjalytics-sidebar-header {
+      padding: 20px calc(var(--ninjalytics-ai-column-gutter) + #{$nj-assistant-box-padding}) 8px;
+      border-bottom: 0;
+    }
+
+    .ninjalytics-sidebar-title {
+      margin-bottom: 2px;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .ninjalytics-sidebar-subtitle {
+      font-size: 13px;
+    }
+
+    // Suggestions as a centered row of pills.
+    .ninjalytics-ai-suggestions {
+      padding: 14px 12px 4px;
+    }
+
+    .ninjalytics-ai-suggestions-list {
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+
+    button.ninjalytics-ai-suggestion {
+      padding: 6px 14px;
+      border-color: $gray-3;
+      border-radius: 999px;
+      background: $background-color;
+      text-align: center;
+    }
+
+    // Messages
+    .ninjalytics-ai-messages {
+      gap: 20px;
+      padding: 16px 12px 24px;
+    }
+
+    .ninjalytics-ai-message-bubble {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .ninjalytics-ai-message--user .ninjalytics-ai-message-row {
+      max-width: 75%;
+    }
+
+    .ninjalytics-ai-avatar {
+      width: 32px;
+      height: 32px;
+    }
+
+    // Composer: the same bordered input with the Send button next to it as in the sidebar (the focus ring and the
+    // scrollbar of a long message stay on the input), only roomier and on the page background.
+    .ninjalytics-ai-composer {
+      padding: 8px calc(var(--ninjalytics-ai-column-gutter) + #{$nj-assistant-box-padding}) 16px;
+      border-top: 0;
+      background: $background-color;
+    }
+
+    // The input grows with the message (resizeInput in ninjalytics-ai.js), so there is no resize handle.
+    .ninjalytics-ai-input {
+      min-height: 44px;
+      padding: 10px 12px;
+      font-size: 14px;
+      resize: none;
+    }
+
+    // Buttons keep the default BerryPress padding and size here (the sidebar uses compact ones).
+    .ninjalytics-ai-send {
+      padding: 2px 24px !important;
+      font-size: 14px !important;
+    }
+
+    .ninjalytics-ai-message-actions .berrypress-btn {
+      padding: 2px 24px;
+      font-size: 14px;
+    }
+
+    // What the assistant can see of the report data; opens the settings.
+    button.ninjalytics-ai-context {
+      display: inline-flex;
+    }
+
+    // The Terms and Privacy notice moves from the suggestions to under the composer.
+    .ninjalytics-ai-disclaimer--sidebar {
+      display: none;
+    }
+
+    .ninjalytics-ai-disclaimer--composer {
+      display: block;
+      margin: 8px 0 0;
+      font-size: 11px;
+      text-align: center;
+      color: $gray-5;
+    }
+  }
+}
+
+
+// 4. Wizard: a first prompt in the middle of the page
+// Greeting, prompt and suggestions are stacked on one grid. The header, scroll area, suggestions and composer use
+// display: contents so their children can be placed on it, with the settings and clear buttons on the data line:
+//
+//   row 1  greeting
+//   row 2  report data line | settings and clear buttons
+//   row 3  input and Send
+//   row 4  Terms and Privacy notice
+//   row 5  suggestions
+
+body.ninjalytics-assistant-wizard #ninjalytics-report-sidebar .ninjalytics-ai {
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: none;
+  align-content: start;
+  align-items: center;
+  margin-top: 10vh;
+  padding-right: calc(var(--ninjalytics-ai-column-gutter) + 14px);
+  padding-left: calc(var(--ninjalytics-ai-column-gutter) + 14px);
+  background: none;
+
+  .ninjalytics-sidebar-header,
+  .ninjalytics-ai-scroll,
+  .ninjalytics-ai-suggestions,
+  .ninjalytics-ai-composer {
+    display: contents;
+  }
+
+  .ninjalytics-sidebar-header-text,
+  .ninjalytics-ai-suggestions-label,
+  .ninjalytics-ai-messages {
+    display: none;
+  }
+
+  .ninjalytics-ai-greeting {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    display: block;
+    margin: 0 0 20px;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.25;
+    text-align: center;
+    color: $text-primary;
+  }
+
+  button.ninjalytics-ai-context {
+    grid-row: 2;
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .ninjalytics-sidebar-header-buttons {
+    grid-row: 2;
+    grid-column: 2;
+    margin: 0 0 8px;
+  }
+
+  .ninjalytics-ai-composer-row {
+    grid-row: 3;
+    grid-column: 1 / -1;
+  }
+
+  .ninjalytics-ai-input {
+    min-height: 96px;
+  }
+
+  .ninjalytics-ai-disclaimer--composer {
+    grid-row: 4;
+    grid-column: 1 / -1;
+  }
+
+  .ninjalytics-ai-suggestions-list {
+    grid-row: 5;
+    grid-column: 1 / -1;
+    margin-top: 16px;
+  }
+}
+
+
+// 5. Thread: the conversation in a white, centered box on a gray page
+
+body.ninjalytics-assistant-thread {
+  .berrypress-content {
+    background: $gray-1;
+  }
+
+  #ninjalytics-report-sidebar {
+    .ninjalytics-ai {
+      --ninjalytics-ai-column-gutter: 0px;
+      flex: 1 1 auto;
+      width: 100%;
+      max-width: $nj-assistant-box-width;
+      height: auto;
+      margin: 16px auto;
+      border: 1px solid $gray-2;
+      border-radius: 8px;
+      background: $background-color;
+      overflow: hidden;
+    }
+
+    .ninjalytics-ai .ninjalytics-sidebar-header {
+      padding-bottom: 20px;
+      border-bottom: 1px solid $gray-2;
+    }
+
+    .ninjalytics-ai .ninjalytics-ai-messages {
+      padding-right: $nj-assistant-box-padding;
+      padding-left: $nj-assistant-box-padding;
+    }
+
+    .ninjalytics-ai .ninjalytics-ai-composer {
+      border-top: 1px solid $gray-2;
+    }
+
+    // The suggestions are for the first prompt only.
+    .ninjalytics-ai-suggestions {
+      display: none;
+    }
+  }
+}

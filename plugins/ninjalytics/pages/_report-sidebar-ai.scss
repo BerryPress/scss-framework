@@ -1,14 +1,25 @@
 @use "../../../global" as *;
 @use "report-breakpoints" as bp;
 
-// Report sidebar — AI tab (chat prototype). Tabpanel flex: _report-layout.scss.
+// Ninjalytics Assistant: the chat panel in the report sidebar (AI tab).
+// Markup: admin/views/report-sidebar-ai.php. Behaviour: js/ninjalytics-ai.js.
+// Tabpanel flex chain: _report-layout.scss.
+//
+// Related partials:
+//   _report-sidebar-ai-messages.scss  the conversation (messages, notes, typing indicator)
+//   _assistant-tab.scss               the same panel as a full page (Assistant tab)
+//   ../modals/_ai-welcome.scss        welcome / settings dialog
+//
+// Contents:
+//   1. Layout
+//   2. Suggestions
+//   3. Composer
+//   4. Assistant on / off
 
-// Width of the centered conversation column on the Assistant tab.
-$nj-assistant-column-width: 720px;
-// Width of the white conversation box once a chat exists.
-$nj-assistant-box-width: 900px;
 
-// Grid: header | scroll | composer (composer + hint always visible).
+// 1. Layout
+// Grid: header | scroll | composer (the composer is always visible).
+
 .ninjalytics-ai {
   display: grid;
   grid-template-columns: 1fr;
@@ -19,6 +30,17 @@ $nj-assistant-box-width: 900px;
   overflow: hidden;
   box-sizing: border-box;
   background: $background-color;
+
+  // .berrypress-btn sets its own display, which would override [hidden]
+  [hidden] {
+    display: none !important;
+  }
+
+  .ninjalytics-sidebar-header-buttons {
+    display: flex;
+    flex-shrink: 0;
+    gap: 4px;
+  }
 }
 
 .ninjalytics-ai-scroll {
@@ -31,89 +53,24 @@ $nj-assistant-box-width: 900px;
   touch-action: pan-y;
 }
 
+// Stacked layout: no viewport-locked flex chain, so the panel needs a height of its own to scroll in.
 @media (max-width: bp.$nj-report-split-min - 1) {
   #ninjalytics-report-sidebar-ai:not([hidden]) .ninjalytics-ai {
-    height: 100%;
     max-height: min(75dvh, 640px);
     min-height: 280px;
   }
+}
 
-  #ninjalytics-report-sidebar-ai:not([hidden]) .ninjalytics-ai-scroll {
-    // Definite scrollport when stacked layout has no viewport-locked flex chain.
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+// Shown only on the Assistant tab (_assistant-tab.scss) or while the assistant is off (4. Assistant on / off).
+.ninjalytics-ai-disclaimer--composer,
+.ninjalytics-ai-greeting,
+.ninjalytics-ai-context,
+.ninjalytics-ai-save-note {
+  display: none;
 }
 
 
-// Notices (error / info)
-
-.ninjalytics-ai-notice {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 10px;
-  margin: 10px 12px 0;
-  padding: 10px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  line-height: 1.45;
-  flex-shrink: 0;
-
-  i::before {
-    font-size: 18px;
-    line-height: 1;
-    margin-top: 1px;
-  }
-
-  strong {
-    display: block;
-    margin-bottom: 2px;
-    font-size: 13px;
-  }
-
-  p {
-    margin: 0;
-    color: inherit;
-  }
-}
-
-.ninjalytics-ai-notice-body {
-  flex: 1 1 auto;
-  min-width: 0;
-
-  p {
-    margin-bottom: 5px;
-    }
-}
-
-.ninjalytics-ai-notice-action {
-  flex-shrink: 0;
-  align-self: center;
-  font-size: 12px !important;
-}
-
-.ninjalytics-ai-notice--error {
-  background: rgba($accent-red, 0.08);
-  border: 1px solid rgba($accent-red, 0.25);
-  color: darken($accent-red, 8%);
-
-  i::before {
-    color: $accent-red;
-  }
-}
-
-.ninjalytics-ai-notice--info {
-  background: rgba($primary-color, 0.08);
-  border: 1px solid rgba($primary-color, 0.2);
-  color: $text-primary;
-
-  i::before {
-    color: $primary-color;
-  }
-}
-
-// Suggestion chips
+// 2. Suggestions
 
 .ninjalytics-ai-suggestions {
   flex-shrink: 0;
@@ -162,345 +119,14 @@ $nj-assistant-box-width: 900px;
   }
 }
 
-// Message thread
-
-.ninjalytics-ai-messages {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+// Terms and Privacy notice (under the suggestions here, under the composer on the Assistant tab)
+.ninjalytics-ai-disclaimer a {
+  color: inherit;
+  text-decoration: underline;
 }
 
-.ninjalytics-ai-message {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  max-width: 100%;
-}
 
-.ninjalytics-ai-message-meta {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  gap: 8px;
-  font-size: 11px;
-  color: $text-secondary;
-}
-
-.ninjalytics-ai-message-bubble time {
-  margin-top: 6px;
-  font-size: 11px;
-  color: $text-secondary;
-  display: inline-block;
-  }
-
-.ninjalytics-ai-message-author {
-  font-weight: 600;
-  color: $text-primary;
-}
-
-.ninjalytics-ai-message-bubble {
-  padding: 10px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  line-height: 1.5;
-  word-break: normal;
-  overflow-wrap: anywhere;
-
-  p {
-    margin: 0;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
-// Markdown headings in replies: the hierarchy is kept with small steps relative to the message text.
-.ninjalytics-ai-message-bubble .ninjalytics-ai-message-heading {
-  margin: 12px 0 4px;
-  padding: 0;
-  font-weight: 600;
-  line-height: 1.35;
-  color: $text-primary;
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &--1 {
-    font-size: 1.2em;
-  }
-
-  &--2 {
-    font-size: 1.1em;
-  }
-
-  &--3 {
-    font-size: 1em;
-  }
-
-  &--4 {
-    font-size: 0.95em;
-    color: $text-secondary;
-  }
-}
-
-.ninjalytics-ai-message-list {
-  margin: 8px 0 0;
-  padding-left: 18px;
-
-  li {
-    margin-bottom: 4px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
-ol.ninjalytics-ai-message-list {
-  padding-left: 22px;
-}
-
-// Markdown tables in agent messages
-.ninjalytics-ai-message-table-wrap {
-  margin: 8px 0;
-  overflow-x: auto;
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
-.ninjalytics-ai-message-table {
-  border-collapse: collapse;
-  font-size: 12px;
-  overflow-wrap: normal;
-
-  th,
-  td {
-    padding: 4px 8px;
-    border: 1px solid rgba($text-primary, 0.12);
-    text-align: left;
-    vertical-align: top;
-  }
-
-  th {
-    background: rgba($text-primary, 0.04);
-    font-weight: 600;
-  }
-}
-
-.ninjalytics-ai-message-bubble code {
-  padding: 1px 4px;
-  border-radius: 3px;
-  background: rgba($text-primary, 0.06);
-  font-size: 12px;
-}
-
-.ninjalytics-ai-message-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
-
-  .berrypress-btn {
-    padding: 4px 10px;
-    font-size: 12px;
-  }
-}
-
-.ninjalytics-ai-message--agent {
-  align-items: flex-start;
-
-  .ninjalytics-ai-message-row {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 10px;
-    max-width: 100%;
-  }
-
-  .ninjalytics-ai-avatar--agent {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: $primary-color;
-    color: $background-color;
-    padding: 0;
-
-    i {
-      display: flex;
-      font-size: 16px;
-      line-height: 1;
-    }
-  }
-
-  .ninjalytics-ai-message-body {
-    flex: 1 1 auto;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .ninjalytics-ai-message-bubble {
-    background: $gray-1;
-    border: 1px solid $gray-2;
-    color: $text-primary;
-  }
-}
-
-.ninjalytics-ai-message--agent.ninjalytics-ai-message--error {
-  .ninjalytics-ai-message-bubble {
-    background: rgba($accent-red, 0.08);
-    border: 1px solid rgba($accent-red, 0.25);
-    color: darken($accent-red, 8%);
-  }
-
-  .ninjalytics-ai-message-title {
-    margin: 0 0 6px;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 1.4;
-  }
-
-  .ninjalytics-ai-message-action {
-    font-size: 12px !important;
-  }
-}
-
-.ninjalytics-ai-message--user {
-  align-items: flex-end;
-
-  .ninjalytics-ai-message-row {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-start;
-    gap: 10px;
-    max-width: 100%;
-  }
-
-  .ninjalytics-ai-avatar--user {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: $gray-2;
-    color: $text-primary;
-    padding: 0;
-
-    i {
-      display: flex;
-      font-size: 16px;
-      line-height: 1;
-    }
-  }
-
-  .ninjalytics-ai-message-body {
-    flex: 1 1 auto;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  .ninjalytics-ai-message-meta {
-    flex-direction: row-reverse;
-  }
-
-  .ninjalytics-ai-message-bubble {
-    background: rgba($primary-color, 0.1);
-    border: 1px solid rgba($primary-color, 0.2);
-    color: $text-primary;
-  }
-}
-
-.ninjalytics-ai-message--pending .ninjalytics-ai-message-bubble--typing {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 10px;
-  min-width: 64px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-
-.ninjalytics-ai-typing {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  height: 10px;
-  padding: 0 2px;
-
-  span {
-    display: block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: $gray-4;
-    animation: ninjalytics-ai-typing-dot 1.1s ease-in-out infinite;
-    will-change: transform, opacity;
-
-    &:nth-child(2) {
-      animation-delay: 0.16s;
-    }
-
-    &:nth-child(3) {
-      animation-delay: 0.32s;
-    }
-  }
-}
-
-@keyframes ninjalytics-ai-typing-dot {
-  0%,
-  70%,
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 0.35;
-    background-color: $gray-4;
-  }
-
-  35% {
-    transform: translateY(-5px) scale(1.05);
-    opacity: 1;
-    background-color: $primary-color;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ninjalytics-ai-typing span {
-    animation: ninjalytics-ai-typing-dot-reduced 1.4s ease-in-out infinite;
-  }
-
-  @keyframes ninjalytics-ai-typing-dot-reduced {
-    0%,
-    100% {
-      opacity: 0.4;
-    }
-
-    50% {
-      opacity: 1;
-    }
-  }
-}
-
-// Composer
+// 3. Composer
 
 .ninjalytics-ai-composer {
   grid-row: 3;
@@ -546,559 +172,80 @@ ol.ninjalytics-ai-message-list {
   }
 }
 
+// Compact button; !important overrides the .berrypress-page .berrypress-btn defaults
 .ninjalytics-ai-send {
   flex-shrink: 0;
   padding: 8px 14px !important;
   font-size: 12px !important;
 }
 
-.ninjalytics-ai .ninjalytics-sidebar-header-buttons {
-  display: flex;
-  flex-shrink: 0;
-  gap: 4px;
-}
-.ninjalytics-ai-disclaimer--composer,
-.ninjalytics-ai-greeting,
-.ninjalytics-ai-context,
-.ninjalytics-ai-save-note {
-  display: none;
-}
-
-.ninjalytics-ai-disclaimer a {
-  color: inherit;
-  text-decoration: underline;
-}
-
-.ninjalytics-ai-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  margin: 0 4px;
-  font-size: 11px;
-  line-height: 1.45;
-  color: $gray-6;
-
-  i {
-    flex-shrink: 0;
-    font-size: 14px;
-  }
-
-  i.berrypress-icon-table {
-    margin-top: -3px;
-    }
-
-  time {
-    margin-left: auto;
-    flex-shrink: 0;
-  }
-}
-
-.ninjalytics-ai-typing-label {
-  margin-left: 8px;
-  font-size: 12px;
-  color: $gray-6;
-}
-
-// Pro upsell inside an agent message
-.ninjalytics-ai-message-bubble .ninjalytics-ai-upsell {
-  margin-top: 10px;
-}
-
-.ninjalytics-ai-upsell {
-  h4 {
-    margin: 4px 0;
-  }
-
-  .berrypress-upgrade-box-list {
-    margin: 0 0 10px;
-    padding: 0;
-    list-style: none;
-  }
-}
-
-.ninjalytics-ai-upsell-tagline {
-  margin: 0 0 6px;
-  font-size: 12px;
-}
-
-.ninjalytics-ai [hidden] {
-  display: none !important;
-}
-
-// Settings panel (replaces the conversation)
-.ninjalytics-ai-settings {
-  grid-row: 2 / span 2;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.ninjalytics-ai-settings-body {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  padding: 12px 14px;
-}
-
-.ninjalytics-ai-settings-title {
-  margin: 0 0 6px;
-  font-size: 13px;
-  font-weight: 600;
-  color: $text-primary;
-}
-
-.ninjalytics-ai-settings-intro,
-.ninjalytics-ai-settings-summary,
-.ninjalytics-ai-settings-readonly {
-  margin: 0 0 12px;
-  font-size: 12px;
-  line-height: 1.45;
-  color: $gray-6;
-}
-
-.ninjalytics-ai-settings-group {
-  margin: 0 0 14px;
-  padding: 0;
-  border: 0;
-
-  // Floated so the legend sits inside the box like normal content instead of straddling its top edge.
-  legend {
-    float: left;
-    width: 100%;
-    margin-bottom: 6px;
-    padding: 0;
-    font-weight: 600;
-    color: $text-primary;
-
-    + * {
-      clear: both;
-    }
-  }
-
-  .berrypress-field {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-
-  input {
-    flex-shrink: 0;
-  }
-}
-
-.ninjalytics-ai-settings-info {
-  display: inline-flex;
-  flex-shrink: 0;
+// Line above the input: what the assistant can see of the report data, or while it is off, the link to its settings.
+// Both open the settings dialog.
+button.ninjalytics-ai-context {
   align-items: center;
-  align-self: center;
-  margin: 0 0 0 -2px;
-  padding: 0;
+  gap: 4px;
+  margin: 0 0 8px;
+  padding: 2px 0;
   border: 0;
   background: none;
-  color: $gray-4;
-  cursor: help;
-  line-height: 1;
-
-  i {
-    font-size: 16px;
-  }
-
-  &:hover,
-  &:focus-visible {
-    color: $text-primary;
-  }
-}
-
-// Info icon sitting next to a fieldset legend
-.ninjalytics-ai-settings-group legend .ninjalytics-ai-settings-info {
-  vertical-align: middle;
-}
-
-.ninjalytics-ai-settings-summary {
-  padding: 8px 10px;
-  border-radius: 6px;
-  background: $gray-1;
-}
-
-.ninjalytics-ai-settings-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  padding: 10px 14px;
-  border-top: 1px solid $gray-2;
-}
-
-// Assistant tab (body.ninjalytics-assistant-view): the report page laid out around the Report Assistant.
-// One state class on the body (set by PHP, then by ninjalytics-ai.js):
-//   .ninjalytics-assistant-wizard  no messages yet, report hidden: a centered first prompt
-//   .ninjalytics-assistant-thread  messages, report hidden: the conversation in a white box
-//   .ninjalytics-assistant-report  report shown: the usual report + sidebar layout
-body.ninjalytics-assistant-view {
-  #ninjalytics-display-primary-toolbar,
-  #ninjalytics-report-sidebar-tabs {
-    display: none;
-  }
-
-  // Overrides the !important border in _report-settings.scss
-  #ninjalytics-settings-settings {
-    border-top: 0 !important;
-  }
-}
-
-// Report shown next to the conversation: its Settings tab is hidden, so say how to get to the settings.
-body.ninjalytics-assistant-report #ninjalytics-report-sidebar .ninjalytics-ai-save-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 4px;
-  margin: 6px 0 0;
+  color: $gray-6;
   font-size: 12px;
   line-height: 1.4;
-  color: $text-secondary;
+  text-align: left;
+  cursor: pointer;
 
   i {
-    flex-shrink: 0;
     font-size: 14px;
-    line-height: 1.4;
+  }
+
+  i::before {
+    vertical-align: middle;
+  }
+
+  &:hover:not(:disabled),
+  &:focus-visible {
+    color: $text-primary;
+    text-decoration: underline;
   }
 }
 
-// Report hidden: a full width conversation, kept in a centered column
-body.ninjalytics-assistant-wizard,
-body.ninjalytics-assistant-thread {
-  #ninjalytics-settings-settings .ninjalytics-settings-split {
-    > .ninjalytics-settings-data,
-    > .gutter {
-      display: none !important;
-    }
 
-    > .ninjalytics-settings-sidebar {
-      flex: 1 1 auto !important;
-      width: auto !important;
-    }
+// 4. Assistant on / off
+// The panel has --off until an administrator has accepted the Terms, and --access-none|aggregate|full for what the
+// assistant may read of the report data (classes set by report-sidebar-ai.php and ninjalytics-ai.js, updateGate).
+// Off, the chat is disabled (the PHP and the script disable the inputs) and the line above the composer is the link
+// to the settings; the settings themselves are in the welcome dialog. All that these states show or hide is here.
 
-    .ninjalytics-settings-panel {
-      flex: 1 1 auto;
-      width: auto;
-      max-width: none;
-      border-left: 0;
-    }
-  }
+.ninjalytics-ai {
 
-  #ninjalytics-report-sidebar {
-    .ninjalytics-ai {
-      --ninjalytics-ai-column-gutter: max(0px, calc((100% - #{$nj-assistant-column-width}) / 2));
-    }
-
-    .ninjalytics-ai-scroll,
-    .ninjalytics-ai-settings {
-      padding-right: var(--ninjalytics-ai-column-gutter);
-      padding-left: var(--ninjalytics-ai-column-gutter);
-    }
-
-    // Roomier type and layout: this view is a full page, not a narrow sidebar.
-    .ninjalytics-ai .ninjalytics-sidebar-header {
-      padding: 20px calc(var(--ninjalytics-ai-column-gutter) + 32px) 8px;
-      border-bottom: 0;
-    }
-
-    .ninjalytics-sidebar-title {
-      margin-bottom: 2px;
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 1.2;
-    }
-
-    .ninjalytics-sidebar-subtitle {
-      font-size: 13px;
-    }
-
-    .ninjalytics-ai-suggestions {
-      padding: 14px 12px 4px;
-    }
-
-    // Suggestions as a centered row of pills.
-    .ninjalytics-ai-suggestions-list {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    button.ninjalytics-ai-suggestion {
-      padding: 6px 14px;
-      border-color: $gray-3;
-      border-radius: 999px;
-      background: $background-color;
-      font-size: 12px;
-      text-align: center;
-    }
-
-    .ninjalytics-ai-messages {
-      gap: 20px;
-      padding: 16px 12px 24px;
-    }
-
-    .ninjalytics-ai-message-bubble {
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .ninjalytics-ai-message--user .ninjalytics-ai-message-row {
-      max-width: 75%;
-    }
-
-    // Agent replies read as page text, with only the avatar marking the speaker.
-    .ninjalytics-ai-message--agent .ninjalytics-ai-message-bubble {
-      padding: 2px 0;
-      border: 0;
-      background: none;
-    }
-
-    .ninjalytics-ai-avatar {
-      width: 32px;
-      height: 32px;
-    }
-
-    // Composer: one card with the send button inside it.
-    .ninjalytics-ai-composer {
-      padding: 8px calc(var(--ninjalytics-ai-column-gutter) + 24px) 16px;
-      border-top: 0;
-      background: $background-color;
-    }
-
-    .ninjalytics-ai-composer-row {
-      align-items: center;
-      padding: 6px 6px 6px 10px;
-      border: 1px solid $gray-3;
-      border-radius: 8px;
-      background: $background-color;
-
-      &:focus-within {
-        border-color: $primary-color;
-        box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
-      }
-    }
-
-    .ninjalytics-ai-input {
-      min-height: 44px;
-      padding: 10px 4px;
-      border: 0;
-      background: transparent;
-      font-size: 14px;
-      resize: none;
-
-      &:focus {
-        border: 0;
-        box-shadow: none;
-      }
-    }
-
-    // Buttons keep the default BerryPress padding and size here (the sidebar uses compact ones).
-    .ninjalytics-ai-send {
-      padding: 2px 24px !important;
-      font-size: 14px !important;
-    }
-
-    .ninjalytics-ai-message-actions .berrypress-btn {
-      padding: 2px 24px;
-      font-size: 14px;
-    }
-
-    // What the assistant can see of the report data; opens the settings.
-    button.ninjalytics-ai-context {
+  &.ninjalytics-ai--off {
+    // The line above the composer is the way to the settings, so it shows (the sidebar hides it while the assistant is on)
+    .ninjalytics-ai-context {
       display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin: 0 0 8px;
-      padding: 2px 0;
-      border: 0;
-      background: none;
-      color: $gray-6;
-      font-size: 12px;
-      line-height: 1.4;
-      cursor: pointer;
+      color: $primary-color;
+      text-decoration: underline;
 
-      i {
-        font-size: 14px;
-      }
-
-      i::before {
-        vertical-align: middle;
-        }
-
-      &:hover,
-      &:focus-visible {
-        color: $text-primary;
-        text-decoration: underline;
+      &:disabled {
+        color: $gray-6;
+        text-decoration: none;
+        cursor: default;
       }
     }
 
-    // The Terms and Privacy notice moves from the suggestions to under the composer.
-    .ninjalytics-ai-disclaimer--sidebar {
+    .ninjalytics-ai-suggestion:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    // Nothing to set up or clear for someone who can't turn the assistant on
+    &.ninjalytics-ai--readonly .ninjalytics-ai-button-settings {
       display: none;
     }
-
-    .ninjalytics-ai-disclaimer--composer {
-      display: block;
-      margin: 8px 0 0;
-      text-align: center;
-      font-size: 11px;
-      color: $gray-5;
-    }
-
-    // Settings as a centered card.
-    .ninjalytics-ai-settings {
-      background: $gray-1;
-    }
-
-    .ninjalytics-ai-settings-body {
-      flex: 0 1 auto;
-      margin: 16px 0;
-      padding: 20px 24px;
-      border: 1px solid $gray-2;
-      border-radius: 8px;
-      background: $background-color;
-    }
-
-    .ninjalytics-ai-settings-title {
-      font-size: 16px;
-      font-weight: 500;
-    }
-
-    // A background line rather than border-top, which a fieldset legend would cut through.
-    .ninjalytics-ai-settings-group + .ninjalytics-ai-settings-group {
-      padding-top: 14px;
-      background: linear-gradient($gray-2, $gray-2) top / 100% 1px no-repeat;
-    }
-
-    .ninjalytics-ai-settings-actions {
-      padding: 0 24px 16px;
-      border-top: 0;
-    }
-  }
-}
-
-// Wizard: a first prompt in the middle of the page. Greeting, prompt card and suggestions are
-// stacked on one grid. The header, scroll area, suggestions and composer use display: contents
-// so their children can be placed on it, with the settings and clear buttons on the data chip's line.
-body.ninjalytics-assistant-wizard #ninjalytics-report-sidebar {
-  .ninjalytics-ai {
-    background: none;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-rows: none;
-    align-content: start;
-    align-items: center;
-    margin-top: 10vh;
-    padding-right: calc(var(--ninjalytics-ai-column-gutter) + 14px);
-    padding-left: calc(var(--ninjalytics-ai-column-gutter) + 14px);
-
-    .ninjalytics-sidebar-header,
-    .ninjalytics-ai-scroll,
-    .ninjalytics-ai-suggestions,
-    .ninjalytics-ai-composer {
-      display: contents;
-    }
-
-    .ninjalytics-sidebar-header-text,
-    .ninjalytics-ai-suggestions-label,
-    .ninjalytics-ai-messages {
-      display: none;
-    }
-
-    .ninjalytics-ai-greeting {
-      grid-row: 1;
-      grid-column: 1 / -1;
-      display: block;
-      margin: 0 0 20px;
-      font-size: 28px;
-      font-weight: 500;
-      line-height: 1.25;
-      text-align: center;
-      color: $text-primary;
-    }
-
-    button.ninjalytics-ai-context {
-      grid-row: 2;
-      grid-column: 1;
-      justify-self: start;
-    }
-
-    .ninjalytics-sidebar-header-buttons {
-      grid-row: 2;
-      grid-column: 2;
-      margin: 0 0 8px;
-    }
-
-    .ninjalytics-ai-composer-row {
-      grid-row: 3;
-      grid-column: 1 / -1;
-      align-items: flex-end;
-      padding: 10px 10px 10px 14px;
-    }
-
-    .ninjalytics-ai-input {
-      min-height: 96px;
-    }
-
-    .ninjalytics-ai-disclaimer--composer {
-      grid-row: 4;
-      grid-column: 1 / -1;
-    }
-
-    .ninjalytics-ai-suggestions-list {
-      grid-row: 5;
-      grid-column: 1 / -1;
-      margin-top: 16px;
-    }
-  }
-}
-
-// Thread: the conversation in a white, centered box on a gray page.
-body.ninjalytics-assistant-thread {
-  .berrypress-content {
-    background: $gray-1;
   }
 
-  #ninjalytics-report-sidebar {
-    .ninjalytics-ai {
-      --ninjalytics-ai-column-gutter: 0px;
-      flex: 1 1 auto;
-      width: 100%;
-      max-width: $nj-assistant-box-width;
-      height: auto;
-      margin: 16px auto;
-      border: 1px solid $gray-2;
-      border-radius: 8px;
-      background: $background-color;
-      overflow: hidden;
-
-      .ninjalytics-sidebar-header {
-        border-bottom: 1px solid $gray-2;
-        padding-bottom: 20px;
-        }
-
-      .ninjalytics-ai-messages {
-        padding-left: calc(var(--ninjalytics-ai-column-gutter) + 32px);
-        padding-right: calc(var(--ninjalytics-ai-column-gutter) + 32px);
-        }
-
-      .ninjalytics-ai-composer {
-        border-top: 1px solid $gray-2;
-        }
-
-      .ninjalytics-ai-settings-body {
-        border: 0;
-        }
-    }
-
-    .ninjalytics-ai-settings {
-      background: none;
-    }
-
-    // The suggestions are for the first prompt only.
-    .ninjalytics-ai-suggestions {
+  // Suggestions: only the ones that make sense for what the assistant can do (data-ninjalytics-ai-access lists the levels)
+  @each $access in (none, aggregate, full) {
+    &.ninjalytics-ai--access-#{$access} .ninjalytics-ai-suggestion:not([data-ninjalytics-ai-access~="#{$access}"]) {
       display: none;
     }
   }

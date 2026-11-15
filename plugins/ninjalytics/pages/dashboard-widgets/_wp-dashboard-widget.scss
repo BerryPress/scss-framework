@@ -159,21 +159,6 @@
   }
 }
 
-// --- Chart ---
-
-.ninjalytics-dw-chart-wrap {
-  min-height: 220px;
-  width: 100%;
-  position: relative;
-
-  .ninjalytics-dashboard-widget-content & canvas {
-    display: block;
-    max-height: 280px;
-    width: 100% !important;
-    height: auto !important;
-  }
-}
-
 // --- Footer links ---
 
 .ninjalytics-dashboard-widget-footer {
@@ -199,14 +184,9 @@
 
 // --- Empty / error text ---
 
-.ninjalytics-dw-no-data,
 .ninjalytics-dw-error {
   margin: 0;
   padding: 12px 0;
-  color: $text-secondary;
   font-size: 13px;
-}
-
-.ninjalytics-dw-error {
   color: $accent-red;
 }

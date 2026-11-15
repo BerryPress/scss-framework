@@ -1,0 +1,438 @@
+@use "sass:color";
+@use "../../../global" as *;
+
+// Ninjalytics Assistant: welcome / settings dialog.
+// Markup: admin/views/ai-welcome-modal.php. Behaviour: js/ninjalytics-ai.js ("Welcome dialog").
+//
+// One dialog, two steps (the script shows one at a time):
+//   step 1  introduction, .ninjalytics-modal-ai-welcome--intro: a brand panel with an example chat next to the text
+//   step 2  setup; once the assistant is on (--on) it is the settings screen, read-only (--readonly) for those
+//           who can't change the settings
+//
+// Spacing follows the framework scale (5 / 10 / 20 / 30px, layout/_spacing.scss) and the other Ninjalytics dialogs
+// (_import-export.scss: the content is inset by the dialog's padding and the card's margin; shared footer).
+// Everything is nested in the dialog's class so that it outranks the framework's .berrypress-card p (14px).
+//
+// Contents:
+//   1. Dialog
+//   2. Step 1: introduction
+//   3. Step 2: setup / settings
+//   4. States
+//   5. Small screens
+
+$nj-welcome-width       : 640px;
+$nj-welcome-intro-width : 880px;
+// Where the label of a radio button or checkbox starts (18px control + 10px gap), for the text under it
+$nj-welcome-option-indent : 28px;
+// Same as the chat bubbles in the assistant (_report-sidebar-ai-messages.scss)
+$nj-welcome-bubble-radius : 8px;
+
+
+// 1. Dialog
+
+.ninjalytics-modal-ai-welcome {
+  width      : $nj-welcome-width;
+  max-height : 90%;
+
+  > .berrypress-card {
+    border  : none;
+    padding : 0;
+    }
+
+  .berrypress-card-content {
+    padding-bottom : 0;
+    }
+
+  h2 {
+    margin      : 0 0 10px;
+    font-size   : 20px;
+    line-height : 1.4;
+    }
+
+  .ninjalytics-ai-welcome-lead {
+    margin      : 0 0 20px;
+    font-size   : 13px;
+    line-height : 1.5;
+    color       : $text-secondary;
+    }
+
+  // First line of step 2: icon, "Ninjalytics Assistant", Beta label; the right margin keeps it clear of the close button
+  .ninjalytics-ai-welcome-eyebrow {
+    display     : flex;
+    align-items : center;
+    gap         : 5px;
+    margin      : 0 40px 10px 0;
+    font-size   : 13px;
+    font-weight : 600;
+    line-height : 1.4;
+    color       : $primary-color;
+
+    i {
+      font-size : 18px;
+      }
+
+    .berrypress-nav-label {
+      margin-left : 0;
+      }
+    }
+
+  // "Step 1 of 2", at the end of the first line of each step
+  .ninjalytics-ai-welcome-progress {
+    margin-left : auto;
+    padding-left : 10px;
+    font-size   : 12px;
+    font-weight : 400;
+    white-space : nowrap;
+    }
+
+  .ninjalytics-ai-welcome-back {
+    margin-right : auto;
+    }
+
+  // Three buttons don't fit in one line on a phone
+  .ninjalytics-modal-footer {
+    flex-wrap : wrap;
+    }
+  }
+
+
+// 2. Step 1: introduction
+// Two columns: the brand panel (aside) runs to the edges of the dialog, the text has the padding.
+
+.ninjalytics-ai-welcome-aside {
+  display : none;
+  }
+
+// The doubled class outranks .berrypress-modal (padding, max-width), which is compiled after this file.
+.ninjalytics-modal-ai-welcome.ninjalytics-modal-ai-welcome--intro {
+  width     : $nj-welcome-intro-width;
+  max-width : calc(100vw - 40px);
+  padding   : 0;
+
+  > .berrypress-card {
+    display               : grid;
+    grid-template-columns : minmax(0, 5fr) minmax(0, 6fr);
+    width                 : 100%;
+    margin                : 0;
+    }
+
+  .berrypress-card-content {
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+    padding         : 30px;
+    }
+
+  // Step 2 has the eyebrow as its first line, the introduction has the "New" pill
+  .ninjalytics-ai-welcome-eyebrow {
+    display : none;
+    }
+
+  h2 {
+    font-size   : 24px;
+    line-height : 1.3;
+    }
+
+  // Brand panel
+  .ninjalytics-ai-welcome-aside {
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+    gap             : 20px;
+    padding         : 30px;
+    background      : $primary-color;
+    color           : #fff;
+    }
+
+  .ninjalytics-ai-welcome-aside-icon {
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    width           : 50px;
+    height          : 50px;
+    border-radius   : $nj-welcome-bubble-radius;
+    background      : rgba(#fff, 0.18);
+
+    i {
+      display     : block;
+      width       : 1em;
+      height      : 1em;
+      font-size   : 30px;
+      line-height : 1;
+      text-align  : center;
+      }
+    }
+
+  // Example chat: a white question, a translucent answer
+  .ninjalytics-ai-welcome-chat {
+    display        : flex;
+    flex-direction : column;
+    gap            : 10px;
+    }
+
+  .ninjalytics-ai-welcome-bubble {
+    max-width     : 85%;
+    padding       : 10px 12px;
+    border        : 1px solid transparent;
+    border-radius : $nj-welcome-bubble-radius;
+    font-size     : 13px;
+    line-height   : 1.5;
+    }
+
+  .ninjalytics-ai-welcome-bubble--user {
+    align-self : flex-end;
+    background : #fff;
+    color      : $text-primary;
+    }
+
+  .ninjalytics-ai-welcome-bubble--agent {
+    border-color : rgba(#fff, 0.4);
+    background   : rgba(#fff, 0.16);
+    }
+
+  // What the assistant does, in three tags
+  .ninjalytics-ai-welcome-tags {
+    display   : flex;
+    flex-wrap : wrap;
+    gap       : 5px;
+
+    span {
+      padding       : 5px 10px;
+      border-radius : 999px;
+      background    : rgba(#fff, 0.18);
+      font-size     : 12px;
+      line-height   : 1.4;
+      }
+    }
+
+  // "New in Ninjalytics" pill; the right margin keeps the line clear of the close button
+  .ninjalytics-ai-welcome-pill-row {
+    display     : flex;
+    align-items : center;
+    margin      : 0 40px 20px 0;
+    }
+
+  .ninjalytics-ai-welcome-pill {
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 5px;
+    padding       : 5px 10px;
+    border-radius : 999px;
+    background    : rgba($primary-color, 0.1);
+    font-size     : 12px;
+    font-weight   : 600;
+    line-height   : 1.4;
+    white-space   : nowrap;
+    color         : color.adjust($primary-color, $lightness: -12%);
+
+    .berrypress-nav-label {
+      margin-left : 0;
+      background  : $primary-color;
+      color       : #fff;
+      }
+    }
+
+  .ninjalytics-ai-welcome-points {
+    display        : flex;
+    flex-direction : column;
+    gap            : 10px;
+    margin         : 0;
+    padding        : 0;
+    list-style     : none;
+    font-size      : 14px;
+    line-height    : 1.4;
+
+    li {
+      margin : 0;
+      }
+
+    li::before {
+      content      : "\2713";
+      margin-right : 10px;
+      font-weight  : 600;
+      color        : $accent-green-dark;
+      }
+    }
+  }
+
+
+// 3. Step 2: setup / settings
+
+.ninjalytics-modal-ai-welcome {
+
+  // A group of options: "Report data access" (radio buttons), "Also share with the assistant" (checkboxes)
+  .ninjalytics-ai-settings-group {
+    margin        : 0 0 20px;
+    padding       : 8px 15px 10px;
+    border        : 1px solid $gray-2;
+    border-radius : $border-radius;
+
+    // Lines the legend's text up with the options
+    legend {
+      margin-left : -5px;
+      padding     : 0 8px;
+      font-size   : 11px;
+      font-weight : 500;
+      color: $text-secondary;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+      }
+
+    // One option: control, label, info icon, and on the next line what the choice means
+    .berrypress-field {
+      display     : flex;
+      flex-wrap   : wrap;
+      align-items : center;
+      gap         : 0 10px;
+      margin      : 0;
+      padding     : 5px 0;
+
+      // The width limit leaves room for the control and the info icon, so a long label wraps its own text
+      // on a narrow screen instead of dropping to a line of its own
+      label {
+        min-width : 0;
+        max-width : calc(100% - #{$nj-welcome-option-indent + 21px});
+        font-size: 13px;
+        }
+
+      input {
+        flex-shrink : 0;
+        }
+
+      // A radio button is drawn in its label (20px): this gap starts its text where a checkbox's label starts
+      input[type="radio"] ~ label {
+        gap : 8px;
+        }
+      }
+    }
+
+  .ninjalytics-ai-welcome-option-desc {
+    flex        : 0 0 100%;
+    box-sizing  : border-box;
+    margin      : 3px 0 4px;
+    padding     : 0 0 0 $nj-welcome-option-indent;
+    font-size   : 12px;
+    line-height : 1.4;
+    color       : $text-secondary;
+    }
+
+  // Info icon with the fine print in a tooltip
+  .ninjalytics-ai-settings-info {
+    display     : inline-flex;
+    flex-shrink : 0;
+    align-items : center;
+    margin      : 0 0 0 -5px;
+    padding     : 0;
+    border      : 0;
+    background  : none;
+    color       : $gray-4;
+    line-height : 1;
+    cursor      : help;
+
+    i {
+      font-size : 16px;
+      }
+
+    &:hover,
+    &:focus-visible {
+      color : $text-primary;
+      }
+    }
+
+  // Terms (required) and chat sharing (optional), set apart from the settings in a gray box.
+  // The border keeps its checkboxes in line with the ones in the groups above.
+  .ninjalytics-ai-welcome-consents {
+    display        : flex;
+    flex-direction : column;
+    gap            : 10px;
+    margin         : 0;
+    padding        : 15px;
+    border         : 1px solid rgba($primary-color, 0.3);
+    border-radius  : $border-radius;
+    background     : #eff5fe;
+
+    // The Terms are required: a red asterisk at the end of the label (the checkbox has aria-required)
+    .ninjalytics-ai-welcome-terms-label {
+      font-weight: 500;
+
+      &::after {
+        content     : "*";
+        font-weight : 600;
+        color       : $accent-red;
+        }
+      }
+
+    .berrypress-field {
+      margin : 0;
+      }
+
+      // These labels run over two lines
+      label {
+        line-height : 1.4;
+        margin-top: -1px;
+        }
+    }
+
+  .ninjalytics-ai-welcome-optional label {
+    color : $text-secondary;
+    }
+
+  // Messages under the form
+  .ninjalytics-ai-welcome-error,
+  .ninjalytics-ai-welcome-readonly,
+  .ninjalytics-ai-welcome-withdraw-note {
+    margin      : 10px 0 0;
+    font-size   : 13px;
+    line-height : 1.4;
+    color       : $text-secondary;
+    }
+
+  .ninjalytics-ai-welcome-error {
+    color : $accent-red;
+    }
+  }
+
+
+// 4. States
+// Set up (assistant off) or settings (assistant on, --on); someone who can't change them sees them read-only (--readonly).
+
+.ninjalytics-modal-ai-welcome {
+
+  &:not(.ninjalytics-modal-ai-welcome--on) .ninjalytics-ai-welcome-when-on,
+  &.ninjalytics-modal-ai-welcome--on .ninjalytics-ai-welcome-when-off,
+  &:not(.ninjalytics-modal-ai-welcome--readonly) .ninjalytics-ai-welcome-readonly,
+  &.ninjalytics-modal-ai-welcome--readonly .ninjalytics-ai-welcome-editable {
+    display : none !important;
+    }
+
+  // .berrypress-btn sets its own display, which would override [hidden]
+  [hidden] {
+    display : none !important;
+    }
+  }
+
+
+// 5. Small screens
+
+// No room for two columns: the introduction without the brand panel
+@media (max-width: 700px) {
+  .ninjalytics-modal-ai-welcome.ninjalytics-modal-ai-welcome--intro {
+    > .berrypress-card {
+      grid-template-columns : minmax(0, 1fr);
+      }
+
+    .ninjalytics-ai-welcome-aside {
+      display : none;
+      }
+
+    .berrypress-card-content {
+      padding : 30px 20px 20px;
+      }
+    }
+  }
+
+@media (max-width: 481px) {
+  .ninjalytics-modal-ai-welcome.ninjalytics-modal-ai-welcome--intro h2 {
+    font-size : 20px;
+    }
+  }

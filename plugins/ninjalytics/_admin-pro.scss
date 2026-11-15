@@ -14,12 +14,15 @@
 @use "components/date-range";
 @use "components/date-range-custom-date-pro";
 @use "components/fields";
+@use "components/beta-label";
+@use "../../components/buttons/btn-disabled";
 
 // Modals
 
 @use "modals/report-templates";
 @use "modals/field-builder";
 @use "modals/import-export";
+@use "modals/ai-welcome";
 
 // Extend/ Overwrite framework
 @use "extend-framework/sidebar";
@@ -31,7 +34,9 @@
 @use "pages/report-settings";   // Report UI (toolbar, sidebar tabs, toggles)
 @use "pages/report-layout";     // Report editor layout (flex chain, scroll)
 @use "components/settings-split"; // Split.js row + gutter (>= 1101px)
-@use "pages/report-sidebar-ai"; // AI tab content
+@use "pages/report-sidebar-ai"; // AI tab: Ninjalytics Assistant panel
+@use "pages/report-sidebar-ai-messages"; // Ninjalytics Assistant: conversation
+@use "pages/assistant-tab"; // Assistant tab: the panel as a full page
 @use "pages/report-sidebar-schedule"; // Schedule tab (SER upsell)
 @use "pages/report-sidebar-debug"; // Debug tab
 @use "pages/report-sidebar-mobile-app"; // Mobile App tab

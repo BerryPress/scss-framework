@@ -1,7 +1,47 @@
 ///admin.php?page=ninjalytics&preset=X
 
+@use "sass:list";
 @use "../../../global" as *;
 @use "report-breakpoints" as bp;
+
+// Settings that only apply in some states of the form are shown with :has(), straight from the form's own
+// controls (no script). The conditions are listed once, here; the rules below are built from them.
+
+// A time-based chart is displayed
+$nj-chart-displayed  : "body:has(.ninjalytics-display-options button[data-display-mode=chart][aria-pressed=true])";
+$nj-time-chart-types : (line_series, line_totals);
+
+// "Week starts on" matters when the date range is counted in weeks: date range mode => week options of that mode
+$nj-week-range-options : (
+  "#report_time_mode_preset" : (
+    "#ninjalytics-date-range-preset-select option[value=week]",
+    "#ninjalytics-date-range-preset-select option[value=lastweek]",
+  ),
+  "#report_time_mode_basic" : (
+    "select[name=report_time_basic_from_round] option[value=w]",
+    "select[name=report_time_basic_to_round] option[value=w]",
+  ),
+);
+
+// Selectors for $target while a time-based chart is displayed ($and: a further :has() condition)
+@function nj-when-time-chart($target, $and: "") {
+  $selectors: ();
+  @each $type in $nj-time-chart-types {
+    $selectors: list.append($selectors, "#{$nj-chart-displayed}:has(#hm_psr_chart_type input[value=#{$type}]:checked)#{$and} #{$target}", comma);
+  }
+  @return $selectors;
+}
+
+// Selectors for $target (inside the date range dropdown) while the date range is counted in weeks
+@function nj-when-week-range($target) {
+  $selectors: ();
+  @each $mode, $options in $nj-week-range-options {
+    @each $option in $options {
+      $selectors: list.append($selectors, "#ninjalytics-date-range-dropdown:has(#{$mode}:checked):has(#{$option}:checked) #{$target}", comma);
+    }
+  }
+  @return $selectors;
+}
 
 // Toolbar
 
@@ -38,6 +78,40 @@
   margin-bottom  : 2rem;
   flex-wrap      : wrap;
   padding-top: .8rem;
+  }
+
+// Time resolution (display toolbar) only applies to the time-based chart types, while the chart is displayed
+#ninjalytics-chart-time-resolution {
+  display: none;
+  align-items: center;
+  gap: .4rem;
+  }
+
+#{nj-when-time-chart("#ninjalytics-chart-time-resolution")} {
+  display: flex;
+  }
+
+#ninjalytics-display-toolbar #ninjalytics-chart-time-resolution {
+  margin-left: auto;
+  margin-right: 15px;
+  }
+
+// "Week starts on" only matters for week presets, week rounding, and the weekly chart resolution
+// (conditions: $nj-week-range-options at the top of this file)
+#ninjalytics-date-range-week-start {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 0 25px 10px;
+
+  label {
+    color: #5A607F;
+    }
+  }
+
+#{nj-when-week-range("#ninjalytics-date-range-week-start")},
+#{nj-when-time-chart("#ninjalytics-date-range-dropdown #ninjalytics-date-range-week-start", ":has(#ninjalytics_field_chart_time_resolution option[value=week]:checked)")} {
+  display: flex;
   }
 
 @media (min-width: bp.$nj-report-split-min) {
@@ -148,15 +222,6 @@
 
   }
 
-// Stacked layout on narrow viewports (see _settings-split.scss).
-@media (max-width : 1100px) {
-
-  #ags-psr-display-toolbar {
-    display        : flex;
-    flex-direction : column-reverse;
-    }
-  }
-
 // - Chart/Table
 
 #ninjalytics_output_container {
@@ -190,7 +255,6 @@
     }
 
   // Status badges in preview table (WooCommerce-like styles)
-  .ninjalytics-fulfillment-status,
   .ninjalytics-order-status {
     display: inline-flex;
     line-height: 2.5em;
@@ -206,31 +270,26 @@
     font-size: 11px;
     }
 
-  .ninjalytics-fulfillment-status.ninjalytics-status-completed,
   .ninjalytics-order-status.ninjalytics-status-completed {
     background: #c8d7e1;
     color: #003d66;
     }
 
-  .ninjalytics-fulfillment-status.ninjalytics-status-on-hold,
   .ninjalytics-order-status.ninjalytics-status-on-hold {
     background: #f8dda7;
     color: #573b00;
     }
 
-  .ninjalytics-fulfillment-status.ninjalytics-status-failed,
   .ninjalytics-order-status.ninjalytics-status-failed {
     background: #eba3a3;
     color: #570000;
     }
 
-  .ninjalytics-fulfillment-status.ninjalytics-status-processing,
   .ninjalytics-order-status.ninjalytics-status-processing {
     background: #c6e1c6;
     color: #2c4700;
     }
 
-  .ninjalytics-fulfillment-status.ninjalytics-status-trash,
   .ninjalytics-order-status.ninjalytics-status-trash {
     background: #eba3a3;
     color: #550202;
@@ -996,6 +1055,18 @@
 
   .ninjalytics-segment-reset {
     vertical-align : middle;
+    }
+
+  // "Other" chosen in the select: the field for its name goes under the select, not into the reset button's column
+  .hm-psr-select-other-field {
+    grid-column : 1;
+    grid-row    : 3;
+    margin-top  : 5px;
+    }
+
+  .hm-psr-select-other-field ~ .ninjalytics-segment-reset {
+    grid-column : 2;
+    grid-row    : 2;
     }
   }
 

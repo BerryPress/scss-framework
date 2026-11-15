@@ -4,9 +4,27 @@
   }
 
 /* Header Overwrite Global */
-.berrypress-page {
+.berrypress-page.toplevel_page_ninjalytics {
 
-  @media (min-width: 701px) and (max-width: 1160px) {
+  @media (min-width: 1250px) {
+    .berrypress-header-left {
+      width: 120px;
+      }
+    }
+
+  @media (min-width: 1320px) {
+    .berrypress-header-left {
+      width: 160px;
+      }
+    }
+
+  @media (max-width: 1250px) {
+    .berrypress-header .berrypress-header-right {
+      margin-left : 0;
+      }
+    }
+
+  @media (min-width: 701px) and (max-width: 1250px) {
     .berrypress-header-left {
       width: 100%;
       justify-content: center;

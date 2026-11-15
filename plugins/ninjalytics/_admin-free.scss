@@ -11,6 +11,7 @@
 @use "components/fields";
 @use "components/date-range-custom-date-pro";
 @use "components/kebab-menu";
+@use "../../components/buttons/btn-disabled";
 
 // Modals
 
@@ -40,6 +41,7 @@
 @use "pages/addons-page";
 
 // From framework
+// Black Friday promo bar; the image path is relative to the compiled css/ninjalytics.css
 @use "../../components/berrypress_bf-bar" with ($promobar-path: "../includes/berrypress-admin-framework/assets/img/bf-promobar.png");
 @use "../../components/form/field_flex";
 @use "../../components/form/select_woo";
@@ -63,10 +65,3 @@
 @use "free/date-range" as *;
 
 @use "../../components/berrypress_top_bar" as *;
-
-// Black Friday promo
-@use "../../components/berrypress_bf-bar";
-
-.berrypress-page .berrypress-top-bar.berrypress-top-bar-promo {
-  background-image : url("../includes/berrypress-admin-framework/assets/img/bf-promobar.png");
-  }

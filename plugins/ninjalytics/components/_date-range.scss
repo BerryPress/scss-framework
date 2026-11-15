@@ -34,10 +34,10 @@
   position : relative;
   }
 
-// Hide inputs when not needed
+// Hide the number input when the unit takes none ("Forever", "Now")
 
-#ninjalytics-date-range-basic:has(select[name="report_time_basic_from_unit"] option:checked:not([value*="d"]):not([value*="cm"])) #ninjalytics-date-range-basic-from,
-#ninjalytics-date-range-basic:has(select[name="report_time_basic_to_unit"] option:checked:not([value*="d"]):not([value*="cm"])) #ninjalytics-date-range-basic-to {
+#ninjalytics-date-range-basic:has(select[name="report_time_basic_from_unit"] option:checked:is([value="max"], [value="now"])) #ninjalytics-date-range-basic-from,
+#ninjalytics-date-range-basic:has(select[name="report_time_basic_to_unit"] option:checked:is([value="max"], [value="now"])) #ninjalytics-date-range-basic-to {
   display:none;
   }
 

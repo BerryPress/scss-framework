@@ -1,0 +1,17 @@
+@use "../../../global" as *;
+
+// "Beta" label next to a feature name (menu, sidebar tab, headings, dialogs). Same look as in Live Carts.
+.berrypress-nav-label {
+  display        : inline-block;
+  font-size      : 10px;
+  font-weight    : 600;
+  line-height    : 1;
+  padding        : 2px 5px;
+  border-radius  : 3px;
+  background     : $gray-2;
+  color          : $text-secondary;
+  margin-left    : 5px;
+  text-transform : uppercase;
+  letter-spacing : 0.3px;
+  vertical-align : middle;
+  }

@@ -189,39 +189,4 @@
       }
     }
 
-  .hm-psr-fieldbuilder-field-remove {
-
-    //@include formButtonMixin("delete");
-    background-color : transparent !important;
-    color            : $text-primary !important;
-    height           : 30px;
-    width            : 30px;
-    padding          : 5px;
-    border-radius    : 8px;
-    border           : 0;
-    float            : right;
-    cursor           : pointer;
-
-    &:hover {
-      background-color : transparent !important;
-      color            : $text-primary !important;
-      }
-
-    &::after {
-      clear : both;
-      }
-    }
-
-  .ninjalytics-fieldbuilder-select-container {
-    flex : 1;
-
-    select {
-      display       : block;
-      margin-bottom : 15px !important;
-      width         : 100%;
-      max-width     : unset;
-      }
-
-    }
-
   }
