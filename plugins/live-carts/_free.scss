@@ -788,14 +788,14 @@ table.berrypress_page_live-carts-for-woocommerce {
 
   .phplugins-lc-integration-grid {
     display               : grid;
-    grid-template-columns : repeat(auto-fill, minmax(420px, 1fr));
+    grid-template-columns : repeat(auto-fill, minmax(min(420px, 100%), 1fr));
     gap                   : 20px;
     margin-bottom         : 20px;
     }
 
   @media (max-width : 720px) {
     .phplugins-lc-integration-grid {
-      grid-template-columns : repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns : repeat(auto-fill, minmax(min(320px, 100%), 1fr));
       }
     }
 
